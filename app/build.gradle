@@ -22,6 +22,7 @@ android {
             res.srcDirs = [
                     'src/main/res/layout/common',
                     'src/main/res/layout/popupview',
+                    'src/main/res/layout/test',
                     'src/main/res',
             ]
         }
@@ -32,6 +33,11 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+
+    implementation 'com.android.support:animated-vector-drawable:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
+
+
 
     /**
      * 状态栏

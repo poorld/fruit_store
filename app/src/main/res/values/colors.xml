@@ -3,4 +3,9 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="ColorstatusBar">#5866fa</color>
+
+    <!--文字颜色-->
+    <color name="c_ffffff">#ffffff</color>
 </resources>
