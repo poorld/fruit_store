@@ -44,6 +44,30 @@ dependencies {
      */
     implementation 'com.jaeger.statusbarutil:library:1.5.1'
 
+    /**
+     * json解析
+     */
+    implementation 'com.alibaba:fastjson:1.2.59'
+
+    implementation 'com.squareup.okhttp3:okhttp:3.4.1'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.6'
+    //ConverterFactory的String依赖包
+    implementation 'com.squareup.retrofit2:converter-scalars:2.3.0'
+    //ConverterFactory的Gson依赖包
+    //implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    //CallAdapterFactory的Rx依赖包
+
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+
+    /**
+     * 为 Retrofit2 提供的 FastJson 解析器 (FastJsonConverter) ，弥补了官方缺少对 FastJson 支持的问题。
+     * https://github.com/BaronZ88/Retrofit2-FastJson-Converter
+     */
+    implementation 'com.github.BaronZ88:Retrofit2-FastJson-Converter:1.2'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
