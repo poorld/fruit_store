@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.jaeger.library.StatusBarUtil;
 
@@ -66,13 +67,13 @@ public abstract class BaseActivity extends AppCompatActivity {
      * @param padding
      */
     protected void setStatusBar(boolean padding) {
-        RelativeLayout startbarRL = mView.findViewById(R.id.start_bar);
-        if (padding && startbarRL != null) {
+        RelativeLayout actionBar = getMyActionBar();
+        if (padding && actionBar != null) {
             StatusBarUtil.setTranslucentForImageViewInFragment(this, 0, null);
-            ViewGroup.LayoutParams layoutParams = startbarRL.getLayoutParams();
+            ViewGroup.LayoutParams layoutParams = actionBar.getLayoutParams();
             layoutParams.height += getStatusBarHeight(this);
-            startbarRL.setLayoutParams(layoutParams);
-            View view = startbarRL.getChildAt(0);
+            actionBar.setLayoutParams(layoutParams);
+            View view = actionBar.getChildAt(0);
             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
             params.setMargins(0, getStatusBarHeight(this), 0, 0);
 
@@ -117,5 +118,53 @@ public abstract class BaseActivity extends AppCompatActivity {
         LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(this);
         localBroadcastManager.unregisterReceiver(mBroadcastReceiver);
         ActivityManager.getAppManager().finishActivity(this);
+    }
+
+    /**
+     * 设置点击返回结束activity
+     */
+    protected void setBack() {
+        RelativeLayout actionBar = getMyActionBar();
+        if (actionBar != null) {
+            actionBar.findViewById(R.id.actionbar_back)
+                    .setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            finish();
+                        }
+                    });
+        }
+    }
+
+    /**
+     * 设置标题
+     * @param title
+     */
+    protected void setTitle(String title) {
+        RelativeLayout myActionBar = getMyActionBar();
+        if (myActionBar != null) {
+            TextView titleTv = myActionBar.findViewById(R.id.actionbar_title);
+            titleTv.setText(title);
+        }
+    }
+
+    /**
+     * 设置右边标题
+     * @param rightTitle
+     */
+    protected void setRightTitle(String rightTitle) {
+        RelativeLayout myActionBar = getMyActionBar();
+        if (myActionBar != null) {
+            TextView titleTv = myActionBar.findViewById(R.id.actionbar_right_title);
+            titleTv.setText(rightTitle);
+        }
+    }
+
+    protected RelativeLayout getMyActionBar() {
+        return mView.findViewById(R.id.start_bar);
+    }
+
+    protected View $(int id) {
+        return mView.findViewById(id);
     }
 }

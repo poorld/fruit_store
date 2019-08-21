@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#4c4c4c</color>
+    <color name="colorPrimaryDark">#3b3b3b</color>
+    <color name="colorAccent">#ffba1e</color>
 
-    <color name="ColorstatusBar">#5866fa</color>
+    <color name="ColorstatusBar">#555</color>
 
     <!--文字颜色-->
     <color name="c_ffffff">#ffffff</color>
+    <color name="c_main">#ffba1e</color>
 </resources>
