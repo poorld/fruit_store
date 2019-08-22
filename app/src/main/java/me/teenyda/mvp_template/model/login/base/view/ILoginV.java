@@ -8,4 +8,6 @@ import me.teenyda.mvp_template.common.mvp.BaseView;
  * description:
  */
 public interface ILoginV extends BaseView {
+
+    void loginSuccess();
 }

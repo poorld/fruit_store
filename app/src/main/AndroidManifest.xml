@@ -3,6 +3,7 @@
     package="me.teenyda.mvp_template">
 
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".common.app.MyApplication"

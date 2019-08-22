@@ -58,7 +58,7 @@ public abstract class MvpActivity<V extends BaseView, M, P extends BasePresenter
 
     @Override
     public void onErrorCode(BaseResponse baseResponse) {
-
+        showToast(baseResponse.getMsg());
     }
 }
 

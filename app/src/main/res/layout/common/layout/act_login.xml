@@ -33,6 +33,7 @@
                 android:layout_marginLeft="15dp"/>
 
             <EditText
+                android:id="@+id/login_username_et"
                 android:paddingLeft="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -57,6 +58,7 @@
                 android:layout_marginLeft="15dp"/>
 
             <EditText
+                android:id="@+id/login_password_et"
                 android:paddingLeft="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -69,6 +71,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/login"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginTop="30dp"

@@ -1,8 +1,10 @@
 package me.teenyda.mvp_template.model.login.base;
 
 import android.content.Context;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
-import com.jaeger.library.StatusBarUtil;
 
 import me.teenyda.mvp_template.R;
 import me.teenyda.mvp_template.common.mvp.MvpActivity;
@@ -16,6 +18,10 @@ import me.teenyda.mvp_template.model.login.base.view.ILoginV;
  * description:
  */
 public class LoginAct extends MvpActivity<ILoginV, ILoginM, LoginP> implements ILoginV{
+
+    private TextView login;
+    private EditText login_username_et;
+    private EditText login_password_et;
 
 
     @Override
@@ -35,7 +41,16 @@ public class LoginAct extends MvpActivity<ILoginV, ILoginM, LoginP> implements I
 
     @Override
     protected void viewInitializer() {
+        login = (TextView) $(R.id.login);
+        login_username_et = (EditText) $(R.id.login_username_et);
+        login_password_et = (EditText) $(R.id.login_password_et);
 
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPresenter.doLogin(getUserName(), getPassword());
+            }
+        });
     }
 
     @Override
@@ -43,8 +58,21 @@ public class LoginAct extends MvpActivity<ILoginV, ILoginM, LoginP> implements I
 
     }
 
+    private String getUserName() {
+        return login_username_et.getText().toString();
+    }
+
+    private String getPassword() {
+        return login_password_et.getText().toString();
+    }
+
     @Override
     public Context getContext() {
         return this;
+    }
+
+    @Override
+    public void loginSuccess() {
+
     }
 }

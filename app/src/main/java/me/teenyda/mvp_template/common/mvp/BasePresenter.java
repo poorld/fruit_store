@@ -17,7 +17,7 @@ import me.teenyda.mvp_template.common.api.BaseObserver;
  */
 public class BasePresenter<V extends BaseView, M> {
 
-    protected V mView;
+    protected V mBaserView;
 
 //    protected M mModel;
 
@@ -28,16 +28,16 @@ public class BasePresenter<V extends BaseView, M> {
     protected ApiServer mApiServer = ApiRetrofit.getInstance().getApiServer();
 
 //    public BasePresenter(V baseView) {
-//        mView = baseView;
+//        mBaserView = baseView;
 //    }
 
     protected void attachView(V v) {
-        mView = v;
-        mContext = mView.getContext();
+        mBaserView = v;
+        mContext = mBaserView.getContext();
     }
 
     public void detachView() {
-        mView = null;
+        mBaserView = null;
         removeDisposable();
     }
 

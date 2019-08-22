@@ -13,15 +13,15 @@ import me.teenyda.mvp_template.model.login.base.view.ILoginV;
 public class LoginP extends BasePresenter<ILoginV, ILoginM> {
 
     public void doLogin(String username, String password) {
-        addDisposable(mApiServer.login(username, password), new BaseObserver(mView) {
+        addDisposable(mApiServer.login(username, password), new BaseObserver(mBaserView) {
             @Override
             public void onSuccess(Object o) {
-
+                mBaserView.loginSuccess();
             }
 
             @Override
             public void onError(String errorMsg) {
-
+                mBaserView.showToast(errorMsg);
             }
         });
     }
