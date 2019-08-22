@@ -1,7 +1,7 @@
 package me.teenyda.mvp_template.common.mvp;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.widget.Toast;
 
 import me.teenyda.mvp_template.common.net.resp.BaseResponse;
@@ -11,7 +11,7 @@ import me.teenyda.mvp_template.common.net.resp.BaseResponse;
  * date: 2019/8/21
  * description:
  */
-public abstract class MvpActivity<V extends BaseView, M, P extends BasePresenter<V, M>> extends BaseActivity implements BaseView {
+public abstract class MvpActivity<V extends BaseView, P extends BasePresenter<V>> extends BaseActivity implements BaseView {
 
 
     public Toast mToast;

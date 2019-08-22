@@ -25,6 +25,6 @@ public interface BaseView {
 
     void onErrorCode(BaseResponse baseResponse);
 
-    Context getContext();
+    Context getMContext();
 
 }

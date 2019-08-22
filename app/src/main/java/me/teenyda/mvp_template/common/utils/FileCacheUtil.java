@@ -90,7 +90,7 @@ public class FileCacheUtil {
         return context.getFilesDir().getAbsolutePath();
     }
 
-    public static boolean cacheIsOutDate(Context context, String cacheFileName) {
+    private static boolean cacheIsOutDate(Context context, String cacheFileName) {
         File file = new File(getCachePath(context) + cacheFileName);
         long date = file.lastModified();
         long time_out = (System.currentTimeMillis() - date);

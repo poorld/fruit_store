@@ -15,11 +15,9 @@ import me.teenyda.mvp_template.common.api.BaseObserver;
  * date: 2019/8/21
  * description:
  */
-public class BasePresenter<V extends BaseView, M> {
+public class BasePresenter<V extends BaseView> {
 
     protected V mBaserView;
-
-//    protected M mModel;
 
     protected Context mContext;
 
@@ -33,7 +31,7 @@ public class BasePresenter<V extends BaseView, M> {
 
     protected void attachView(V v) {
         mBaserView = v;
-        mContext = mBaserView.getContext();
+        mContext = mBaserView.getMContext();
     }
 
     public void detachView() {

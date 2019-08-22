@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import me.teenyda.mvp_template.R;
 import me.teenyda.mvp_template.common.mvp.MvpActivity;
-import me.teenyda.mvp_template.model.login.base.model.ILoginM;
 import me.teenyda.mvp_template.model.login.base.presenter.LoginP;
 import me.teenyda.mvp_template.model.login.base.view.ILoginV;
 
@@ -17,7 +16,7 @@ import me.teenyda.mvp_template.model.login.base.view.ILoginV;
  * date: 2019/8/22
  * description:
  */
-public class LoginAct extends MvpActivity<ILoginV, ILoginM, LoginP> implements ILoginV{
+public class LoginAct extends MvpActivity<ILoginV, LoginP> implements ILoginV{
 
     private TextView login;
     private EditText login_username_et;
@@ -67,7 +66,7 @@ public class LoginAct extends MvpActivity<ILoginV, ILoginM, LoginP> implements I
     }
 
     @Override
-    public Context getContext() {
+    public Context getMContext() {
         return this;
     }
 
