@@ -26,7 +26,7 @@
             android:textColor="@color/c_fbae00"
             android:layout_marginLeft="10dp"
             android:textSize="15sp"
-            android:text="打开相机"/>
+            android:text="选择图片"/>
 
     </LinearLayout>
 

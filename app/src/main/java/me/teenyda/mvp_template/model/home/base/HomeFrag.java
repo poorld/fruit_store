@@ -11,6 +11,7 @@ import butterknife.Unbinder;
 import me.teenyda.mvp_template.R;
 import me.teenyda.mvp_template.common.mvp.BaseView;
 import me.teenyda.mvp_template.common.mvp.MvpFragment;
+import me.teenyda.mvp_template.common.utils.PermissionsUtil;
 import me.teenyda.mvp_template.common.view.popupview.PopupGetPhoto;
 import me.teenyda.mvp_template.model.home.base.presenter.HomeP;
 import me.teenyda.mvp_template.model.home.base.view.IHomeV;
@@ -59,12 +60,12 @@ public class HomeFrag extends MvpFragment<IHomeV, HomeP> implements BaseView {
         mPopupGetPhoto.setPhotoListener(new PopupGetPhoto.GetPhotoListener() {
             @Override
             public void takePhoto() {
-
+                PermissionsUtil.takePicture(getMContext());
             }
 
             @Override
             public void fromAlbum() {
-
+                PermissionsUtil.choiceFormAlbum(getMContext());
             }
         });
     }

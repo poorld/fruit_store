@@ -13,7 +13,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.PermissionChecker;
 import me.teenyda.mvp_template.common.constant.PermissionConstant;
-import me.teenyda.mvp_template.common.constant.ReqeustCodeConstant;
+import me.teenyda.mvp_template.common.constant.RequestCodeConstant;
 
 /**
  * author: teenyda
@@ -33,12 +33,32 @@ public class PermissionsUtil {
             if (!hasPremission(context, Manifest.permission.CAMERA)) {
                 ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.CAMERA}, PermissionConstant.REQUEST_CODE_TAKE_PHOTO);
             } else {
-                ((Activity)context).startActivityForResult(intent, ReqeustCodeConstant.REQUEST_CODE_OPEN_CAMERA);
+                ((Activity)context).startActivityForResult(intent, RequestCodeConstant.REQUEST_CODE_OPEN_CAMERA);
             }
         } else {
-            ((Activity)context).startActivityForResult(intent, ReqeustCodeConstant.REQUEST_CODE_OPEN_CAMERA);
+            ((Activity)context).startActivityForResult(intent, RequestCodeConstant.REQUEST_CODE_OPEN_CAMERA);
         }
 
+    }
+
+    /**
+     * 打开相册
+     */
+    @TargetApi(16)
+    public static void choiceFormAlbum(@NonNull Context context) {
+
+        if (!hasPremission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            // 读写权限
+            ActivityCompat.requestPermissions((Activity) context, new String[]{
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+            }, PermissionConstant.REQUEST_CODE_READ_WRITE_STORAGE);
+        } else {
+            Intent choiceFromAlbumIntent = new Intent(Intent.ACTION_GET_CONTENT);
+            // 设置数据类型为图片类型
+            choiceFromAlbumIntent.setType("image/*");
+            ((Activity)context).startActivityForResult(choiceFromAlbumIntent, RequestCodeConstant.REQUEST_CODE_CHOICE_FROM_ALBUM);
+        }
 
     }
 
@@ -51,4 +71,5 @@ public class PermissionsUtil {
 
         return true;
     }
+
 }
