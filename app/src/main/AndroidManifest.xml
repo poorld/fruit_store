@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".model.test.StatusBarTestAct" />
+        <activity android:name=".model.login.base.LoginAct" />
     </application>
 
 </manifest>

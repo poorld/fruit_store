@@ -2,6 +2,7 @@ package me.teenyda.mvp_template.common.api;
 
 import io.reactivex.Observable;
 import me.teenyda.mvp_template.common.net.resp.BaseResponse;
+import retrofit2.http.Field;
 import retrofit2.http.POST;
 
 /**
@@ -12,5 +13,6 @@ import retrofit2.http.POST;
 public interface ApiServer {
 
     @POST("login")
-    Observable<BaseResponse> login();
+    Observable<BaseResponse> login(@Field("username")String username,
+                                   @Field("password")String password);
 }

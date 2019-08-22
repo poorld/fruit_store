@@ -64,11 +64,11 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * 状态栏设置
-     * @param padding
+     * @param setStatusBar
      */
-    protected void setStatusBar(boolean padding) {
+    protected void setStatusBar(boolean setStatusBar) {
         RelativeLayout actionBar = getMyActionBar();
-        if (padding && actionBar != null) {
+        if (setStatusBar && actionBar != null) {
             StatusBarUtil.setTranslucentForImageViewInFragment(this, 0, null);
             ViewGroup.LayoutParams layoutParams = actionBar.getLayoutParams();
             layoutParams.height += getStatusBarHeight(this);
@@ -78,7 +78,9 @@ public abstract class BaseActivity extends AppCompatActivity {
             params.setMargins(0, getStatusBarHeight(this), 0, 0);
 
         } else {
-            StatusBarUtil.setTranslucent(this);
+//            StatusBarUtil.setTranslucent(this);
+//            StatusBarUtil.setTranslucentForImageView(this,0, null);
+            StatusBarUtil.setTranslucent(this, 0);
         }
 
     }

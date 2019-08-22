@@ -1,16 +1,17 @@
 package me.teenyda.mvp_template.common.mvp;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
+
+import me.teenyda.mvp_template.common.net.resp.BaseResponse;
 
 /**
  * author: teenyda
  * date: 2019/8/21
  * description:
  */
-public abstract class MvpActivity<V extends BaseView, M, P extends BasePresenter<V, M>> extends BaseActivity {
+public abstract class MvpActivity<V extends BaseView, M, P extends BasePresenter<V, M>> extends BaseActivity implements BaseView {
 
 
     public Toast mToast;
@@ -26,7 +27,17 @@ public abstract class MvpActivity<V extends BaseView, M, P extends BasePresenter
         mPresenter.attachView((V) this);
     }
 
-    protected void showToast(String msg) {
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mPresenter != null) {
+            mPresenter.detachView();
+        }
+    }
+
+    @Override
+    public void showToast(String msg) {
         if (mToast == null) {
             mToast = Toast.makeText(this, msg, Toast.LENGTH_SHORT);
         } else {
@@ -36,11 +47,18 @@ public abstract class MvpActivity<V extends BaseView, M, P extends BasePresenter
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (mPresenter != null) {
-            mPresenter.detachView();
-        }
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void onErrorCode(BaseResponse baseResponse) {
+
     }
 }
 

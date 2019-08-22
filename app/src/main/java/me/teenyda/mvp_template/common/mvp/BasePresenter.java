@@ -19,7 +19,7 @@ public class BasePresenter<V extends BaseView, M> {
 
     protected V mView;
 
-    protected M mModel;
+//    protected M mModel;
 
     protected Context mContext;
 

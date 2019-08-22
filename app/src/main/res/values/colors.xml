@@ -9,4 +9,71 @@
     <!--文字颜色-->
     <color name="c_ffffff">#ffffff</color>
     <color name="c_main">#ffba1e</color>
+
+    <color name="c_fffefb">#fffefb</color>
+    <color name="c_fff8ea">#fff8ea</color>
+    <color name="c_fff3d9">#fff3d9</color>
+    <color name="c_ffeec8">#ffeec8</color>
+    <color name="c_ffe9b7">#ffe9b7</color>
+    <color name="c_ffe4a6">#ffe4a6</color>
+    <color name="c_ffde95">#ffde95</color>
+    <color name="c_ffd984">#ffd984</color>
+    <color name="c_ffd473">#ffd473</color>
+    <color name="c_ffcf62">#ffcf62</color>
+    <color name="c_ffca51">#ffca51</color>
+    <color name="c_ffc440">#ffc440</color>
+    <color name="c_ffbf2f">#ffbf2f</color>
+    <color name="c_ffba1e">#ffba1e</color>
+    <color name="c_ffb50d">#ffb50d</color>
+    <color name="c_fbae00">#fbae00</color>
+    <color name="c_eaa200">#eaa200</color>
+    <color name="c_d99600">#d99600</color>
+    <color name="c_c88b00">#c88b00</color>
+    <color name="c_b77f00">#b77f00</color>
+    <color name="c_a67300">#a67300</color>
+    <color name="c_956700">#956700</color>
+    <color name="c_735000">#735000</color>
+    <color name="c_624400">#624400</color>
+    <color name="c_513800">#513800</color>
+    <color name="c_402c00">#402c00</color>
+    <color name="c_2f2100">#2f2100</color>
+    <color name="c_1e1500">#1e1500</color>
+    <color name="c_0d0900">#0d0900</color>
+    <color name="c_000000">#000</color>
+
+
+
+    <color name="c_f6f6f6">#f6f6f6</color>
+    <color name="c_eeeeee">#eeeeee</color>
+    <color name="c_e5e5e5">#e5e5e5</color>
+    <color name="c_dddddd">#dddddd</color>
+    <color name="c_d4d4d4">#d4d4d4</color>
+    <color name="c_cccccc">#cccccc</color>
+    <color name="c_c3c3c3">#c3c3c3</color>
+    <color name="c_bbbbbb">#bbbbbb</color>
+    <color name="c_b2b2b2">#b2b2b2</color>
+    <color name="c_aaaaaa">#aaaaaa</color>
+    <color name="c_a1a1a1">#a1a1a1</color>
+    <color name="c_999999">#999</color>
+    <color name="c_909090">#909090</color>
+    <color name="c_888888">#888888</color>
+    <color name="c_7f7f7f">#7f7f7f</color>
+    <color name="c_777777">#777777</color>
+    <color name="c_6e6e6e">#6e6e6e</color>
+    <color name="c_666666">#666666</color>
+    <color name="c_5d5d5d">#5d5d5d</color>
+    <color name="c_555555">#555555</color>
+    <color name="c_4c4c4c">#4c4c4c</color>
+    <color name="c_444444">#444444</color>
+    <color name="c_3b3b3b">#3b3b3b</color>
+    <color name="c_333333">#333333</color>
+    <color name="c_2a2a2a">#2a2a2a</color>
+    <color name="c_222222">#222222</color>
+    <color name="c_191919">#191919</color>
+    <color name="c_111111">#111111</color>
+    <color name="c_080808">#080808</color>
+
+
+
+
 </resources>
