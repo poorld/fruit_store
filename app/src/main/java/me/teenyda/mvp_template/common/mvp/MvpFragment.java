@@ -1,5 +1,7 @@
 package me.teenyda.mvp_template.common.mvp;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -61,5 +63,11 @@ public abstract class MvpFragment<V extends BaseView, P extends BasePresenter>
         if (mPresenter != null) {
             mPresenter.detachView();
         }
+    }
+
+    protected void startActivity(Class<?> clazz) {
+        Context context = getContext();
+        Intent intent = new Intent(context, clazz);
+        context.startActivity(intent);
     }
 }

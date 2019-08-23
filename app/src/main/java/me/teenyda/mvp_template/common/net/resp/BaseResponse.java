@@ -7,7 +7,7 @@ import java.io.Serializable;
  * date: 2019/8/21
  * description:
  */
-public class BaseResponse<T> implements Serializable {
+public class BaseResponse implements Serializable {
 
     private int code;
 

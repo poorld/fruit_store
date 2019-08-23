@@ -7,12 +7,15 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.net.Uri;
+import android.os.Environment;
 import android.provider.MediaStore;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -118,6 +121,16 @@ public class BitmapUtil {
         return returnBm;
     }
 
+    public static Bitmap getBitmapByUri(@NonNull Context context, Uri uri) {
+        Bitmap bitmap = null;
+        try {
+            bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), uri);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return bitmap;
+    }
+
     public static List<Bitmap> getBitmapByClipData(@NonNull Context context, ClipData clipData) {
         if (clipData == null) {
             return null;
@@ -189,5 +202,33 @@ public class BitmapUtil {
                     }
                 });
     };
+
+    /**
+     * 保存图片到本地
+     * @param context
+     * @param uri
+     */
+    public static void saveBitmapToLoaction(@NonNull Context context, Uri uri) {
+        // Assume block needs to be inside a Try/Catch block.
+        String path = Environment.getExternalStorageDirectory().toString();
+        OutputStream fOut = null;
+        Integer counter = 0;
+        File file = new File(path, "FitnessGirl"+counter+".jpg"); // the File to save , append increasing numeric counter to prevent files from getting overwritten.
+        try {
+            fOut = new FileOutputStream(file);
+            Bitmap pictureBitmap = getBitmapByUri(context, uri); // obtaining the Bitmap
+            pictureBitmap.compress(Bitmap.CompressFormat.JPEG, 85, fOut); // saving the Bitmap to a file compressed as a JPEG with 85% compression rate
+            fOut.flush(); // Not really required
+            fOut.close(); // do not forget to close the stream
+
+            MediaStore.Images.Media.insertImage(context.getContentResolver(),file.getAbsolutePath(),file.getName(),file.getName());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 
 }

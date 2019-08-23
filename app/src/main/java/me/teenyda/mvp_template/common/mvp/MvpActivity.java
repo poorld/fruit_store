@@ -48,12 +48,12 @@ public abstract class MvpActivity<V extends BaseView, P extends BasePresenter<V>
 
     @Override
     public void showLoading() {
-
+        showToast("加载弹窗");
     }
 
     @Override
     public void hideLoading() {
-
+        showToast("隐藏加载");
     }
 
     @Override

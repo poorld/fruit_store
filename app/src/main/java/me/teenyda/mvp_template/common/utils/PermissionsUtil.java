@@ -6,7 +6,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -40,8 +39,8 @@ public class PermissionsUtil {
 
         Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
         // images是file_paths.xml下的path
-        String filePath = Environment.getExternalStorageDirectory() + File.separator + "images" + File.separator + photoName;
-        File outputFile = new File(filePath);
+        String filePath = Environment.getExternalStorageDirectory() + File.separator + "images" + File.separator;
+        File outputFile = new File(filePath, photoName);
         if (!outputFile.getParentFile().exists()) {
             outputFile.getParentFile().mkdir();
         }
@@ -52,8 +51,16 @@ public class PermissionsUtil {
          *   android:authorities="${applicationId}.provider"
          *   android:name="androidx.core.content.FileProvider"
          */
-        Uri contentUri = FileProvider.getUriForFile(context,
-                BuildConfig.APPLICATION_ID + ".provider", outputFile);
+
+        Uri contentUri;
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            contentUri = FileProvider.getUriForFile(context,
+                    BuildConfig.APPLICATION_ID + ".provider", outputFile);
+        } else {
+            contentUri = Uri.fromFile(outputFile);
+        }
+
 
         intent.putExtra(MediaStore.EXTRA_OUTPUT, contentUri);
 

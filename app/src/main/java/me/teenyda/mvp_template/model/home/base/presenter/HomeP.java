@@ -10,9 +10,13 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
+import me.teenyda.mvp_template.common.api.BaseObserver;
 import me.teenyda.mvp_template.common.mvp.BasePresenter;
 import me.teenyda.mvp_template.common.utils.BitmapUtil;
 import me.teenyda.mvp_template.model.home.base.view.IHomeV;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 /**
  * author: teenyda
@@ -63,5 +67,37 @@ public class HomeP extends BasePresenter<IHomeV> {
 
                     }
                 });
+    }
+
+    public void uploadFile(File file) {
+        RequestBody fileRequestBody = RequestBody.create(MediaType.parse("image/*"), file);
+        MultipartBody.Part part = MultipartBody.Part.createFormData("upload", file.getName(), fileRequestBody);
+        RequestBody description = RequestBody.create(MediaType.parse("text/plain"), "imaeg-type");
+
+        addDisposable(mApiServer.uploadImage(part, description), new BaseObserver(mBaserView) {
+            @Override
+            public void onSuccess(Object o) {
+
+            }
+
+            @Override
+            public void onError(String errorMsg) {
+
+            }
+        });
+    }
+
+    public void getBook() {
+        addDisposable(mApiServer.bookList(), new BaseObserver(mBaserView) {
+            @Override
+            public void onSuccess(Object o) {
+
+            }
+
+            @Override
+            public void onError(String errorMsg) {
+
+            }
+        });
     }
 }

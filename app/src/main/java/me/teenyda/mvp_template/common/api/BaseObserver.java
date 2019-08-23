@@ -64,19 +64,19 @@ public abstract class BaseObserver<T> extends DisposableObserver<T> {
 
     @Override
     public void onNext(T t) {
-        try {
-            BaseResponse response = (BaseResponse) t;
-            if (response.getCode() == 0) {
-                onSuccess(t);
-            } else {
-                if (mView != null) {
-                    mView.onErrorCode(response);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            onError(e.toString());
-        }
+//        try {
+//            BaseResponse response = (BaseResponse) t;
+//            if (response.getCode() == 200) {
+//                onSuccess(t);
+//            } else {
+//                if (mView != null) {
+//                    mView.onErrorCode(response);
+//                }
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            onError(e.toString());
+//        }
 
     }
 

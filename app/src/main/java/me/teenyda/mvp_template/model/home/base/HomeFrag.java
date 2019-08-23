@@ -2,22 +2,21 @@ package me.teenyda.mvp_template.model.home.base;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Build;
+import android.net.Uri;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import java.io.File;
-import java.util.List;
 
 import androidx.annotation.Nullable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 import me.teenyda.mvp_template.R;
 import me.teenyda.mvp_template.common.constant.RequestCodeConstant;
@@ -27,6 +26,7 @@ import me.teenyda.mvp_template.common.utils.PermissionsUtil;
 import me.teenyda.mvp_template.common.view.popupview.PopupGetPhoto;
 import me.teenyda.mvp_template.model.home.base.presenter.HomeP;
 import me.teenyda.mvp_template.model.home.base.view.IHomeV;
+import me.teenyda.mvp_template.model.login.base.LoginAct;
 
 /**
  * author: teenyda
@@ -37,6 +37,9 @@ public class HomeFrag extends MvpFragment<IHomeV, HomeP> implements IHomeV {
 
     @BindView(R.id.open_camera_ll)
     LinearLayout open_camera_ll;
+
+    @BindView(R.id.getbook_ll)
+    LinearLayout getbook_ll;
 
     @BindView(R.id.photo_iv)
     ImageView photo_iv;
@@ -67,25 +70,35 @@ public class HomeFrag extends MvpFragment<IHomeV, HomeP> implements IHomeV {
         mBind = ButterKnife.bind(this, mView);
         mPopupGetPhoto = new PopupGetPhoto(getMContext());
 
-        open_camera_ll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPopupGetPhoto.show(v);
-            }
-        });
-
         mPopupGetPhoto.setPhotoListener(new PopupGetPhoto.GetPhotoListener() {
             @Override
             public void takePhoto() {
                 mPhotoFile = PermissionsUtil.takePicture(getMContext());
+                mPopupGetPhoto.dismiss();
 
             }
 
             @Override
             public void fromAlbum() {
-                PermissionsUtil.choiceMultipleFromGallery(getMContext());
+                PermissionsUtil.choiceFromGallery(getMContext());
+                mPopupGetPhoto.dismiss();
             }
         });
+    }
+
+    @OnClick({R.id.open_camera_ll, R.id.getbook_ll, R.id.login_ll})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.open_camera_ll:
+                mPopupGetPhoto.show(view);
+                break;
+            case R.id.getbook_ll:
+
+                break;
+            case R.id.login_ll:
+                startActivity(LoginAct.class);
+                break;
+        }
     }
 
     @Override
@@ -115,10 +128,10 @@ public class HomeFrag extends MvpFragment<IHomeV, HomeP> implements IHomeV {
                     mPresenter.compressImage(mPhotoFile);
                     break;
                 // 相册
-                case RequestCodeConstant.REQUEST_CODE_MULTIPLE_ALBUM:
-                    ClipData clipData = data.getClipData();
-                    List<Bitmap> bitmapByClipData = BitmapUtil.getBitmapByClipData(getMContext(), clipData);
-                    photo_iv.setImageBitmap(bitmapByClipData.get(0));
+                case RequestCodeConstant.REQUEST_CODE_CHOICE_FROM_ALBUM:
+                    Uri uri = data.getData();
+                    Bitmap bitmap = BitmapUtil.getBitmapByUri(getMContext(), uri);
+                    photo_iv.setImageBitmap(bitmap);
                     break;
             }
         }

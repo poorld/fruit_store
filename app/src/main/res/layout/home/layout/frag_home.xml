@@ -30,6 +30,60 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/getbook_ll"
+        android:layout_marginTop="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/c_5d5d5d"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/c_ffc440"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/c_fbae00"
+            android:layout_marginLeft="10dp"
+            android:textSize="15sp"
+            android:text="获取书本"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/login_ll"
+        android:layout_marginTop="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/c_5d5d5d"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/c_ffc440"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/c_fbae00"
+            android:layout_marginLeft="10dp"
+            android:textSize="15sp"
+            android:text="登陆"/>
+
+    </LinearLayout>
+
     <ImageView
         android:id="@+id/photo_iv"
         android:layout_width="wrap_content"
