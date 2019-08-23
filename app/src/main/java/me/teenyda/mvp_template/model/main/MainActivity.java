@@ -1,6 +1,9 @@
 package me.teenyda.mvp_template.model.main;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -166,5 +169,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         mBind.unbind();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (mCurrentFragment != null) {
+            mCurrentFragment.onActivityResult(requestCode, resultCode, data);
+        }
     }
 }

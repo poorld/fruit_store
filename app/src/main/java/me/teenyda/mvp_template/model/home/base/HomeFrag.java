@@ -1,16 +1,25 @@
 package me.teenyda.mvp_template.model.home.base;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
+import java.io.File;
+
+import androidx.annotation.Nullable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import me.teenyda.mvp_template.R;
+import me.teenyda.mvp_template.common.constant.RequestCodeConstant;
 import me.teenyda.mvp_template.common.mvp.BaseView;
 import me.teenyda.mvp_template.common.mvp.MvpFragment;
+import me.teenyda.mvp_template.common.utils.BitmapUtil;
 import me.teenyda.mvp_template.common.utils.PermissionsUtil;
 import me.teenyda.mvp_template.common.view.popupview.PopupGetPhoto;
 import me.teenyda.mvp_template.model.home.base.presenter.HomeP;
@@ -21,14 +30,19 @@ import me.teenyda.mvp_template.model.home.base.view.IHomeV;
  * date: 2019/8/22
  * description:
  */
-public class HomeFrag extends MvpFragment<IHomeV, HomeP> implements BaseView {
+public class HomeFrag extends MvpFragment<IHomeV, HomeP> implements IHomeV {
 
     @BindView(R.id.open_camera_ll)
     LinearLayout open_camera_ll;
 
+    @BindView(R.id.photo_iv)
+    ImageView photo_iv;
+
     private Unbinder mBind;
 
     private PopupGetPhoto mPopupGetPhoto;
+
+    private File mPhotoFile;
 
     @Override
     protected HomeP createPresenter() {
@@ -60,7 +74,8 @@ public class HomeFrag extends MvpFragment<IHomeV, HomeP> implements BaseView {
         mPopupGetPhoto.setPhotoListener(new PopupGetPhoto.GetPhotoListener() {
             @Override
             public void takePhoto() {
-                PermissionsUtil.takePicture(getMContext());
+                mPhotoFile = PermissionsUtil.takePicture(getMContext());
+
             }
 
             @Override
@@ -84,5 +99,30 @@ public class HomeFrag extends MvpFragment<IHomeV, HomeP> implements BaseView {
     public void onDestroyView() {
         super.onDestroyView();
         mBind.unbind();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            switch (requestCode) {
+                // 拍照
+                case RequestCodeConstant.REQUEST_CODE_OPEN_CAMERA:
+                    mPresenter.compressImage(mPhotoFile);
+                    break;
+                // 相册
+                case RequestCodeConstant.REQUEST_CODE_CHOICE_FROM_ALBUM:
+
+                    break;
+            }
+        }
+    }
+
+    @Override
+    public void compressImageSuccess(File file) {
+        mPhotoFile = file;
+        Bitmap bitmap = BitmapFactory.decodeFile(file.getPath());
+        int bitmapDegree = BitmapUtil.getBitmapDegree(mPhotoFile.getPath());
+        photo_iv.setImageBitmap(bitmap);
     }
 }

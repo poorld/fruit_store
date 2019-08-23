@@ -6,12 +6,19 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
+import android.provider.MediaStore;
+
+import java.io.File;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.core.content.PermissionChecker;
+import me.teenyda.mvp_template.BuildConfig;
 import me.teenyda.mvp_template.common.constant.PermissionConstant;
 import me.teenyda.mvp_template.common.constant.RequestCodeConstant;
 
@@ -22,13 +29,33 @@ import me.teenyda.mvp_template.common.constant.RequestCodeConstant;
  */
 public class PermissionsUtil {
 
+    public static final String photoName = "my_photo.jpg";
+
     /**
      * 拍照
      * @param context
      */
-    public static void takePicture(@NonNull Context context) {
+    public static File takePicture(@NonNull Context context) {
 
         Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+        // images是file_paths.xml下的path
+        String filePath = Environment.getExternalStorageDirectory() + File.separator + "images" + File.separator + photoName;
+        File outputFile = new File(filePath);
+        if (!outputFile.getParentFile().exists()) {
+            outputFile.getParentFile().mkdir();
+        }
+        /**
+         * BuildConfig.APPLICATION_ID 就是build.gradle 文件中的 applicationId值
+         *
+         * <provider
+         *   android:authorities="${applicationId}.provider"
+         *   android:name="androidx.core.content.FileProvider"
+         */
+        Uri contentUri = FileProvider.getUriForFile(context,
+                BuildConfig.APPLICATION_ID + ".provider", outputFile);
+
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, contentUri);
+
         if (Build.VERSION.SDK_INT >= 23) {
             if (!hasPremission(context, Manifest.permission.CAMERA)) {
                 ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.CAMERA}, PermissionConstant.REQUEST_CODE_TAKE_PHOTO);
@@ -38,6 +65,8 @@ public class PermissionsUtil {
         } else {
             ((Activity)context).startActivityForResult(intent, RequestCodeConstant.REQUEST_CODE_OPEN_CAMERA);
         }
+
+        return outputFile;
 
     }
 

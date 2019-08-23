@@ -1,5 +1,7 @@
 package me.teenyda.mvp_template.model.home.base.view;
 
+import java.io.File;
+
 import me.teenyda.mvp_template.common.mvp.BaseView;
 
 /**
@@ -8,4 +10,6 @@ import me.teenyda.mvp_template.common.mvp.BaseView;
  * description:
  */
 public interface IHomeV extends BaseView {
+
+    void compressImageSuccess(File file);
 }
