@@ -1,14 +1,29 @@
 package me.teenyda.mvp_template.common.utils;
 
+import android.content.ClipData;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
+import android.net.Uri;
+import android.provider.MediaStore;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import androidx.annotation.NonNull;
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 
 
 /**
@@ -102,4 +117,77 @@ public class BitmapUtil {
 
         return returnBm;
     }
+
+    public static List<Bitmap> getBitmapByClipData(@NonNull Context context, ClipData clipData) {
+        if (clipData == null) {
+            return null;
+        }
+
+        List<Uri> uris = new ArrayList<>();
+        List<Bitmap> bitmaps = new ArrayList<>();
+
+        try {
+
+            for (int i = 0; i < clipData.getItemCount(); i++) {
+                ClipData.Item item = clipData.getItemAt(i);
+                Uri uri = item.getUri();
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), uri);
+                bitmaps.add(bitmap);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return bitmaps;
+    }
+
+    public interface CompressListener{
+        void onCompressSuccess(Bitmap bitmap);
+        void onCompressError(String error);
+        void onCompressComplete();
+    }
+
+    public static void compressImage(File file, CompressListener compressListener) {
+        Observable.just(file)
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+
+                    }
+                })
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(Schedulers.io())
+                .map(new Function<File, Bitmap>() {
+                    @Override
+                    public Bitmap apply(File file) throws Exception {
+                        File compressFile = compressImage(file.getPath());
+                        Bitmap bitmap = BitmapFactory.decodeFile(compressFile.getPath());
+                        return bitmap;
+                    }
+                })
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Bitmap>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Bitmap bitmap) {
+                        compressListener.onCompressSuccess(bitmap);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        compressListener.onCompressError(e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        compressListener.onCompressComplete();
+                    }
+                });
+    };
+
 }

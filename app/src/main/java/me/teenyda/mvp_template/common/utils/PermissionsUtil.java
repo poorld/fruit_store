@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -74,7 +75,7 @@ public class PermissionsUtil {
      * 打开相册
      */
     @TargetApi(16)
-    public static void choiceFormAlbum(@NonNull Context context) {
+    public static void choiceFromGallery(@NonNull Context context) {
 
         if (!hasPremission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
             // 读写权限
@@ -91,6 +92,27 @@ public class PermissionsUtil {
 
     }
 
+    /**
+     * 从图库选择多张图片
+     * @param context
+     */
+    @TargetApi(16)
+    public static void choiceMultipleFromGallery(@NonNull Context context) {
+        if (!hasPremission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            // 读写权限
+            ActivityCompat.requestPermissions((Activity) context, new String[]{
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+            }, PermissionConstant.REQUEST_CODE_READ_WRITE_STORAGE);
+        } else {
+            Intent intent = new Intent(Intent.ACTION_PICK);
+            intent.setType("image/*");
+            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+            ((Activity) context).startActivityForResult(Intent.createChooser(intent, "Select Picture"),
+                        RequestCodeConstant.REQUEST_CODE_MULTIPLE_ALBUM);
+        }
+    }
+
     @TargetApi(23)
     public static boolean hasPremission(@NonNull Context context, @NonNull String permission) {
         if (ContextCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED
@@ -100,5 +122,7 @@ public class PermissionsUtil {
 
         return true;
     }
+
+
 
 }

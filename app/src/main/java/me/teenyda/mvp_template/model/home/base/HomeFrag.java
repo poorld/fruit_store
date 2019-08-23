@@ -1,15 +1,19 @@
 package me.teenyda.mvp_template.model.home.base;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import java.io.File;
+import java.util.List;
 
 import androidx.annotation.Nullable;
 import butterknife.BindView;
@@ -17,7 +21,6 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import me.teenyda.mvp_template.R;
 import me.teenyda.mvp_template.common.constant.RequestCodeConstant;
-import me.teenyda.mvp_template.common.mvp.BaseView;
 import me.teenyda.mvp_template.common.mvp.MvpFragment;
 import me.teenyda.mvp_template.common.utils.BitmapUtil;
 import me.teenyda.mvp_template.common.utils.PermissionsUtil;
@@ -80,7 +83,7 @@ public class HomeFrag extends MvpFragment<IHomeV, HomeP> implements IHomeV {
 
             @Override
             public void fromAlbum() {
-                PermissionsUtil.choiceFormAlbum(getMContext());
+                PermissionsUtil.choiceMultipleFromGallery(getMContext());
             }
         });
     }
@@ -101,6 +104,7 @@ public class HomeFrag extends MvpFragment<IHomeV, HomeP> implements IHomeV {
         mBind.unbind();
     }
 
+    @TargetApi(16)
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -111,8 +115,10 @@ public class HomeFrag extends MvpFragment<IHomeV, HomeP> implements IHomeV {
                     mPresenter.compressImage(mPhotoFile);
                     break;
                 // 相册
-                case RequestCodeConstant.REQUEST_CODE_CHOICE_FROM_ALBUM:
-
+                case RequestCodeConstant.REQUEST_CODE_MULTIPLE_ALBUM:
+                    ClipData clipData = data.getClipData();
+                    List<Bitmap> bitmapByClipData = BitmapUtil.getBitmapByClipData(getMContext(), clipData);
+                    photo_iv.setImageBitmap(bitmapByClipData.get(0));
                     break;
             }
         }
