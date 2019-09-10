@@ -5,6 +5,7 @@ import android.net.ParseException;
 import com.alibaba.fastjson.JSONException;
 
 import java.net.ConnectException;
+import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
 import io.reactivex.observers.DisposableObserver;
@@ -20,7 +21,7 @@ import retrofit2.HttpException;
 public abstract class BaseObserver<T> extends DisposableObserver<T> {
 
     protected BaseView mView;
-
+    private boolean mShowLoading = false;
     /**
      * 解析数据失败
      */
@@ -41,12 +42,16 @@ public abstract class BaseObserver<T> extends DisposableObserver<T> {
     public BaseObserver(BaseView view) {
         mView = view;
     }
+    public BaseObserver(BaseView view, boolean showLoading) {
+        mView = view;
+        mShowLoading = showLoading;
+    }
 
     /**
      * 成功
-     * @param t
+     * @param result
      */
-    public abstract void onSuccess(T t);
+    public abstract void onSuccess(String result);
 
     /**
      * 失败
@@ -57,32 +62,33 @@ public abstract class BaseObserver<T> extends DisposableObserver<T> {
     @Override
     protected void onStart() {
 //        super.onStart();
-        if (mView != null) {
+        if (mView != null && mShowLoading) {
             mView.showLoading();
         }
     }
 
     @Override
     public void onNext(T t) {
-//        try {
-//            BaseResponse response = (BaseResponse) t;
-//            if (response.getCode() == 200) {
-//                onSuccess(t);
-//            } else {
-//                if (mView != null) {
-//                    mView.onErrorCode(response);
-//                }
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            onError(e.toString());
-//        }
+        try {
+            BaseResponse response = (BaseResponse) t;
+            switch (response.getCode()) {
+                case 200:
+                    onSuccess(response.getData());
+                    break;
+                case 40001:
+                    mView.showToast(response.getMsg());
+                    break;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            onError(e.toString());
+        }
 
     }
 
     @Override
     public void onError(Throwable e) {
-        if (mView != null) {
+        if (mView != null && mShowLoading) {
             mView.hideLoading();
         }
 
@@ -93,7 +99,8 @@ public abstract class BaseObserver<T> extends DisposableObserver<T> {
                 || e instanceof UnknownHostException) {
             // 连接错误
             onException(CONNECT_ERROR);
-        } else if (e instanceof InterruptedException) {
+        } else if (e instanceof InterruptedException
+            || e instanceof SocketTimeoutException) {
             // 连接超时
             onException(CONNECT_TIMEOUT);
         } else if (e instanceof JSONException
@@ -113,18 +120,22 @@ public abstract class BaseObserver<T> extends DisposableObserver<T> {
         switch (unknownError) {
             case CONNECT_ERROR:
                 onError("连接错误");
+                mView.showToast("连接错误");
                 break;
 
             case CONNECT_TIMEOUT:
-                onError("连接超时");
+                onError("网络连接超时");
+                mView.showToast("网络连接超时");
                 break;
 
             case BAD_NETWORK:
-                onError("网络问题");
+                onError("网络出错");
+                mView.showToast("网络出错");
                 break;
 
             case PARSE_ERROR:
                 onError("解析数据失败");
+                mView.showToast("解析数据失败");
                 break;
 
             default:
@@ -134,7 +145,7 @@ public abstract class BaseObserver<T> extends DisposableObserver<T> {
 
     @Override
     public void onComplete() {
-        if (mView != null) {
+        if (mView != null && mShowLoading) {
             mView.hideLoading();
         }
     }

@@ -93,7 +93,7 @@ public class HomeFrag extends MvpFragment<IHomeV, HomeP> implements IHomeV {
                 mPopupGetPhoto.show(view);
                 break;
             case R.id.getbook_ll:
-
+                mPresenter.getBook();
                 break;
             case R.id.login_ll:
                 startActivity(LoginAct.class);
@@ -143,5 +143,6 @@ public class HomeFrag extends MvpFragment<IHomeV, HomeP> implements IHomeV {
         Bitmap bitmap = BitmapFactory.decodeFile(file.getPath());
         int bitmapDegree = BitmapUtil.getBitmapDegree(mPhotoFile.getPath());
         photo_iv.setImageBitmap(bitmap);
+        mPresenter.uploadFile(file);
     }
 }

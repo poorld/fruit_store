@@ -53,6 +53,9 @@ public class ApiRetrofit {
             Log.e(TAG, "| response:" + content);
             Log.e(TAG, "---------- request end:" + duration + "毫秒 ----------");
             return response.newBuilder()
+                    .addHeader("Accept-Encoding", "gzip")
+                    .addHeader("Accept", "application/json")
+                    .addHeader("Content-Type", "application/json; charset=utf-8")
                     .body(ResponseBody.create(mediaType, content))
                     .build();
         }

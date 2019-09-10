@@ -24,10 +24,10 @@ public interface ApiServer {
                                    @Field("password")String password);
 
     @GET("book/list")
-    Observable<String> bookList();
+    Observable<BaseResponse> bookList();
 
     @Multipart
-    @POST
+    @POST("file/upload")
     Observable<BaseResponse> uploadImage(@Part MultipartBody.Part file,
-                                         @Part("name") RequestBody requestBody);
+                                         @Part("file") RequestBody requestBody);
 }
