@@ -51,7 +51,7 @@ public abstract class BaseObserver<T> extends DisposableObserver<T> {
      * 成功
      * @param result
      */
-    public abstract void onSuccess(String result);
+    public abstract void onSuccess(T result);
 
     /**
      * 失败
@@ -69,20 +69,22 @@ public abstract class BaseObserver<T> extends DisposableObserver<T> {
 
     @Override
     public void onNext(T t) {
-        try {
-            BaseResponse response = (BaseResponse) t;
-            switch (response.getCode()) {
-                case 200:
-                    onSuccess(response.getData());
-                    break;
-                case 40001:
-                    mView.showToast(response.getMsg());
-                    break;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            onError(e.toString());
-        }
+        Thread thread = Thread.currentThread();
+        onSuccess(t);
+//        try {
+//            BaseResponse response = (BaseResponse) t;
+//            switch (response.getCode()) {
+//                case 200:
+//                    onSuccess((R) response.getData());
+//                    break;
+//                case 40001:
+//                    mView.showToast(response.getMsg());
+//                    break;
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            onError(e.toString());
+//        }
 
     }
 

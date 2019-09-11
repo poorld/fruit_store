@@ -35,6 +35,7 @@ android {
             ]
         }
     }
+    buildToolsVersion = '28.0.2'
 }
 
 dependencies {
@@ -53,7 +54,7 @@ dependencies {
 
 
     /**
-     * 状态栏
+     * 状态栏BaronZ88
      */
     implementation 'com.jaeger.statusbarutil:library:1.5.1'
 
@@ -70,7 +71,7 @@ dependencies {
     //ConverterFactory的String依赖包
     implementation 'com.squareup.retrofit2:converter-scalars:2.3.0'
     //ConverterFactory的Gson依赖包
-    //implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     //CallAdapterFactory的Rx依赖包
 
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'

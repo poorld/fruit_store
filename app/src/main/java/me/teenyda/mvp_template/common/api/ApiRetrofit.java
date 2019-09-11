@@ -15,6 +15,7 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
@@ -70,8 +71,9 @@ public class ApiRetrofit {
 
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(URL.BASE_URL)
+//                .addConverterFactory(GsonConverterFactory.create())
                 .addConverterFactory(FastJsonConverterFactory.create())
-                .addConverterFactory(ScalarsConverterFactory.create())
+//                .addConverterFactory(ScalarsConverterFactory.create())
                 // 支持rxjava2
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(mClient)

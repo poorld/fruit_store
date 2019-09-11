@@ -86,7 +86,7 @@ public class HomeFrag extends MvpFragment<IHomeV, HomeP> implements IHomeV {
         });
     }
 
-    @OnClick({R.id.open_camera_ll, R.id.getbook_ll, R.id.login_ll})
+    @OnClick({R.id.open_camera_ll, R.id.getbook_ll, R.id.login_ll, R.id.getbooks_ll})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.open_camera_ll:
@@ -97,6 +97,9 @@ public class HomeFrag extends MvpFragment<IHomeV, HomeP> implements IHomeV {
                 break;
             case R.id.login_ll:
                 startActivity(LoginAct.class);
+                break;
+            case R.id.getbooks_ll:
+                mPresenter.getBooks();
                 break;
         }
     }
