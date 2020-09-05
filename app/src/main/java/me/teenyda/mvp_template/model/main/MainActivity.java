@@ -10,6 +10,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.trello.rxlifecycle2.components.RxActivity;
+import com.trello.rxlifecycle2.components.RxFragment;
+
+import androidx.core.app.RemoteInput;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -19,15 +23,16 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import me.teenyda.mvp_template.R;
 import me.teenyda.mvp_template.model.home.base.HomeFrag;
+import me.teenyda.mvp_template.model.home.base.HomeFrag2;
 import me.teenyda.mvp_template.model.myself.MyselfFrag;
 import me.teenyda.mvp_template.model.store.base.StoreFrag;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends RxActivity {
 
-    private HomeFrag mHomeFrag;
+    private HomeFrag2 mHomeFrag;
     private StoreFrag mStoreFrag;
     private MyselfFrag mMyselfFrag;
-    private Fragment mCurrentFragment;
+    private RxFragment mCurrentFragment;
 
     @BindView(R.id.home_rl)
     RelativeLayout home_rl;
@@ -53,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     TextView myself_tv;
 
 
-    private FragmentManager manager;
+    private android.app.FragmentManager manager;
     private Unbinder mBind;
 
 
@@ -62,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mBind = ButterKnife.bind(this);
-        manager = getSupportFragmentManager();
+        manager = getFragmentManager();
         home_rl.performClick();
     }
 
@@ -84,12 +89,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     private void switchNavigation(int index) {
-        FragmentTransaction transaction = manager.beginTransaction();
+        android.app.FragmentTransaction transaction = manager.beginTransaction();
         switch (index) {
             case 0:
 
                 if (mHomeFrag == null)
-                    mHomeFrag = new HomeFrag();
+                    mHomeFrag = new HomeFrag2();
 
                 if (!mHomeFrag.isAdded())
                     transaction.add(R.id.main_frame, mHomeFrag);
@@ -102,34 +107,34 @@ public class MainActivity extends AppCompatActivity {
 
                 mCurrentFragment = mHomeFrag;
                 break;
-            case 1:
-
-                if (mStoreFrag == null)
-                    mStoreFrag = new StoreFrag();
-
-                if (!mStoreFrag.isAdded())
-                    transaction.add(R.id.main_frame, mStoreFrag);
-
-                if (mCurrentFragment != null && mCurrentFragment != mStoreFrag) {
-                    transaction.show(mStoreFrag).hide(mCurrentFragment).commit();
-                }
-
-                mCurrentFragment = mStoreFrag;
-                break;
-            case 2:
-                if (mMyselfFrag == null) {
-                    mMyselfFrag = new MyselfFrag();
-                }
-
-                if (!mMyselfFrag.isAdded())
-                    transaction.add(R.id.main_frame, mMyselfFrag);
-
-                if (mCurrentFragment != null && mCurrentFragment != mMyselfFrag) {
-                    transaction.show(mMyselfFrag).hide(mCurrentFragment).commit();
-                }
-
-                mCurrentFragment = mMyselfFrag;
-                break;
+//            case 1:
+//
+//                if (mStoreFrag == null)
+//                    mStoreFrag = new StoreFrag();
+//
+//                if (!mStoreFrag.isAdded())
+//                    transaction.add(R.id.main_frame, mStoreFrag);
+//
+//                if (mCurrentFragment != null && mCurrentFragment != mStoreFrag) {
+//                    transaction.show(mStoreFrag).hide(mCurrentFragment).commit();
+//                }
+//
+//                mCurrentFragment = mStoreFrag;
+//                break;
+//            case 2:
+//                if (mMyselfFrag == null) {
+//                    mMyselfFrag = new MyselfFrag();
+//                }
+//
+//                if (!mMyselfFrag.isAdded())
+//                    transaction.add(R.id.main_frame, mMyselfFrag);
+//
+//                if (mCurrentFragment != null && mCurrentFragment != mMyselfFrag) {
+//                    transaction.show(mMyselfFrag).hide(mCurrentFragment).commit();
+//                }
+//
+//                mCurrentFragment = mMyselfFrag;
+//                break;
         }
     }
 

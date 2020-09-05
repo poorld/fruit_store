@@ -23,6 +23,7 @@ import butterknife.Unbinder;
 import me.teenyda.mvp_template.R;
 import me.teenyda.mvp_template.common.constant.RequestCodeConstant;
 import me.teenyda.mvp_template.common.mvp.MvpFragment;
+import me.teenyda.mvp_template.common.mvp.MvpFragment2;
 import me.teenyda.mvp_template.common.utils.BitmapUtil;
 import me.teenyda.mvp_template.common.utils.PermissionsUtil;
 import me.teenyda.mvp_template.common.view.popupview.PopupGetPhoto;
@@ -36,7 +37,7 @@ import me.teenyda.mvp_template.model.login.base.LoginAct;
  * date: 2019/8/22
  * description:
  */
-public class HomeFrag extends MvpFragment<IHomeV, HomeP> implements IHomeV {
+public class HomeFrag2 extends MvpFragment2<IHomeV, HomeP2> implements IHomeV {
 
     @BindView(R.id.open_camera_ll)
     LinearLayout open_camera_ll;
@@ -54,8 +55,8 @@ public class HomeFrag extends MvpFragment<IHomeV, HomeP> implements IHomeV {
     private File mPhotoFile;
 
     @Override
-    protected HomeP createPresenter() {
-        return new HomeP();
+    protected HomeP2 createPresenter() {
+        return new HomeP2();
     }
 
     @Override
@@ -97,14 +98,14 @@ public class HomeFrag extends MvpFragment<IHomeV, HomeP> implements IHomeV {
                 break;
             case R.id.getbook_ll:
 //                HomeP2 p = new HomeP2();
-//                p.getBook((RxActivity) getMContext());
-                mPresenter.getBook();
+                RxActivity a  =(RxActivity) getMContext();
+                mPresenter.getBook(a);
                 break;
             case R.id.login_ll:
                 startActivity(LoginAct.class);
                 break;
             case R.id.getbooks_ll:
-                mPresenter.getBooks();
+//                mPresenter.getBooks();
                 break;
         }
     }
@@ -133,7 +134,7 @@ public class HomeFrag extends MvpFragment<IHomeV, HomeP> implements IHomeV {
             switch (requestCode) {
                 // 拍照
                 case RequestCodeConstant.REQUEST_CODE_OPEN_CAMERA:
-                    mPresenter.compressImage(mPhotoFile);
+//                    mPresenter.compressImage(mPhotoFile);
                     break;
                 // 相册
                 case RequestCodeConstant.REQUEST_CODE_CHOICE_FROM_ALBUM:
@@ -151,6 +152,6 @@ public class HomeFrag extends MvpFragment<IHomeV, HomeP> implements IHomeV {
         Bitmap bitmap = BitmapFactory.decodeFile(file.getPath());
         int bitmapDegree = BitmapUtil.getBitmapDegree(mPhotoFile.getPath());
         photo_iv.setImageBitmap(bitmap);
-        mPresenter.uploadFile(file);
+//        mPresenter.uploadFile(file);
     }
 }

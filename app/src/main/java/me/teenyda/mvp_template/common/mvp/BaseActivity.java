@@ -15,11 +15,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jaeger.library.StatusBarUtil;
+import com.trello.rxlifecycle2.components.RxActivity;
 
 import me.teenyda.mvp_template.R;
 import me.teenyda.mvp_template.common.app.ActivityManager;
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends RxActivity {
 
     protected View mView;
 
