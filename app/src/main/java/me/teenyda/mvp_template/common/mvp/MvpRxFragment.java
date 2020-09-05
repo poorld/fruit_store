@@ -15,8 +15,8 @@ import me.teenyda.mvp_template.common.net.resp.BaseResponse;
  * date: 2019/8/22
  * description:
  */
-public abstract class MvpFragment2<V extends BaseView, P extends BasePresenter2>
-        extends BaseFragment2 implements BaseView {
+public abstract class MvpRxFragment<V extends BaseView, P extends BaseRxPresenter>
+        extends BaseRxFragment implements BaseView {
 
     public Toast mToast;
 

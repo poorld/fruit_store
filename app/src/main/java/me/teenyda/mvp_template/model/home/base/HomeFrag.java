@@ -11,8 +11,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.trello.rxlifecycle2.components.RxActivity;
-
 import java.io.File;
 
 import androidx.annotation.Nullable;
@@ -27,7 +25,6 @@ import me.teenyda.mvp_template.common.utils.BitmapUtil;
 import me.teenyda.mvp_template.common.utils.PermissionsUtil;
 import me.teenyda.mvp_template.common.view.popupview.PopupGetPhoto;
 import me.teenyda.mvp_template.model.home.base.presenter.HomeP;
-import me.teenyda.mvp_template.model.home.base.presenter.HomeP2;
 import me.teenyda.mvp_template.model.home.base.view.IHomeV;
 import me.teenyda.mvp_template.model.login.base.LoginAct;
 
@@ -96,7 +93,7 @@ public class HomeFrag extends MvpFragment<IHomeV, HomeP> implements IHomeV {
                 mPopupGetPhoto.show(view);
                 break;
             case R.id.getbook_ll:
-//                HomeP2 p = new HomeP2();
+//                HomePRx p = new HomePRx();
 //                p.getBook((RxActivity) getMContext());
                 mPresenter.getBook();
                 break;

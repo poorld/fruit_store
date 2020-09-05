@@ -46,7 +46,7 @@ public interface ApiUrl {
     @GET(book)
     Observable<BaseResponse<Book>> getDemo();
 
-    @GET(Constans.retrofitList)
+    @GET("book/books")
     Observable<BaseResponse<List<Book>>> getDemoList();
 
 

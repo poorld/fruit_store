@@ -15,7 +15,7 @@ import androidx.annotation.Nullable;
  * date: 2019/8/22
  * description:
  */
-public abstract class BaseFragment2 extends RxFragment {
+public abstract class BaseRxFragment extends RxFragment {
 
     protected View mView;
 

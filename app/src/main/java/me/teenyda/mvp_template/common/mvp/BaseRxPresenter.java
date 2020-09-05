@@ -24,7 +24,7 @@ import me.teenyda.mvp_template.common.utils.RetrofitUtils;
  * date: 2019/8/21
  * description:
  */
-public class BasePresenter2<V extends BaseView> {
+public class BaseRxPresenter<V extends BaseView> {
 
     protected V mBaserView;
 

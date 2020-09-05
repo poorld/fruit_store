@@ -1,7 +1,6 @@
 package me.teenyda.mvp_template.model.main;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,23 +12,18 @@ import android.widget.TextView;
 import com.trello.rxlifecycle2.components.RxActivity;
 import com.trello.rxlifecycle2.components.RxFragment;
 
-import androidx.core.app.RemoteInput;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import me.teenyda.mvp_template.R;
-import me.teenyda.mvp_template.model.home.base.HomeFrag;
-import me.teenyda.mvp_template.model.home.base.HomeFrag2;
+import me.teenyda.mvp_template.model.home.base.HomeFragRx;
 import me.teenyda.mvp_template.model.myself.MyselfFrag;
 import me.teenyda.mvp_template.model.store.base.StoreFrag;
 
 public class MainActivity extends RxActivity {
 
-    private HomeFrag2 mHomeFrag;
+    private HomeFragRx mHomeFrag;
     private StoreFrag mStoreFrag;
     private MyselfFrag mMyselfFrag;
     private RxFragment mCurrentFragment;
@@ -94,7 +88,7 @@ public class MainActivity extends RxActivity {
             case 0:
 
                 if (mHomeFrag == null)
-                    mHomeFrag = new HomeFrag2();
+                    mHomeFrag = new HomeFragRx();
 
                 if (!mHomeFrag.isAdded())
                     transaction.add(R.id.main_frame, mHomeFrag);

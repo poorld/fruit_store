@@ -22,13 +22,11 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import me.teenyda.mvp_template.R;
 import me.teenyda.mvp_template.common.constant.RequestCodeConstant;
-import me.teenyda.mvp_template.common.mvp.MvpFragment;
-import me.teenyda.mvp_template.common.mvp.MvpFragment2;
+import me.teenyda.mvp_template.common.mvp.MvpRxFragment;
 import me.teenyda.mvp_template.common.utils.BitmapUtil;
 import me.teenyda.mvp_template.common.utils.PermissionsUtil;
 import me.teenyda.mvp_template.common.view.popupview.PopupGetPhoto;
-import me.teenyda.mvp_template.model.home.base.presenter.HomeP;
-import me.teenyda.mvp_template.model.home.base.presenter.HomeP2;
+import me.teenyda.mvp_template.model.home.base.presenter.HomePRx;
 import me.teenyda.mvp_template.model.home.base.view.IHomeV;
 import me.teenyda.mvp_template.model.login.base.LoginAct;
 
@@ -37,7 +35,7 @@ import me.teenyda.mvp_template.model.login.base.LoginAct;
  * date: 2019/8/22
  * description:
  */
-public class HomeFrag2 extends MvpFragment2<IHomeV, HomeP2> implements IHomeV {
+public class HomeFragRx extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV {
 
     @BindView(R.id.open_camera_ll)
     LinearLayout open_camera_ll;
@@ -55,8 +53,8 @@ public class HomeFrag2 extends MvpFragment2<IHomeV, HomeP2> implements IHomeV {
     private File mPhotoFile;
 
     @Override
-    protected HomeP2 createPresenter() {
-        return new HomeP2();
+    protected HomePRx createPresenter() {
+        return new HomePRx();
     }
 
     @Override
@@ -97,7 +95,7 @@ public class HomeFrag2 extends MvpFragment2<IHomeV, HomeP2> implements IHomeV {
                 mPopupGetPhoto.show(view);
                 break;
             case R.id.getbook_ll:
-//                HomeP2 p = new HomeP2();
+//                HomePRx p = new HomePRx();
                 RxActivity a  =(RxActivity) getMContext();
                 mPresenter.getBook(a);
                 break;
@@ -105,7 +103,7 @@ public class HomeFrag2 extends MvpFragment2<IHomeV, HomeP2> implements IHomeV {
                 startActivity(LoginAct.class);
                 break;
             case R.id.getbooks_ll:
-//                mPresenter.getBooks();
+                mPresenter.getBooks((RxActivity) getMContext());
                 break;
         }
     }
