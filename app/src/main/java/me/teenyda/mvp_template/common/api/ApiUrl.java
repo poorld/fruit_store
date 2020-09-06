@@ -54,6 +54,11 @@ public interface ApiUrl {
     @PUT("book/book")
     Observable<BaseResponse<String>> updateBook(@Body Book book);
 
+    @Multipart
+    @POST("file/upload")
+    Observable<BaseResponse<String>> uploadImage(@Part MultipartBody.Part file,
+                                         @Part("file") RequestBody requestBody);
+
 
 
     /**

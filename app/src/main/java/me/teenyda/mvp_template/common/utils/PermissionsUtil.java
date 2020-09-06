@@ -130,6 +130,14 @@ public class PermissionsUtil {
         return true;
     }
 
+    public static void writeStorage(@NonNull Context context){
+        if (!hasPremission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            // 读写权限
+            ActivityCompat.requestPermissions((Activity) context, new String[]{
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            }, PermissionConstant.REQUEST_CODE_READ_WRITE_STORAGE);
+        }
+    }
 
 
 }

@@ -19,7 +19,7 @@ import me.teenyda.mvp_template.common.utils.RxHelper;
  */
 public class BaseRxPresenter<V extends BaseView> {
 
-    private V mBaserView;
+    protected V mBaserView;
 
     protected Context mContext;
 

@@ -79,6 +79,7 @@ public class HomeFragRx extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
         mPopupGetPhoto.setPhotoListener(new PopupGetPhoto.GetPhotoListener() {
             @Override
             public void takePhoto() {
+                PermissionsUtil.writeStorage(getMContext());
                 mPhotoFile = PermissionsUtil.takePicture(getMContext());
                 mPopupGetPhoto.dismiss();
 
@@ -140,7 +141,7 @@ public class HomeFragRx extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
             switch (requestCode) {
                 // 拍照
                 case RequestCodeConstant.REQUEST_CODE_OPEN_CAMERA:
-//                    mPresenter.compressImage(mPhotoFile);
+                    mPresenter.compressImage(mPhotoFile);
                     break;
                 // 相册
                 case RequestCodeConstant.REQUEST_CODE_CHOICE_FROM_ALBUM:
@@ -158,6 +159,6 @@ public class HomeFragRx extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
         Bitmap bitmap = BitmapFactory.decodeFile(file.getPath());
         int bitmapDegree = BitmapUtil.getBitmapDegree(mPhotoFile.getPath());
         photo_iv.setImageBitmap(bitmap);
-//        mPresenter.uploadFile(file);
+        mPresenter.uploadFile(file);
     }
 }
