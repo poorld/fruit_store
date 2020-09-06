@@ -2,22 +2,15 @@ package me.teenyda.mvp_template.common.mvp;
 
 import android.content.Context;
 
-import com.alibaba.fastjson.JSON;
-
 import java.util.List;
 
 import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Function;
-import io.reactivex.schedulers.Schedulers;
-import me.teenyda.mvp_template.common.api.ApiRetrofit;
-import me.teenyda.mvp_template.common.api.ApiServer;
 import me.teenyda.mvp_template.common.api.ApiUrl;
-import me.teenyda.mvp_template.common.api.BaseObserver;
-import me.teenyda.mvp_template.common.net.resp.BaseResponse;
+import me.teenyda.mvp_template.common.utils.BaseObserver;
+import me.teenyda.mvp_template.common.utils.BaseResponse;
+import me.teenyda.mvp_template.common.utils.MyObserver;
 import me.teenyda.mvp_template.common.utils.RetrofitUtils;
+import me.teenyda.mvp_template.common.utils.RxHelper;
 
 /**
  * author: teenyda
@@ -26,9 +19,21 @@ import me.teenyda.mvp_template.common.utils.RetrofitUtils;
  */
 public class BaseRxPresenter<V extends BaseView> {
 
-    protected V mBaserView;
+    private V mBaserView;
 
     protected Context mContext;
+
+    protected ApiUrl mApi;
+
+    public interface IResponse<T>{
+        void success(T result);
+        void failure(String errorMsg);
+    }
+
+    public interface IResponseList<T>{
+        void success(List<T> result);
+        void failure(String errorMsg);
+    }
 
 
 //    public BasePresenter(V baseView) {
@@ -38,6 +43,7 @@ public class BaseRxPresenter<V extends BaseView> {
     protected void attachView(V v) {
         mBaserView = v;
         mContext = mBaserView.getMContext();
+        mApi = getURL();
     }
 
     protected void detachView() {
@@ -48,5 +54,47 @@ public class BaseRxPresenter<V extends BaseView> {
         return RetrofitUtils.getApiUrl();
     }
 
+    protected <T> void addDisposable(Observable<BaseResponse<T>> observable, BaseObserver<T> observer) {
+        observable
+                .compose(RxHelper.observableIO2Main(mContext))
+                .subscribe(observer);
+    }
+
+
+    protected <T> void addDisposable1(Observable<BaseResponse<T>> observable, IResponse<T> response){
+        observable
+            .compose(RxHelper.observableIO2Main(mContext))
+            .subscribe(new MyObserver<T>(mContext) {
+                @Override
+                public void onSuccess(T result) {
+                    if (response != null)
+                        response.success(result);
+                }
+
+                @Override
+                public void onFailure(Throwable e, String errorMsg) {
+                    if (response != null)
+                        response.failure(errorMsg);
+                }
+            });
+    }
+
+    protected <T> void addDisposable2(Observable<BaseResponse<List<T>>> observable, IResponseList<T> response){
+        observable
+                .compose(RxHelper.observableIO2Main(mContext))
+                .subscribe(new MyObserver<List<T>>(mContext) {
+                    @Override
+                    public void onSuccess(List<T> result) {
+                        if (response != null)
+                            response.success(result);
+                    }
+
+                    @Override
+                    public void onFailure(Throwable e, String errorMsg) {
+                        if (response != null)
+                            response.failure(errorMsg);
+                    }
+                });
+    }
 
 }

@@ -22,6 +22,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import me.teenyda.mvp_template.R;
 import me.teenyda.mvp_template.common.constant.RequestCodeConstant;
+import me.teenyda.mvp_template.common.entity.Book;
 import me.teenyda.mvp_template.common.mvp.MvpRxFragment;
 import me.teenyda.mvp_template.common.utils.BitmapUtil;
 import me.teenyda.mvp_template.common.utils.PermissionsUtil;
@@ -42,6 +43,9 @@ public class HomeFragRx extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
 
     @BindView(R.id.getbook_ll)
     LinearLayout getbook_ll;
+
+    @BindView(R.id.updatebook_ll)
+    LinearLayout updatebook_ll;
 
     @BindView(R.id.photo_iv)
     ImageView photo_iv;
@@ -88,7 +92,7 @@ public class HomeFragRx extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
         });
     }
 
-    @OnClick({R.id.open_camera_ll, R.id.getbook_ll, R.id.login_ll, R.id.getbooks_ll})
+    @OnClick({R.id.open_camera_ll, R.id.getbook_ll, R.id.login_ll, R.id.getbooks_ll,R.id.updatebook_ll})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.open_camera_ll:
@@ -96,14 +100,18 @@ public class HomeFragRx extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
                 break;
             case R.id.getbook_ll:
 //                HomePRx p = new HomePRx();
-                RxActivity a  =(RxActivity) getMContext();
-                mPresenter.getBook(a);
+                mPresenter.getBook();
                 break;
             case R.id.login_ll:
                 startActivity(LoginAct.class);
                 break;
             case R.id.getbooks_ll:
-                mPresenter.getBooks((RxActivity) getMContext());
+                mPresenter.getBooks();
+                break;
+            case R.id.updatebook_ll:
+                Book book = new Book();
+                book.setBookName("智取棋");
+                mPresenter.updateBoos(book);
                 break;
         }
     }

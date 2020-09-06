@@ -7,7 +7,9 @@ import io.reactivex.Observable;
 import me.teenyda.mvp_template.common.entity.Bean;
 import me.teenyda.mvp_template.common.entity.Book;
 import me.teenyda.mvp_template.common.entity.Demo;
+import me.teenyda.mvp_template.common.utils.BaseObserver;
 import me.teenyda.mvp_template.common.utils.BaseResponse;
+import me.teenyda.mvp_template.common.utils.ResponseEntity;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -48,6 +50,10 @@ public interface ApiUrl {
 
     @GET("book/books")
     Observable<BaseResponse<List<Book>>> getDemoList();
+
+    @PUT("book/book")
+    Observable<BaseResponse<String>> updateBook(@Body Book book);
+
 
 
     /**

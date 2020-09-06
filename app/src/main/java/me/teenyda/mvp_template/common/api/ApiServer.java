@@ -1,6 +1,9 @@
 package me.teenyda.mvp_template.common.api;
 
+import java.util.List;
+
 import io.reactivex.Observable;
+import me.teenyda.mvp_template.common.entity.Book;
 import me.teenyda.mvp_template.common.entity.BookEntity;
 import me.teenyda.mvp_template.common.net.resp.BaseResponse;
 import okhttp3.MultipartBody;
@@ -25,10 +28,10 @@ public interface ApiServer {
                                    @Field("password")String password);
 
     @GET("book/book")
-    Observable<BaseResponse> book();
+    Observable<Book> book();
 
     @GET("book/books")
-    Observable<BaseResponse> books();
+    Observable<List<Book>> books();
 
     @Multipart
     @POST("file/upload")

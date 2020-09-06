@@ -49,7 +49,7 @@ public class BasePresenter<V extends BaseView> {
         removeDisposable();
     }
 
-    public <T> void addDisposable1(Observable<T> observable, BaseObserver observer) {
+    public <T> void addDisposable1(Observable<T> observable, BaseObserver<T> observer) {
         if (mCompositeDisposable == null) {
             mCompositeDisposable = new CompositeDisposable();
         }
@@ -62,33 +62,7 @@ public class BasePresenter<V extends BaseView> {
 
     }
 
-    public <T,R> void addDisposable2(Observable<T> observable,BaseObserver observer, Class<R> clazz) {
-        if (mCompositeDisposable == null) {
-            mCompositeDisposable = new CompositeDisposable();
-        }
-        mCompositeDisposable.add(
-            observable
-                    .subscribeOn(Schedulers.io())
-                    .unsubscribeOn(Schedulers.io())
-                    .observeOn(Schedulers.io())
-                    .map(new Function<T, R>() {
-                        @Override
-                        public R apply(T t) throws Exception {
-                            String data = ((BaseResponse)t).getData();
-                            if (JSON.isValidObject(data)) {
-                                R r = JSON.parseObject(data, clazz);
-                                return r;
-                            }
-                            return null;
-                        }
-                    })
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeWith(observer)
-        );
-
-    }
-
-    public <T,R> void addDisposable3(Observable<T> observable,BaseObserver<List<R>> observer, Class<R> clazz) {
+    public <T> void addDisposable2(Observable<T> observable, BaseObserver<T> observer) {
         if (mCompositeDisposable == null) {
             mCompositeDisposable = new CompositeDisposable();
         }
@@ -96,66 +70,34 @@ public class BasePresenter<V extends BaseView> {
                 observable
                         .subscribeOn(Schedulers.io())
                         .unsubscribeOn(Schedulers.io())
-                        .observeOn(Schedulers.io())
-                        .map(new Function<T, List<R>>() {
-                            @Override
-                            public List<R> apply(T t) throws Exception {
-                                String data = ((BaseResponse)t).getData();
-                                if (JSON.isValidArray(data)) {
-                                    List<R> list = JSON.parseArray(data, clazz);
-                                    return list;
-                                }
-                                return null;
-                            }
-                        })
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribeWith(observer)
-        );
+                        .subscribeWith(observer));
 
     }
 
-    public <T,R> void addDisposable3(Observable<T> observable,Observer<? super R> observer, Class<R> clazz) {
 
-            observable
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(Schedulers.io())
-                .map(new Function<T, R>() {
-                    @Override
-                    public R apply(T t) throws Exception {
-                        String data = ((BaseResponse)t).getData();
-                        if (JSON.isValidObject(data)) {
-                            R r = JSON.parseObject(data, clazz);
-                            return r;
-                        }
-                        return null;
-                    }
-                })
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(observer);
+//    public <T,R> void addDisposable3(Observable<T> observable,Observer<? super R> observer, Class<R> clazz) {
+//
+//            observable
+//                .subscribeOn(Schedulers.io())
+//                .unsubscribeOn(Schedulers.io())
+//                .observeOn(Schedulers.io())
+//                .map(new Function<T, R>() {
+//                    @Override
+//                    public R apply(T t) throws Exception {
+//                        String data = ((BaseResponse)t).getData();
+//                        if (JSON.isValidObject(data)) {
+//                            R r = JSON.parseObject(data, clazz);
+//                            return r;
+//                        }
+//                        return null;
+//                    }
+//                })
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(observer);
+//
+//    }
 
-    }
-
-    public <T,R> void addDisposable4(Observable<T> observable, Observer<? super List<R>> observer, Class<R> clazz) {
-        observable
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(Schedulers.io())
-                .map(new Function<T, List<R>>() {
-                    @Override
-                    public List<R> apply(T t) throws Exception {
-                        String data = ((BaseResponse)t).getData();
-                        if (JSON.isValidArray(data)) {
-                            List<R> list = JSON.parseArray(data, clazz);
-                            return list;
-                        }
-                        return null;
-                    }
-                })
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(observer);
-
-    }
 
     public void removeDisposable() {
         if (mCompositeDisposable != null) {

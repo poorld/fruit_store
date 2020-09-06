@@ -7,13 +7,13 @@ import java.io.Serializable;
  * date: 2019/8/21
  * description:
  */
-public class BaseResponse implements Serializable {
+public class BaseResponse<T> implements Serializable {
 
     private int code;
 
     private String msg;
 
-    private String data;
+    private T data;
 
     public int getCode() {
         return code;
@@ -31,11 +31,11 @@ public class BaseResponse implements Serializable {
         this.msg = msg;
     }
 
-    public String getData() {
+    public T getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(T data) {
         this.data = data;
     }
 

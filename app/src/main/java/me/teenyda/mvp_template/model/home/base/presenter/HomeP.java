@@ -15,6 +15,7 @@ import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import me.teenyda.mvp_template.R;
 import me.teenyda.mvp_template.common.api.BaseObserver;
+import me.teenyda.mvp_template.common.entity.Book;
 import me.teenyda.mvp_template.common.entity.BookEntity;
 import me.teenyda.mvp_template.common.mvp.BasePresenter;
 import me.teenyda.mvp_template.common.net.resp.BaseResponse;
@@ -83,11 +84,10 @@ public class HomeP extends BasePresenter<IHomeV> {
     }
 
     public void getBook() {
-        addDisposable1(mApiServer.book(), new BaseObserver<BaseResponse>(mBaserView) {
+        addDisposable1(mApiServer.book(), new BaseObserver<Book>(mBaserView) {
             @Override
-            public void onSuccess(BaseResponse o) {
-                String data = o.getData();
-                BookEntity bookEntity = JSON.parseObject(data, BookEntity.class);
+            public void onSuccess(Book result) {
+
             }
 
             @Override
@@ -96,50 +96,14 @@ public class HomeP extends BasePresenter<IHomeV> {
             }
         });
 
-        addDisposable2(mApiServer.book(), new BaseObserver<BookEntity>(mBaserView){
 
-            @Override
-            public void onSuccess(BookEntity result) {
-
-            }
-
-            @Override
-            public void onError(String errorMsg) {
-
-            }
-        }, BookEntity.class);
-
-        addDisposable3(mApiServer.book(), new Observer<BookEntity>() {
-            @Override
-            public void onSubscribe(Disposable d) {
-
-            }
-
-            @Override
-            public void onNext(BookEntity bookEntity) {
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onComplete() {
-
-            }
-        }, BookEntity.class);
     }
 
     public void getBooks() {
 
-        addDisposable1(mApiServer.books(), new BaseObserver<BaseResponse>(mBaserView){
-
+        addDisposable1(mApiServer.books(), new BaseObserver<List<Book>>(mBaserView) {
             @Override
-            public void onSuccess(BaseResponse result) {
-                String data = result.getData();
-                List<BookEntity> bookEntities = JSON.parseArray(data, BookEntity.class);
+            public void onSuccess(List<Book> result) {
 
             }
 
@@ -149,39 +113,5 @@ public class HomeP extends BasePresenter<IHomeV> {
             }
         });
 
-        addDisposable3(mApiServer.books(), new BaseObserver<List<BookEntity>>(mBaserView) {
-            @Override
-            public void onSuccess(List<BookEntity> result) {
-
-            }
-
-            @Override
-            public void onError(String errorMsg) {
-
-            }
-        }, BookEntity.class);
-
-        addDisposable4(mApiServer.books(), new Observer<List<BookEntity>>() {
-            @Override
-            public void onSubscribe(Disposable d) {
-                Thread thread = Thread.currentThread();
-
-            }
-
-            @Override
-            public void onNext(List<BookEntity> bookEntities) {
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onComplete() {
-
-            }
-        }, BookEntity.class);
     }
 }
