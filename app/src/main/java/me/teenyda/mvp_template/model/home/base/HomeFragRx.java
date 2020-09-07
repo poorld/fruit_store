@@ -5,16 +5,18 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.trello.rxlifecycle2.components.RxActivity;
+import com.bumptech.glide.Glide;
 
 import java.io.File;
+import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,6 +25,7 @@ import butterknife.Unbinder;
 import me.teenyda.mvp_template.R;
 import me.teenyda.mvp_template.common.constant.RequestCodeConstant;
 import me.teenyda.mvp_template.common.entity.Book;
+import me.teenyda.mvp_template.common.entity.FileUploadResponse;
 import me.teenyda.mvp_template.common.mvp.MvpRxFragment;
 import me.teenyda.mvp_template.common.utils.BitmapUtil;
 import me.teenyda.mvp_template.common.utils.PermissionsUtil;
@@ -30,13 +33,15 @@ import me.teenyda.mvp_template.common.view.popupview.PopupGetPhoto;
 import me.teenyda.mvp_template.model.home.base.presenter.HomePRx;
 import me.teenyda.mvp_template.model.home.base.view.IHomeV;
 import me.teenyda.mvp_template.model.login.base.LoginAct;
+import pub.devrel.easypermissions.EasyPermissions;
 
 /**
  * author: teenyda
  * date: 2019/8/22
  * description:
  */
-public class HomeFragRx extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV {
+public class HomeFragRx extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV,
+                                EasyPermissions.PermissionCallbacks{
 
     @BindView(R.id.open_camera_ll)
     LinearLayout open_camera_ll;
@@ -49,6 +54,7 @@ public class HomeFragRx extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
 
     @BindView(R.id.photo_iv)
     ImageView photo_iv;
+
 
     private Unbinder mBind;
 
@@ -79,8 +85,10 @@ public class HomeFragRx extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
         mPopupGetPhoto.setPhotoListener(new PopupGetPhoto.GetPhotoListener() {
             @Override
             public void takePhoto() {
-                PermissionsUtil.writeStorage(getMContext());
+//                PermissionsUtil.writeStorage(getMContext());
                 mPhotoFile = PermissionsUtil.takePicture(getMContext());
+
+
                 mPopupGetPhoto.dismiss();
 
             }
@@ -91,6 +99,8 @@ public class HomeFragRx extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
                 mPopupGetPhoto.dismiss();
             }
         });
+
+
     }
 
     @OnClick({R.id.open_camera_ll, R.id.getbook_ll, R.id.login_ll, R.id.getbooks_ll,R.id.updatebook_ll})
@@ -133,19 +143,22 @@ public class HomeFragRx extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
         mBind.unbind();
     }
 
-    @TargetApi(16)
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) {
+
             switch (requestCode) {
                 // 拍照
                 case RequestCodeConstant.REQUEST_CODE_OPEN_CAMERA:
+                    BitmapUtil.getBitmapDegree(mPhotoFile.getPath());
+
                     mPresenter.compressImage(mPhotoFile);
                     break;
                 // 相册
                 case RequestCodeConstant.REQUEST_CODE_CHOICE_FROM_ALBUM:
                     Uri uri = data.getData();
+
                     Bitmap bitmap = BitmapUtil.getBitmapByUri(getMContext(), uri);
                     photo_iv.setImageBitmap(bitmap);
                     break;
@@ -156,9 +169,34 @@ public class HomeFragRx extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
     @Override
     public void compressImageSuccess(File file) {
         mPhotoFile = file;
-        Bitmap bitmap = BitmapFactory.decodeFile(file.getPath());
-        int bitmapDegree = BitmapUtil.getBitmapDegree(mPhotoFile.getPath());
-        photo_iv.setImageBitmap(bitmap);
-        mPresenter.uploadFile(file);
+//        Bitmap bitmap = BitmapFactory.decodeFile(file.getPath());
+        Bitmap bitmapWithRightRotation = BitmapUtil.getBitmapWithRightRotation(mPhotoFile.getPath());
+        photo_iv.setImageBitmap(bitmapWithRightRotation);
+//        mPresenter.uploadFile(file);
+    }
+
+    @Override
+    public void showImage(FileUploadResponse file) {
+        Glide.with(getMContext())
+                .load(file.getFileDownloadUrl())
+                .centerCrop()
+                .into(photo_iv);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        //框架要求必须这么写
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
+//        showToast();
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
+        showToast("请同意相关权限，否则功能无法使用");
     }
 }

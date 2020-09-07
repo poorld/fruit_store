@@ -1,7 +1,12 @@
 package me.teenyda.mvp_template.model.home.base.presenter;
 
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+
 import java.io.File;
+import java.io.FileOutputStream;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -13,6 +18,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import me.teenyda.mvp_template.common.entity.Book;
+import me.teenyda.mvp_template.common.entity.FileUploadResponse;
 import me.teenyda.mvp_template.common.mvp.BaseRxPresenter;
 import me.teenyda.mvp_template.common.utils.BitmapUtil;
 import me.teenyda.mvp_template.common.utils.MyObserver;
@@ -121,10 +127,10 @@ public class HomePRx extends BaseRxPresenter<IHomeV> {
         RequestBody fileRequestBody = RequestBody.create(MediaType.parse("image/*"), file);
         MultipartBody.Part part = MultipartBody.Part.createFormData("file", file.getName(), fileRequestBody);
         RequestBody description = RequestBody.create(MediaType.parse("text/plain"), "image-type");
-        addDisposable(mApi.uploadImage(part, description), new MyObserver<String>(mContext) {
+        addDisposable(mApi.uploadImage(part, description), new MyObserver<FileUploadResponse>(mContext) {
             @Override
-            public void onSuccess(String result) {
-
+            public void onSuccess(FileUploadResponse result) {
+                mBaserView.showImage(result);
             }
 
             @Override
@@ -151,7 +157,10 @@ public class HomePRx extends BaseRxPresenter<IHomeV> {
                 .map(new Function<File, File>() {
                     @Override
                     public File apply(File file) throws Exception {
+
+//                        BitmapUtil.
                         File resizedFile = BitmapUtil.compressImage(file.getPath());
+
                         return resizedFile;
                     }
                 })

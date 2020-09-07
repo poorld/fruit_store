@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.widget.Toast;
 
 import java.io.File;
 
@@ -21,6 +22,7 @@ import androidx.core.content.PermissionChecker;
 import me.teenyda.mvp_template.BuildConfig;
 import me.teenyda.mvp_template.common.constant.PermissionConstant;
 import me.teenyda.mvp_template.common.constant.RequestCodeConstant;
+import pub.devrel.easypermissions.EasyPermissions;
 
 /**
  * author: teenyda
@@ -37,10 +39,15 @@ public class PermissionsUtil {
      */
     public static File takePicture(@NonNull Context context) {
 
+        String[] permissions = {Manifest.permission.CAMERA,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE};
+
         Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
         // images是file_paths.xml下的path
         String filePath = Environment.getExternalStorageDirectory() + File.separator + "images" + File.separator;
         File outputFile = new File(filePath, photoName);
+
+
         if (!outputFile.getParentFile().exists()) {
             outputFile.getParentFile().mkdir();
         }
@@ -62,17 +69,19 @@ public class PermissionsUtil {
         }
 
 
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, contentUri);
 
-        if (Build.VERSION.SDK_INT >= 23) {
-            if (!hasPremission(context, Manifest.permission.CAMERA)) {
-                ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.CAMERA}, PermissionConstant.REQUEST_CODE_TAKE_PHOTO);
-            } else {
-                ((Activity)context).startActivityForResult(intent, RequestCodeConstant.REQUEST_CODE_OPEN_CAMERA);
-            }
+
+        if (!EasyPermissions.hasPermissions(context, permissions)) {
+            getPermission(permissions, context);
+
         } else {
+
             ((Activity)context).startActivityForResult(intent, RequestCodeConstant.REQUEST_CODE_OPEN_CAMERA);
         }
+
+
 
         return outputFile;
 
@@ -103,7 +112,6 @@ public class PermissionsUtil {
      * 从图库选择多张图片
      * @param context
      */
-    @TargetApi(16)
     public static void choiceMultipleFromGallery(@NonNull Context context) {
         if (!hasPremission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
             // 读写权限
@@ -120,7 +128,6 @@ public class PermissionsUtil {
         }
     }
 
-    @TargetApi(23)
     public static boolean hasPremission(@NonNull Context context, @NonNull String permission) {
         if (ContextCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED
                 || PermissionChecker.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
@@ -139,5 +146,17 @@ public class PermissionsUtil {
         }
     }
 
+    //获取权限
+    private static void getPermission(String[] permissions, Context context) {
+
+        if (EasyPermissions.hasPermissions(context, permissions)) {
+            //已经打开权限
+//            Toast.makeText(this, "已经申请相关权限", Toast.LENGTH_SHORT).show();
+        } else {
+            //没有打开相关权限、申请权限
+            EasyPermissions.requestPermissions((Activity) context, "需要获取您的相册、照相使用权限", 1, permissions);
+        }
+
+    }
 
 }

@@ -20,6 +20,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import me.teenyda.mvp_template.R;
 import me.teenyda.mvp_template.common.constant.RequestCodeConstant;
+import me.teenyda.mvp_template.common.entity.FileUploadResponse;
 import me.teenyda.mvp_template.common.mvp.MvpFragment;
 import me.teenyda.mvp_template.common.utils.BitmapUtil;
 import me.teenyda.mvp_template.common.utils.PermissionsUtil;
@@ -149,5 +150,10 @@ public class HomeFrag extends MvpFragment<IHomeV, HomeP> implements IHomeV {
         int bitmapDegree = BitmapUtil.getBitmapDegree(mPhotoFile.getPath());
         photo_iv.setImageBitmap(bitmap);
         mPresenter.uploadFile(file);
+    }
+
+    @Override
+    public void showImage(FileUploadResponse file) {
+
     }
 }

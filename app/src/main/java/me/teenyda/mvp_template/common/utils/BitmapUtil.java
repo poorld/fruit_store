@@ -43,10 +43,23 @@ public class BitmapUtil {
      * @throws IOException
      */
     public static File compressImage(String path) throws IOException {
-        Bitmap rwaTakenImage = BitmapFactory.decodeFile(path);
-        // BitmapScaler.scaleToFitWidth(rwaTakenImage, )
+
+        //这里有一个坑,如果你想要读取照片的角度信息,那么就需要直接吧byte[] data的照片数据先保存成图片文件在从文件读成Bitmap
+        //因为如果你先处理压缩图片或者裁剪图片,只要是Bitmap.createBitmap处理过就都有可能丢失这些照片信息到时候你怎么获取角度都是0
+//                    FilePathSession.deleteFaceImageFile();
+//        int degree = getBitmapDegree(path);
+//
+//        Bitmap rwaTakenImage = BitmapFactory.decodeFile(path);
+//
+//        Matrix matrix = new Matrix();//创建矩阵配置类,用与设置旋转角度和旋转位置
+//        matrix.setRotate(degree, rwaTakenImage.getWidth(), rwaTakenImage.getHeight());//设置旋转角度和旋转位置
+//
+//        Bitmap handlerAngleBitmap = Bitmap.createBitmap(rwaTakenImage,0,0,rwaTakenImage.getWidth(),rwaTakenImage.getHeight(),matrix,true);
+
+        Bitmap bitmap = getBitmapWithRightRotation(path);
+
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        rwaTakenImage.compress(Bitmap.CompressFormat.JPEG, 60, baos);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 60, baos);
         File resizedFile = new File(path);
 
         FileOutputStream fos = new FileOutputStream(resizedFile);
@@ -90,6 +103,41 @@ public class BitmapUtil {
             e.printStackTrace();
         }
         return degree;
+    }
+
+
+    /**
+     * 获取正确的旋转角度的图片——一般由系统相机拍照才会导致此情况
+     *
+     * @param path 图片绝对路径
+     * @return 图片的旋转角度
+     */
+    public static Bitmap getBitmapWithRightRotation(String path) {
+        int degree = 0;
+        degree = getBitmapDegree(path);
+//        Log.e("CameraUtils", "degree: " + degree);
+        Bitmap bm = BitmapFactory.decodeFile(path);
+        //照片没有被旋转角度，直接返回原图片
+        if (degree == 0) {
+            return bm;
+        }
+        Bitmap returnBm = null;
+
+        // 根据旋转角度，生成旋转矩阵
+        Matrix matrix = new Matrix();
+        matrix.postRotate(degree);
+        try {
+            // 将原始图片按照旋转矩阵进行旋转，并得到新的图片
+            returnBm = Bitmap.createBitmap(bm, 0, 0, bm.getWidth(), bm.getHeight(), matrix, true);
+        } catch (OutOfMemoryError e) {
+        }
+        if (returnBm == null) {
+            returnBm = bm;
+        }
+        if (bm != returnBm) {
+            bm.recycle();
+        }
+        return returnBm;
     }
 
     /**
@@ -229,6 +277,67 @@ public class BitmapUtil {
         }
 
 
+    }
+
+    /**
+     * @description 计算图片的压缩比率
+     *
+     * @param options 参数
+     * @param reqWidth 目标的宽度
+     * @param reqHeight 目标的高度
+     * @return
+     */
+    private static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        // 源图片的高度和宽度
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+        if (height > reqHeight || width > reqWidth) {
+            final int halfHeight = height / 2;
+            final int halfWidth = width / 2;
+            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
+            // height and width larger than the requested height and width.
+            while ((halfHeight / inSampleSize) > reqHeight && (halfWidth / inSampleSize) > reqWidth) {
+                inSampleSize *= 2;	//2的倍数会更加高效
+            }
+        }
+        return inSampleSize;
+    }
+
+    /**
+     * @description 通过传入的bitmap，进行压缩，得到符合标准的bitmap
+     *
+     * @param src
+     * @param dstWidth
+     * @param dstHeight
+     * @return
+     */
+    private static Bitmap createScaleBitmap(Bitmap src, int dstWidth, int dstHeight, int inSampleSize) {
+        // 如果是放大图片，filter决定是否平滑，如果是缩小图片，filter无影响，我们这里是缩小图片，所以直接设置为false
+        Bitmap dst = Bitmap.createScaledBitmap(src, dstWidth, dstHeight, true);
+        if (src != dst) { // 如果没有缩放，那么不回收
+            src.recycle(); // 释放Bitmap的native像素数组
+        }
+        return dst;
+    }
+
+    /**
+     * @description 加载图片
+     *
+     * @param pathName
+     * @param reqWidth
+     * @param reqHeight
+     * @return Bitmap
+     * @author zhouyang
+     */
+    public static Bitmap decodeSampledBitmapFromFile(String pathName, int reqWidth, int reqHeight) {
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(pathName, options);
+        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+        options.inJustDecodeBounds = false;
+        Bitmap src = BitmapFactory.decodeFile(pathName, options);
+        return createScaleBitmap(src, reqWidth, reqHeight, options.inSampleSize);
     }
 
 }

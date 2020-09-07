@@ -7,6 +7,7 @@ import io.reactivex.Observable;
 import me.teenyda.mvp_template.common.entity.Bean;
 import me.teenyda.mvp_template.common.entity.Book;
 import me.teenyda.mvp_template.common.entity.Demo;
+import me.teenyda.mvp_template.common.entity.FileUploadResponse;
 import me.teenyda.mvp_template.common.utils.BaseObserver;
 import me.teenyda.mvp_template.common.utils.BaseResponse;
 import me.teenyda.mvp_template.common.utils.ResponseEntity;
@@ -56,8 +57,8 @@ public interface ApiUrl {
 
     @Multipart
     @POST("file/upload")
-    Observable<BaseResponse<String>> uploadImage(@Part MultipartBody.Part file,
-                                         @Part("file") RequestBody requestBody);
+    Observable<BaseResponse<FileUploadResponse>> uploadImage(@Part MultipartBody.Part file,
+                                                             @Part("file") RequestBody requestBody);
 
 
 
