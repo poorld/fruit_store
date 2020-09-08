@@ -1,4 +1,4 @@
-package me.teenyda.mvp_template.common.utils;
+package me.teenyda.mvp_template.common.mvp;
 
 import android.content.ClipData;
 import android.content.ContentResolver;
@@ -64,6 +64,42 @@ public class BitmapUtil {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, quality, baos);
+        File resizedFile = new File(path);
+
+        FileOutputStream fos = new FileOutputStream(resizedFile);
+
+        fos.write(baos.toByteArray());
+        fos.flush();
+        fos.close();
+
+        return resizedFile;
+    }
+
+    /**
+     *
+     * @param size KB
+     * @param path
+     * @return
+     * @throws IOException
+     */
+    public static File compressImageAndSave(int size, String path) throws IOException {
+
+        Bitmap bitmap = getBitmapWithRightRotation(path);
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+
+        int quality = 100;
+
+        // 循环判断压缩后图片是否超过限制大小
+        while(baos.toByteArray().length / 1024 > size) {
+            // 清空baos
+            baos.reset();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, baos);
+            quality -= 10;
+        }
+
         File resizedFile = new File(path);
 
         FileOutputStream fos = new FileOutputStream(resizedFile);
@@ -422,7 +458,7 @@ public class BitmapUtil {
         void onCompressComplete();
     }
 
-    public static void compressImageByIO(String imagePath, int quatity, CompressListener compressListener) {
+    public static void compressImageAndSaveByIO(int quatity, String imagePath, CompressListener compressListener) {
         Observable.just(imagePath)
                 .doOnSubscribe(disposable -> {
 
@@ -430,6 +466,38 @@ public class BitmapUtil {
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(Schedulers.io())
                 .map(s -> compressImageAndSave(imagePath, quatity))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<File>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(File file) {
+                        compressListener.onCompressSuccess(file);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        compressListener.onCompressError(e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        compressListener.onCompressComplete();
+                    }
+                });
+    }
+
+    public static void compressImageAndSaveByIO(String imagePath, int size, CompressListener compressListener) {
+        Observable.just(imagePath)
+                .doOnSubscribe(disposable -> {
+
+                })
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(Schedulers.io())
+                .map(s -> compressImageAndSave(size, imagePath))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<File>() {
                     @Override

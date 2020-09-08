@@ -2,6 +2,8 @@ package me.teenyda.mvp_template.common.api;
 
 public class Constans {
 
+    public static final String TAG = "TEENYDA";
+
     //设置默认超时时间
     public static final int DEFAULT_TIME=10;
 

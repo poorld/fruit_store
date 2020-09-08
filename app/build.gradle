@@ -51,6 +51,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta2'
     implementation 'androidx.vectordrawable:vectordrawable-animated:1.1.0-rc01'
     implementation 'com.google.android.material:material:1.1.0-alpha09'
+    implementation "com.android.support:design:${project.properties.get("support")}"
 
     /**
      * http://www.anddaily.com/index.php/2019/01/17/androidx%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8B/
@@ -137,6 +138,14 @@ dependencies {
      * https://github.com/LuckSiege/PictureSelector/blob/master/README_CN.md
      */
     implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.5.9'
+
+    /**
+     * 状态栏工具类（实现沉浸式状态栏/变色状态栏）
+     * https://jaeger.itscoder.com/android/2016/03/27/statusbar-util.html
+     */
+    implementation 'com.jaeger.statusbarutil:library:1.5.1'
+
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.3.0-alpha02'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0-alpha02'

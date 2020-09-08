@@ -1,24 +1,11 @@
 package me.teenyda.mvp_template.model.home.base.presenter;
 
-import com.alibaba.fastjson.JSON;
-
 import java.io.File;
 import java.util.List;
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Function;
-import io.reactivex.schedulers.Schedulers;
 import me.teenyda.mvp_template.common.api.BaseObserver;
 import me.teenyda.mvp_template.common.entity.Book;
-import me.teenyda.mvp_template.common.entity.BookEntity;
 import me.teenyda.mvp_template.common.mvp.BasePresenter;
-import me.teenyda.mvp_template.common.net.resp.BaseResponse;
-import me.teenyda.mvp_template.common.utils.BitmapUtil;
 import me.teenyda.mvp_template.model.home.base.view.IHomeV;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;

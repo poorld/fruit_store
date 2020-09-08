@@ -5,20 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
-import com.luck.picture.lib.PictureSelector;
-import com.luck.picture.lib.config.PictureConfig;
-import com.luck.picture.lib.config.PictureMimeType;
-import com.luck.picture.lib.entity.LocalMedia;
-import com.luck.picture.lib.listener.OnResultCallbackListener;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -32,8 +25,7 @@ import me.teenyda.mvp_template.common.constant.RequestCodeConstant;
 import me.teenyda.mvp_template.common.entity.Book;
 import me.teenyda.mvp_template.common.entity.FileUploadResponse;
 import me.teenyda.mvp_template.common.mvp.MvpRxFragment;
-import me.teenyda.mvp_template.common.pictureselector.GlideEngine;
-import me.teenyda.mvp_template.common.utils.BitmapUtil;
+import me.teenyda.mvp_template.common.mvp.BitmapUtil;
 import me.teenyda.mvp_template.common.utils.ConstansUtil;
 import me.teenyda.mvp_template.common.utils.PermissionsUtil;
 import me.teenyda.mvp_template.common.view.popupview.PopupGetPhoto;
@@ -47,10 +39,9 @@ import pub.devrel.easypermissions.EasyPermissions;
  * date: 2019/8/22
  * description:
  */
-public class HomeFragRx extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV,
+public class HomeFxFrag extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV,
                                 EasyPermissions.PermissionCallbacks{
 
-    public static final String TAG = "SB";
 
 
     @BindView(R.id.open_camera_ll)
@@ -97,10 +88,8 @@ public class HomeFragRx extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
             public void takePhoto() {
 //                PermissionsUtil.writeStorage(getMContext());
 
-
                 mPhotoFile = PermissionsUtil.takePicture(getMContext());
                 mPopupGetPhoto.dismiss();
-
 
             }
 
@@ -109,50 +98,7 @@ public class HomeFragRx extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
 //                PermissionsUtil.choiceFromGallery(getMContext());
 //                mPopupGetPhoto.dismiss();
 
-                //相册
-                PictureSelector.create((Activity) getMContext())
-                        .openGallery(PictureMimeType.ofImage())
-                        .imageEngine(GlideEngine.createGlideEngine())
-                        .maxSelectNum(3)
-                        .isCompress(true)
-                        .minimumCompressSize(500)
-                        .compressSavePath(ConstansUtil.getStoragePath())
-                        .forResult(new OnResultCallbackListener<LocalMedia>() {
-                            @Override
-                            public void onResult(List<LocalMedia> result) {
-                                // 结果回调
-                                // 1.media.getPath(); 为原图path
-                                // 2.media.getCutPath();为裁剪后path，需判断media.isCut();是否为true
-                                // 3.media.getCompressPath();为压缩后path，需判断media.isCompressed();是否为true
-                                // 如果裁剪并压缩了，以取压缩路径为准，因为是先裁剪后压缩的
-                                List<File> files = new ArrayList<>();
-
-                                for (LocalMedia localMedia : result) {
-                                    File file = null;
-                                    if (localMedia.isCompressed()) {
-                                        file = new File(localMedia.getCompressPath());
-                                    } else {
-                                        file = new File(localMedia.getPath());
-                                    }
-
-                                    files.add(file);
-
-                                    Log.i(TAG, localMedia.getSize() + "");
-                                    Log.i(TAG, localMedia.getPath());
-                                    Log.i(TAG, localMedia.isCompressed() + "");
-                                    Log.i(TAG, localMedia.getCompressPath());
-
-
-                                }
-
-                                mPresenter.uploadFiles(files);
-                            }
-
-                            @Override
-                            public void onCancel() {
-                                // 取消
-                            }
-                        });
+                mPresenter.pictureSelector();
             }
         });
 
@@ -207,10 +153,10 @@ public class HomeFragRx extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
             switch (requestCode) {
                 // 拍照
                 case RequestCodeConstant.REQUEST_CODE_OPEN_CAMERA:
-                    BitmapUtil.getBitmapDegree(mPhotoFile.getPath());
 
-                    mPresenter.compressImage(mPhotoFile);
+                    mPresenter.compressImage(mPhotoFile, 500);
                     break;
+
                 // 相册
                 case RequestCodeConstant.REQUEST_CODE_CHOICE_FROM_ALBUM:
                     if (data != null) {
@@ -219,26 +165,8 @@ public class HomeFragRx extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
 
                     }
 
-//                    Bitmap bitmap = BitmapUtil.getBitmapByUri(getMContext(), uri);
 
-                    /*BitmapUtil.compressImageAndSaveByIO(bitmap, 500, ConstansUtil.getPhotoAlbumPath(), new BitmapUtil.CompressListener() {
-                        @Override
-                        public void onCompressSuccess(File file) {
 
-                        }
-
-                        @Override
-                        public void onCompressError(String error) {
-
-                        }
-
-                        @Override
-                        public void onCompressComplete() {
-
-                        }
-                    });*/
-
-//                    photo_iv.setImageBitmap(bitmap);
                     break;
             }
         }
@@ -248,7 +176,7 @@ public class HomeFragRx extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
     public void compressImageSuccess(File file) {
         mPhotoFile = file;
         Bitmap bitmapWithRightRotation = BitmapUtil.getBitmapWithRightRotation(mPhotoFile.getPath());
-        photo_iv.setImageBitmap(bitmapWithRightRotation);
+//        photo_iv.setImageBitmap(bitmapWithRightRotation);
         mPresenter.uploadFile(file);
     }
 

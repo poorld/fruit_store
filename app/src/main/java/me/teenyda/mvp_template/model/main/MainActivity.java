@@ -2,6 +2,7 @@ package me.teenyda.mvp_template.model.main;
 
 import androidx.annotation.Nullable;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.jaeger.library.StatusBarUtil;
 import com.trello.rxlifecycle2.components.RxActivity;
 import com.trello.rxlifecycle2.components.RxFragment;
 
@@ -17,13 +19,13 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import me.teenyda.mvp_template.R;
-import me.teenyda.mvp_template.model.home.base.HomeFragRx;
+import me.teenyda.mvp_template.model.home.base.HomeFxFrag;
 import me.teenyda.mvp_template.model.myself.MyselfFrag;
 import me.teenyda.mvp_template.model.store.base.StoreFrag;
 
 public class MainActivity extends RxActivity {
 
-    private HomeFragRx mHomeFrag;
+    private HomeFxFrag mHomeFrag;
     private StoreFrag mStoreFrag;
     private MyselfFrag mMyselfFrag;
     private RxFragment mCurrentFragment;
@@ -63,6 +65,9 @@ public class MainActivity extends RxActivity {
         mBind = ButterKnife.bind(this);
         manager = getFragmentManager();
         home_rl.performClick();
+
+        StatusBarUtil.setTranslucentForImageViewInFragment(MainActivity.this, 0,null);
+//        StatusBarUtil.setColor(this, getResources().getColor(R.color.c_00000000));
     }
 
     @OnClick({R.id.home_rl, R.id.store_rl, R.id.myself_rl})
@@ -88,7 +93,7 @@ public class MainActivity extends RxActivity {
             case 0:
 
                 if (mHomeFrag == null)
-                    mHomeFrag = new HomeFragRx();
+                    mHomeFrag = new HomeFxFrag();
 
                 if (!mHomeFrag.isAdded())
                     transaction.add(R.id.main_frame, mHomeFrag);
@@ -101,20 +106,20 @@ public class MainActivity extends RxActivity {
 
                 mCurrentFragment = mHomeFrag;
                 break;
-//            case 1:
-//
-//                if (mStoreFrag == null)
-//                    mStoreFrag = new StoreFrag();
-//
-//                if (!mStoreFrag.isAdded())
-//                    transaction.add(R.id.main_frame, mStoreFrag);
-//
-//                if (mCurrentFragment != null && mCurrentFragment != mStoreFrag) {
-//                    transaction.show(mStoreFrag).hide(mCurrentFragment).commit();
-//                }
-//
-//                mCurrentFragment = mStoreFrag;
-//                break;
+            case 1:
+
+                if (mStoreFrag == null)
+                    mStoreFrag = new StoreFrag();
+
+                if (!mStoreFrag.isAdded())
+                    transaction.add(R.id.main_frame, mStoreFrag);
+
+                if (mCurrentFragment != null && mCurrentFragment != mStoreFrag) {
+                    transaction.show(mStoreFrag).hide(mCurrentFragment).commit();
+                }
+
+                mCurrentFragment = mStoreFrag;
+                break;
 //            case 2:
 //                if (mMyselfFrag == null) {
 //                    mMyselfFrag = new MyselfFrag();

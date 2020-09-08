@@ -1,6 +1,5 @@
 package me.teenyda.mvp_template.common.api;
 
-import com.trello.rxlifecycle2.components.RxActivity;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 import com.trello.rxlifecycle2.components.support.RxFragment;
 
@@ -11,9 +10,8 @@ import java.util.Map;
 
 import io.reactivex.Observer;
 import me.teenyda.mvp_template.common.entity.Demo;
-import me.teenyda.mvp_template.common.utils.MyObserver;
 import me.teenyda.mvp_template.common.utils.RetrofitUtils;
-import me.teenyda.mvp_template.common.utils.RxHelper;
+import me.teenyda.mvp_template.common.mvp.RxHelper;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;

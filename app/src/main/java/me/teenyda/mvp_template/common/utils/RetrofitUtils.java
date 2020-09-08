@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 import androidx.annotation.NonNull;
 import me.teenyda.mvp_template.common.api.ApiUrl;
 import me.teenyda.mvp_template.common.api.Constans;
+import me.teenyda.mvp_template.common.mvp.LogInterceptor;
 import okhttp3.OkHttpClient;
 
 import retrofit2.Retrofit;

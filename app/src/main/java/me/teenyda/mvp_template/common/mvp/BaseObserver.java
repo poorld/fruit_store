@@ -1,7 +1,8 @@
-package me.teenyda.mvp_template.common.utils;
+package me.teenyda.mvp_template.common.mvp;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
+import me.teenyda.mvp_template.common.api.BaseResponse;
 
 /**
  * 数据返回统一处理  参考https://www.jianshu.com/p/ff619fea7e22

@@ -1,4 +1,4 @@
-package me.teenyda.mvp_template.common.utils;
+package me.teenyda.mvp_template.common.mvp;
 
 
 import android.app.ProgressDialog;

@@ -1,9 +1,14 @@
 package me.teenyda.mvp_template.model.store.base;
 
+import android.app.Activity;
 import android.content.Context;
 
+import com.jaeger.library.StatusBarUtil;
+
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import butterknife.BindView;
 import me.teenyda.mvp_template.R;
-import me.teenyda.mvp_template.common.mvp.MvpFragment;
+import me.teenyda.mvp_template.common.mvp.MvpRxFragment;
 import me.teenyda.mvp_template.model.store.base.presenter.StoreP;
 import me.teenyda.mvp_template.model.store.base.view.IStoreV;
 
@@ -12,7 +17,9 @@ import me.teenyda.mvp_template.model.store.base.view.IStoreV;
  * date: 2019/8/22
  * description:
  */
-public class StoreFrag extends MvpFragment<IStoreV, StoreP> implements IStoreV {
+public class StoreFrag extends MvpRxFragment<IStoreV, StoreP> implements IStoreV {
+
+
     @Override
     protected StoreP createPresenter() {
         return new StoreP();
@@ -30,7 +37,7 @@ public class StoreFrag extends MvpFragment<IStoreV, StoreP> implements IStoreV {
 
     @Override
     protected void viewInitializer() {
-
+//        StatusBarUtil.setTranslucentForImageView((Activity) getMContext(), 0, mViewNeedOffset);
     }
 
     @Override

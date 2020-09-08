@@ -6,11 +6,8 @@ import java.util.List;
 
 import io.reactivex.Observable;
 import me.teenyda.mvp_template.common.api.ApiUrl;
-import me.teenyda.mvp_template.common.utils.BaseObserver;
-import me.teenyda.mvp_template.common.utils.BaseResponse;
-import me.teenyda.mvp_template.common.utils.MyObserver;
+import me.teenyda.mvp_template.common.api.BaseResponse;
 import me.teenyda.mvp_template.common.utils.RetrofitUtils;
-import me.teenyda.mvp_template.common.utils.RxHelper;
 
 /**
  * author: teenyda

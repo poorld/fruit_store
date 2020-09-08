@@ -22,7 +22,7 @@ import me.teenyda.mvp_template.R;
 import me.teenyda.mvp_template.common.constant.RequestCodeConstant;
 import me.teenyda.mvp_template.common.entity.FileUploadResponse;
 import me.teenyda.mvp_template.common.mvp.MvpFragment;
-import me.teenyda.mvp_template.common.utils.BitmapUtil;
+import me.teenyda.mvp_template.common.mvp.BitmapUtil;
 import me.teenyda.mvp_template.common.utils.PermissionsUtil;
 import me.teenyda.mvp_template.common.view.popupview.PopupGetPhoto;
 import me.teenyda.mvp_template.model.home.base.presenter.HomeP;
