@@ -2,21 +2,11 @@ package me.teenyda.mvp_template.model.home.base.presenter;
 
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
 
 import java.io.File;
-import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Function;
-import io.reactivex.schedulers.Schedulers;
 import me.teenyda.mvp_template.common.entity.Book;
 import me.teenyda.mvp_template.common.entity.FileUploadResponse;
 import me.teenyda.mvp_template.common.mvp.BaseRxPresenter;
@@ -140,52 +130,53 @@ public class HomePRx extends BaseRxPresenter<IHomeV> {
         });
     }
 
+    public void uploadFiles(List<File> files) {
+        List<MultipartBody.Part> parts = new ArrayList<>();
+        for (File file : files) {
+            RequestBody fileRequestBody = RequestBody.create(MediaType.parse("image/*"), file);
+            MultipartBody.Part part = MultipartBody.Part.createFormData("files", file.getName(), fileRequestBody);
+            parts.add(part);
+        }
 
-    public void compressImage(File file) {
-        Observable.create(new ObservableOnSubscribe<File>() {
+        RequestBody description = RequestBody.create(MediaType.parse("text/plain"), "image-type");
+
+        addDisposable(mApi.uploadImages(parts, description), new MyObserver<List<FileUploadResponse>>(mContext) {
             @Override
-            public void subscribe(ObservableEmitter<File> emitter) throws Exception {
-                if (file != null) {
-                    emitter.onNext(file);
-                }
-                emitter.onComplete();
+            public void onSuccess(List<FileUploadResponse> result) {
 
             }
-        })
-                .subscribeOn(AndroidSchedulers.mainThread())
-                .observeOn(Schedulers.io())
-                .map(new Function<File, File>() {
-                    @Override
-                    public File apply(File file) throws Exception {
 
-//                        BitmapUtil.
-                        File resizedFile = BitmapUtil.compressImage(file.getPath());
+            @Override
+            public void onFailure(Throwable e, String errorMsg) {
 
-                        return resizedFile;
-                    }
-                })
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<File>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
+            }
+        });
+    }
 
-                    }
 
-                    @Override
-                    public void onNext(File file) {
-                        mBaserView.compressImageSuccess(file);
-                    }
+    public void compressImage(File file) {
+        BitmapUtil.compressImageByIO(file.getPath(), 60, new BitmapUtil.CompressListener() {
+            @Override
+            public void onCompressSuccess(File file1) {
+                mBaserView.compressImageSuccess(file1);
+            }
 
-                    @Override
-                    public void onError(Throwable e) {
+            @Override
+            public void onCompressSuccess(Bitmap bitmap) {
 
-                    }
+            }
 
-                    @Override
-                    public void onComplete() {
+            @Override
+            public void onCompressError(String error) {
 
-                    }
-                });
+            }
+
+            @Override
+            public void onCompressComplete() {
+
+            }
+        });
+
     }
 
 }

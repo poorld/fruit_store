@@ -15,4 +15,20 @@ public class Constans {
 
     public final static String book = "book/book";
 
+    /**
+     * 拍照 相片名称
+     */
+    public static final String TAKE_PICTURE_PHOTO_NAME = "take_photo.jpg";
+
+    /**
+     * 相片存储路径:/storage/emulated/0/Pictures
+     */
+    public static final String PHOTO_STORAGE_PATH = "Pictures";
+
+    /**
+     * 从相册获取 相片名称photo album
+     */
+    public static final String PHOTO_ALBUM = "photo_album.jpg";
+
+
 }

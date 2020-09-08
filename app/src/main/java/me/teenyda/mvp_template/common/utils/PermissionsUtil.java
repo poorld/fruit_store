@@ -20,6 +20,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.core.content.PermissionChecker;
 import me.teenyda.mvp_template.BuildConfig;
+import me.teenyda.mvp_template.common.api.Constans;
 import me.teenyda.mvp_template.common.constant.PermissionConstant;
 import me.teenyda.mvp_template.common.constant.RequestCodeConstant;
 import pub.devrel.easypermissions.EasyPermissions;
@@ -31,7 +32,6 @@ import pub.devrel.easypermissions.EasyPermissions;
  */
 public class PermissionsUtil {
 
-    public static final String photoName = "my_photo.jpg";
 
     /**
      * 拍照
@@ -42,11 +42,14 @@ public class PermissionsUtil {
         String[] permissions = {Manifest.permission.CAMERA,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
+        if (!EasyPermissions.hasPermissions(context, permissions)) {
+            getPermission(permissions, context);
+        }
+
         Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
         // images是file_paths.xml下的path
-        String filePath = Environment.getExternalStorageDirectory() + File.separator + "images" + File.separator;
-        File outputFile = new File(filePath, photoName);
-
+//        String filePath = Environment.getExternalStorageDirectory() + File.separator + "images" + File.separator;
+        File outputFile = new File(ConstansUtil.takePictureFilePath());
 
         if (!outputFile.getParentFile().exists()) {
             outputFile.getParentFile().mkdir();
@@ -73,14 +76,10 @@ public class PermissionsUtil {
         intent.putExtra(MediaStore.EXTRA_OUTPUT, contentUri);
 
 
-        if (!EasyPermissions.hasPermissions(context, permissions)) {
-            getPermission(permissions, context);
-
-        } else {
-
+        if (EasyPermissions.hasPermissions(context, permissions)) {
             ((Activity)context).startActivityForResult(intent, RequestCodeConstant.REQUEST_CODE_OPEN_CAMERA);
-        }
 
+        }
 
 
         return outputFile;
@@ -100,10 +99,12 @@ public class PermissionsUtil {
                     Manifest.permission.READ_EXTERNAL_STORAGE
             }, PermissionConstant.REQUEST_CODE_READ_WRITE_STORAGE);
         } else {
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//            startActivityForResult(intent, CHOOSE_PHOTO); // 打开相册
             Intent choiceFromAlbumIntent = new Intent(Intent.ACTION_GET_CONTENT);
             // 设置数据类型为图片类型
             choiceFromAlbumIntent.setType("image/*");
-            ((Activity)context).startActivityForResult(choiceFromAlbumIntent, RequestCodeConstant.REQUEST_CODE_CHOICE_FROM_ALBUM);
+            ((Activity)context).startActivityForResult(intent, RequestCodeConstant.REQUEST_CODE_CHOICE_FROM_ALBUM);
         }
 
     }

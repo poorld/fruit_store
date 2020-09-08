@@ -13,7 +13,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
-import me.teenyda.mvp_template.R;
 import me.teenyda.mvp_template.common.api.BaseObserver;
 import me.teenyda.mvp_template.common.entity.Book;
 import me.teenyda.mvp_template.common.entity.BookEntity;
@@ -33,7 +32,7 @@ import okhttp3.RequestBody;
 public class HomeP extends BasePresenter<IHomeV> {
 
     public void compressImage(File file) {
-        Observable.create(new ObservableOnSubscribe<File>() {
+        /*Observable.create(new ObservableOnSubscribe<File>() {
             @Override
             public void subscribe(ObservableEmitter<File> emitter) throws Exception {
                 if (file != null) {
@@ -48,7 +47,7 @@ public class HomeP extends BasePresenter<IHomeV> {
                 .map(new Function<File, File>() {
                     @Override
                     public File apply(File file) throws Exception {
-                        File resizedFile = BitmapUtil.compressImage(file.getPath());
+                        File resizedFile =
                         return resizedFile;
                     }
                 })
@@ -73,7 +72,9 @@ public class HomeP extends BasePresenter<IHomeV> {
                     public void onComplete() {
 
                     }
-                });
+                });*/
+
+//        BitmapUtil.compressImageAndSave(file.getPath(), 60);
     }
 
     public void uploadFile(File file) {

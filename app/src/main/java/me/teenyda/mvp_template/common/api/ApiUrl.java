@@ -61,6 +61,10 @@ public interface ApiUrl {
                                                              @Part("file") RequestBody requestBody);
 
 
+    @Multipart
+    @POST("file/multipleFiles")
+    Observable<BaseResponse<List<FileUploadResponse>>> uploadImages(@Part List<MultipartBody.Part> files,
+                                                             @Part("files") RequestBody requestBody);
 
     /**
      * TODO Get请求
