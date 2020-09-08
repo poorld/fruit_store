@@ -87,6 +87,7 @@ public abstract class MyObserver<T> extends BaseObserver<T> {
 
     /**
      * 取消订阅
+     * 点击返回键隐藏Dialog可以重写系统点击返回键时进行处理或者调用cancleRequest()方法
      */
     public void cancleRequest(){
         if (d!=null&&d.isDisposed()) {

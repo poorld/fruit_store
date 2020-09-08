@@ -13,7 +13,6 @@ import java.io.IOException;
 import me.teenyda.mvp_template.common.entity.UserToken;
 
 /**
- * author: teenyda
  * date: 2019/8/22
  * description:文件缓存
  * context.getFilesDir()：获取手机内置存储器的/data/data/<application package>/files目录，这个位置放存储文件。

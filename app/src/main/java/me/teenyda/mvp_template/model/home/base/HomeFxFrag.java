@@ -165,8 +165,6 @@ public class HomeFxFrag extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
 
                     }
 
-
-
                     break;
             }
         }

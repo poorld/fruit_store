@@ -22,6 +22,7 @@ import me.teenyda.mvp_template.common.pictureselector.GlideEngine;
 import me.teenyda.mvp_template.common.mvp.BitmapUtil;
 import me.teenyda.mvp_template.common.utils.ConstansUtil;
 import me.teenyda.mvp_template.common.mvp.MyObserver;
+import me.teenyda.mvp_template.common.utils.LogUtils;
 import me.teenyda.mvp_template.model.home.base.view.IHomeV;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -222,10 +223,15 @@ public class HomePRx extends BaseRxPresenter<IHomeV> {
 
                             files.add(file);
 
-                            Log.i(Constans.TAG, localMedia.getSize() + "");
-                            Log.i(Constans.TAG, localMedia.getPath());
-                            Log.i(Constans.TAG, localMedia.isCompressed() + "");
-                            Log.i(Constans.TAG, localMedia.getCompressPath());
+                            LogUtils.e(localMedia.getSize() + "");
+                            LogUtils.e(localMedia.getPath() + "");
+                            LogUtils.e(localMedia.isCompressed() + "");
+                            LogUtils.e(localMedia.getCompressPath() + "");
+
+                            // Log.i(Constans.TAG, localMedia.getSize() + "");
+                            // Log.i(Constans.TAG, localMedia.getPath());
+                            // Log.i(Constans.TAG, localMedia.isCompressed() + "");
+                            // Log.i(Constans.TAG, localMedia.getCompressPath());
 
 
                         }
