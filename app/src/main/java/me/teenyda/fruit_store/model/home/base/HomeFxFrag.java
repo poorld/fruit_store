@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
@@ -60,6 +62,9 @@ public class HomeFxFrag extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
 
     private Unbinder mBind;
 
+    @BindView(R.id.tv_vip)
+    TextView tvVip;
+
 
     @Override
     protected HomePRx createPresenter() {
@@ -95,7 +100,7 @@ public class HomeFxFrag extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
         //         });
 
 
-
+        tvVip.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD_ITALIC);
     }
 
 

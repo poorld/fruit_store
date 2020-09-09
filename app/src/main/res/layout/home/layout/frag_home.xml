@@ -7,6 +7,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:clipChildren="false"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -59,13 +60,13 @@
                 </LinearLayout>
 
 
-                <TextView
+                <!--<TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/c_ffffff"
                     android:textSize="18sp"
                     android:layout_marginTop="10dp"
-                    android:text="最优质的水果"/>
+                    android:text="最优质的水果"/>-->
             </LinearLayout>
 
         </FrameLayout>
@@ -207,15 +208,111 @@
         <!--</RelativeLayout>-->
 
         <LinearLayout
+            android:clipChildren="false"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="150dp"
             android:layout_marginRight="15dp"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="60dp"
             android:orientation="vertical"
-            android:background="@drawable/shape_radius_5dp_fff">
+            android:background="@drawable/vip_bg_gradient">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="-60dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/vip_exclusive"/>
 
 
+            <TextView
+                android:id="@+id/tv_vip"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="超级钻石VIP"
+                android:textSize="22sp"
+                android:textColor="@color/c_ffcf62"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp">
+
+                <View
+                    android:layout_width="5dp"
+                    android:layout_height="5dp"
+                    android:background="@drawable/shape_point_item"
+                    android:layout_gravity="center_vertical"/>
+
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="多种专享特权"
+                    android:textSize="14sp"
+                    android:textColor="@color/c_ffe4a6"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp">
+
+                <View
+                    android:layout_width="5dp"
+                    android:layout_height="5dp"
+                    android:background="@drawable/shape_point_item"
+                    android:layout_gravity="center_vertical"/>
+
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="会员专属价格"
+                    android:textSize="14sp"
+                    android:textColor="@color/c_ffe4a6"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp">
+
+                <View
+                    android:layout_width="5dp"
+                    android:layout_height="5dp"
+                    android:background="@drawable/shape_point_item"
+                    android:layout_gravity="center_vertical"/>
+
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="充值+购物优惠"
+                    android:textSize="14sp"
+                    android:textColor="@color/c_ffe4a6"/>
+            </LinearLayout>
+
+            <Button
+                android:layout_gravity="right"
+                android:layout_marginRight="15dp"
+                android:layout_width="90dp"
+                android:layout_height="30dp"
+                android:background="@drawable/shape_home_gradient_6"
+                android:textColor="@color/c_eaa200"
+                android:text="立即加入"/>
+
+
+            <!--<FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                android:background="@drawable/vip_bg_gradient">
+
+
+
+            </FrameLayout>-->
 
         </LinearLayout>
 
