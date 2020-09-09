@@ -12,7 +12,4 @@ import me.teenyda.fruit_store.common.mvp.BaseView;
  */
 public interface IHomeV extends BaseView {
 
-    void compressImageSuccess(File file);
-
-    void showImage(FileUploadResponse file);
 }

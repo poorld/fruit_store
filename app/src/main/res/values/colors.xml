@@ -90,6 +90,57 @@
 
 
 
+    <color name="c_f5f7fd">#f5f7fd</color>
+    <color name="c_e7ebfb">#e7ebfb</color>
+    <color name="c_b2e7ebfb">#b2e7ebfb</color>
+    <color name="c_d8e0f9">#d8e0f9</color>
+    <color name="c_cad4f6">#cad4f6</color>
+    <color name="c_bbc8f4">#bbc8f4</color>
+    <color name="c_acbcf1">#acbcf1</color>
+    <color name="c_9eb0ef">#9eb0ef</color>
+    <color name="c_8fa4ed">#8fa4ed</color>
+    <color name="c_8199ea">#8199ea</color>
+    <color name="c_728de8">#728de8</color>
+    <color name="c_6481e5">#6481e5</color>
+    <color name="c_5575e3">#5575e3</color>
+    <color name="c_4669e1">#4669e1</color>
+    <color name="c_385dde">#385dde</color>
+    <color name="c_2951dc">#2951dc</color>
+
+
+    <color name="c_fef9ff">#fef9ff</color>
+    <color name="c_fde9fe">#fde9fe</color>
+    <color name="c_fbd8fe">#fbd8fe</color>
+    <color name="c_fac8fd">#fac8fd</color>
+    <color name="c_f8b7fd">#f8b7fd</color>
+    <color name="c_f7a7fc">#f7a7fc</color>
+    <color name="c_f697fb">#f697fb</color>
+    <color name="c_f486fb">#f486fb</color>
+    <color name="c_f376fa">#f376fa</color>
+    <color name="c_f165fa">#f165fa</color>
+    <color name="c_f055f9">#f055f9</color>
+    <color name="c_ee44f9">#ee44f9</color>
+    <color name="c_ed34f8">#ed34f8</color>
+    <color name="c_eb24f8">#eb24f8</color>
+    <color name="c_ea13f7">#ea13f7</color>
+    <color name="c_e308f1">#e308f1</color>
+    <color name="c_d408e1">#d408e1</color>
+    <color name="c_c407d0">#c407d0</color>
+    <color name="c_b507c0">#b507c0</color>
+    <color name="c_a506af">#a506af</color>
+    <color name="c_96059f">#96059f</color>
+    <color name="c_86058e">#86058e</color>
+    <color name="c_77047e">#77047e</color>
+    <color name="c_67046e">#67046e</color>
+    <color name="c_58035d">#58035d</color>
+    <color name="c_48034d">#48034d</color>
+    <color name="c_39023c">#39023c</color>
+    <color name="c_29012c">#29012c</color>
+    <color name="c_1a011b">#1a011b</color>
+    <color name="c_0a000b">#0a000b</color>
+
+
+
     <!--文字颜色-->
     <color name="c_2c2c2c">#2c2c2c</color>
     <color name="c_414141">#414141</color>
@@ -119,7 +170,7 @@
     <color name="c_dac9a6">#dac9a6</color>
     <color name="c_fb9966">#fb9966</color>
 
-    <color name="c_f7a7fc">#f7a7fc</color>
+    <!--<color name="c_f7a7fc">#f7a7fc</color>-->
     <color name="c_8653fa">#8653fa</color>
 
     <color name="c_4c55a6">#4c55a6</color>

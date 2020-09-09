@@ -1,149 +1,225 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/open_camera_ll"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/c_5d5d5d"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@color/c_ffc440"
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/main_bg"/>
+
+
+            <com.youth.banner.Banner
+                android:id="@+id/banner"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="150dp"
+                android:layout_width="match_parent"
+                android:layout_height="170dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="15dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/logo"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/c_ffffff"
+                        android:textSize="28sp"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="8dp"
+                        android:text="智取棋水果"/>
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/c_ffffff"
+                    android:textSize="18sp"
+                    android:layout_marginTop="10dp"
+                    android:text="最优质的水果"/>
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:background="@drawable/shape_radius_5dp_b2e7ebfb">
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="italic"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/c_728de8"
+                    android:textSize="22sp"
+                    android:text="新品上市"/>
+
+                <ImageView
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:src="@drawable/new_product"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_marginLeft="5dp"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="0dp"
+                    android:background="@drawable/shape_radius_5dp_fff3d9">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:textStyle="italic"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@color/c_d99600"
+                        android:textSize="16sp"
+                        android:text="热门水果"/>
+
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="15dp"
+                        android:src="@drawable/hot_fruit"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="0dp"
+                    android:background="@drawable/shape_radius_5dp_fde9fe">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:textStyle="italic"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@color/c_f7a7fc"
+                        android:textSize="16sp"
+                        android:text="限时秒杀"/>
+
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="15dp"
+                        android:src="@drawable/seconds_kill"/>
+
+                </RelativeLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--<RelativeLayout-->
+            <!--android:id="@+id/topLine"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="65dp"-->
+            <!--android:background="#ffffff"-->
+            <!--android:layout_margin="15dp"-->
+            <!--android:paddingTop="10dp"-->
+            <!--android:paddingBottom="10dp"-->
+            <!--android:orientation="horizontal"-->
+            <!--tools:ignore="MissingConstraints">-->
+
+            <!--<ImageView-->
+                <!--android:id="@+id/image_top"-->
+                <!--android:layout_width="30dp"-->
+                <!--android:layout_height="30dp"-->
+                <!--android:src="@drawable/logo"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:layout_marginRight="10dp"-->
+                <!--android:layout_centerVertical="true"/>-->
+
+            <!--<com.youth.banner.Banner-->
+                <!--android:id="@+id/news_banner"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_toRightOf="@+id/image_top"-->
+                <!--android:layout_toLeftOf="@+id/image_right"-->
+                <!--android:layout_centerVertical="true"/>-->
+            <!--<ImageView-->
+                <!--android:id="@+id/image_right"-->
+                <!--android:layout_width="15dp"-->
+                <!--android:layout_height="15dp"-->
+                <!--android:src="@drawable/home_right_arrow"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:layout_marginRight="10dp"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_centerVertical="true"/>-->
+        <!--</RelativeLayout>-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginRight="15dp"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"/>
+            android:orientation="vertical"
+            android:background="@drawable/shape_radius_5dp_fff">
 
-        <TextView
-            android:id="@+id/open_camera_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/c_fbae00"
-            android:layout_marginLeft="10dp"
-            android:textSize="15sp"
-            android:text="上传图片"/>
+
+
+        </LinearLayout>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/getbook_ll"
-        android:layout_marginTop="1dp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/c_5d5d5d"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@color/c_ffc440"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/c_fbae00"
-            android:layout_marginLeft="10dp"
-            android:textSize="15sp"
-            android:text="获取书本"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/updatebook_ll"
-        android:layout_marginTop="1dp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/c_5d5d5d"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@color/c_ffc440"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/c_fbae00"
-            android:layout_marginLeft="10dp"
-            android:textSize="15sp"
-            android:text="更新书本"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/getbooks_ll"
-        android:layout_marginTop="1dp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/c_5d5d5d"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@color/c_ffc440"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/c_fbae00"
-            android:layout_marginLeft="10dp"
-            android:textSize="15sp"
-            android:text="获取书本列表"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/login_ll"
-        android:layout_marginTop="1dp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/c_5d5d5d"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@color/c_ffc440"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/c_fbae00"
-            android:layout_marginLeft="10dp"
-            android:textSize="15sp"
-            android:text="登陆"/>
-
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/photo_iv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-
-</LinearLayout>
+</androidx.core.widget.NestedScrollView>

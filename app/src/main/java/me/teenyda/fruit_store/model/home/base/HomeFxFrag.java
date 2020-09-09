@@ -10,6 +10,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.snackbar.Snackbar;
+import com.youth.banner.Banner;
+import com.youth.banner.indicator.RoundLinesIndicator;
+import com.youth.banner.transformer.ZoomOutPageTransformer;
+import com.youth.banner.util.BannerUtils;
+import com.youth.banner.util.LogUtils;
 
 import java.io.File;
 import java.util.List;
@@ -23,12 +29,15 @@ import butterknife.Unbinder;
 import me.teenyda.fruit_store.R;
 import me.teenyda.fruit_store.common.constant.RequestCodeConstant;
 import me.teenyda.fruit_store.common.entity.Book;
+import me.teenyda.fruit_store.common.entity.DataBean;
 import me.teenyda.fruit_store.common.entity.FileUploadResponse;
 import me.teenyda.fruit_store.common.mvp.MvpRxFragment;
 import me.teenyda.fruit_store.common.mvp.BitmapUtil;
 import me.teenyda.fruit_store.common.utils.ConstansUtil;
 import me.teenyda.fruit_store.common.utils.PermissionsUtil;
 import me.teenyda.fruit_store.common.view.popupview.PopupGetPhoto;
+import me.teenyda.fruit_store.model.home.base.adapter.ImageNetAdapter;
+import me.teenyda.fruit_store.model.home.base.adapter.TopLineAdapter;
 import me.teenyda.fruit_store.model.home.base.presenter.HomePRx;
 import me.teenyda.fruit_store.model.home.base.view.IHomeV;
 import me.teenyda.fruit_store.model.login.base.LoginAct;
@@ -43,25 +52,14 @@ public class HomeFxFrag extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
                                 EasyPermissions.PermissionCallbacks{
 
 
+    @BindView(R.id.banner)
+    Banner banner;
 
-    @BindView(R.id.open_camera_ll)
-    LinearLayout open_camera_ll;
-
-    @BindView(R.id.getbook_ll)
-    LinearLayout getbook_ll;
-
-    @BindView(R.id.updatebook_ll)
-    LinearLayout updatebook_ll;
-
-    @BindView(R.id.photo_iv)
-    ImageView photo_iv;
-
+    // @BindView(R.id.news_banner)
+    // Banner newsBanner;
 
     private Unbinder mBind;
 
-    private PopupGetPhoto mPopupGetPhoto;
-
-    private File mPhotoFile;
 
     @Override
     protected HomePRx createPresenter() {
@@ -81,53 +79,26 @@ public class HomeFxFrag extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
     @Override
     protected void viewInitializer() {
         mBind = ButterKnife.bind(this, mView);
-        mPopupGetPhoto = new PopupGetPhoto(getMContext());
 
-        mPopupGetPhoto.setPhotoListener(new PopupGetPhoto.GetPhotoListener() {
-            @Override
-            public void takePhoto() {
-//                PermissionsUtil.writeStorage(getMContext());
+        banner.setAdapter(new ImageNetAdapter(DataBean.getTestData3()));
+        banner.setBannerRound(BannerUtils.dp2px(5));
+        banner.setIndicator(new RoundLinesIndicator(getMContext()));
+        banner.setIndicatorSelectedWidth((int) BannerUtils.dp2px(15));
 
-                mPhotoFile = PermissionsUtil.takePicture(getMContext());
-                mPopupGetPhoto.dismiss();
+        //实现1号店和淘宝头条类似的效果
+        // newsBanner.setAdapter(new TopLineAdapter(DataBean.getTestData2()))
+        //         .setOrientation(Banner.VERTICAL)
+        //         .setPageTransformer(new ZoomOutPageTransformer())
+        //         .setOnBannerListener((data, position) -> {
+        //             Snackbar.make(newsBanner, ((DataBean) data).title, Snackbar.LENGTH_SHORT).show();
+        //             LogUtils.d("position：" + position);
+        //         });
 
-            }
-
-            @Override
-            public void fromAlbum() {
-//                PermissionsUtil.choiceFromGallery(getMContext());
-//                mPopupGetPhoto.dismiss();
-
-                mPresenter.pictureSelector();
-            }
-        });
 
 
     }
 
-    @OnClick({R.id.open_camera_ll, R.id.getbook_ll, R.id.login_ll, R.id.getbooks_ll,R.id.updatebook_ll})
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.open_camera_ll:
-                mPopupGetPhoto.show(view);
-                break;
-            case R.id.getbook_ll:
-//                HomePRx p = new HomePRx();
-                mPresenter.getBook();
-                break;
-            case R.id.login_ll:
-                startActivity(LoginAct.class);
-                break;
-            case R.id.getbooks_ll:
-                mPresenter.getBooks();
-                break;
-            case R.id.updatebook_ll:
-                Book book = new Book();
-                book.setBookName("智取棋");
-                mPresenter.updateBoos(book);
-                break;
-        }
-    }
+
 
     @Override
     protected void doBuseness() {
@@ -145,46 +116,7 @@ public class HomeFxFrag extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
         mBind.unbind();
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK) {
 
-            switch (requestCode) {
-                // 拍照
-                case RequestCodeConstant.REQUEST_CODE_OPEN_CAMERA:
-
-                    mPresenter.compressImage(mPhotoFile, 500);
-                    break;
-
-                // 相册
-                case RequestCodeConstant.REQUEST_CODE_CHOICE_FROM_ALBUM:
-                    if (data != null) {
-                        Uri uri = data.getData();
-                        BitmapUtil.saveBitmapToLoaction(getMContext(),uri, ConstansUtil.getPhotoAlbumPath());
-
-                    }
-
-                    break;
-            }
-        }
-    }
-
-    @Override
-    public void compressImageSuccess(File file) {
-        mPhotoFile = file;
-        Bitmap bitmapWithRightRotation = BitmapUtil.getBitmapWithRightRotation(mPhotoFile.getPath());
-//        photo_iv.setImageBitmap(bitmapWithRightRotation);
-        mPresenter.uploadFile(file);
-    }
-
-    @Override
-    public void showImage(FileUploadResponse file) {
-        Glide.with(getMContext())
-                .load(file.getFileDownloadUrl())
-                .centerCrop()
-                .into(photo_iv);
-    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -203,7 +135,4 @@ public class HomeFxFrag extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
         showToast("请同意相关权限，否则功能无法使用");
     }
 
-    private void uploadMultiFile(List<File> files) {
-
-    }
 }
