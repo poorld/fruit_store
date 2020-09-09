@@ -3,11 +3,12 @@ package me.teenyda.fruit_store.common.mvp;
 
 import android.content.Context;
 
-import com.trello.rxlifecycle2.android.ActivityEvent;
-import com.trello.rxlifecycle2.components.RxActivity;
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
-import com.trello.rxlifecycle2.components.support.RxFragment;
-import com.trello.rxlifecycle2.components.support.RxFragmentActivity;
+
+import com.trello.rxlifecycle3.android.ActivityEvent;
+import com.trello.rxlifecycle3.components.RxActivity;
+import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
+import com.trello.rxlifecycle3.components.support.RxFragment;
+import com.trello.rxlifecycle3.components.support.RxFragmentActivity;
 
 import org.reactivestreams.Publisher;
 

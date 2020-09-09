@@ -10,23 +10,29 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jaeger.library.StatusBarUtil;
-import com.trello.rxlifecycle2.components.RxActivity;
-import com.trello.rxlifecycle2.components.RxFragment;
+import com.trello.rxlifecycle3.android.RxLifecycleAndroid;
+import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
+import com.trello.rxlifecycle3.components.support.RxFragment;
 
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.LifecycleOwner;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import me.teenyda.fruit_store.R;
+import me.teenyda.fruit_store.model.classify.base.ClassifyFragment;
 import me.teenyda.fruit_store.model.home.base.HomeFxFrag;
 import me.teenyda.fruit_store.model.myself.MyselfFrag;
 import me.teenyda.fruit_store.model.store.base.StoreFrag;
 
-public class MainActivity extends RxActivity {
+public class MainActivity extends RxAppCompatActivity {
 
     private HomeFxFrag mHomeFrag;
     private StoreFrag mStoreFrag;
     private MyselfFrag mMyselfFrag;
+    private ClassifyFragment mClassifyFrag;
     private RxFragment mCurrentFragment;
 
     @BindView(R.id.home_rl)
@@ -53,8 +59,10 @@ public class MainActivity extends RxActivity {
     TextView myself_tv;
 
 
-    private android.app.FragmentManager manager;
+    private FragmentManager manager;
     private Unbinder mBind;
+
+
 
 
     @Override
@@ -62,11 +70,11 @@ public class MainActivity extends RxActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mBind = ButterKnife.bind(this);
-        manager = getFragmentManager();
+        manager = getSupportFragmentManager();
         home_rl.performClick();
 
         StatusBarUtil.setTranslucentForImageViewInFragment(MainActivity.this, 0,null);
-//        StatusBarUtil.setColor(this, getResources().getColor(R.color.c_00000000));
+//        StatusBarUtil.setColor(this, getColor(R.color.c_00000000));
     }
 
     @OnClick({R.id.home_rl, R.id.store_rl, R.id.myself_rl})
@@ -87,7 +95,7 @@ public class MainActivity extends RxActivity {
         }
     }
     private void switchNavigation(int index) {
-        android.app.FragmentTransaction transaction = manager.beginTransaction();
+        FragmentTransaction transaction = manager.beginTransaction();
         switch (index) {
             case 0:
 
@@ -107,17 +115,17 @@ public class MainActivity extends RxActivity {
                 break;
             case 1:
 
-                if (mStoreFrag == null)
-                    mStoreFrag = new StoreFrag();
+                if (mClassifyFrag == null)
+                    mClassifyFrag = new ClassifyFragment();
 
-                if (!mStoreFrag.isAdded())
-                    transaction.add(R.id.main_frame, mStoreFrag);
+                if (!mClassifyFrag.isAdded())
+                    transaction.add(R.id.main_frame, mClassifyFrag);
 
-                if (mCurrentFragment != null && mCurrentFragment != mStoreFrag) {
-                    transaction.show(mStoreFrag).hide(mCurrentFragment).commit();
+                if (mCurrentFragment != null && mCurrentFragment != mClassifyFrag) {
+                    transaction.show(mClassifyFrag).hide(mCurrentFragment).commit();
                 }
 
-                mCurrentFragment = mStoreFrag;
+                mCurrentFragment = mClassifyFrag;
                 break;
 //            case 2:
 //                if (mMyselfFrag == null) {
@@ -143,27 +151,27 @@ public class MainActivity extends RxActivity {
                 store_iv.setSelected(false);
                 myself_iv.setSelected(false);
 
-                home_tv.setTextColor(getResources().getColor(R.color.c_ffc440));
-                store_tv.setTextColor(getResources().getColor(R.color.c_ffffff));
-                myself_tv.setTextColor(getResources().getColor(R.color.c_ffffff));
+                home_tv.setTextColor(getColor(R.color.c_ffc440));
+                store_tv.setTextColor(getColor(R.color.c_b2b2b2));
+                myself_tv.setTextColor(getColor(R.color.c_b2b2b2));
                 break;
             case 1:
                 home_iv.setSelected(false);
                 store_iv.setSelected(true);
                 myself_iv.setSelected(false);
 
-                home_tv.setTextColor(getResources().getColor(R.color.c_ffffff));
-                store_tv.setTextColor(getResources().getColor(R.color.c_ffc440));
-                myself_tv.setTextColor(getResources().getColor(R.color.c_ffffff));
+                home_tv.setTextColor(getColor(R.color.c_b2b2b2));
+                store_tv.setTextColor(getColor(R.color.c_ffc440));
+                myself_tv.setTextColor(getColor(R.color.c_b2b2b2));
                 break;
             case 2:
                 home_iv.setSelected(false);
                 store_iv.setSelected(false);
                 myself_iv.setSelected(true);
 
-                home_tv.setTextColor(getResources().getColor(R.color.c_ffffff));
-                store_tv.setTextColor(getResources().getColor(R.color.c_ffffff));
-                myself_tv.setTextColor(getResources().getColor(R.color.c_ffc440));
+                home_tv.setTextColor(getColor(R.color.c_b2b2b2));
+                store_tv.setTextColor(getColor(R.color.c_b2b2b2));
+                myself_tv.setTextColor(getColor(R.color.c_ffc440));
                 break;
         }
     }

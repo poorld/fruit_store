@@ -24,6 +24,8 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -39,6 +41,7 @@ import me.teenyda.fruit_store.common.utils.ConstansUtil;
 import me.teenyda.fruit_store.common.utils.PermissionsUtil;
 import me.teenyda.fruit_store.common.view.popupview.PopupGetPhoto;
 import me.teenyda.fruit_store.model.home.base.adapter.ImageNetAdapter;
+import me.teenyda.fruit_store.model.home.base.adapter.RecommendAdapter;
 import me.teenyda.fruit_store.model.home.base.adapter.TopLineAdapter;
 import me.teenyda.fruit_store.model.home.base.presenter.HomePRx;
 import me.teenyda.fruit_store.model.home.base.view.IHomeV;
@@ -65,6 +68,8 @@ public class HomeFxFrag extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
     @BindView(R.id.tv_vip)
     TextView tvVip;
 
+    @BindView(R.id.rv)
+    RecyclerView rv;
 
     @Override
     protected HomePRx createPresenter() {
@@ -101,6 +106,12 @@ public class HomeFxFrag extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
 
 
         tvVip.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD_ITALIC);
+        LinearLayoutManager ll = new LinearLayoutManager(getMContext());
+        rv.setLayoutManager(ll);
+        rv.setAdapter(new RecommendAdapter(getMContext()));
+
+
+
     }
 
 

@@ -1,7 +1,8 @@
 package me.teenyda.fruit_store.common.api;
 
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
-import com.trello.rxlifecycle2.components.support.RxFragment;
+
+import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
+import com.trello.rxlifecycle3.components.support.RxFragment;
 
 import java.io.File;
 import java.util.HashMap;

@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
                 android:layout_marginTop="2dp"
-                android:textColor="@color/c_ffffff"
+                android:textColor="@color/c_b2b2b2"
                 android:text="首页"/>
 
         </RelativeLayout>
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
                 android:layout_marginTop="2dp"
-                android:textColor="@color/c_ffffff"
+                android:textColor="@color/c_b2b2b2"
                 android:text="购物"/>
 
         </RelativeLayout>
@@ -97,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
                 android:layout_marginTop="2dp"
-                android:textColor="@color/c_ffffff"
+                android:textColor="@color/c_b2b2b2"
                 android:text="我的"/>
 
         </RelativeLayout>
