@@ -56,10 +56,10 @@ public class DataBean {
         return list;
     }
 
-    *//**
+    /*
      * 仿淘宝商品详情第一个是视频
      * @return
-     *//*
+     */
     public static List<DataBean> getTestDataVideo() {
         List<DataBean> list = new ArrayList<>();
         list.add(new DataBean("http://vfx.mtime.cn/Video/2019/03/09/mp4/190309153658147087.mp4", "第一个放视频", 2));
@@ -69,7 +69,7 @@ public class DataBean {
         list.add(new DataBean(R.drawable.image10, "洋洋洋.气质篇", 1));
         list.add(new DataBean(R.drawable.image11, "生活的态度", 1));
         return list;
-    }*/
+    }
 
     public static List<DataBean> getTestData3() {
         List<DataBean> list = new ArrayList<>();

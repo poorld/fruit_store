@@ -40,6 +40,7 @@
         <activity android:name=".model.test.StatusBarTestAct" />
         <activity android:name=".model.login.base.LoginAct" />
         <activity android:name=".model.test.Activity"></activity>
+        <activity android:name=".model.classify.info.ProductInfoActivity" />
     </application>
 
 </manifest>

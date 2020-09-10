@@ -17,7 +17,7 @@ import me.teenyda.fruit_store.common.entity.Book;
 import me.teenyda.fruit_store.common.entity.FileUploadResponse;
 import me.teenyda.fruit_store.common.mvp.BaseRxPresenter;
 import me.teenyda.fruit_store.common.pictureselector.GlideEngine;
-import me.teenyda.fruit_store.common.mvp.BitmapUtil;
+import me.teenyda.fruit_store.common.utils.BitmapUtil;
 import me.teenyda.fruit_store.common.utils.ConstansUtil;
 import me.teenyda.fruit_store.common.mvp.MyObserver;
 import me.teenyda.fruit_store.common.utils.LogUtils;

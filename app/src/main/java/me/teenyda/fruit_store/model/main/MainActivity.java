@@ -2,6 +2,7 @@ package me.teenyda.fruit_store.model.main;
 
 import androidx.annotation.Nullable;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -73,7 +74,6 @@ public class MainActivity extends RxAppCompatActivity {
         manager = getSupportFragmentManager();
         home_rl.performClick();
 
-        StatusBarUtil.setTranslucentForImageViewInFragment(MainActivity.this, 0,null);
 //        StatusBarUtil.setColor(this, getColor(R.color.c_00000000));
     }
 
@@ -110,6 +110,9 @@ public class MainActivity extends RxAppCompatActivity {
                 } else {
                     transaction.show(mHomeFrag).commit();
                 }
+                StatusBarUtil.setTranslucentForImageViewInFragment(MainActivity.this, 0,null);
+
+
 
                 mCurrentFragment = mHomeFrag;
                 break;
@@ -124,7 +127,8 @@ public class MainActivity extends RxAppCompatActivity {
                 if (mCurrentFragment != null && mCurrentFragment != mClassifyFrag) {
                     transaction.show(mClassifyFrag).hide(mCurrentFragment).commit();
                 }
-
+                // StatusBarUtil.setColor(MainActivity.this, getColor(R.color.colorPrimary));
+                StatusBarUtil.setTranslucentForImageViewInFragment(MainActivity.this, null);
                 mCurrentFragment = mClassifyFrag;
                 break;
 //            case 2:

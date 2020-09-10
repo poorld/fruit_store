@@ -1,4 +1,4 @@
-package me.teenyda.fruit_store.common.mvp;
+package me.teenyda.fruit_store.common.utils;
 
 import android.content.ClipData;
 import android.content.ContentResolver;

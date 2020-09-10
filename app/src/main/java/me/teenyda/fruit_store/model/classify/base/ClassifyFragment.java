@@ -2,6 +2,8 @@ package me.teenyda.fruit_store.model.classify.base;
 
 import android.app.Activity;
 import android.content.Context;
+import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.flyco.tablayout.SlidingTabLayout;
 import com.jaeger.library.StatusBarUtil;
@@ -15,12 +17,14 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 import me.teenyda.fruit_store.R;
 import me.teenyda.fruit_store.common.mvp.MvpRxFragment;
+import me.teenyda.fruit_store.model.classify.base.fragment.ProductListFrag;
 import me.teenyda.fruit_store.model.classify.base.presenter.ClassifyPresenter;
 import me.teenyda.fruit_store.model.classify.base.view.IClassifyView;
-import me.teenyda.fruit_store.model.main.MainActivity;
+import me.teenyda.fruit_store.model.classify.info.ProductInfoActivity;
 
 /**
  * author: teenyda
@@ -37,6 +41,9 @@ public class ClassifyFragment extends MvpRxFragment<IClassifyView, ClassifyPrese
 
     @BindView(R.id.cardview)
     CardView cv;
+
+    @BindView(R.id.product_search)
+    RelativeLayout product_search;
 
     private Unbinder mBind;
 
@@ -69,10 +76,9 @@ public class ClassifyFragment extends MvpRxFragment<IClassifyView, ClassifyPrese
         mBind = ButterKnife.bind(this, mView);
 
         for (String title : mTitles) {
-            mFragments.add(SimpleCardFragment.getInstance(title));
+            mFragments.add(ProductListFrag.getInstance());
         }
 
-        StatusBarUtil.setTranslucentForImageViewInFragment((Activity) getMContext(), 255,cv);
 
         mAdapter = new MyPagerAdapter(getFragmentManager());
         vp.setAdapter(mAdapter);
@@ -83,6 +89,15 @@ public class ClassifyFragment extends MvpRxFragment<IClassifyView, ClassifyPrese
     @Override
     protected void doBuseness() {
 
+    }
+
+    @OnClick({R.id.product_search})
+    public void onClick(View view){
+        switch (view.getId()) {
+            case R.id.product_search:
+                ProductInfoActivity.startActivity(getMContext());
+                break;
+        }
     }
 
     @Override

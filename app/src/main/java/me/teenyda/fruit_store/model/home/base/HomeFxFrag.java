@@ -1,51 +1,28 @@
 package me.teenyda.fruit_store.model.home.base;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Typeface;
-import android.net.Uri;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.google.android.material.snackbar.Snackbar;
 import com.youth.banner.Banner;
 import com.youth.banner.indicator.RoundLinesIndicator;
-import com.youth.banner.transformer.ZoomOutPageTransformer;
 import com.youth.banner.util.BannerUtils;
-import com.youth.banner.util.LogUtils;
 
-import java.io.File;
 import java.util.List;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import butterknife.Unbinder;
 import me.teenyda.fruit_store.R;
-import me.teenyda.fruit_store.common.constant.RequestCodeConstant;
-import me.teenyda.fruit_store.common.entity.Book;
 import me.teenyda.fruit_store.common.entity.DataBean;
-import me.teenyda.fruit_store.common.entity.FileUploadResponse;
 import me.teenyda.fruit_store.common.mvp.MvpRxFragment;
-import me.teenyda.fruit_store.common.mvp.BitmapUtil;
-import me.teenyda.fruit_store.common.utils.ConstansUtil;
-import me.teenyda.fruit_store.common.utils.PermissionsUtil;
-import me.teenyda.fruit_store.common.view.popupview.PopupGetPhoto;
 import me.teenyda.fruit_store.model.home.base.adapter.ImageNetAdapter;
 import me.teenyda.fruit_store.model.home.base.adapter.RecommendAdapter;
-import me.teenyda.fruit_store.model.home.base.adapter.TopLineAdapter;
 import me.teenyda.fruit_store.model.home.base.presenter.HomePRx;
 import me.teenyda.fruit_store.model.home.base.view.IHomeV;
-import me.teenyda.fruit_store.model.login.base.LoginAct;
 import pub.devrel.easypermissions.EasyPermissions;
 
 /**
@@ -89,6 +66,7 @@ public class HomeFxFrag extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
     @Override
     protected void viewInitializer() {
         mBind = ButterKnife.bind(this, mView);
+
 
         banner.setAdapter(new ImageNetAdapter(DataBean.getTestData3()));
         banner.setBannerRound(BannerUtils.dp2px(5));

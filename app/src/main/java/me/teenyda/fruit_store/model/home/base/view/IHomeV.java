@@ -1,8 +1,5 @@
 package me.teenyda.fruit_store.model.home.base.view;
 
-import java.io.File;
-
-import me.teenyda.fruit_store.common.entity.FileUploadResponse;
 import me.teenyda.fruit_store.common.mvp.BaseView;
 
 /**

@@ -11,7 +11,7 @@ import me.teenyda.fruit_store.common.net.resp.BaseResponse;
  * date: 2019/8/21
  * description:
  */
-public abstract class MvpActivity<V extends BaseView, P extends BasePresenter<V>> extends BaseActivity implements BaseView {
+public abstract class MvpActivity<V extends BaseView, P extends BaseRxPresenter<V>> extends BaseActivity implements BaseView {
 
 
     public Toast mToast;
