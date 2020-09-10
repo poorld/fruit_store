@@ -164,6 +164,10 @@
     <color name="c_cbeba1">#cbeba1</color>
     <color name="c_c6ebf2">#c6ebf2</color>
 
+    <!--渐变-->
+    <color name="c_11ff00">#66ff5b</color>
+    <color name="c_76ff61">#a9ff9c</color>
+
     <color name="c_88eeff">#88eeff</color>
     <color name="c_99aaff">#99aaff</color>
 

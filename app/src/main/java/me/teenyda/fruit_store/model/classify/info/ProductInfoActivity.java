@@ -2,7 +2,9 @@ package me.teenyda.fruit_store.model.classify.info;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
@@ -40,6 +42,9 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
     @BindView(R.id.video_banner)
     Banner mBanner;
 
+    @BindView(R.id.price1)
+    TextView mPrice1;
+
     public static void startActivity(Context context) {
         Intent intent = new Intent(context, ProductInfoActivity.class);
         context.startActivity(intent);
@@ -69,6 +74,9 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
         mBanner.setBannerRound(BannerUtils.dp2px(5));
         mBanner.setIndicator(new RoundLinesIndicator(getMContext()));
         mBanner.setIndicatorSelectedWidth((int) BannerUtils.dp2px(15));*/
+
+        mPrice1.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG );
+        mPrice1.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG |Paint.ANTI_ALIAS_FLAG);
 
         mBanner.setAdapter(new MultipleTypesAdapter(this, DataBean.getTestDataVideo()))
                 .setIndicator(new NumIndicator(this))
