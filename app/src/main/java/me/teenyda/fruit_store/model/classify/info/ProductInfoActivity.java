@@ -120,8 +120,9 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
 
         LinearLayoutManager manager = new LinearLayoutManager(getMContext());
         product_info_rv.setLayoutManager(manager);
-        product_info_rv.setAdapter(new ProductInfoAdapter(getMContext(), DataBean.getProductInfoData()));
-
+        ProductInfoAdapter adapter = new ProductInfoAdapter(getMContext(), DataBean.getProductInfoData());
+        product_info_rv.setAdapter(adapter);
+        product_info_rv.setNestedScrollingEnabled(false);
     }
 
     @Override
