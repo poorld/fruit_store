@@ -81,6 +81,23 @@ public class DataBean {
         return list;
     }
 
+    public static List<DataBean> getProductInfoData() {
+        List<DataBean> list = new ArrayList<>();
+        list.add(new DataBean("http://www.lanhuoxing.cn/uploads/allimg/techanshuiguo/yingtao/meizao/meizao3/01.jpg", null, 1));
+        list.add(new DataBean("http://www.lanhuoxing.cn/uploads/allimg/techanshuiguo/yingtao/meizao/meizao3/02.jpg", null, 1));
+        list.add(new DataBean("http://www.lanhuoxing.cn/uploads/allimg/techanshuiguo/yingtao/meizao/meizao3/03.jpg", null, 1));
+        list.add(new DataBean("http://www.lanhuoxing.cn/uploads/allimg/techanshuiguo/yingtao/meizao/meizao3/04.jpg", null, 1));
+        list.add(new DataBean("http://www.lanhuoxing.cn/uploads/allimg/techanshuiguo/yingtao/meizao/meizao3/05.jpg", null, 1));
+        list.add(new DataBean("http://www.lanhuoxing.cn/uploads/allimg/techanshuiguo/yingtao/meizao/meizao3/06.jpg", null, 1));
+        list.add(new DataBean("http://www.lanhuoxing.cn/uploads/allimg/techanshuiguo/yingtao/meizao/meizao3/07.jpg", null, 1));
+        list.add(new DataBean("http://www.lanhuoxing.cn/uploads/allimg/techanshuiguo/yingtao/meizao/meizao3/08.jpg", null, 1));
+        list.add(new DataBean("http://www.lanhuoxing.cn/uploads/allimg/techanshuiguo/yingtao/meizao/meizao3/09.jpg", null, 1));
+        list.add(new DataBean("http://www.lanhuoxing.cn/uploads/allimg/techanshuiguo/yingtao/meizao/meizao3/10.jpg", null, 1));
+        list.add(new DataBean("http://www.lanhuoxing.cn/uploads/allimg/techanshuiguo/yingtao/meizao/meizao3/11.jpg", null, 1));
+        list.add(new DataBean("http://www.lanhuoxing.cn/uploads/allimg/techanshuiguo/yingtao/meizao/meizao3/12.jpg", null, 1));
+        return list;
+    }
+
     public static List<String> getColors(int size) {
         List<String> list = new ArrayList<>();
         for(int i = 0; i < size; i++) {

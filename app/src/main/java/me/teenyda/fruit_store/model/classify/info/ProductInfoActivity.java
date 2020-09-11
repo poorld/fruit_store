@@ -6,14 +6,14 @@ import android.graphics.Paint;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
 import com.youth.banner.Banner;
 import com.youth.banner.config.IndicatorConfig;
-import com.youth.banner.indicator.RoundLinesIndicator;
 import com.youth.banner.listener.OnPageChangeListener;
-import com.youth.banner.util.BannerUtils;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,6 +24,7 @@ import me.teenyda.fruit_store.common.mvp.MvpActivity;
 import me.teenyda.fruit_store.common.viewholder.MultipleTypesAdapter;
 import me.teenyda.fruit_store.common.viewholder.NumIndicator;
 import me.teenyda.fruit_store.common.viewholder.VideoHolder;
+import me.teenyda.fruit_store.model.classify.info.adapter.ProductInfoAdapter;
 import me.teenyda.fruit_store.model.classify.info.presenter.ProductInfoPresenter;
 import me.teenyda.fruit_store.model.classify.info.view.IProductInfoView;
 
@@ -44,6 +45,12 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
 
     @BindView(R.id.price1)
     TextView mPrice1;
+
+    @BindView(R.id.sfl)
+    ShimmerFrameLayout sfl;
+
+    @BindView(R.id.product_info_rv)
+    RecyclerView product_info_rv;
 
     public static void startActivity(Context context) {
         Intent intent = new Intent(context, ProductInfoActivity.class);
@@ -78,6 +85,8 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
         mPrice1.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG );
         mPrice1.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG |Paint.ANTI_ALIAS_FLAG);
 
+        sfl.startShimmer();
+
         mBanner.setAdapter(new MultipleTypesAdapter(this, DataBean.getTestDataVideo()))
                 .setIndicator(new NumIndicator(this))
                 .setIndicatorGravity(IndicatorConfig.Direction.RIGHT)
@@ -108,6 +117,11 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
 
                     }
                 });
+
+        LinearLayoutManager manager = new LinearLayoutManager(getMContext());
+        product_info_rv.setLayoutManager(manager);
+        product_info_rv.setAdapter(new ProductInfoAdapter(getMContext(), DataBean.getProductInfoData()));
+
     }
 
     @Override
