@@ -4,8 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
@@ -17,10 +20,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 import me.teenyda.fruit_store.R;
 import me.teenyda.fruit_store.common.entity.DataBean;
 import me.teenyda.fruit_store.common.mvp.MvpActivity;
+import me.teenyda.fruit_store.common.view.popupview.PopViewProductImg;
 import me.teenyda.fruit_store.common.viewholder.MultipleTypesAdapter;
 import me.teenyda.fruit_store.common.viewholder.NumIndicator;
 import me.teenyda.fruit_store.common.viewholder.VideoHolder;
@@ -51,6 +56,10 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
 
     @BindView(R.id.product_info_rv)
     RecyclerView product_info_rv;
+
+    @BindView(R.id.iv_comments1)
+    ImageView iv_comments1;
+    private PopViewProductImg mPop;
 
     public static void startActivity(Context context) {
         Intent intent = new Intent(context, ProductInfoActivity.class);
@@ -123,6 +132,29 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
         ProductInfoAdapter adapter = new ProductInfoAdapter(getMContext(), DataBean.getProductInfoData());
         product_info_rv.setAdapter(adapter);
         product_info_rv.setNestedScrollingEnabled(false);
+
+        Glide.with(getMContext())
+                .load(R.drawable.comments1)
+                .override(100, 100)
+                .into(iv_comments1);
+
+        mPop = new PopViewProductImg(getMContext());
+    }
+
+
+    @OnClick({R.id.iv_comments1, R.id.iv_comments2})
+    public void onClick(View view) {
+
+        mPop.show(view, R.drawable.comments1);
+
+        // todo 待完善
+        switch (view.getId()) {
+            case R.id.iv_comments1:
+
+
+                break;
+
+        }
     }
 
     @Override

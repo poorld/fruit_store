@@ -394,12 +394,14 @@
                             android:layout_height="wrap_content">
 
                             <ImageView
+                                android:id="@+id/iv_comments1"
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
                                 android:scaleType="fitXY"
                                 android:src="@drawable/comments1"/>
 
                             <ImageView
+                                android:id="@+id/iv_comments2"
                                 android:layout_marginStart="10dp"
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
@@ -430,7 +432,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="@color/c_ffffff">
+                android:background="@color/c_ffffff"
+                android:layout_marginTop="5dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -461,9 +464,22 @@
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="你是底部"/>
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="加入斗车"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/c_ffffff"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="立即购买"
+            android:background="@color/c_e16553"
+            android:textColor="@color/c_ffffff"/>
     </LinearLayout>
 
 </LinearLayout>
