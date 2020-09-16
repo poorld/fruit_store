@@ -22,11 +22,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import me.teenyda.fruit_store.R;
 import me.teenyda.fruit_store.common.entity.Specification;
 import me.teenyda.fruit_store.common.viewholder.VideoHolder;
+import me.teenyda.fruit_store.model.classify.settlement.SettlementActicity;
 
 /**
  * author: teenyda
  * date: 2019/8/22
- * description:
+ * description: 选择规格
  */
 public class PopupSpecifications {
 
@@ -36,6 +37,7 @@ public class PopupSpecifications {
     private RecyclerView spe_rv;
     private TextView tv_selected_spec;
     private TextView fruit_spe_price;
+    private TextView tv_spec_confirm;
     private SpecificationAdapter mAdapter;
 
     public interface SpecificationClick{
@@ -66,6 +68,7 @@ public class PopupSpecifications {
         spe_rv = mView.findViewById(R.id.spe_rv);
         tv_selected_spec = mView.findViewById(R.id.tv_selected_spec);
         fruit_spe_price = mView.findViewById(R.id.fruit_spe_price);
+        tv_spec_confirm = mView.findViewById(R.id.tv_spec_confirm);
 
         spe_rv.setLayoutManager(new GridLayoutManager(mContext, 3));
         mAdapter = new SpecificationAdapter();
@@ -78,6 +81,15 @@ public class PopupSpecifications {
                 tv_selected_spec.setText("您已选择[" + spec.getSpec() + "]");
             }
         });
+
+        // 确认 跳转结算页面
+        tv_spec_confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SettlementActicity.startActivity(mContext);
+            }
+        });
+
 
     }
 

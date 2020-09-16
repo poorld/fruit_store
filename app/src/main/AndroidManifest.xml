@@ -41,6 +41,7 @@
         <activity android:name=".model.login.base.LoginAct" />
         <activity android:name=".model.test.Activity"></activity>
         <activity android:name=".model.classify.info.ProductInfoActivity" />
+        <activity android:name=".model.classify.settlement.SettlementActicity" />
     </application>
 
 </manifest>

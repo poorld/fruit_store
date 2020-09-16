@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.facebook.shimmer.ShimmerFrameLayout;
+import com.jaeger.library.StatusBarUtil;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
 import com.youth.banner.Banner;
@@ -91,6 +92,8 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
     @Override
     protected void viewInitializer() {
         mBind = ButterKnife.bind(this);
+
+        StatusBarUtil.setColor(this, getColor(R.color.ColorstatusBar));
 
         /*mBanner.setAdapter(new ImageNetAdapter(DataBean.getTestData3()));
         mBanner.setBannerRound(BannerUtils.dp2px(5));
