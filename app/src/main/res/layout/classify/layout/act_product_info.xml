@@ -112,8 +112,8 @@
                     android:gravity="center_vertical">
 
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:src="@mipmap/icon_distribution"/>
 
                     <TextView
@@ -126,17 +126,25 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/c_728de8"
+                        android:background="@drawable/shape_border_fa6a53_05dp"
+                        android:padding="2dp"
+                        android:textColor="@color/c_fa6a53"
                         android:layout_marginLeft="5dp"
                         android:text="10元起送"/>
 
                     <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:textColor="@color/c_728de8"
+                        android:background="@drawable/shape_border_fa6a53_05dp"
+                        android:padding="2dp"
+                        android:textColor="@color/c_fa6a53"
                         android:text="5元配送费"/>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
 
                     <ImageView
                         android:layout_width="25dp"
@@ -161,8 +169,8 @@
                     android:gravity="center_vertical">
 
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:src="@mipmap/icon_placeof_origin"/>
 
                     <TextView
@@ -203,8 +211,8 @@
                     android:gravity="center_vertical">
 
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:src="@mipmap/icon_rotary_table"/>
 
                     <TextView
@@ -473,6 +481,7 @@
             android:textColor="@color/c_ffffff"/>
 
         <TextView
+            android:id="@+id/tv_product_buy"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"

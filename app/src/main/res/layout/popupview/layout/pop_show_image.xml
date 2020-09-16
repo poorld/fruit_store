@@ -19,7 +19,7 @@
         android:layout_centerHorizontal="true"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:src="@drawable/icon_close"
+        android:src="@mipmap/icon_close"
         android:layout_below="@id/pro_info_img"
 
         android:layout_marginTop="50dp"/>

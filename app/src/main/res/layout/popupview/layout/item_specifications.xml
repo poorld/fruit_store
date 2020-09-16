@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:id="@+id/tv_sprcification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:textColor="@color/c_494949"
+        android:text="5斤(大果)"
+        android:background="@drawable/shape_radius_1dp_ddd"/>
+
+</LinearLayout>

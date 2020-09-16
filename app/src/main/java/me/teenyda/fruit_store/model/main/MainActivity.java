@@ -2,7 +2,6 @@ package me.teenyda.fruit_store.model.main;
 
 import androidx.annotation.Nullable;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,13 +10,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jaeger.library.StatusBarUtil;
-import com.trello.rxlifecycle3.android.RxLifecycleAndroid;
 import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
 import com.trello.rxlifecycle3.components.support.RxFragment;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.LifecycleOwner;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -39,8 +36,8 @@ public class MainActivity extends RxAppCompatActivity {
     @BindView(R.id.home_rl)
     RelativeLayout home_rl;
 
-    @BindView(R.id.store_rl)
-    RelativeLayout store_rl;
+    @BindView(R.id.classify_rl)
+    RelativeLayout classify_rl;
 
     @BindView(R.id.myself_rl)
     RelativeLayout myself_rl;
@@ -77,14 +74,14 @@ public class MainActivity extends RxAppCompatActivity {
 //        StatusBarUtil.setColor(this, getColor(R.color.c_00000000));
     }
 
-    @OnClick({R.id.home_rl, R.id.store_rl, R.id.myself_rl})
+    @OnClick({R.id.home_rl, R.id.classify_rl, R.id.myself_rl})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.home_rl:
                 switchNavigation(0);
                 switchIcon(0);
                 break;
-            case R.id.store_rl:
+            case R.id.classify_rl:
                 switchNavigation(1);
                 switchIcon(1);
                 break;

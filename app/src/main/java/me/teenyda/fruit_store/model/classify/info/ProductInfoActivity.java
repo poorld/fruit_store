@@ -26,6 +26,7 @@ import me.teenyda.fruit_store.R;
 import me.teenyda.fruit_store.common.entity.DataBean;
 import me.teenyda.fruit_store.common.mvp.MvpActivity;
 import me.teenyda.fruit_store.common.view.popupview.PopViewProductImg;
+import me.teenyda.fruit_store.common.view.popupview.PopupSpecifications;
 import me.teenyda.fruit_store.common.viewholder.MultipleTypesAdapter;
 import me.teenyda.fruit_store.common.viewholder.NumIndicator;
 import me.teenyda.fruit_store.common.viewholder.VideoHolder;
@@ -60,6 +61,10 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
     @BindView(R.id.iv_comments1)
     ImageView iv_comments1;
     private PopViewProductImg mPop;
+
+    @BindView(R.id.tv_product_buy)
+    TextView tv_product_buy;
+    private PopupSpecifications mSpecifications;
 
     public static void startActivity(Context context) {
         Intent intent = new Intent(context, ProductInfoActivity.class);
@@ -139,21 +144,26 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
                 .into(iv_comments1);
 
         mPop = new PopViewProductImg(getMContext());
+
+        mSpecifications = new PopupSpecifications(getMContext());
     }
 
 
-    @OnClick({R.id.iv_comments1, R.id.iv_comments2})
+    @OnClick({R.id.iv_comments1, R.id.iv_comments2, R.id.tv_product_buy})
     public void onClick(View view) {
 
-        mPop.show(view, R.drawable.comments1);
 
         // todo 待完善
         switch (view.getId()) {
             case R.id.iv_comments1:
-
-
+                mPop.show(view, R.drawable.comments1);
                 break;
-
+            case R.id.iv_comments2:
+                mPop.show(view, R.drawable.comments1);
+                break;
+            case R.id.tv_product_buy:
+                mSpecifications.show(view);
+                break;
         }
     }
 
