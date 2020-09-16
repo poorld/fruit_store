@@ -80,7 +80,7 @@ public class PopupPayment implements View.OnClickListener {
 
 
     private void initPopup() {
-        mView = LayoutInflater.from(mContext).inflate(R.layout.pop_fruit_specifications, null);
+        mView = LayoutInflater.from(mContext).inflate(R.layout.pop_payment, null);
         mPopupWindow = new PopupWindow(mView, ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
 

@@ -38,6 +38,7 @@ android {
                     'src/main/res/layout/popupview',
                     'src/main/res/layout/test',
                     'src/main/res/layout/classify',
+                    'src/main/res/layout/shopping_cart',
                     'src/main/res',
             ]
         }
