@@ -18,7 +18,7 @@
     <!--透明-->
     <color name="c_00000000">#00000000</color>
 
-    <color name="ColorstatusBar">#555</color>
+    <color name="ColorstatusBar">@color/colorPrimary</color>
 
     <!--文字颜色-->
     <color name="c_main">#ffba1e</color>
