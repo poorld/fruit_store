@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import me.teenyda.fruit_store.R;
@@ -33,7 +34,13 @@ public class PopupSpecifications {
     private PopupWindow mPopupWindow;
     private View mView;
     private RecyclerView spe_rv;
+    private TextView tv_selected_spec;
+    private TextView fruit_spe_price;
     private SpecificationAdapter mAdapter;
+
+    public interface SpecificationClick{
+        void onSpecificationClick(Specification spec);
+    }
 
     public PopupSpecifications(Context context) {
         mContext = context;
@@ -44,7 +51,7 @@ public class PopupSpecifications {
     private void initPopup() {
         mView = LayoutInflater.from(mContext).inflate(R.layout.pop_fruit_specifications, null);
         mPopupWindow = new PopupWindow(mView, ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT);
+                ViewGroup.LayoutParams.WRAP_CONTENT);
 
         mPopupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         mPopupWindow.setAnimationStyle(R.style.AnimationBottomInAndOut);
@@ -57,9 +64,20 @@ public class PopupSpecifications {
         });
 
         spe_rv = mView.findViewById(R.id.spe_rv);
-        spe_rv.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, true));
+        tv_selected_spec = mView.findViewById(R.id.tv_selected_spec);
+        fruit_spe_price = mView.findViewById(R.id.fruit_spe_price);
+
+        spe_rv.setLayoutManager(new GridLayoutManager(mContext, 3));
         mAdapter = new SpecificationAdapter();
         spe_rv.setAdapter(mAdapter);
+
+        mAdapter.setSpecificationClick(new SpecificationClick() {
+            @Override
+            public void onSpecificationClick(Specification spec) {
+                fruit_spe_price.setText("¥ " + String.valueOf(spec.getPrice()));
+                tv_selected_spec.setText("您已选择[" + spec.getSpec() + "]");
+            }
+        });
 
     }
 
@@ -93,13 +111,23 @@ public class PopupSpecifications {
         ((Activity) mContext).getWindow().setAttributes(layoutParams);
     }
 
+
     public class SpecificationAdapter extends RecyclerView.Adapter<ViewHolder>{
 
         private List<Specification> mSpecifications;
 
+        private SpecificationClick mSpecificationClick;
+
+        private int selectedIndex = -1;
+
+
         public void setSpecifications(List<Specification> specifications) {
             this.mSpecifications = specifications;
             notifyDataSetChanged();
+        }
+
+        public void setSpecificationClick(SpecificationClick specificationClick) {
+            this.mSpecificationClick = specificationClick;
         }
 
         @NonNull
@@ -112,7 +140,26 @@ public class PopupSpecifications {
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
             Specification specification = mSpecifications.get(position);
+
             holder.tv_sprcification.setText(specification.getSpec());
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (mSpecificationClick != null) {
+                        mSpecificationClick.onSpecificationClick(specification);
+                        selectedIndex = position;
+                        notifyDataSetChanged();
+                    }
+                }
+            });
+
+            if (position == selectedIndex) {
+                holder.tv_sprcification.setSelected(true);
+                holder.tv_sprcification.setTextColor(mContext.getColor(R.color.c_ffffff));
+            }else {
+                holder.tv_sprcification.setSelected(false);
+                holder.tv_sprcification.setTextColor(mContext.getColor(R.color.c_494949));
+            }
         }
 
         @Override

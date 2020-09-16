@@ -24,6 +24,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import me.teenyda.fruit_store.R;
 import me.teenyda.fruit_store.common.entity.DataBean;
+import me.teenyda.fruit_store.common.entity.Specification;
 import me.teenyda.fruit_store.common.mvp.MvpActivity;
 import me.teenyda.fruit_store.common.view.popupview.PopViewProductImg;
 import me.teenyda.fruit_store.common.view.popupview.PopupSpecifications;
@@ -146,6 +147,7 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
         mPop = new PopViewProductImg(getMContext());
 
         mSpecifications = new PopupSpecifications(getMContext());
+
     }
 
 

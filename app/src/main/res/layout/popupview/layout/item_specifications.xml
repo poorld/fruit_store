@@ -16,6 +16,6 @@
         android:paddingBottom="3dp"
         android:textColor="@color/c_494949"
         android:text="5斤(大果)"
-        android:background="@drawable/shape_radius_1dp_ddd"/>
+        android:background="@drawable/selector_specification"/>
 
 </LinearLayout>

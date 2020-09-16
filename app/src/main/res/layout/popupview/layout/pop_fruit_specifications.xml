@@ -47,6 +47,7 @@
             android:text="¥ 25.3"/>
 
         <TextView
+            android:id="@+id/tv_selected_spec"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/fruit_spe_price"
@@ -96,7 +97,7 @@
         <TextView
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/shape_radius_1dp_ddd"
+            android:background="@drawable/shape_radius_1dp_f6f6"
             android:gravity="center"
             android:text="－"/>
 
@@ -109,14 +110,14 @@
         <TextView
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/shape_radius_1dp_ddd"
+            android:background="@drawable/shape_radius_1dp_f6f6"
             android:gravity="center"
             android:text="＋"/>
     </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:gravity="center"
         android:background="@drawable/shape_radis_5dp_gradient_2"
         android:textColor="@color/c_ffffff"
