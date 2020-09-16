@@ -20,6 +20,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import me.teenyda.fruit_store.R;
+import me.teenyda.fruit_store.model.cart.base.ShoppingCartFragment;
 import me.teenyda.fruit_store.model.classify.base.ClassifyFragment;
 import me.teenyda.fruit_store.model.home.base.HomeFxFrag;
 import me.teenyda.fruit_store.model.myself.MyselfFrag;
@@ -31,6 +32,7 @@ public class MainActivity extends RxAppCompatActivity {
     private StoreFrag mStoreFrag;
     private MyselfFrag mMyselfFrag;
     private ClassifyFragment mClassifyFrag;
+    private ShoppingCartFragment mCartFragment;
     private RxFragment mCurrentFragment;
 
     @BindView(R.id.home_rl)
@@ -41,6 +43,9 @@ public class MainActivity extends RxAppCompatActivity {
 
     @BindView(R.id.myself_rl)
     RelativeLayout myself_rl;
+
+    @BindView(R.id.shopping_cart_rl)
+    RelativeLayout shopping_cart_rl;
 
     @BindView(R.id.home_iv)
     ImageView home_iv;
@@ -74,7 +79,7 @@ public class MainActivity extends RxAppCompatActivity {
 //        StatusBarUtil.setColor(this, getColor(R.color.c_00000000));
     }
 
-    @OnClick({R.id.home_rl, R.id.classify_rl, R.id.myself_rl})
+    @OnClick({R.id.home_rl, R.id.classify_rl,R.id.shopping_cart_rl, R.id.myself_rl})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.home_rl:
@@ -85,9 +90,13 @@ public class MainActivity extends RxAppCompatActivity {
                 switchNavigation(1);
                 switchIcon(1);
                 break;
-            case R.id.myself_rl:
+            case R.id.shopping_cart_rl:
                 switchNavigation(2);
                 switchIcon(2);
+                break;
+            case R.id.myself_rl:
+                switchNavigation(3);
+                switchIcon(3);
                 break;
         }
     }
@@ -110,7 +119,6 @@ public class MainActivity extends RxAppCompatActivity {
                 StatusBarUtil.setTranslucentForImageViewInFragment(MainActivity.this, 0,null);
 
 
-
                 mCurrentFragment = mHomeFrag;
                 break;
             case 1:
@@ -128,20 +136,20 @@ public class MainActivity extends RxAppCompatActivity {
                 StatusBarUtil.setTranslucentForImageViewInFragment(MainActivity.this, null);
                 mCurrentFragment = mClassifyFrag;
                 break;
-//            case 2:
-//                if (mMyselfFrag == null) {
-//                    mMyselfFrag = new MyselfFrag();
-//                }
-//
-//                if (!mMyselfFrag.isAdded())
-//                    transaction.add(R.id.main_frame, mMyselfFrag);
-//
-//                if (mCurrentFragment != null && mCurrentFragment != mMyselfFrag) {
-//                    transaction.show(mMyselfFrag).hide(mCurrentFragment).commit();
-//                }
-//
-//                mCurrentFragment = mMyselfFrag;
-//                break;
+           case 2:
+               if (mCartFragment == null) {
+                   mCartFragment = new ShoppingCartFragment();
+               }
+
+               if (!mCartFragment.isAdded())
+                   transaction.add(R.id.main_frame, mCartFragment);
+
+               if (mCurrentFragment != null && mCurrentFragment != mCartFragment) {
+                   transaction.show(mCartFragment).hide(mCurrentFragment).commit();
+               }
+
+               mCurrentFragment = mCartFragment;
+               break;
         }
     }
 
