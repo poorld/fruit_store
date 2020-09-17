@@ -88,7 +88,7 @@ public class HomeFxFrag extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
         rv.setLayoutManager(ll);
         rv.setAdapter(new RecommendAdapter(getMContext()));
 
-
+        banner.addBannerLifecycleObserver(this);
 
     }
 

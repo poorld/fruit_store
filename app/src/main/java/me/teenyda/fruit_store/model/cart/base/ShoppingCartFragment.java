@@ -66,7 +66,12 @@ public class ShoppingCartFragment extends MvpRxFragment<IShoppingCartView, Shopp
 
         setTitleShow(false, "购物车", false);
 
-        StatusBarUtil.setTranslucentForImageViewInFragment(getActivity(), start_bar);
+        // StatusBarUtil.setTranslucentForImageViewInFragment(getActivity(), start_bar);
+        /*<View
+        android:id="@+id/fake_status_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/statusbar_view_height"
+        android:background="@color/picture_color_transparent"/>*/
 
         LinearLayoutManager manager = new LinearLayoutManager(getMContext());
         shopping_cart_rv.setLayoutManager(manager);

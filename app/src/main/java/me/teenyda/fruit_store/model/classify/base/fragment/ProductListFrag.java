@@ -4,8 +4,6 @@ import android.content.Context;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import butterknife.BindView;
 import butterknife.ButterKnife;

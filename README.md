@@ -11,3 +11,23 @@
 - 拍照
 - 透明状态栏
 
+
+- 状态栏
+关于状态栏透明，可以用```StatusBarUtil.setTranslucentForImageViewInFragment(MainActivity.this, 0,null);````
+如果需要预留状态栏，可以用
+1.
+```StatusBarUtil.setTranslucentForImageViewInFragment(getActivity(), start_bar);```
+start_bar是最顶部的控件，StatusBarUtil根据控件做出偏移
+
+2.
+```
+<View
+        android:id="@+id/fake_status_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/statusbar_view_height"
+        android:background="@color/状态栏颜色"/>
+```
+使用<View/>来预留状态栏，然后使用StatusBarUtil.setColor设置状态栏颜色
+```java
+StatusBarUtil.setColor(MainActivity.this, getColor(R.color.colorPrimary), 0);
+```

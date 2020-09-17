@@ -132,8 +132,8 @@ public class MainActivity extends RxAppCompatActivity {
                 if (mCurrentFragment != null && mCurrentFragment != mClassifyFrag) {
                     transaction.show(mClassifyFrag).hide(mCurrentFragment).commit();
                 }
-                // StatusBarUtil.setColor(MainActivity.this, getColor(R.color.colorPrimary));
-                StatusBarUtil.setTranslucentForImageViewInFragment(MainActivity.this, null);
+                StatusBarUtil.setColor(MainActivity.this, getColor(R.color.colorPrimary), 0);
+                // StatusBarUtil.setTranslucentForImageViewInFragment(MainActivity.this, null);
                 mCurrentFragment = mClassifyFrag;
                 break;
            case 2:
@@ -147,7 +147,7 @@ public class MainActivity extends RxAppCompatActivity {
                if (mCurrentFragment != null && mCurrentFragment != mCartFragment) {
                    transaction.show(mCartFragment).hide(mCurrentFragment).commit();
                }
-
+               StatusBarUtil.setColor(MainActivity.this, getColor(R.color.colorPrimary), 0);
                mCurrentFragment = mCartFragment;
                break;
 
@@ -162,7 +162,7 @@ public class MainActivity extends RxAppCompatActivity {
             if (mCurrentFragment != null && mCurrentFragment != mMyselfFrag) {
                 transaction.show(mMyselfFrag).hide(mCurrentFragment).commit();
             }
-
+            StatusBarUtil.setTranslucentForImageViewInFragment(MainActivity.this, 0,null);
             mCurrentFragment = mMyselfFrag;
             break;
         }
