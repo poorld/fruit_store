@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">智取水果</string>
 
+    <!--购物车-->
+    <string name="cart_price">单价：¥ %s</string>
+    <string name="cart_spec">规格：%s</string>
+    <string name="cart_count">×%d</string>
+    <string name="cart_total_price">合计: ¥ %s元</string>
 </resources>
