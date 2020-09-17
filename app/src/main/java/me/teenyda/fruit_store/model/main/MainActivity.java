@@ -29,10 +29,10 @@ import me.teenyda.fruit_store.model.store.base.StoreFrag;
 public class MainActivity extends RxAppCompatActivity {
 
     private HomeFxFrag mHomeFrag;
-    private StoreFrag mStoreFrag;
-    private MyselfFrag mMyselfFrag;
+    // private StoreFrag mStoreFrag;
     private ClassifyFragment mClassifyFrag;
     private ShoppingCartFragment mCartFragment;
+    private MyselfFrag mMyselfFrag;
     private RxFragment mCurrentFragment;
 
     @BindView(R.id.home_rl)
@@ -150,6 +150,21 @@ public class MainActivity extends RxAppCompatActivity {
 
                mCurrentFragment = mCartFragment;
                break;
+
+        case 3:
+            if (mMyselfFrag == null) {
+                mMyselfFrag = new MyselfFrag();
+            }
+
+            if (!mMyselfFrag.isAdded())
+                transaction.add(R.id.main_frame, mMyselfFrag);
+
+            if (mCurrentFragment != null && mCurrentFragment != mMyselfFrag) {
+                transaction.show(mMyselfFrag).hide(mCurrentFragment).commit();
+            }
+
+            mCurrentFragment = mMyselfFrag;
+            break;
         }
     }
 

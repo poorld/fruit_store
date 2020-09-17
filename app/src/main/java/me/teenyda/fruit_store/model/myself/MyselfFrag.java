@@ -2,8 +2,10 @@ package me.teenyda.fruit_store.model.myself;
 
 import android.content.Context;
 
+import butterknife.ButterKnife;
 import me.teenyda.fruit_store.R;
 import me.teenyda.fruit_store.common.mvp.MvpFragment;
+import me.teenyda.fruit_store.common.mvp.MvpRxFragment;
 import me.teenyda.fruit_store.model.myself.base.presenter.MyselfP;
 import me.teenyda.fruit_store.model.myself.base.view.IMySelfV;
 
@@ -12,7 +14,7 @@ import me.teenyda.fruit_store.model.myself.base.view.IMySelfV;
  * date: 2019/8/22
  * description:
  */
-public class MyselfFrag extends MvpFragment<IMySelfV, MyselfP> implements IMySelfV {
+public class MyselfFrag extends MvpRxFragment<IMySelfV, MyselfP> implements IMySelfV {
     @Override
     protected MyselfP createPresenter() {
         return new MyselfP();
@@ -30,7 +32,7 @@ public class MyselfFrag extends MvpFragment<IMySelfV, MyselfP> implements IMySel
 
     @Override
     protected void viewInitializer() {
-
+        ButterKnife.bind(this, mView);
     }
 
     @Override
