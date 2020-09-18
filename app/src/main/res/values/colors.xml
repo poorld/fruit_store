@@ -222,6 +222,19 @@
     <color name="c_5d7092">#5D7092</color>
     <color name="c_28b7a3">#28B7A3</color>
 
+    <!--vip3-->
+    <color name="c_D1EEFC">#D1EEFC</color>
+    <color name="c_81F3FD">#81F3FD</color>
+
+    <!--vip2-->
+    <color name="c_F6C79A">#F6C79A</color>
+    <color name="c_FAEFD3">#FAEFD3</color>
+
+    <!--vip1-->
+    <color name="c_98BAD0">#98BAD0</color>
+    <color name="c_D2E7E2">#D2E7E2</color>
+
+
     <!--渐变-->
     <color name="c_cbeba1">#cbeba1</color>
     <color name="c_c6ebf2">#c6ebf2</color>

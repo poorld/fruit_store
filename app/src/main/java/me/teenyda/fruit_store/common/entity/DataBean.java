@@ -35,6 +35,14 @@ public class DataBean {
         return list;
     }
 
+    public static List<Member> getMemberData() {
+        List<Member> list = new ArrayList<>();
+        list.add(new Member("普通会员", 1, R.mipmap.icon_vip_common, R.drawable.shape_vip1_gradient, "15"));
+        list.add(new Member("黄金会员", 2, R.mipmap.icon_vip_gold, R.drawable.shape_vip2_gradient, "20"));
+        list.add(new Member("钻石会员", 3, R.mipmap.icon_vip_diamond, R.drawable.shape_vip3_gradient, "25"));
+        return list;
+    }
+
     /*public static List<DataBean> getTestData() {
         List<DataBean> list = new ArrayList<>();
         list.add(new DataBean(R.drawable.image1, "相信自己,你努力的样子真的很美", 1));

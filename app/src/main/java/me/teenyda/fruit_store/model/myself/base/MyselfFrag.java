@@ -1,17 +1,20 @@
-package me.teenyda.fruit_store.model.myself;
+package me.teenyda.fruit_store.model.myself.base;
 
 import android.content.Context;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.facebook.shimmer.Shimmer;
 import com.facebook.shimmer.ShimmerFrameLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import me.teenyda.fruit_store.R;
-import me.teenyda.fruit_store.common.mvp.MvpFragment;
 import me.teenyda.fruit_store.common.mvp.MvpRxFragment;
 import me.teenyda.fruit_store.model.myself.base.presenter.MyselfP;
 import me.teenyda.fruit_store.model.myself.base.view.IMySelfV;
+import me.teenyda.fruit_store.model.myself.member.MemberActivity;
 
 /**
  * author: teenyda
@@ -22,6 +25,9 @@ public class MyselfFrag extends MvpRxFragment<IMySelfV, MyselfP> implements IMyS
 
     @BindView(R.id.sfl)
     ShimmerFrameLayout sfl;
+
+    @BindView(R.id.ll_member)
+    LinearLayout ll_member;
 
     @Override
     protected MyselfP createPresenter() {
@@ -49,6 +55,17 @@ public class MyselfFrag extends MvpRxFragment<IMySelfV, MyselfP> implements IMyS
                 .build();
         sfl.setShimmer(shimmer);
         sfl.startShimmer();
+    }
+
+    @OnClick({R.id.ll_member})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.ll_member:
+                MemberActivity.startActivity(getMContext());
+                break;
+
+        }
+
     }
 
     @Override

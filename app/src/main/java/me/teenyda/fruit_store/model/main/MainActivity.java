@@ -23,8 +23,7 @@ import me.teenyda.fruit_store.R;
 import me.teenyda.fruit_store.model.cart.base.ShoppingCartFragment;
 import me.teenyda.fruit_store.model.classify.base.ClassifyFragment;
 import me.teenyda.fruit_store.model.home.base.HomeFxFrag;
-import me.teenyda.fruit_store.model.myself.MyselfFrag;
-import me.teenyda.fruit_store.model.store.base.StoreFrag;
+import me.teenyda.fruit_store.model.myself.base.MyselfFrag;
 
 public class MainActivity extends RxAppCompatActivity {
 

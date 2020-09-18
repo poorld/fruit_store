@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:banner="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/member_bg">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/c_ffde95"
+        android:textSize="25sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="30dp"
+        android:text="VIP会员"/>
+
+    <com.youth.banner.Banner
+        android:id="@+id/member_banner"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_margin="10dp"
+        banner:banner_radius="5dp"
+        banner:banner_indicator_normal_color="@android:color/white"
+        banner:banner_indicator_selected_color="@color/colorPrimary" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/shape_radius_gradient_member"
+        android:textColor="@color/c_ffffff"
+        android:gravity="center"
+        android:text="立即开通"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="25dp"
+        android:textSize="12sp"
+        android:textColor="@color/c_ffffff"
+        android:lineHeight="20dp"
+        android:text="服务协议：正义之路被暴虐之恶人包围，以慈悲与善意为名引导弱者，通过黑暗之路的人有福了，因为他照应同伴寻回迷途羔羊，那些胆敢荼毒残害我同伴之人，我将向他们大施报复，到时，他们就知道，我是耶和华Blessed is the man who passes through the dark path, for he will look after his companions and find the lost lambs. I will take great vengeance on those who will torment my companions. Then they will know that I am the Lord"/>
+
+
+</LinearLayout>

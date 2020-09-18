@@ -32,4 +32,16 @@
         <item name="android:windowExitAnimation">@anim/out_bottom</item>
     </style>
 
+    <style name="ThemeVIP1">
+        <item name="android:textColor">@color/c_a1a1a1</item>
+    </style>
+
+    <style name="ThemeVIP2">
+        <item name="android:textColor">@color/c_c88b00</item>
+    </style>
+
+    <style name="ThemeVIP3">
+        <item name="android:textColor">@color/c_5575e3</item>
+    </style>
+
 </resources>

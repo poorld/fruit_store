@@ -42,6 +42,7 @@
         <activity android:name=".model.test.Activity"></activity>
         <activity android:name=".model.classify.info.ProductInfoActivity" />
         <activity android:name=".model.classify.settlement.SettlementActicity" />
+        <activity android:name=".model.myself.member.MemberActivity" />
     </application>
 
 </manifest>
