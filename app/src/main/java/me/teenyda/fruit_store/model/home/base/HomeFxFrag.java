@@ -22,6 +22,7 @@ import butterknife.Unbinder;
 import me.teenyda.fruit_store.R;
 import me.teenyda.fruit_store.common.entity.DataBean;
 import me.teenyda.fruit_store.common.mvp.MvpRxFragment;
+import me.teenyda.fruit_store.common.view.popupview.CustomProgressDialog;
 import me.teenyda.fruit_store.model.home.base.adapter.ImageNetAdapter;
 import me.teenyda.fruit_store.model.home.base.adapter.RecommendAdapter;
 import me.teenyda.fruit_store.model.home.base.presenter.HomePRx;
@@ -54,6 +55,11 @@ public class HomeFxFrag extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
 
     @BindView(R.id.home_new_fruit)
     RelativeLayout home_new_fruit;
+
+    @BindView(R.id.hot_fruit_rl)
+    RelativeLayout hot_fruit_rl;
+    private CustomProgressDialog mDialog;
+
 
     @Override
     protected HomePRx createPresenter() {
@@ -97,13 +103,18 @@ public class HomeFxFrag extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
 
         banner.addBannerLifecycleObserver(this);
 
+        mDialog = new CustomProgressDialog(getMContext(), R.drawable.anmi_loading);
+
     }
 
-    @OnClick({R.id.home_new_fruit})
+    @OnClick({R.id.home_new_fruit,R.id.hot_fruit_rl})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.home_new_fruit:
                 NewFruitActivity.startActivity(getMContext());
+                break;
+            case R.id.hot_fruit_rl:
+                mDialog.show();
                 break;
 
         }

@@ -89,6 +89,7 @@
 
 
                 <RelativeLayout
+                    android:id="@+id/hot_fruit_rl"
                     android:layout_width="match_parent"
                     android:layout_weight="1"
                     android:layout_height="0dp"
@@ -103,7 +104,7 @@
                         android:layout_marginLeft="5dp"
                         android:textColor="@color/c_d99600"
                         android:textSize="16sp"
-                        android:text="热门水果"/>
+                        android:text="热销水果"/>
 
                     <ImageView
                         android:layout_width="80dp"
@@ -131,7 +132,7 @@
                         android:layout_marginLeft="5dp"
                         android:textColor="@color/c_f7a7fc"
                         android:textSize="16sp"
-                        android:text="限时秒杀"/>
+                        android:text="限时抢购"/>
 
                     <ImageView
                         android:layout_width="80dp"
