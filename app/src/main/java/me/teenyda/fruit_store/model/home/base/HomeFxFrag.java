@@ -2,6 +2,8 @@ package me.teenyda.fruit_store.model.home.base;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.youth.banner.Banner;
@@ -15,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 import me.teenyda.fruit_store.R;
 import me.teenyda.fruit_store.common.entity.DataBean;
@@ -23,6 +26,7 @@ import me.teenyda.fruit_store.model.home.base.adapter.ImageNetAdapter;
 import me.teenyda.fruit_store.model.home.base.adapter.RecommendAdapter;
 import me.teenyda.fruit_store.model.home.base.presenter.HomePRx;
 import me.teenyda.fruit_store.model.home.base.view.IHomeV;
+import me.teenyda.fruit_store.model.home.new_fruit.NewFruitActivity;
 import pub.devrel.easypermissions.EasyPermissions;
 
 /**
@@ -47,6 +51,9 @@ public class HomeFxFrag extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
 
     @BindView(R.id.rv)
     RecyclerView rv;
+
+    @BindView(R.id.home_new_fruit)
+    RelativeLayout home_new_fruit;
 
     @Override
     protected HomePRx createPresenter() {
@@ -90,6 +97,16 @@ public class HomeFxFrag extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
 
         banner.addBannerLifecycleObserver(this);
 
+    }
+
+    @OnClick({R.id.home_new_fruit})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.home_new_fruit:
+                NewFruitActivity.startActivity(getMContext());
+                break;
+
+        }
     }
 
 

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/new_iv_fruit_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/new_product_01"
+        android:scaleType="fitXY"/>
+
+    <RelativeLayout
+        android:layout_width="200dp"
+        android:layout_height="70dp"
+        android:background="@drawable/shape_radius_10dp_translucent"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp">
+
+        <TextView
+            android:id="@+id/new_fruit_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/c_ffffff"
+            android:textSize="25sp"
+            android:layout_centerHorizontal="true"
+            android:textStyle="italic"
+            android:layout_marginTop="5dp"
+            android:text="19.9元/斤"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/c_ffd984"
+            android:layout_below="@id/new_fruit_price"
+            android:textSize="13sp"
+            android:text="橘子纯天然好吃到爆!"/>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

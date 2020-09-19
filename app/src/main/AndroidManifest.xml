@@ -43,6 +43,7 @@
         <activity android:name=".model.classify.info.ProductInfoActivity" />
         <activity android:name=".model.classify.settlement.SettlementActicity" />
         <activity android:name=".model.myself.member.MemberActivity" />
+        <activity android:name=".model.home.new_fruit.NewFruitActivity" />
     </application>
 
 </manifest>

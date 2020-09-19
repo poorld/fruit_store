@@ -79,6 +79,15 @@ public class DataBean {
         return list;
     }
 
+    public static List<DataBean> getNewFruitData() {
+        List<DataBean> list = new ArrayList<>();
+        list.add(new DataBean(R.drawable.new_product_01, "听风.赏雨", 1));
+        list.add(new DataBean(R.drawable.new_product_02, "迪丽热巴.迪力木拉提", 1));
+        list.add(new DataBean(R.drawable.new_product_03, "爱美.人间有之", 1));
+        list.add(new DataBean(R.drawable.new_product_04, "洋洋洋.气质篇", 1));
+        return list;
+    }
+
     public static List<DataBean> getTestData3() {
         List<DataBean> list = new ArrayList<>();
         list.add(new DataBean("https://img.zcool.cn/community/013de756fb63036ac7257948747896.jpg", null, 1));
