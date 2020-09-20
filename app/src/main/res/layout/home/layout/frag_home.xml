@@ -117,6 +117,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/seconds_kill_rl"
                     android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_weight="1"

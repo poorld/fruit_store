@@ -28,6 +28,7 @@ import me.teenyda.fruit_store.model.home.base.adapter.RecommendAdapter;
 import me.teenyda.fruit_store.model.home.base.presenter.HomePRx;
 import me.teenyda.fruit_store.model.home.base.view.IHomeV;
 import me.teenyda.fruit_store.model.home.new_fruit.NewFruitActivity;
+import me.teenyda.fruit_store.model.home.seconds_kill.SecondKillActivity;
 import pub.devrel.easypermissions.EasyPermissions;
 
 /**
@@ -107,7 +108,7 @@ public class HomeFxFrag extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
 
     }
 
-    @OnClick({R.id.home_new_fruit,R.id.hot_fruit_rl})
+    @OnClick({R.id.home_new_fruit,R.id.hot_fruit_rl, R.id.seconds_kill_rl})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.home_new_fruit:
@@ -116,7 +117,9 @@ public class HomeFxFrag extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
             case R.id.hot_fruit_rl:
                 mDialog.show();
                 break;
-
+            case R.id.seconds_kill_rl:
+                SecondKillActivity.startActivity(getMContext());
+                break;
         }
     }
 

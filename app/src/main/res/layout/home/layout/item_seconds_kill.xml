@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:background="@color/c_ffffff"
+    android:layout_marginTop="10dp">
+
+    <ImageView
+        android:id="@+id/kill_fruit_img"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/product02"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="15dp"/>
+
+    <TextView
+        android:id="@+id/kill_fruit_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/kill_fruit_img"
+        android:layout_alignTop="@id/kill_fruit_img"
+        android:layout_marginStart="15dp"
+        android:textSize="15sp"
+        android:textColor="@color/c_444444"
+        android:text="海南贵妃芒果"/>
+
+    <TextView
+        android:id="@+id/kill_fruit_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/kill_fruit_name"
+        android:layout_alignStart="@id/kill_fruit_name"
+        android:text="39人已抢购"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/c_aaaaaa"
+        android:textSize="12sp"/>
+
+
+    <TextView
+        android:id="@+id/kill_fruit_tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/kill_fruit_count"
+        android:layout_alignStart="@id/kill_fruit_count"
+        android:text="剩余时间"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/c_fa6a53"
+        android:textSize="12sp"/>
+
+    <cn.iwgang.countdownview.CountdownView
+        android:id="@+id/cv_countdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/kill_fruit_tv1"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="13dp"
+        app:isHideTimeBackground="false"
+        app:isShowDay="false"
+        app:isShowHour="true"
+        app:isShowMillisecond="true"
+        app:isShowMinute="true"
+        app:isShowSecond="true"
+        app:isShowTimeBgDivisionLine="false"
+        app:suffixGravity="center"
+        app:suffixTextColor="#000000"
+        app:suffixTextSize="12sp"
+        app:timeBgColor="#FF5000"
+        app:timeTextColor="#FFFFFF"
+        app:timeTextSize="11sp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="15dp"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="7dp"
+            android:paddingEnd="7dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:text="秒杀价"
+            android:textColor="@color/c_ffffff"
+            android:textSize="11sp"
+            android:background="@drawable/shape_radius_5dp_kill"/>
+
+        <TextView
+            android:id="@+id/kill_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:textColor="@color/c_d02206"
+            android:text="¥ 11.3"/>
+    </LinearLayout>
+
+
+
+</RelativeLayout>

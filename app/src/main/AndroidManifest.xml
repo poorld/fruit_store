@@ -44,6 +44,7 @@
         <activity android:name=".model.classify.settlement.SettlementActicity" />
         <activity android:name=".model.myself.member.MemberActivity" />
         <activity android:name=".model.home.new_fruit.NewFruitActivity" />
+        <activity android:name=".model.home.seconds_kill.SecondKillActivity" />
     </application>
 
 </manifest>
