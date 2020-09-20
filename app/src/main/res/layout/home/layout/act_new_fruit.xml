@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.viewpager2.widget.ViewPager2 xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/view_pager"
-    android:orientation="vertical"
+<RelativeLayout android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-</androidx.viewpager2.widget.ViewPager2>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:orientation="vertical"
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </androidx.viewpager2.widget.ViewPager2>
+
+    <!--放在下面，防止图片挡住看不到-->
+    <include layout="@layout/inclued_statusbar_transp_black" />
+
+</RelativeLayout>

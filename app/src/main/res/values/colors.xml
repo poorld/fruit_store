@@ -12,6 +12,7 @@
 
     <!--半透明-->
     <color name="c_translucent">#70000000</color>
+    <color name="c_transl_4af">#4affffff</color>
     <color name="c_transl_fff">#70ffffff</color>
     <color name="c_transl_9bf">#9bffffff</color>
 

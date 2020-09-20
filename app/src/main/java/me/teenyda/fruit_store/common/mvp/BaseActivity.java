@@ -139,6 +139,37 @@ public abstract class BaseActivity extends RxActivity {
         }
     }
 
+    protected void setTitleShow(boolean displayLeft, String title, boolean displayRight) {
+        setLeftDisplay(displayLeft);
+        setTitle(title);
+        setRightDisplay(displayLeft);
+    }
+
+
+    private TextView getRightTitle() {
+        RelativeLayout myActionBar = getMyActionBar();
+        if (myActionBar != null) {
+            TextView titleTv = myActionBar.findViewById(R.id.actionbar_right_title);
+            return titleTv;
+        }
+        return null;
+    }
+
+    protected void setLeftDisplay(boolean display) {
+        RelativeLayout myActionBar = getMyActionBar();
+        if (myActionBar != null) {
+            RelativeLayout rl = myActionBar.findViewById(R.id.actionbar_back);
+            rl.setVisibility(display ? View.VISIBLE : View.INVISIBLE);
+        }
+    }
+    protected void setRightDisplay(boolean display) {
+        RelativeLayout myActionBar = getMyActionBar();
+        if (myActionBar != null) {
+            RelativeLayout rl = myActionBar.findViewById(R.id.rl_right);
+            rl.setVisibility(display ? View.VISIBLE : View.INVISIBLE);
+        }
+    }
+
     /**
      * 设置标题
      * @param title

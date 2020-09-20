@@ -122,6 +122,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_wallet"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
@@ -184,6 +185,20 @@
                 android:textColor="@color/c_777777"
                 android:textSize="14sp"
                 android:text="个人信息"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:paddingStart="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/c_777777"
+                android:textSize="14sp"
+                android:text="安全管理"/>
         </LinearLayout>
 
 

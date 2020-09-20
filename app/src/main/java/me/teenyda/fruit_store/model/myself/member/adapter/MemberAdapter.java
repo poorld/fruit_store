@@ -56,19 +56,22 @@ public class MemberAdapter extends BannerAdapter<Member, MemberHolder> {
 
         switch (level) {
             case 1:
-                holder.member_tv1.setTextColor(mContext.getColor(R.color.c_a1a1a1));
-                holder.member_tv2.setTextColor(mContext.getColor(R.color.c_a1a1a1));
-                holder.member_tv3.setTextColor(mContext.getColor(R.color.c_a1a1a1));
+                holder.member_tv1.setTextColor(mContext.getColor(R.color.c_999999));
+                holder.member_tv2.setTextColor(mContext.getColor(R.color.c_999999));
+                holder.member_tv3.setTextColor(mContext.getColor(R.color.c_999999));
+                holder.member_name.setTextColor(mContext.getColor(R.color.c_999999));
                 break;
             case 2:
-                holder.member_tv1.setTextColor(mContext.getColor(R.color.c_c88b00));
-                holder.member_tv2.setTextColor(mContext.getColor(R.color.c_c88b00));
-                holder.member_tv3.setTextColor(mContext.getColor(R.color.c_c88b00));
+                holder.member_tv1.setTextColor(mContext.getColor(R.color.c_ffffff));
+                holder.member_tv2.setTextColor(mContext.getColor(R.color.c_ffffff));
+                holder.member_tv3.setTextColor(mContext.getColor(R.color.c_ffffff));
+                holder.member_name.setTextColor(mContext.getColor(R.color.c_ffffff));
                 break;
             case 3:
-                holder.member_tv1.setTextColor(mContext.getColor(R.color.c_5575e3));
-                holder.member_tv2.setTextColor(mContext.getColor(R.color.c_5575e3));
-                holder.member_tv3.setTextColor(mContext.getColor(R.color.c_5575e3));
+                holder.member_tv1.setTextColor(mContext.getColor(R.color.c_f3cadb));
+                holder.member_tv2.setTextColor(mContext.getColor(R.color.c_f3cadb));
+                holder.member_tv3.setTextColor(mContext.getColor(R.color.c_f3cadb));
+                holder.member_name.setTextColor(mContext.getColor(R.color.c_f3cadb));
                 break;
         }
     }

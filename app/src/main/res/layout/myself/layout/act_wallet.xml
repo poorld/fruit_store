@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/wallet_bg">
+
+    <include layout="@layout/inclued_statusbar_transp_white" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="end">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@mipmap/icon_wallet2"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/c_fde9fe"
+            android:textSize="23sp"
+            android:visibility="gone"
+            android:text="￥"/>
+
+        <TextView
+            android:layout_marginStart="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/c_fde9fe"
+            android:textSize="30sp"
+            android:text="3,127.23"/>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginStart="20dp"
+            android:src="@mipmap/icon_eyes_on"
+            android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="50dp">
+
+        <RelativeLayout
+            android:id="@+id/wallet_rl1"
+            android:layout_above="@id/wallet_line1"
+            android:layout_toStartOf="@id/wallet_line2"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@drawable/shape_radius_10dp_4af">
+
+            <ImageView
+                android:id="@+id/wallet_img1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@mipmap/icon_top_up"
+                android:layout_centerInParent="true"/>
+
+            <TextView
+                android:layout_below="@id/wallet_img1"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/c_d4d4d4"
+                android:textSize="13sp"
+                android:text="账户充值"/>
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/wallet_line2"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"/>
+
+        <RelativeLayout
+            android:id="@+id/wallet_rl2"
+            android:layout_toEndOf="@id/wallet_line2"
+            android:layout_above="@id/wallet_line1"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@drawable/shape_radius_10dp_4af">
+
+            <ImageView
+                android:id="@+id/wallet_img2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@mipmap/icon_record"
+                android:layout_centerInParent="true"/>
+
+            <TextView
+                android:layout_below="@id/wallet_img2"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/c_d4d4d4"
+                android:textSize="13sp"
+                android:text="账单记录"/>
+
+
+        </RelativeLayout>
+
+
+        <!--分割线-->
+        <View
+            android:id="@+id/wallet_line1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"/>
+
+
+
+        <RelativeLayout
+            android:id="@+id/wallet_rl3"
+            android:layout_below="@id/wallet_line1"
+            android:layout_alignStart="@id/wallet_rl1"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@drawable/shape_radius_10dp_4af">
+
+            <ImageView
+                android:id="@+id/wallet_img3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@mipmap/icon_setting"
+                android:layout_centerInParent="true"/>
+
+            <TextView
+                android:layout_below="@id/wallet_img3"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/c_d4d4d4"
+                android:textSize="13sp"
+                android:text="密码安全"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/wallet_rl4"
+            android:layout_below="@id/wallet_line1"
+            android:layout_alignStart="@id/wallet_rl2"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@drawable/shape_radius_10dp_4af">
+
+            <ImageView
+                android:id="@+id/wallet_img4"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@mipmap/icon_top_up"
+                android:layout_centerInParent="true"/>
+
+            <TextView
+                android:layout_below="@id/wallet_img4"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/c_d4d4d4"
+                android:textSize="13sp"
+                android:text="充值"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+</LinearLayout>

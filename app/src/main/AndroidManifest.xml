@@ -45,6 +45,8 @@
         <activity android:name=".model.myself.member.MemberActivity" />
         <activity android:name=".model.home.new_fruit.NewFruitActivity" />
         <activity android:name=".model.home.seconds_kill.SecondKillActivity" />
+        <activity android:name=".model.myself.wallet.WalletActivity" />
+        <activity android:name=".model.home.new_fruit.NewFruit2Activity" />
     </application>
 
 </manifest>

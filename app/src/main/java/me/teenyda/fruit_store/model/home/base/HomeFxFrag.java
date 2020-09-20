@@ -27,6 +27,7 @@ import me.teenyda.fruit_store.model.home.base.adapter.ImageNetAdapter;
 import me.teenyda.fruit_store.model.home.base.adapter.RecommendAdapter;
 import me.teenyda.fruit_store.model.home.base.presenter.HomePRx;
 import me.teenyda.fruit_store.model.home.base.view.IHomeV;
+import me.teenyda.fruit_store.model.home.new_fruit.NewFruit2Activity;
 import me.teenyda.fruit_store.model.home.new_fruit.NewFruitActivity;
 import me.teenyda.fruit_store.model.home.seconds_kill.SecondKillActivity;
 import pub.devrel.easypermissions.EasyPermissions;
@@ -112,7 +113,8 @@ public class HomeFxFrag extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.home_new_fruit:
-                NewFruitActivity.startActivity(getMContext());
+                // NewFruitActivity.startActivity(getMContext());
+                NewFruit2Activity.startActivity(getMContext());
                 break;
             case R.id.hot_fruit_rl:
                 mDialog.show();
