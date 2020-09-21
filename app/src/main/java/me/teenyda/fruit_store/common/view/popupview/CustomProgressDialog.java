@@ -11,7 +11,7 @@ import me.teenyda.fruit_store.R;
 /**
  * author: teenyda
  * date: 2020/9/19
- * description:
+ * description: 通用加载弹窗
  */
 public class CustomProgressDialog extends ProgressDialog {
 

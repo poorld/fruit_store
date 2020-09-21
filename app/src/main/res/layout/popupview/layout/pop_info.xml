@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:clipChildren="false">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:clipChildren="false">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:orientation="vertical"
+            android:background="@drawable/popup_bg1">
+
+            <RelativeLayout
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:background="@drawable/shape_radius_10dp_translucent1"
+                android:layout_centerInParent="true">
+
+                <TextView
+                    android:id="@+id/pop_info_field"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/c_f6f6f6"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:textSize="11sp"
+                    android:text="用户名"/>
+
+                <EditText
+                    android:layout_toEndOf="@id/pop_info_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/c_fcb2a5"
+                    android:textSize="12sp"
+                    android:gravity="center"
+                    android:textColor="@color/c_f5f7fd"
+                    android:text="智取棋"/>
+            </RelativeLayout>
+
+
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:background="@color/c_F2C6C7"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:background="@drawable/shape_radius_15dp_f2c6c7"
+            android:gravity="center"
+            android:textColor="@color/c_e28183"
+            android:textSize="13sp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:text="确定"/>
+    </LinearLayout>
+
+</RelativeLayout>
