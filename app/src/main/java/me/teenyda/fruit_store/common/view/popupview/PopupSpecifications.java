@@ -95,12 +95,11 @@ public class PopupSpecifications {
 
     public void show(View view) {
         List<Specification> mSpecifications = new ArrayList<>();
-        mSpecifications.add(new Specification("小小果(3斤)", 23.2f));
-        mSpecifications.add(new Specification("小小果(5斤)", 27.5f));
-        mSpecifications.add(new Specification("中果(3斤)", 33.7f));
-        mSpecifications.add(new Specification("中果(5斤)", 53));
-        mSpecifications.add(new Specification("特大果(3斤)", 73.8f));
-        mSpecifications.add(new Specification("特大果(5斤)", 88));
+        mSpecifications.add(new Specification("小小果(1斤)", 27.5f));
+        mSpecifications.add(new Specification("中果(1斤)", 33.7f));
+        mSpecifications.add(new Specification("大果(1斤)", 53));
+        mSpecifications.add(new Specification("特大果(1斤)", 73.8f));
+        mSpecifications.add(new Specification("特大果(1斤)", 88));
         mAdapter.setSpecifications(mSpecifications);
 
 

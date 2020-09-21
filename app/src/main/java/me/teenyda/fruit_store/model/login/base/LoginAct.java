@@ -1,6 +1,7 @@
 package me.teenyda.fruit_store.model.login.base;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -22,6 +23,10 @@ public class LoginAct extends MvpActivity<ILoginV, LoginP> implements ILoginV{
     private EditText login_username_et;
     private EditText login_password_et;
 
+    public static void startActivity(Context context) {
+        Intent intent = new Intent(context, LoginAct.class);
+        context.startActivity(intent);
+    }
 
     @Override
     protected LoginP createPresenter() {
@@ -40,6 +45,7 @@ public class LoginAct extends MvpActivity<ILoginV, LoginP> implements ILoginV{
 
     @Override
     protected void viewInitializer() {
+        setStatusBarTran(false, true);
         login = (TextView) $(R.id.login);
         login_username_et = (EditText) $(R.id.login_username_et);
         login_password_et = (EditText) $(R.id.login_password_et);

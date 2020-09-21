@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/login_bg">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/c_ffcf62"
-        android:layout_marginTop="50dp"
-        android:layout_centerHorizontal="true"
-        android:textSize="35sp"
-        android:text="登陆"/>
 
     <LinearLayout
         android:layout_marginLeft="30dp"
@@ -22,50 +15,52 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:background="@drawable/shape_login_border">
 
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:src="@mipmap/ic_login_username"
+                android:src="@mipmap/icon_username"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="15dp"/>
+                android:layout_marginStart="15dp"/>
 
             <EditText
                 android:id="@+id/login_username_et"
-                android:paddingLeft="15dp"
+                android:paddingStart="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@null"
-                android:textColorHint="@color/c_d99600"
-                android:textColor="@color/c_ffba1e"
+                android:textColorHint="@color/c_e5e5e5"
+                android:textSize="13sp"
+                android:textColor="@color/c_ffffff"
                 android:hint="请输入用户名"/>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:background="@drawable/shape_login_border"
             android:layout_marginTop="20dp">
 
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:src="@mipmap/ic_login_password"
+                android:src="@mipmap/icon_password"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="15dp"/>
 
             <EditText
                 android:id="@+id/login_password_et"
-                android:paddingLeft="15dp"
+                android:paddingStart="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="textPassword"
                 android:background="@null"
-                android:textColorHint="@color/c_d99600"
-                android:textColor="@color/c_ffba1e"
+                android:textColorHint="@color/c_e5e5e5"
+                android:textSize="13sp"
+                android:textColor="@color/c_ffffff"
                 android:hint="请输入密码"/>
 
         </LinearLayout>
@@ -78,35 +73,36 @@
             android:layout_gravity="center_horizontal"
             android:gravity="center"
             android:background="@drawable/shape_login_btn"
-            android:textColor="@color/c_2f2100"
-            android:textSize="17sp"
-            android:text="登陆"/>
+            android:textColor="@color/c_fff3d9"
+            android:textSize="14sp"
+            android:text="登 陆"/>
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="50dp"
             android:gravity="center_horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:textColor="@color/c_ffba1e"
+                android:layout_marginEnd="5dp"
+                android:textColor="@color/c_ffeec8"
                 android:textSize="15sp"
                 android:text="注册用户"/>
 
             <View
                 android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="@color/c_d99600" />
+                android:layout_height="15dp"
+                android:layout_gravity="center_vertical"
+                android:background="@color/c_ffe4a6" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:textColor="@color/c_ffba1e"
+                android:layout_marginStart="5dp"
+                android:textColor="@color/c_ffeec8"
                 android:textSize="15sp"
                 android:text="忘记密码？"/>
 

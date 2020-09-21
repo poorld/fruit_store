@@ -50,7 +50,7 @@
                 android:layout_height="25dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="15dp"
-                android:src="@drawable/selector_cart"/>
+                android:src="@drawable/selector_cart_checkbox"/>
 
             <TextView
                 android:id="@+id/tv_cart_total_price"

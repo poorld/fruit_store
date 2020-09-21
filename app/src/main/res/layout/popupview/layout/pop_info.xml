@@ -58,8 +58,8 @@
             android:layout_gravity="center_horizontal"/>
 
         <TextView
-            android:layout_width="80dp"
-            android:layout_height="30dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:background="@drawable/shape_radius_15dp_f2c6c7"
             android:gravity="center"
             android:textColor="@color/c_e28183"

@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.jaeger.library.StatusBarUtil;
 import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
 import com.trello.rxlifecycle3.components.support.RxFragment;
 
@@ -48,15 +47,19 @@ public class MainActivity extends RxAppCompatActivity {
 
     @BindView(R.id.home_iv)
     ImageView home_iv;
-    @BindView(R.id.store_iv)
-    ImageView store_iv;
+    @BindView(R.id.classify_iv)
+    ImageView classify_iv;
+    @BindView(R.id.shopping_cart_iv)
+    ImageView shopping_cart_iv;
     @BindView(R.id.myself_iv)
     ImageView myself_iv;
 
     @BindView(R.id.home_tv)
     TextView home_tv;
-    @BindView(R.id.store_tv)
-    TextView store_tv;
+    @BindView(R.id.classify_tv)
+    TextView classify_tv;
+    @BindView(R.id.shopping_cart_tv)
+    TextView shopping_cart_tv;
     @BindView(R.id.myself_tv)
     TextView myself_tv;
 
@@ -115,7 +118,7 @@ public class MainActivity extends RxAppCompatActivity {
                 } else {
                     transaction.show(mHomeFrag).commit();
                 }
-                StatusBarUtil.setTranslucentForImageViewInFragment(MainActivity.this, 0,null);
+                // StatusBarUtil.setTranslucentForImageViewInFragment(MainActivity.this, 0,null);
 
 
                 mCurrentFragment = mHomeFrag;
@@ -131,7 +134,7 @@ public class MainActivity extends RxAppCompatActivity {
                 if (mCurrentFragment != null && mCurrentFragment != mClassifyFrag) {
                     transaction.show(mClassifyFrag).hide(mCurrentFragment).commit();
                 }
-                StatusBarUtil.setColor(MainActivity.this, getColor(R.color.colorPrimary), 0);
+                // StatusBarUtil.setColor(MainActivity.this, getColor(R.color.colorPrimary), 0);
                 // StatusBarUtil.setTranslucentForImageViewInFragment(MainActivity.this, null);
                 mCurrentFragment = mClassifyFrag;
                 break;
@@ -146,7 +149,7 @@ public class MainActivity extends RxAppCompatActivity {
                if (mCurrentFragment != null && mCurrentFragment != mCartFragment) {
                    transaction.show(mCartFragment).hide(mCurrentFragment).commit();
                }
-               StatusBarUtil.setColor(MainActivity.this, getColor(R.color.colorPrimary), 0);
+               // StatusBarUtil.setColor(MainActivity.this, getColor(R.color.colorPrimary), 0);
                mCurrentFragment = mCartFragment;
                break;
 
@@ -161,7 +164,7 @@ public class MainActivity extends RxAppCompatActivity {
             if (mCurrentFragment != null && mCurrentFragment != mMyselfFrag) {
                 transaction.show(mMyselfFrag).hide(mCurrentFragment).commit();
             }
-            StatusBarUtil.setTranslucentForImageViewInFragment(MainActivity.this, 0,null);
+            // StatusBarUtil.setTranslucentForImageViewInFragment(MainActivity.this, 0,null);
             mCurrentFragment = mMyselfFrag;
             break;
         }
@@ -171,30 +174,48 @@ public class MainActivity extends RxAppCompatActivity {
         switch (index) {
             case 0:
                 home_iv.setSelected(true);
-                store_iv.setSelected(false);
+                classify_iv.setSelected(false);
+                shopping_cart_iv.setSelected(false);
                 myself_iv.setSelected(false);
 
-                home_tv.setTextColor(getColor(R.color.c_ffc440));
-                store_tv.setTextColor(getColor(R.color.c_b2b2b2));
-                myself_tv.setTextColor(getColor(R.color.c_b2b2b2));
+                home_tv.setTextColor(getColor(R.color.c_d4237a));
+                classify_tv.setTextColor(getColor(R.color.c_ffffff));
+                shopping_cart_tv.setTextColor(getColor(R.color.c_ffffff));
+                myself_tv.setTextColor(getColor(R.color.c_ffffff));
                 break;
             case 1:
                 home_iv.setSelected(false);
-                store_iv.setSelected(true);
+                classify_iv.setSelected(true);
+                shopping_cart_iv.setSelected(false);
                 myself_iv.setSelected(false);
 
-                home_tv.setTextColor(getColor(R.color.c_b2b2b2));
-                store_tv.setTextColor(getColor(R.color.c_ffc440));
-                myself_tv.setTextColor(getColor(R.color.c_b2b2b2));
+                home_tv.setTextColor(getColor(R.color.c_ffffff));
+                classify_tv.setTextColor(getColor(R.color.c_d4237a));
+                shopping_cart_tv.setTextColor(getColor(R.color.c_ffffff));
+                myself_tv.setTextColor(getColor(R.color.c_ffffff));
                 break;
             case 2:
                 home_iv.setSelected(false);
-                store_iv.setSelected(false);
+                classify_iv.setSelected(false);
+                shopping_cart_iv.setSelected(true);
+                myself_iv.setSelected(false);
+
+                home_tv.setTextColor(getColor(R.color.c_ffffff));
+                classify_tv.setTextColor(getColor(R.color.c_ffffff));
+                shopping_cart_tv.setTextColor(getColor(R.color.c_d4237a));
+                myself_tv.setTextColor(getColor(R.color.c_ffffff));
+                break;
+
+            case 3:
+                home_iv.setSelected(false);
+                classify_iv.setSelected(false);
+                shopping_cart_iv.setSelected(false);
                 myself_iv.setSelected(true);
 
-                home_tv.setTextColor(getColor(R.color.c_b2b2b2));
-                store_tv.setTextColor(getColor(R.color.c_b2b2b2));
-                myself_tv.setTextColor(getColor(R.color.c_ffc440));
+                home_tv.setTextColor(getColor(R.color.c_ffffff));
+                classify_tv.setTextColor(getColor(R.color.c_ffffff));
+                shopping_cart_tv.setTextColor(getColor(R.color.c_ffffff));
+                myself_tv.setTextColor(getColor(R.color.c_d4237a));
                 break;
         }
     }

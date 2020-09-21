@@ -4,7 +4,9 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import androidx.annotation.NonNull;
@@ -32,18 +34,24 @@ public class ProductListAdapter extends XRecyclerView.Adapter<ProductListAdapter
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
+        Glide.with(mContext)
+                .load(mContext.getDrawable(R.drawable.product02))
+                .override(400, 400)
+                .centerCrop()
+                .into(holder.product_img);
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return 2;
     }
 
     class ViewHolder extends XRecyclerView.ViewHolder{
-
+        ImageView product_img;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            product_img = itemView.findViewById(R.id.product_img);
         }
     }
 }

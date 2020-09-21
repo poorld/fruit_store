@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:clipChildren="false">
 
     <FrameLayout
         android:id="@+id/main_frame"
@@ -15,19 +16,21 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:background="@color/c_333333" />
+        android:background="@color/c_bbbbbb" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/c_e16553">
+        android:background="#dfef6d6d"
+        android:clipChildren="false">
 
         <RelativeLayout
             android:id="@+id/home_rl"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:clipChildren="false">
 
             <ImageView
                 android:id="@+id/home_iv"
@@ -44,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
                 android:layout_marginTop="2dp"
-                android:textColor="@color/c_b2b2b2"
+                android:textColor="@color/c_ffffff"
                 android:text="首页"/>
 
         </RelativeLayout>
@@ -57,21 +60,21 @@
             android:gravity="center_vertical">
 
             <ImageView
-                android:id="@+id/store_iv"
+                android:id="@+id/classify_iv"
                 android:layout_centerHorizontal="true"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/selector_store"/>
+                android:src="@drawable/selector_classify"/>
 
             <TextView
-                android:id="@+id/store_tv"
+                android:id="@+id/classify_tv"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@id/store_iv"
+                android:layout_below="@id/classify_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
                 android:layout_marginTop="2dp"
-                android:textColor="@color/c_b2b2b2"
+                android:textColor="@color/c_ffffff"
                 android:text="分类"/>
 
         </RelativeLayout>
@@ -88,7 +91,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/selector_store"/>
+                android:src="@drawable/selector_cart"/>
 
             <TextView
                 android:id="@+id/shopping_cart_tv"
@@ -98,7 +101,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
                 android:layout_marginTop="2dp"
-                android:textColor="@color/c_b2b2b2"
+                android:textColor="@color/c_ffffff"
                 android:text="购物车"/>
 
         </RelativeLayout>
@@ -125,7 +128,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
                 android:layout_marginTop="2dp"
-                android:textColor="@color/c_b2b2b2"
+                android:textColor="@color/c_ffffff"
                 android:text="我的"/>
 
         </RelativeLayout>

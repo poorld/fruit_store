@@ -93,7 +93,8 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
     protected void viewInitializer() {
         mBind = ButterKnife.bind(this);
 
-        StatusBarUtil.setColor(this, getColor(R.color.ColorstatusBar));
+        // StatusBarUtil.setColor(this, getColor(R.color.ColorstatusBar));
+        setTitleShow(true, "商品详情", false);
 
         /*mBanner.setAdapter(new ImageNetAdapter(DataBean.getTestData3()));
         mBanner.setBannerRound(BannerUtils.dp2px(5));

@@ -81,7 +81,7 @@ public class HomeFxFrag extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
     @Override
     protected void viewInitializer() {
         mBind = ButterKnife.bind(this, mView);
-
+        setStatusBarTran(false, true);
 
         banner.setAdapter(new ImageNetAdapter(DataBean.getTestData3()));
         banner.setBannerRound(BannerUtils.dp2px(5));
@@ -105,7 +105,7 @@ public class HomeFxFrag extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
 
         banner.addBannerLifecycleObserver(this);
 
-        mDialog = new CustomProgressDialog(getMContext(), R.drawable.anmi_loading);
+        mDialog = CustomProgressDialog.getInstance(getMContext(), R.drawable.anmi_loading);
 
     }
 
@@ -143,7 +143,11 @@ public class HomeFxFrag extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
         mBind.unbind();
     }
 
-
+    @Override
+    public void onPause() {
+        super.onPause();
+        banner.stop();
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

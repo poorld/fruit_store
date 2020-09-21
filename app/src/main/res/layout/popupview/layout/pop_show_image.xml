@@ -2,16 +2,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rl_photo_frame"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="15dp"
+    android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@drawable/shape_radius_5dp_fff">
+    android:background="@android:color/black">
 
     <TextView
         android:id="@+id/tv_iamge_index"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:textColor="@color/c_ffffff"
+        android:textSize="18sp"
         android:text="1/1"/>
 
     <ImageView
@@ -22,6 +23,14 @@
         android:scaleType="fitXY"
         android:src="@drawable/bg_monkey_king"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/c_ffffff"
+        android:layout_marginLeft="5dp"
+        android:text="居然寄错了，两只都是反的。还好是凉鞋，能将就着穿！"
+        android:layout_below="@id/pro_info_img"/>
+
     <ImageView
         android:id="@+id/img_close"
         android:layout_centerHorizontal="true"
@@ -29,7 +38,6 @@
         android:layout_height="35dp"
         android:src="@mipmap/icon_close"
         android:layout_below="@id/pro_info_img"
-
         android:layout_marginTop="50dp"/>
 
 </RelativeLayout>

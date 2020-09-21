@@ -268,6 +268,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/myself_logout"
         android:layout_width="200dp"
         android:layout_height="40dp"
         android:layout_marginTop="50dp"

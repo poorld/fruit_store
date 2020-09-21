@@ -16,6 +16,13 @@
         android:src="@mipmap/icon_close"
         android:layout_gravity="right"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="陕西优质红提普通"
+        android:textSize="15sp"
+        android:textColor="@color/c_aaaaaa"/>
+
     <!--<TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,7 +60,7 @@
             android:layout_below="@id/fruit_spe_price"
             android:layout_alignStart="@id/fruit_spe_price"
             android:layout_marginTop="20dp"
-            android:textColor="@color/c_2c2c2c"
+            android:textColor="@color/c_606060"
             android:text="请选择规格"/>
     </RelativeLayout>
 

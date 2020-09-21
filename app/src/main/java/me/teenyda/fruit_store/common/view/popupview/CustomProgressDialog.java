@@ -2,6 +2,7 @@ package me.teenyda.fruit_store.common.view.popupview;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -15,6 +16,20 @@ import me.teenyda.fruit_store.R;
  */
 public class CustomProgressDialog extends ProgressDialog {
 
+    public static CustomProgressDialog getInstance(Context context, int id) {
+        if (mDialog == null) {
+            synchronized (Object.class) {
+                if (mDialog == null) {
+                    mDialog = new CustomProgressDialog(context, id);
+                }
+            }
+        }
+        return mDialog;
+    }
+
+
+
+    private static CustomProgressDialog mDialog;
     private AnimationDrawable mAnimation;
     private Context mContext;
     private ImageView mImageView;
@@ -22,7 +37,7 @@ public class CustomProgressDialog extends ProgressDialog {
     private String oldLoadingTip;
     private int mResid;
 
-    public CustomProgressDialog(Context context, int id) {
+    private CustomProgressDialog(Context context, int id) {
         super(context);
         this.mContext = context;
         this.mResid = id;
@@ -41,17 +56,24 @@ public class CustomProgressDialog extends ProgressDialog {
         mImageView.setBackgroundResource(mResid);
         // 通过ImageView对象拿到背景显示的AnimationDrawable
         mAnimation = (AnimationDrawable) mImageView.getBackground();
-        // 为了防止在onCreate方法中只显示第一帧的解决方案之一
-        mImageView.post(new Runnable() {
+        mDialog.setOnShowListener(new OnShowListener() {
             @Override
-            public void run() {
-                mAnimation.start();
-
+            public void onShow(DialogInterface dialogInterface) {
+                mImageView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        mAnimation.start();
+                    }
+                });
             }
         });
-
+        mDialog.setOnDismissListener(new OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                mAnimation.stop();
+            }
+        });
     }
-
 
 
     private void initView() {

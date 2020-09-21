@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include layout="@layout/inclued_statusbar" />
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -14,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
 
             <com.youth.banner.Banner
                 android:id="@+id/video_banner"
@@ -127,6 +130,7 @@
                         android:background="@drawable/shape_border_fa6a53_05dp"
                         android:padding="2dp"
                         android:textColor="@color/c_fa6a53"
+                        android:textSize="11sp"
                         android:layout_marginLeft="5dp"
                         android:text="10元起送"/>
 
@@ -136,6 +140,7 @@
                         android:layout_marginLeft="5dp"
                         android:background="@drawable/shape_border_fa6a53_05dp"
                         android:padding="2dp"
+                        android:textSize="11sp"
                         android:textColor="@color/c_fa6a53"
                         android:text="5元配送费"/>
 

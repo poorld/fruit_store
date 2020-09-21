@@ -35,7 +35,7 @@ public class PopupUpdateInfo {
                 ViewGroup.LayoutParams.WRAP_CONTENT);
 
         mPopupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        mPopupWindow.setAnimationStyle(R.style.AnimationBottomInAndOut);
+        mPopupWindow.setAnimationStyle(R.style.video_popup_toast_anim);
 
         mPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override

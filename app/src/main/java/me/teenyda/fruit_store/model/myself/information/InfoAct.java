@@ -67,8 +67,9 @@ public class InfoAct extends MvpActivity<IInfoV, InfoPresenter> implements IInfo
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.info_rl_username:
-                // mPopupUpdateInfo.show(view);
-                showPurchaseView();
+                // 两个都可以用
+                mPopupUpdateInfo.show(view);
+                // showPurchaseView();
                 break;
         }
     }

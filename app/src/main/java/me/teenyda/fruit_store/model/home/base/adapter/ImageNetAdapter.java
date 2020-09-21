@@ -37,10 +37,12 @@ public class ImageNetAdapter extends BannerAdapter<DataBean, ImageHolder> {
     public void onBindView(ImageHolder holder, DataBean data, int position, int size) {
         //通过图片加载器实现圆角，你也可以自己使用圆角的imageview，实现圆角的方法很多，自己尝试哈
         Glide.with(holder.itemView)
-             .load(data.imageUrl)
-             .thumbnail(Glide.with(holder.itemView).load(R.drawable.anmi_loading))
+                .load(data.imageUrl)
+                .override(400, 170)
+                .centerCrop()
+                .thumbnail(Glide.with(holder.itemView).load(R.drawable.anmi_loading))
 //                .apply(RequestOptions.bitmapTransform(new RoundedCorners(30)))
-             .into(holder.imageView);
+                .into(holder.imageView);
     }
 
 }

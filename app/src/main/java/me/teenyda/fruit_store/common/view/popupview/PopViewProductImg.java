@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -82,7 +83,7 @@ public class PopViewProductImg implements View.OnTouchListener {
 
     private void initPopView() {
         mView = LayoutInflater.from(mContext).inflate(R.layout.pop_show_image, null, false);
-        mPopupWindow = new PopupWindow(mView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        mPopupWindow = new PopupWindow(mView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         mPopupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         mPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
@@ -98,6 +99,18 @@ public class PopViewProductImg implements View.OnTouchListener {
                         dismiss();
                     }
                 });
+
+        //防止返回时直接返回到上一个activity
+        mView.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if (keyEvent.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+                    dismiss();
+                    return true;
+                }
+                return false;
+            }
+        });
 
         pro_info_img = mView.findViewById(R.id.pro_info_img);
         tv_iamge_index = mView.findViewById(R.id.tv_iamge_index);
@@ -125,7 +138,9 @@ public class PopViewProductImg implements View.OnTouchListener {
 
         // setFocusable 默认是false
         // setFocusable(true)外部和内部都会响应，点击外部就会取消，setOutsideTouchable(false)失效
-        mPopupWindow.setFocusable(false);
+
+        // 设置为true，不然监听不到返回键
+        mPopupWindow.setFocusable(true);
         // 设置PopupWindow是否能响应点击事件
         mPopupWindow.setTouchable(true);
         // 设置PopupWindow内容区域外的区域是否响应点击事件（true：响应；false：不响应）
