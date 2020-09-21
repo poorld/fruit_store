@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import com.youth.banner.Banner;
 import com.youth.banner.indicator.CircleIndicator;
+import com.youth.banner.util.BannerUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,6 +52,7 @@ public class MemberActivity extends MvpActivity<IMemberView, MemberPresenter> im
         ButterKnife.bind(this);
         setStatusBarTran(false, true);
         member_banner.setAdapter(new MemberAdapter(DataBean.getMemberData(), getMContext()));
+        member_banner.setBannerRound(BannerUtils.dp2px(5));
         member_banner.setIndicator(new CircleIndicator(this));
         //添加魅族效果
         member_banner.setBannerGalleryMZ(20);

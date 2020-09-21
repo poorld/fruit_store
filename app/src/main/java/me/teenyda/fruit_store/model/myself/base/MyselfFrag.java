@@ -14,6 +14,7 @@ import me.teenyda.fruit_store.R;
 import me.teenyda.fruit_store.common.mvp.MvpRxFragment;
 import me.teenyda.fruit_store.model.myself.base.presenter.MyselfP;
 import me.teenyda.fruit_store.model.myself.base.view.IMySelfV;
+import me.teenyda.fruit_store.model.myself.information.InfoAct;
 import me.teenyda.fruit_store.model.myself.member.MemberActivity;
 import me.teenyda.fruit_store.model.myself.order.base.OrderAct;
 import me.teenyda.fruit_store.model.myself.wallet.WalletActivity;
@@ -59,7 +60,7 @@ public class MyselfFrag extends MvpRxFragment<IMySelfV, MyselfP> implements IMyS
         sfl.startShimmer();
     }
 
-    @OnClick({R.id.ll_member,R.id.ll_wallet, R.id.wallet_order})
+    @OnClick({R.id.ll_member,R.id.ll_wallet, R.id.wallet_order,R.id.myself_info})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ll_member:
@@ -70,6 +71,9 @@ public class MyselfFrag extends MvpRxFragment<IMySelfV, MyselfP> implements IMyS
                 break;
             case R.id.wallet_order:
                 OrderAct.startActivity(getMContext());
+                break;
+            case R.id.myself_info:
+                InfoAct.startActivity(getMContext());
                 break;
         }
 

@@ -175,6 +175,7 @@
         android:background="@drawable/shape_radius_5dp_fff">
 
         <LinearLayout
+            android:id="@+id/myself_info"
             android:paddingStart="15dp"
             android:layout_width="match_parent"
             android:layout_height="50dp"
