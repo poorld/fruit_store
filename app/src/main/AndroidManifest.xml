@@ -47,6 +47,7 @@
         <activity android:name=".model.home.seconds_kill.SecondKillActivity" />
         <activity android:name=".model.myself.wallet.WalletActivity" />
         <activity android:name=".model.home.new_fruit.NewFruit2Activity" />
+        <activity android:name=".model.myself.order.base.OrderAct" />
     </application>
 
 </manifest>

@@ -1,12 +1,10 @@
 package me.teenyda.fruit_store.model.classify.base;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.flyco.tablayout.SlidingTabLayout;
-import com.jaeger.library.StatusBarUtil;
 
 import java.util.ArrayList;
 

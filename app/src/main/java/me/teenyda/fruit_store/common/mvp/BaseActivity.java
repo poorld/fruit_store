@@ -15,12 +15,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jaeger.library.StatusBarUtil;
-import com.trello.rxlifecycle3.components.RxActivity;
+import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
 
 import me.teenyda.fruit_store.R;
 import me.teenyda.fruit_store.common.app.ActivityManager;
+import me.teenyda.fruit_store.model.main.MainActivity;
 
-public abstract class BaseActivity extends RxActivity {
+public abstract class BaseActivity extends RxAppCompatActivity {
 
     protected View mView;
 
@@ -56,7 +57,8 @@ public abstract class BaseActivity extends RxActivity {
         registerBroadcart();
         mView = LayoutInflater.from(this).inflate(setR_layout(), null);
         setContentView(mView);
-        setStatusBar(true);
+        //默认是有工具栏(Toolbar)，状态栏颜色是主题颜色
+        setStatusBarTran(true, false);
         ActivityManager.getAppManager().addActivity(this);
         viewInitializer();
         doBuseness();
@@ -64,11 +66,41 @@ public abstract class BaseActivity extends RxActivity {
 
 
     /**
-     * 状态栏设置
-     * @param setStatusBar
+     * 状态栏设置透明
+     * @param hasToolBar 是否有工具栏
+     * @param setStatusBarTrans 是否设置透明
+     * 使用指南：
+     * 默认为有工具栏，工具栏背景颜色要设置成colorPrimary，状态栏颜色为colorPrimary
+     * 使用setStatusBarTran(true, false);设置默认
+     *
+     * 当使用透明工具栏，inclued_statusbar_transp_black或者inclued_statusbar_transp_white
+     * 使用setStatusBarTran(true, true)可以让状态栏透明
+     *
+     * 当没有状态栏时，让状态栏透明
+     * 使用setStatusBarTran(false, true)可以让状态栏透明
      */
-    protected void setStatusBar(boolean setStatusBar) {
+    protected void setStatusBarTran(boolean hasToolBar, boolean setStatusBarTrans) {
         RelativeLayout actionBar = getMyActionBar();
+        // 如果有状态栏
+        if (hasToolBar && setStatusBarTrans) {
+            if (actionBar != null)
+                //例子：WalletAct（钱包） 使用透明状态栏
+                StatusBarUtil.setTranslucentForImageViewInFragment(this, 0, actionBar);
+
+        } else if (hasToolBar && !setStatusBarTrans){
+            //例子: SecondKillActivity
+            StatusBarUtil.setColor(this, getColor(R.color.colorPrimary), 0);
+        } else if (!hasToolBar && setStatusBarTrans){
+            //没有状态栏，设置透明
+            // 例子：MemberAct（会员）
+            StatusBarUtil.setTranslucent(this, 0);
+        }else {
+            //默认
+            StatusBarUtil.setColor(this, getColor(R.color.colorPrimary), 0);
+        }
+
+
+        /*RelativeLayout actionBar = getMyActionBar();
         if (setStatusBar && actionBar != null) {
             StatusBarUtil.setTranslucentForImageViewInFragment(this, 0, null);
             ViewGroup.LayoutParams layoutParams = actionBar.getLayoutParams();
@@ -81,8 +113,9 @@ public abstract class BaseActivity extends RxActivity {
         } else {
 //            StatusBarUtil.setTranslucent(this);
 //            StatusBarUtil.setTranslucentForImageView(this,0, null);
-            StatusBarUtil.setTranslucent(this, 0);
-        }
+            StatusBarUtil.setColor(this, getColor(R.color.colorPrimary), 0);
+            // StatusBarUtil.setTranslucent(this, 0);
+        }*/
 
     }
 

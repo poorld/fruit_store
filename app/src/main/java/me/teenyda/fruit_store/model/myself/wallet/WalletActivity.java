@@ -40,6 +40,7 @@ public class WalletActivity extends MvpActivity<IWalletView, WalletPresenter> im
     protected void viewInitializer() {
         setBack();
         setTitleShow(true, "钱包", false);
+        setStatusBarTran(true, true);
     }
 
     @Override

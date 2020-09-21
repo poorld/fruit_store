@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="170dp"
+    android:padding="10dp"
+    android:background="@color/c_ffffff"
+    android:layout_marginTop="15dp">
+
+    <TextView
+        android:id="@+id/order_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="订单编号:O3281721448732"
+        android:textColor="@color/c_b2b2b2"/>
+
+    <ImageView
+        android:id="@+id/order_img"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/order_number"
+        android:src="@drawable/product02"
+        android:layout_marginTop="15dp"/>
+
+
+    <TextView
+        android:id="@+id/order_fruit_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/order_img"
+        android:layout_alignTop="@id/order_img"
+        android:layout_marginStart="5dp"
+        android:text="有机大红灯樱桃"
+        android:textSize="16sp"
+        android:layout_marginEnd="15dp"
+        android:maxLines="1"
+        android:textColor="@color/c_888888"/>
+
+    <TextView
+        android:id="@+id/order_spec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/order_fruit_name"
+        android:layout_alignStart="@id/order_fruit_name"
+        android:layout_marginTop="5dp"
+        android:text="1斤"
+        android:textColor="@color/c_b2b2b2"/>
+
+    <TextView
+        android:id="@+id/order_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_alignBaseline="@id/order_spec"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="10dp"
+        android:text="×2"
+        android:textColor="@color/c_b2b2b2"/>
+
+    <!--<TextView
+        android:id="@+id/order_payment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/order_spec"
+        android:layout_alignStart="@id/order_spec"
+        android:layout_marginTop="5dp"
+        android:text="实付"
+        android:textColor="@color/c_b2b2b2"/>-->
+
+    <TextView
+        android:id="@+id/order_paymented"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/order_count"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="10dp"
+        android:text="未付款"
+        android:textColor="@color/c_b2b2b2"/>
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="15dp"
+        android:text="立即付款"
+        android:gravity="center"
+        android:textColor="@color/c_f95c42"
+        android:background="@drawable/shape_border_f95c42_50dp"/>
+
+    <TextView
+    android:layout_width="100dp"
+    android:layout_height="30dp"
+    android:layout_alignParentBottom="true"
+    android:layout_marginTop="15dp"
+    android:text="查看物流"
+    android:gravity="center"
+    android:textColor="@color/c_bbbbbb"
+    android:background="@drawable/shape_border_bbb_50dp"/>
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:text="取消订单"
+        android:gravity="center"
+        android:textColor="@color/c_bbbbbb"
+        android:background="@drawable/shape_border_bbb_50dp"/>
+
+    <!--
+        立即付款
+        评价
+        查看物流
+        取消订单
+    -->
+</RelativeLayout>

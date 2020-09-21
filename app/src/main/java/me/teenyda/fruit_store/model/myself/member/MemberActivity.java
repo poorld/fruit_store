@@ -49,7 +49,7 @@ public class MemberActivity extends MvpActivity<IMemberView, MemberPresenter> im
     @Override
     protected void viewInitializer() {
         ButterKnife.bind(this);
-
+        setStatusBarTran(false, true);
         member_banner.setAdapter(new MemberAdapter(DataBean.getMemberData(), getMContext()));
         member_banner.setIndicator(new CircleIndicator(this));
         //添加魅族效果

@@ -62,8 +62,6 @@ public class SettlementActicity extends MvpActivity<ISettlementView, SettlementP
     protected void viewInitializer() {
         ButterKnife.bind(this);
 
-        StatusBarUtil.setColor(this, getColor(R.color.ColorstatusBar));
-
         mPopupPayment = new PopupPayment(getMContext());
     }
 

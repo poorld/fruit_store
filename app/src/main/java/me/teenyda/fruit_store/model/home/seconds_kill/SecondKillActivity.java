@@ -56,7 +56,6 @@ public class SecondKillActivity extends MvpActivity<ISecondKillView, SecondKillP
     @Override
     protected void viewInitializer() {
         ButterKnife.bind(this);
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getMContext());
 
         seconds_kill_xrv.setLayoutManager(linearLayoutManager);

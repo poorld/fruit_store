@@ -51,6 +51,7 @@ public class NewFruit2Activity extends MvpActivity<INewFruitView, NewFruitPresen
     @Override
     protected void viewInitializer() {
         ButterKnife.bind(this);
+        setStatusBarTran(true, true);
         setBack();
         setRightDisplay(false);
         setTitle("");
