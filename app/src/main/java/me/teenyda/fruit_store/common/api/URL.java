@@ -8,7 +8,7 @@ package me.teenyda.fruit_store.common.api;
 public interface URL {
 
 //    public static final String BASE_URL = "https://www.easy-mock.com/mock/5d4a7a3dc26a641d96bf41ca/app/";
-    public static final String BASE_URL = "http://192.168.1.2:9000/api/app/";
+    public static final String BASE_URL = "http://192.168.1.22:9000/api/app/";
 
     public static final String TEST_URL = "";
 }

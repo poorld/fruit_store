@@ -122,6 +122,22 @@ public class HomePRx extends BaseRxPresenter<IHomeV> {
 
     }
 
+    public void addBoos(Book book){
+        this.addDisposable(mApi.addBook(book), new MyObserver<String>(mContext){
+
+            @Override
+            public void onSuccess(String result) {
+
+            }
+
+            @Override
+            public void onFailure(Throwable e, String errorMsg) {
+
+            }
+        });
+
+    }
+
     public void uploadFile(File file) {
         RequestBody fileRequestBody = RequestBody.create(MediaType.parse("image/*"), file);
         MultipartBody.Part part = MultipartBody.Part.createFormData("file", file.getName(), fileRequestBody);

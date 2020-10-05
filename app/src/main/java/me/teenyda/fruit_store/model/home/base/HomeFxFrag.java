@@ -20,6 +20,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import me.teenyda.fruit_store.R;
+import me.teenyda.fruit_store.common.entity.Book;
 import me.teenyda.fruit_store.common.entity.DataBean;
 import me.teenyda.fruit_store.common.mvp.MvpRxFragment;
 import me.teenyda.fruit_store.common.view.popupview.CustomProgressDialog;
@@ -118,6 +119,9 @@ public class HomeFxFrag extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
                 break;
             case R.id.hot_fruit_rl:
                 mDialog.show();
+                Book book = new Book();
+                book.setBookName("gg");
+                mPresenter.addBoos(book);
                 break;
             case R.id.seconds_kill_rl:
                 SecondKillActivity.startActivity(getMContext());

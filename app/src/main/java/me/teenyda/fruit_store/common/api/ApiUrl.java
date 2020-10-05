@@ -49,8 +49,11 @@ public interface ApiUrl {
     @GET("book/books")
     Observable<BaseResponse<List<Book>>> getDemoList();
 
-    @PUT("book/book")
+    @PUT("fruit/book")
     Observable<BaseResponse<String>> updateBook(@Body Book book);
+
+    @POST("fruit/book")
+    Observable<BaseResponse<String>> addBook(@Body Book book);
 
     @Multipart
     @POST("file/upload")

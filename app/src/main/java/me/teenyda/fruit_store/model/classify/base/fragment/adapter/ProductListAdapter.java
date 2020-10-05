@@ -11,6 +11,8 @@ import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import androidx.annotation.NonNull;
 import me.teenyda.fruit_store.R;
+import me.teenyda.fruit_store.model.classify.info.ProductInfoActivity;
+import me.teenyda.fruit_store.model.myself.information.InfoAct;
 
 /**
  * author: teenyda
@@ -39,6 +41,13 @@ public class ProductListAdapter extends XRecyclerView.Adapter<ProductListAdapter
                 .override(400, 400)
                 .centerCrop()
                 .into(holder.product_img);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ProductInfoActivity.startActivity(mContext);
+            }
+        });
     }
 
     @Override
