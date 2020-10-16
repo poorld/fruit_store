@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 29
     defaultConfig {
-        applicationId "me.teenyda.mvp_template"
+        applicationId "me.teenyda.fruit"
         minSdkVersion 23
         targetSdkVersion 28
         versionCode 1
