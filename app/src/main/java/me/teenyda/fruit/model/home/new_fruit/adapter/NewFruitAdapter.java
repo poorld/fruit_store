@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.List;
 
@@ -20,6 +21,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import me.teenyda.fruit.R;
 import me.teenyda.fruit.common.entity.DataBean;
+import me.teenyda.fruit.common.utils.GlideApp;
+
+import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
 /**
  * A simple pager adapter that represents 5 ScreenSlidePageFragment objects, in
@@ -45,8 +49,12 @@ public class NewFruitAdapter extends RecyclerView.Adapter<NewFruitAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         DataBean dataBean = mDataBeans.get(position);
-        Glide.with(mContext)
+        GlideApp.with(mContext)
                 .load(mContext.getDrawable(dataBean.imageRes))
+                .override(400, 800)
+                .skipMemoryCache(true)                      //禁止Glide内存缓存
+                .diskCacheStrategy(DiskCacheStrategy.NONE)  //不缓存资源
+                .transition(withCrossFade())
                 .into(holder.new_iv_fruit_img);
     }
 

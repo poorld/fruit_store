@@ -37,7 +37,7 @@ public class OrderListFragment extends MvpRxFragment<IOrderListView, OrderListPr
     }
 
     @Override
-    protected void baseInitializer() {
+    protected void initData() {
 
     }
 
@@ -47,7 +47,7 @@ public class OrderListFragment extends MvpRxFragment<IOrderListView, OrderListPr
     }
 
     @Override
-    protected void viewInitializer() {
+    protected void initView() {
         binder = ButterKnife.bind(this, mView);
 
         xrv.setLayoutManager(new LinearLayoutManager(getMContext()));
@@ -55,7 +55,7 @@ public class OrderListFragment extends MvpRxFragment<IOrderListView, OrderListPr
     }
 
     @Override
-    protected void doBuseness() {
+    protected void requestData() {
 
     }
 

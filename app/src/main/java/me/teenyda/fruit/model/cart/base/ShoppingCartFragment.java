@@ -50,7 +50,7 @@ public class ShoppingCartFragment extends MvpRxFragment<IShoppingCartView, Shopp
     }
 
     @Override
-    protected void baseInitializer() {
+    protected void initData() {
 
     }
 
@@ -60,7 +60,7 @@ public class ShoppingCartFragment extends MvpRxFragment<IShoppingCartView, Shopp
     }
 
     @Override
-    protected void viewInitializer() {
+    protected void initView() {
         ButterKnife.bind(this, mView);
 
         setTitleShow(false, "购物车", false);
@@ -113,7 +113,7 @@ public class ShoppingCartFragment extends MvpRxFragment<IShoppingCartView, Shopp
     }
 
     @Override
-    protected void doBuseness() {
+    protected void requestData() {
 
     }
 

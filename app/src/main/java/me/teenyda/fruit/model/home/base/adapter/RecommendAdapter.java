@@ -5,11 +5,13 @@ import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import me.teenyda.fruit.R;
+import me.teenyda.fruit.common.utils.GlideApp;
 
 /**
  * author: teenyda
@@ -37,6 +39,11 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecommendAdapter.View
 
         holder.tv_market_price.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG );
         holder.tv_market_price.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG |Paint.ANTI_ALIAS_FLAG);
+        GlideApp.with(mContext)
+                .load(mContext.getDrawable(R.drawable.show_apple))
+                .override(50, 50)
+                .centerCrop()
+                .into(holder.recomm_iv);
     }
 
     @Override
@@ -47,10 +54,12 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecommendAdapter.View
     class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView tv_market_price;
+        ImageView recomm_iv;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_market_price = itemView.findViewById(R.id.tv_market_price);
+            recomm_iv = itemView.findViewById(R.id.recomm_iv);
         }
     }
 }

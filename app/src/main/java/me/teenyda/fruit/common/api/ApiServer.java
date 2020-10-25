@@ -17,7 +17,7 @@ import retrofit2.http.Part;
 /**
  * author: teenyda
  * date: 2019/8/21
- * description:
+ * description: 已废弃
  */
 public interface ApiServer {
 

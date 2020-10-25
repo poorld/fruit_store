@@ -30,6 +30,8 @@ public abstract class MvpRxFragment<V extends BaseView, P extends BaseRxPresente
         super.onViewCreated(view, savedInstanceState);
         mPresenter = createPresenter();
         mPresenter.attachView(this);
+
+        requestData();
     }
 
     @Override

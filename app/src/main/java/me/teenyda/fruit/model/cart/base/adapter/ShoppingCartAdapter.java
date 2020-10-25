@@ -14,6 +14,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import me.teenyda.fruit.R;
 import me.teenyda.fruit.common.entity.Cart;
+import me.teenyda.fruit.common.utils.GlideApp;
 import me.teenyda.fruit.common.utils.ToolUtils;
 
 /**
@@ -91,11 +92,17 @@ public class ShoppingCartAdapter extends XRecyclerView.Adapter<ShoppingCartAdapt
                     notifyDataSetChanged();
                 }
             });
+
+            GlideApp.with(mContext)
+                    .load(mContext.getDrawable(R.drawable.product02))
+                    .override(60, 60)
+                    .into(holder.iv_cart_fruit_img);
         }
     }
 
     private double compuatePrice() {
         if (mCarts != null) {
+
             double totalPrice = 0;
             selectAll = true;
 

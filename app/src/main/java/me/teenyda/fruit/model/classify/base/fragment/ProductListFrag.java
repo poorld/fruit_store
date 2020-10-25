@@ -4,11 +4,15 @@ import android.content.Context;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
+import java.util.List;
+
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import me.teenyda.fruit.R;
+import me.teenyda.fruit.common.entity.ProductCategory;
+import me.teenyda.fruit.common.entity.SimpleProductEntity;
 import me.teenyda.fruit.common.mvp.MvpRxFragment;
 import me.teenyda.fruit.model.classify.base.fragment.adapter.ProductListAdapter;
 import me.teenyda.fruit.model.classify.base.fragment.presenter.ProductListPresenter;
@@ -26,8 +30,12 @@ public class ProductListFrag extends MvpRxFragment<IProductListView, ProductList
 
     private Unbinder binder;
 
-    public static ProductListFrag getInstance() {
+    private ProductCategory mCategory;
+    private ProductListAdapter mAdapter;
+
+    public static ProductListFrag getInstance(ProductCategory category) {
         ProductListFrag frag = new ProductListFrag();
+        frag.mCategory = category;
         return frag;
     }
 
@@ -37,7 +45,7 @@ public class ProductListFrag extends MvpRxFragment<IProductListView, ProductList
     }
 
     @Override
-    protected void baseInitializer() {
+    protected void initData() {
 
     }
 
@@ -47,20 +55,26 @@ public class ProductListFrag extends MvpRxFragment<IProductListView, ProductList
     }
 
     @Override
-    protected void viewInitializer() {
+    protected void initView() {
         binder = ButterKnife.bind(this, mView);
 
         xrv.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-        xrv.setAdapter(new ProductListAdapter(getMContext()));
+        mAdapter = new ProductListAdapter(getMContext());
+        xrv.setAdapter(mAdapter);
     }
 
     @Override
-    protected void doBuseness() {
-
+    protected void requestData() {
+        mPresenter.getProductByCategoryId(mCategory.getProductCategoryId());
     }
 
     @Override
     public Context getMContext() {
         return getContext();
+    }
+
+    @Override
+    public void setProductList(List<SimpleProductEntity> productList) {
+        mAdapter.addProducts(productList);
     }
 }

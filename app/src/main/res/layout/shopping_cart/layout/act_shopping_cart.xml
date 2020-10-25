@@ -36,7 +36,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:background="@color/c_ffffff">
 
         <LinearLayout
@@ -46,8 +46,8 @@
 
             <ImageView
                 android:id="@+id/iv_cart_select_all"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="15dp"
                 android:src="@drawable/selector_cart_checkbox"/>
@@ -74,7 +74,7 @@
             android:gravity="center"
             android:text="结算"
             android:textColor="@color/c_ffffff"
-            android:textSize="18sp"
+            android:textSize="13sp"
             android:background="@color/c_fa7863"/>
 
 

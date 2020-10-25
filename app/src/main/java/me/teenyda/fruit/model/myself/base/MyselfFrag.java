@@ -39,7 +39,7 @@ public class MyselfFrag extends MvpRxFragment<IMySelfV, MyselfP> implements IMyS
     }
 
     @Override
-    protected void baseInitializer() {
+    protected void initData() {
 
     }
 
@@ -49,7 +49,7 @@ public class MyselfFrag extends MvpRxFragment<IMySelfV, MyselfP> implements IMyS
     }
 
     @Override
-    protected void viewInitializer() {
+    protected void initView() {
         ButterKnife.bind(this, mView);
         Shimmer shimmer = new Shimmer.AlphaHighlightBuilder()
                 // 设置闪一次2秒
@@ -84,7 +84,7 @@ public class MyselfFrag extends MvpRxFragment<IMySelfV, MyselfP> implements IMyS
     }
 
     @Override
-    protected void doBuseness() {
+    protected void requestData() {
 
     }
 

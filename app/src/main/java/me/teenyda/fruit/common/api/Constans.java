@@ -10,7 +10,7 @@ public class Constans {
 
 //    public final static  String BaseUrl = "http://120.78.186.81/api/";
 //    public final static  String BaseUrl = "http://192.168.43.93:9000/api/app/";
-    public final static  String BaseUrl = "http://192.168.1.22:9000/api/app/";
+    public final static  String BaseUrl = "http://172.20.74.110:9000/api/app/";
 
     public final static  String retrofit = "values/5";
     public final static  String retrofitList = "values";

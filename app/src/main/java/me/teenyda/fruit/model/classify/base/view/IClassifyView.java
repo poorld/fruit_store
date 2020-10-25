@@ -1,5 +1,8 @@
 package me.teenyda.fruit.model.classify.base.view;
 
+import java.util.List;
+
+import me.teenyda.fruit.common.entity.ProductCategory;
 import me.teenyda.fruit.common.mvp.BaseView;
 
 /**
@@ -8,4 +11,6 @@ import me.teenyda.fruit.common.mvp.BaseView;
  * description:
  */
 public interface IClassifyView extends BaseView {
+
+    void setProductCategory(List<ProductCategory> categorys);
 }

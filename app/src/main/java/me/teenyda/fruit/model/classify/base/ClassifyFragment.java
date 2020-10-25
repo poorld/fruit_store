@@ -5,8 +5,10 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.flyco.tablayout.SlidingTabLayout;
+import com.flyco.tablayout.listener.OnTabSelectListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
@@ -18,6 +20,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import me.teenyda.fruit.R;
+import me.teenyda.fruit.common.entity.ProductCategory;
 import me.teenyda.fruit.common.mvp.MvpRxFragment;
 import me.teenyda.fruit.model.classify.base.fragment.ProductListFrag;
 import me.teenyda.fruit.model.classify.base.presenter.ClassifyPresenter;
@@ -29,7 +32,7 @@ import me.teenyda.fruit.model.classify.info.ProductInfoActivity;
  * date: 2020/9/9
  * description:
  */
-public class ClassifyFragment extends MvpRxFragment<IClassifyView, ClassifyPresenter> {
+public class ClassifyFragment extends MvpRxFragment<IClassifyView, ClassifyPresenter> implements IClassifyView {
 
     @BindView(R.id.stl)
     SlidingTabLayout tabLayout;
@@ -49,10 +52,7 @@ public class ClassifyFragment extends MvpRxFragment<IClassifyView, ClassifyPrese
 
     private ArrayList<Fragment> mFragments = new ArrayList<>();
 
-    private final String[] mTitles = {
-            "热门", "iOS", "Android"
-            , "前端", "后端", "设计", "工具资源"
-    };
+    private String[] mTitles = { };
 
     @Override
     protected ClassifyPresenter createPresenter() {
@@ -60,7 +60,7 @@ public class ClassifyFragment extends MvpRxFragment<IClassifyView, ClassifyPrese
     }
 
     @Override
-    protected void baseInitializer() {
+    protected void initData() {
 
     }
 
@@ -70,23 +70,13 @@ public class ClassifyFragment extends MvpRxFragment<IClassifyView, ClassifyPrese
     }
 
     @Override
-    protected void viewInitializer() {
+    protected void initView() {
         mBind = ButterKnife.bind(this, mView);
-
-        for (String title : mTitles) {
-            mFragments.add(ProductListFrag.getInstance());
-        }
-
-
-        mAdapter = new MyPagerAdapter(getFragmentManager());
-        vp.setAdapter(mAdapter);
-
-        tabLayout.setViewPager(vp);
     }
 
     @Override
-    protected void doBuseness() {
-
+    protected void requestData() {
+        mPresenter.getProductCategory();
     }
 
     @OnClick({R.id.product_search})
@@ -101,6 +91,34 @@ public class ClassifyFragment extends MvpRxFragment<IClassifyView, ClassifyPrese
     @Override
     public Context getMContext() {
         return getContext();
+    }
+
+    @Override
+    public void setProductCategory(List<ProductCategory> categorys) {
+        mTitles = new String[categorys.size()];
+        for (int i = 0; i < categorys.size(); i++) {
+            ProductCategory category = categorys.get(i);
+            mTitles[i] = category.getName();
+            mFragments.add(ProductListFrag.getInstance(category));
+        }
+
+        mAdapter = new MyPagerAdapter(getFragmentManager());
+        vp.setAdapter(mAdapter);
+
+        tabLayout.setViewPager(vp);
+
+        tabLayout.setOnTabSelectListener(new OnTabSelectListener() {
+            @Override
+            public void onTabSelect(int position) {
+                ProductListFrag frag = (ProductListFrag) mFragments.get(position);
+            }
+
+            @Override
+            public void onTabReselect(int position) {
+
+            }
+        });
+
     }
 
     private class MyPagerAdapter extends FragmentPagerAdapter {

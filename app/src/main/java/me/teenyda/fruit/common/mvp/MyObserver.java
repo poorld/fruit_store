@@ -8,6 +8,8 @@ import android.net.NetworkInfo;
 import android.widget.Toast;
 
 import io.reactivex.disposables.Disposable;
+import me.teenyda.fruit.R;
+import me.teenyda.fruit.common.view.popupview.CustomProgressDialog;
 
 /**
  * Observer加入加载框
@@ -15,7 +17,7 @@ import io.reactivex.disposables.Disposable;
  */
 public abstract class MyObserver<T> extends BaseObserver<T> {
     private boolean mShowDialog;
-    private ProgressDialog dialog;
+    private CustomProgressDialog mDialog;
     private Context mContext;
     private Disposable d;
 
@@ -37,10 +39,10 @@ public abstract class MyObserver<T> extends BaseObserver<T> {
                 d.dispose();
             }
         } else {
-            if (dialog == null && mShowDialog == true) {
-                dialog = new ProgressDialog(mContext);
-                dialog.setMessage("正在加载中");
-                dialog.show();
+            if (mDialog == null && mShowDialog == true) {
+                mDialog = CustomProgressDialog.getInstance(mContext, R.drawable.anmi_loading);;
+                // mDialog.setMessage("正在加载中");
+                mDialog.show();
             }
         }
     }
@@ -64,9 +66,9 @@ public abstract class MyObserver<T> extends BaseObserver<T> {
 
 
     public void hidDialog() {
-        if (dialog != null && mShowDialog == true)
-            dialog.dismiss();
-        dialog = null;
+        if (mDialog != null && mShowDialog)
+            mDialog.dismiss();
+        mDialog = null;
     }
     /**
      * 是否有网络连接，不管是wifi还是数据流量

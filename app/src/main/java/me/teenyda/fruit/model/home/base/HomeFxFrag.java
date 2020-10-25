@@ -69,7 +69,7 @@ public class HomeFxFrag extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
     }
 
     @Override
-    protected void baseInitializer() {
+    protected void initData() {
 
     }
 
@@ -79,7 +79,7 @@ public class HomeFxFrag extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
     }
 
     @Override
-    protected void viewInitializer() {
+    protected void initView() {
         mBind = ButterKnife.bind(this, mView);
         setStatusBarTran(false, true);
 
@@ -117,10 +117,10 @@ public class HomeFxFrag extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
                 NewFruit2Activity.startActivity(getMContext());
                 break;
             case R.id.hot_fruit_rl:
-                mDialog.show();
-                Book book = new Book();
-                book.setBookName("gg");
-                mPresenter.addBoos(book);
+                // mDialog.show();
+                // Book book = new Book();
+                // book.setBookName("gg");
+                // mPresenter.addBoos(book);
                 break;
             case R.id.seconds_kill_rl:
                 SecondKillActivity.startActivity(getMContext());
@@ -131,7 +131,7 @@ public class HomeFxFrag extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
 
 
     @Override
-    protected void doBuseness() {
+    protected void requestData() {
 
     }
 

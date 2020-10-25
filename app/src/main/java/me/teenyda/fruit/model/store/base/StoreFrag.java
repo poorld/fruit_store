@@ -21,7 +21,7 @@ public class StoreFrag extends MvpRxFragment<IStoreV, StoreP> implements IStoreV
     }
 
     @Override
-    protected void baseInitializer() {
+    protected void initData() {
 
     }
 
@@ -31,12 +31,12 @@ public class StoreFrag extends MvpRxFragment<IStoreV, StoreP> implements IStoreV
     }
 
     @Override
-    protected void viewInitializer() {
+    protected void initView() {
 //        StatusBarUtil.setTranslucentForImageView((Activity) getMContext(), 0, mViewNeedOffset);
     }
 
     @Override
-    protected void doBuseness() {
+    protected void requestData() {
 
     }
 

@@ -20,6 +20,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
  * author: teenyda
  * date: 2019/8/21
  * @description: 初始化Retofit、OkHttpClient，加入拦截器
+ * 已废弃
  */
 public class ApiRetrofit {
 

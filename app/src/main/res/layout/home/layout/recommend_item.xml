@@ -10,8 +10,7 @@
     <ImageView
         android:id="@+id/recomm_iv"
         android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/show_apple"/>
+        android:layout_height="50dp"/>
 
     <LinearLayout
         android:layout_marginLeft="5dp"

@@ -8,6 +8,8 @@ import me.teenyda.fruit.common.entity.Bean;
 import me.teenyda.fruit.common.entity.Book;
 import me.teenyda.fruit.common.entity.Demo;
 import me.teenyda.fruit.common.entity.FileUploadResponse;
+import me.teenyda.fruit.common.entity.ProductCategory;
+import me.teenyda.fruit.common.entity.SimpleProductEntity;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -55,16 +57,34 @@ public interface ApiUrl {
     @POST("fruit/book")
     Observable<BaseResponse<String>> addBook(@Body Book book);
 
+    /**
+     * 单个文件上传
+     */
     @Multipart
     @POST("file/upload")
     Observable<BaseResponse<FileUploadResponse>> uploadImage(@Part MultipartBody.Part file,
                                                              @Part("file") RequestBody requestBody);
 
-
+    /**
+     * 多个文件上传
+     */
     @Multipart
     @POST("file/multipleFiles")
     Observable<BaseResponse<List<FileUploadResponse>>> uploadImages(@Part List<MultipartBody.Part> files,
                                                              @Part("files") RequestBody requestBody);
+
+
+    /**
+     * 商品分类
+     */
+    @GET("fruit/category")
+    Observable<BaseResponse<List<ProductCategory>>> category();
+
+    /**
+     * 根据分类获取商品
+     */
+    @GET("fruit/product/list/simple/category/{categoryId}")
+    Observable<BaseResponse<List<SimpleProductEntity>>> productByCategory(@Path("categoryId") Integer categoryId);
 
     /**
      * TODO Get请求

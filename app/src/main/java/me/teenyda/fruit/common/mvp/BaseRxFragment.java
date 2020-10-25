@@ -27,24 +27,24 @@ public abstract class BaseRxFragment extends RxFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        baseInitializer();
+        initData();
 
         mView = LayoutInflater.from(getContext()).inflate(setR_layout(), container, false);
 
-        viewInitializer();
+        initView();
 
-        doBuseness();
+        // requestData();
 
         return mView;
     }
 
-    protected abstract void baseInitializer();
+    protected abstract void initData();
 
     protected abstract int setR_layout();
 
-    protected abstract void viewInitializer();
+    protected abstract void initView();
 
-    protected abstract void doBuseness();
+    protected abstract void requestData();
 
     /**
      * 状态栏设置透明

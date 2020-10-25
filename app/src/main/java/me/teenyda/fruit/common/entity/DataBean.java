@@ -96,7 +96,7 @@ public class DataBean {
         list.add(new DataBean("https://img.zcool.cn/community/01270156fb62fd6ac72579485aa893.jpg", null, 1));
         list.add(new DataBean("https://img.zcool.cn/community/01233056fb62fe32f875a9447400e1.jpg", null, 1));
         list.add(new DataBean("https://img.zcool.cn/community/016a2256fb63006ac7257948f83349.jpg", null, 1));
-        list.add(new DataBean(Constans.BaseUrl +  "/file/downloadFile/f4e06b38cede40a78bcb645bb12ba4ad.jpg", null, 1));
+        list.add(new DataBean(Constans.BaseUrl +  "/file/downloadFile/f28407a9111145708d77d6e2909795b7.jpg", null, 1));
         return list;
     }
 
