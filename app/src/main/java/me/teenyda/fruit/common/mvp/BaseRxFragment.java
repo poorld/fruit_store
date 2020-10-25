@@ -33,7 +33,7 @@ public abstract class BaseRxFragment extends RxFragment {
 
         initView();
 
-        // requestData();
+        requestData();
 
         return mView;
     }

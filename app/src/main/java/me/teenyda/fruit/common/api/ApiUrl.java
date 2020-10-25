@@ -8,6 +8,7 @@ import me.teenyda.fruit.common.entity.Bean;
 import me.teenyda.fruit.common.entity.Book;
 import me.teenyda.fruit.common.entity.Demo;
 import me.teenyda.fruit.common.entity.FileUploadResponse;
+import me.teenyda.fruit.common.entity.Product;
 import me.teenyda.fruit.common.entity.ProductCategory;
 import me.teenyda.fruit.common.entity.SimpleProductEntity;
 import okhttp3.MultipartBody;
@@ -85,6 +86,13 @@ public interface ApiUrl {
      */
     @GET("fruit/product/list/simple/category/{categoryId}")
     Observable<BaseResponse<List<SimpleProductEntity>>> productByCategory(@Path("categoryId") Integer categoryId);
+
+    /**
+     * 获取商品信息
+     */
+    @GET("v1/fruit/product/{productId}")
+    Observable<BaseResponse<Product>> getProduct(@Path("productId") Integer productId);
+
 
     /**
      * TODO Get请求

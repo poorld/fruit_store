@@ -51,15 +51,15 @@ public abstract class BaseActivity extends RxAppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        baseInitializer();
+        initData();
         registerBroadcart();
         mView = LayoutInflater.from(this).inflate(setR_layout(), null);
         setContentView(mView);
         //默认是有工具栏(Toolbar)，状态栏颜色是主题颜色
         setStatusBarTran(true, false);
         ActivityManager.getAppManager().addActivity(this);
-        viewInitializer();
-        doBuseness();
+        initView();
+        requestData();
     }
 
 
@@ -129,13 +129,13 @@ public abstract class BaseActivity extends RxAppCompatActivity {
         return context.getResources().getDimensionPixelSize(resourceId);
     }
 
-    protected abstract void baseInitializer();
+    protected abstract void initData();
 
     protected abstract int setR_layout();
 
-    protected abstract void viewInitializer();
+    protected abstract void initView();
 
-    protected abstract void doBuseness();
+    protected abstract void requestData();
 
     private void registerBroadcart() {
 

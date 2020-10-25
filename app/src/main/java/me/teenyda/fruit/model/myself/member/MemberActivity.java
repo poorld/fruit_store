@@ -38,7 +38,7 @@ public class MemberActivity extends MvpActivity<IMemberView, MemberPresenter> im
     }
 
     @Override
-    protected void baseInitializer() {
+    protected void initData() {
 
     }
 
@@ -48,7 +48,7 @@ public class MemberActivity extends MvpActivity<IMemberView, MemberPresenter> im
     }
 
     @Override
-    protected void viewInitializer() {
+    protected void initView() {
         ButterKnife.bind(this);
         setStatusBarTran(false, true);
         member_banner.setAdapter(new MemberAdapter(DataBean.getMemberData(), getMContext()));
@@ -61,7 +61,7 @@ public class MemberActivity extends MvpActivity<IMemberView, MemberPresenter> im
     }
 
     @Override
-    protected void doBuseness() {
+    protected void requestData() {
 
     }
 

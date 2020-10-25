@@ -27,7 +27,7 @@ public class WalletActivity extends MvpActivity<IWalletView, WalletPresenter> im
     }
 
     @Override
-    protected void baseInitializer() {
+    protected void initData() {
 
     }
 
@@ -37,14 +37,14 @@ public class WalletActivity extends MvpActivity<IWalletView, WalletPresenter> im
     }
 
     @Override
-    protected void viewInitializer() {
+    protected void initView() {
         setBack();
         setTitleShow(true, "钱包", false);
         setStatusBarTran(true, true);
     }
 
     @Override
-    protected void doBuseness() {
+    protected void requestData() {
 
     }
 

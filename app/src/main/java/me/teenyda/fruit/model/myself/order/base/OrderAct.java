@@ -52,7 +52,7 @@ public class OrderAct extends MvpActivity<IOrderView, OrderPresenter> implements
     }
 
     @Override
-    protected void baseInitializer() {
+    protected void initData() {
 
     }
 
@@ -62,7 +62,7 @@ public class OrderAct extends MvpActivity<IOrderView, OrderPresenter> implements
     }
 
     @Override
-    protected void viewInitializer() {
+    protected void initView() {
 
         ButterKnife.bind(this, mView);
 
@@ -81,7 +81,7 @@ public class OrderAct extends MvpActivity<IOrderView, OrderPresenter> implements
     }
 
     @Override
-    protected void doBuseness() {
+    protected void requestData() {
 
     }
 

@@ -408,16 +408,14 @@
                                 android:id="@+id/iv_comments1"
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
-                                android:scaleType="fitXY"
-                                android:src="@drawable/comments1"/>
+                                android:scaleType="fitXY"/>
 
                             <ImageView
                                 android:id="@+id/iv_comments2"
                                 android:layout_marginStart="10dp"
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
-                                android:scaleType="fitXY"
-                                android:src="@drawable/comments2"/>
+                                android:scaleType="fitXY"/>
                         </LinearLayout>
 
                         <LinearLayout

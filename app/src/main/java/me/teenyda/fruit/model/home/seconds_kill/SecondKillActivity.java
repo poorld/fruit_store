@@ -44,7 +44,7 @@ public class SecondKillActivity extends MvpActivity<ISecondKillView, SecondKillP
     }
 
     @Override
-    protected void baseInitializer() {
+    protected void initData() {
 
     }
 
@@ -54,16 +54,16 @@ public class SecondKillActivity extends MvpActivity<ISecondKillView, SecondKillP
     }
 
     @Override
-    protected void viewInitializer() {
+    protected void initView() {
         ButterKnife.bind(this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getMContext());
 
         seconds_kill_xrv.setLayoutManager(linearLayoutManager);
         // seconds_kill_xrv.setAdapter(mAdapter = new SecondKillAdapter(getMContext(), initData()));
-        seconds_kill_xrv.setAdapter(new SBAdapter(getMContext(), initData()));
+        seconds_kill_xrv.setAdapter(new SBAdapter(getMContext(), initFruit()));
     }
 
-    private List<KillFruit> initData() {
+    private List<KillFruit> initFruit() {
         List<KillFruit> fruits = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             KillFruit f = new KillFruit("水果", CalendarsUtils.nextHour(i));
@@ -73,7 +73,7 @@ public class SecondKillActivity extends MvpActivity<ISecondKillView, SecondKillP
     }
 
     @Override
-    protected void doBuseness() {
+    protected void requestData() {
 
     }
 

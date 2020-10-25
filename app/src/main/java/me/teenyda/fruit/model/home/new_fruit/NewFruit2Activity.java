@@ -39,7 +39,7 @@ public class NewFruit2Activity extends MvpActivity<INewFruitView, NewFruitPresen
     }
 
     @Override
-    protected void baseInitializer() {
+    protected void initData() {
 
     }
 
@@ -49,7 +49,7 @@ public class NewFruit2Activity extends MvpActivity<INewFruitView, NewFruitPresen
     }
 
     @Override
-    protected void viewInitializer() {
+    protected void initView() {
         ButterKnife.bind(this);
         setStatusBarTran(true, true);
         setBack();
@@ -62,7 +62,7 @@ public class NewFruit2Activity extends MvpActivity<INewFruitView, NewFruitPresen
     }
 
     @Override
-    protected void doBuseness() {
+    protected void requestData() {
 
     }
 

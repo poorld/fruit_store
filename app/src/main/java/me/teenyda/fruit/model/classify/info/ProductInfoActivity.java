@@ -3,6 +3,7 @@ package me.teenyda.fruit.model.classify.info;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -24,7 +25,9 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import me.teenyda.fruit.R;
 import me.teenyda.fruit.common.entity.DataBean;
+import me.teenyda.fruit.common.entity.Product;
 import me.teenyda.fruit.common.mvp.MvpActivity;
+import me.teenyda.fruit.common.utils.GlideApp;
 import me.teenyda.fruit.common.view.popupview.PopViewProductImg;
 import me.teenyda.fruit.common.view.popupview.PopupSpecifications;
 import me.teenyda.fruit.common.viewholder.MultipleTypesAdapter;
@@ -66,8 +69,12 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
     TextView tv_product_buy;
     private PopupSpecifications mSpecifications;
 
-    public static void startActivity(Context context) {
+    public static void startActivity(Context context, Integer productId) {
         Intent intent = new Intent(context, ProductInfoActivity.class);
+        // intent.putExtra("productId", productId);
+        Bundle bundle = new Bundle();
+        bundle.putInt("productId", productId);
+        intent.putExtras(bundle);
         context.startActivity(intent);
 
     }
@@ -78,7 +85,7 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
     }
 
     @Override
-    protected void baseInitializer() {
+    protected void initData() {
 
     }
 
@@ -88,7 +95,7 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
     }
 
     @Override
-    protected void viewInitializer() {
+    protected void initView() {
         mBind = ButterKnife.bind(this);
 
         // StatusBarUtil.setColor(this, getColor(R.color.ColorstatusBar));
@@ -104,36 +111,7 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
 
         sfl.startShimmer();
 
-        mBanner.setAdapter(new MultipleTypesAdapter(this, DataBean.getTestDataVideo()))
-                .setIndicator(new NumIndicator(this))
-                .setIndicatorGravity(IndicatorConfig.Direction.RIGHT)
-                .addOnPageChangeListener(new OnPageChangeListener() {
-                    @Override
-                    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-                    }
-
-                    @Override
-                    public void onPageSelected(int position) {
-                        Log.e("--","position:"+position);
-                        if (player == null) {
-                            RecyclerView.ViewHolder viewHolder = mBanner.getAdapter().getViewHolder();
-                            if (viewHolder instanceof VideoHolder) {
-                                VideoHolder holder = (VideoHolder) viewHolder;
-                                player = holder.player;
-                            }
-                            return;
-                        }
-                        if (position != 0) {
-                            player.onVideoReset();
-                        }
-                    }
-
-                    @Override
-                    public void onPageScrollStateChanged(int state) {
-
-                    }
-                });
 
         LinearLayoutManager manager = new LinearLayoutManager(getMContext());
         product_info_rv.setLayoutManager(manager);
@@ -141,7 +119,7 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
         product_info_rv.setAdapter(adapter);
         product_info_rv.setNestedScrollingEnabled(false);
 
-        Glide.with(getMContext())
+        GlideApp.with(getMContext())
                 .load(R.drawable.comments1)
                 .override(100, 100)
                 .into(iv_comments1);
@@ -172,8 +150,11 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
     }
 
     @Override
-    protected void doBuseness() {
-
+    protected void requestData() {
+        Integer productId =  getIntent().getExtras().getInt("productId");
+        // String productId = getIntent().getStringExtra("");
+        // showToast(productId.toString());
+        mPresenter.getProduct(productId);
     }
 
     @Override
@@ -207,5 +188,39 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
         if (player != null)
             player.setVideoAllCallBack(null);
         super.onBackPressed();
+    }
+
+    @Override
+    public void setProduct(Product product) {
+        mBanner.setAdapter(new MultipleTypesAdapter(this, product.getProductBannerImages()))
+                .setIndicator(new NumIndicator(this))
+                .setIndicatorGravity(IndicatorConfig.Direction.RIGHT)
+                .addOnPageChangeListener(new OnPageChangeListener() {
+                    @Override
+                    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                    }
+
+                    @Override
+                    public void onPageSelected(int position) {
+                        Log.e("--","position:"+position);
+                        if (player == null) {
+                            RecyclerView.ViewHolder viewHolder = mBanner.getAdapter().getViewHolder();
+                            if (viewHolder instanceof VideoHolder) {
+                                VideoHolder holder = (VideoHolder) viewHolder;
+                                player = holder.player;
+                            }
+                            return;
+                        }
+                        if (position != 0) {
+                            player.onVideoReset();
+                        }
+                    }
+
+                    @Override
+                    public void onPageScrollStateChanged(int state) {
+
+                    }
+                });
     }
 }

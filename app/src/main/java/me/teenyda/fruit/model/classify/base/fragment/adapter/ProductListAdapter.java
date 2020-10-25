@@ -69,7 +69,7 @@ public class ProductListAdapter extends XRecyclerView.Adapter<ProductListAdapter
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ProductInfoActivity.startActivity(mContext);
+                ProductInfoActivity.startActivity(mContext, product.getProductId());
             }
         });
     }

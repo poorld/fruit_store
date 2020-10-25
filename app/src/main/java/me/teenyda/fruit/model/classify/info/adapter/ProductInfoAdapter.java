@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import me.teenyda.fruit.R;
 import me.teenyda.fruit.common.entity.DataBean;
+import me.teenyda.fruit.common.utils.GlideApp;
 
 /**
  * author: teenyda
@@ -42,7 +43,7 @@ public class ProductInfoAdapter extends RecyclerView.Adapter<ProductInfoAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         DataBean dataBean = mDataBeans.get(position);
         String imageUrl = dataBean.imageUrl;
-        Glide.with(mContext).load(imageUrl)
+        GlideApp.with(mContext).load(imageUrl)
                 .override(780, 960)
                 .into(holder.image);
 

@@ -37,7 +37,7 @@ public class SettlementActicity extends MvpActivity<ISettlementView, SettlementP
     }
 
     @Override
-    protected void baseInitializer() {
+    protected void initData() {
 
     }
 
@@ -57,14 +57,14 @@ public class SettlementActicity extends MvpActivity<ISettlementView, SettlementP
     }
 
     @Override
-    protected void viewInitializer() {
+    protected void initView() {
         ButterKnife.bind(this);
 
         mPopupPayment = new PopupPayment(getMContext());
     }
 
     @Override
-    protected void doBuseness() {
+    protected void requestData() {
 
     }
 

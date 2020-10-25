@@ -34,7 +34,7 @@ public class LoginAct extends MvpActivity<ILoginV, LoginP> implements ILoginV{
     }
 
     @Override
-    protected void baseInitializer() {
+    protected void initData() {
 
     }
 
@@ -44,7 +44,7 @@ public class LoginAct extends MvpActivity<ILoginV, LoginP> implements ILoginV{
     }
 
     @Override
-    protected void viewInitializer() {
+    protected void initView() {
         setStatusBarTran(false, true);
         login = (TextView) $(R.id.login);
         login_username_et = (EditText) $(R.id.login_username_et);
@@ -59,7 +59,7 @@ public class LoginAct extends MvpActivity<ILoginV, LoginP> implements ILoginV{
     }
 
     @Override
-    protected void doBuseness() {
+    protected void requestData() {
 
     }
 

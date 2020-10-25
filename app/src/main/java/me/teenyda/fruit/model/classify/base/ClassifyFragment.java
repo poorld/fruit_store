@@ -83,7 +83,7 @@ public class ClassifyFragment extends MvpRxFragment<IClassifyView, ClassifyPrese
     public void onClick(View view){
         switch (view.getId()) {
             case R.id.product_search:
-                ProductInfoActivity.startActivity(getMContext());
+                // ProductInfoActivity.startActivity(getMContext());
                 break;
         }
     }

@@ -1,5 +1,6 @@
 package me.teenyda.fruit.model.classify.info.view;
 
+import me.teenyda.fruit.common.entity.Product;
 import me.teenyda.fruit.common.mvp.BaseView;
 
 /**
@@ -8,4 +9,6 @@ import me.teenyda.fruit.common.mvp.BaseView;
  * description:
  */
 public interface IProductInfoView extends BaseView {
+
+    void setProduct(Product product);
 }

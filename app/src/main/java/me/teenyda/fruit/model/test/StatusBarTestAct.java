@@ -11,7 +11,7 @@ import me.teenyda.fruit.common.mvp.BaseActivity;
 public class StatusBarTestAct extends BaseActivity {
 
     @Override
-    protected void baseInitializer() {
+    protected void initData() {
 
     }
 
@@ -21,12 +21,12 @@ public class StatusBarTestAct extends BaseActivity {
     }
 
     @Override
-    protected void viewInitializer() {
+    protected void initView() {
 
     }
 
     @Override
-    protected void doBuseness() {
+    protected void requestData() {
 
     }
 }

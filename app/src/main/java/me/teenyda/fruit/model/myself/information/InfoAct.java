@@ -40,7 +40,7 @@ public class InfoAct extends MvpActivity<IInfoV, InfoPresenter> implements IInfo
     }
 
     @Override
-    protected void baseInitializer() {
+    protected void initData() {
 
     }
 
@@ -50,7 +50,7 @@ public class InfoAct extends MvpActivity<IInfoV, InfoPresenter> implements IInfo
     }
 
     @Override
-    protected void viewInitializer() {
+    protected void initView() {
         ButterKnife.bind(this);
         setStatusBarTran(true, true);
         setBack();
@@ -114,7 +114,7 @@ public class InfoAct extends MvpActivity<IInfoV, InfoPresenter> implements IInfo
 
 
     @Override
-    protected void doBuseness() {
+    protected void requestData() {
 
     }
 

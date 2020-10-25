@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.teenyda.fruit.R;
+import me.teenyda.fruit.common.utils.GlideApp;
 
 /**
  * 图片相框（左右滑动）
@@ -165,8 +166,10 @@ public class PopViewProductImg implements View.OnTouchListener {
 
         tv_iamge_index.setText(flag + 1 + "/" + mRes.size());
 
-        Glide.with(mContext)
+        GlideApp.with(mContext)
                 .load(mRes.get(flag))
+                .override(400, 400)
+                .centerCrop()
                 .into(pro_info_img);
 
 
