@@ -18,6 +18,8 @@ import com.youth.banner.Banner;
 import com.youth.banner.config.IndicatorConfig;
 import com.youth.banner.listener.OnPageChangeListener;
 
+import java.util.List;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
@@ -25,6 +27,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import me.teenyda.fruit.R;
+import me.teenyda.fruit.common.entity.Comments;
 import me.teenyda.fruit.common.entity.Product;
 import me.teenyda.fruit.common.mvp.MvpActivity;
 import me.teenyda.fruit.common.utils.GlideApp;
@@ -70,6 +73,9 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
 
     @BindView(R.id.comments_no_data)
     RelativeLayout comments_no_data;
+
+    @BindView(R.id.comments_data)
+    RelativeLayout comments_data;
 
     private PopupSpecifications mSpecifications;
     private ProductInfoAdapter mInfoAdapter;
@@ -161,6 +167,7 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
         // String productId = getIntent().getStringExtra("");
         // showToast(productId.toString());
         mPresenter.getProduct(productId);
+        mPresenter.getComments(productId);
     }
 
     @Override
@@ -230,5 +237,13 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
                 });
 
         mInfoAdapter.addInfoImage(product.getProductInfoImages());
+    }
+
+    @Override
+    public void setComments(List<Comments> comments) {
+        if (comments.size() == 0) {
+            comments_data.setVisibility(View.GONE);
+            comments_no_data.setVisibility(View.VISIBLE);
+        }
     }
 }

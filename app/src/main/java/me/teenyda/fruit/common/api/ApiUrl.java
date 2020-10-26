@@ -6,6 +6,7 @@ import java.util.Map;
 import io.reactivex.Observable;
 import me.teenyda.fruit.common.entity.Bean;
 import me.teenyda.fruit.common.entity.Book;
+import me.teenyda.fruit.common.entity.Comments;
 import me.teenyda.fruit.common.entity.Demo;
 import me.teenyda.fruit.common.entity.FileUploadResponse;
 import me.teenyda.fruit.common.entity.Product;
@@ -92,6 +93,12 @@ public interface ApiUrl {
      */
     @GET("v1/fruit/product/{productId}")
     Observable<BaseResponse<Product>> getProduct(@Path("productId") Integer productId);
+
+    /**
+     * 获取商品评论
+     */
+    @GET("fruit/comments/product/{productId}")
+    Observable<BaseResponse<List<Comments>>> getComment(@Path("productId") Integer productId);
 
 
     /**
