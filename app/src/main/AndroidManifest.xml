@@ -17,6 +17,7 @@
     <application
         android:name=".common.app.MyApplication"
         android:allowBackup="true"
+        android:usesCleartextTraffic="true"
         android:largeHeap="true"
         android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"

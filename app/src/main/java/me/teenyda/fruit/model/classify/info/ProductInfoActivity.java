@@ -7,9 +7,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
+import com.facebook.shimmer.Shimmer;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
@@ -24,7 +25,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import me.teenyda.fruit.R;
-import me.teenyda.fruit.common.entity.DataBean;
 import me.teenyda.fruit.common.entity.Product;
 import me.teenyda.fruit.common.mvp.MvpActivity;
 import me.teenyda.fruit.common.utils.GlideApp;
@@ -67,6 +67,10 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
 
     @BindView(R.id.tv_product_buy)
     TextView tv_product_buy;
+
+    @BindView(R.id.comments_no_data)
+    RelativeLayout comments_no_data;
+
     private PopupSpecifications mSpecifications;
     private ProductInfoAdapter mInfoAdapter;
 
@@ -99,19 +103,19 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
     protected void initView() {
         mBind = ButterKnife.bind(this);
 
-        // StatusBarUtil.setColor(this, getColor(R.color.ColorstatusBar));
         setTitleShow(true, "商品详情", false);
 
-        /*mBanner.setAdapter(new ImageNetAdapter(DataBean.getTestData3()));
-        mBanner.setBannerRound(BannerUtils.dp2px(5));
-        mBanner.setIndicator(new RoundLinesIndicator(getMContext()));
-        mBanner.setIndicatorSelectedWidth((int) BannerUtils.dp2px(15));*/
-
         mPrice1.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG );
-        mPrice1.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG |Paint.ANTI_ALIAS_FLAG);
+        mPrice1.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
 
+        Shimmer shimmer = new Shimmer.AlphaHighlightBuilder()
+                // 设置闪一次2秒
+                .setRepeatDelay(2000)
+                // 没闪的地方亮一点点
+                .setBaseAlpha(0.5f)
+                .build();
+        sfl.setShimmer(shimmer);
         sfl.startShimmer();
-
 
 
         LinearLayoutManager manager = new LinearLayoutManager(getMContext());

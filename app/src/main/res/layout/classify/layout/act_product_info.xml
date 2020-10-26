@@ -38,7 +38,7 @@
                     android:layout_margin="5dp"
                     android:textColor="@color/c_191919"
                     android:text="陕西优质红提葡萄陕西优质红提葡萄陕西陕西优质优质红提葡萄陕西"
-                    android:textSize="18sp"
+                    android:textSize="17sp"
                     android:ellipsize="end"
                     android:maxLines="2"/>
 
@@ -423,10 +423,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="5dp"
-                            android:background="@drawable/shape_radius_5dp_e5e5e5">
+                            android:background="@drawable/shape_radius_5dp_f6f6f6">
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:textSize="12sp"
                                 android:text="商家回复：亲，可以把鞋子交换一下呢！亲，可以把鞋子交换一下呢！亲，可以把鞋子交换一下呢！亲，可以把鞋子交换一下呢！亲，可以把鞋子交换一下呢！"/>
                         </LinearLayout>
                     </LinearLayout>
@@ -434,7 +435,19 @@
 
 
                 </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/comments_no_data"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp">
 
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/no_data"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"/>
+                </RelativeLayout>
 
             </LinearLayout>
 

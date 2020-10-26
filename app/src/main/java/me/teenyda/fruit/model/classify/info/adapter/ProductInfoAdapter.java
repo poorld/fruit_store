@@ -1,17 +1,22 @@
 package me.teenyda.fruit.model.classify.info.adapter;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.target.DrawableImageViewTarget;
+import com.bumptech.glide.request.transition.Transition;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 import me.teenyda.fruit.R;
 import me.teenyda.fruit.common.entity.DataBean;
@@ -54,7 +59,18 @@ public class ProductInfoAdapter extends RecyclerView.Adapter<ProductInfoAdapter.
                 .load(imageUrl)
                 .override(780, 960)
                 .centerCrop()
-                .into(holder.image);
+                // .into(holder.image);
+                .into(new CustomTarget<Drawable>() {
+                    @Override
+                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                        holder.image.setImageDrawable(resource);
+                    }
+
+                    @Override
+                    public void onLoadCleared(@Nullable Drawable placeholder) {
+
+                    }
+                });
 
     }
 

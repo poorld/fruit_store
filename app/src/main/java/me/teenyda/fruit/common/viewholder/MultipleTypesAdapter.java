@@ -2,17 +2,22 @@ package me.teenyda.fruit.common.viewholder;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.youth.banner.adapter.BannerAdapter;
 import com.youth.banner.util.BannerUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 import me.teenyda.fruit.R;
 import me.teenyda.fruit.common.entity.DataBean;
@@ -67,7 +72,17 @@ public class MultipleTypesAdapter extends BannerAdapter<ProductBannerImage, Recy
                         .load(data.getUrl())
                         .override(600, 400)
                         .centerCrop()
-                        .into(imageHolder.imageView);
+                        .into(new CustomTarget<Drawable>() {
+                            @Override
+                            public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                                imageHolder.imageView.setImageDrawable(resource);
+                            }
+
+                            @Override
+                            public void onLoadCleared(@Nullable Drawable placeholder) {
+
+                            }
+                        });
 
                 break;
             case 2:
@@ -79,7 +94,17 @@ public class MultipleTypesAdapter extends BannerAdapter<ProductBannerImage, Recy
                 ImageView imageView = new ImageView(context);
                 GlideApp.with(context)
                         .load(R.drawable.image4)
-                        .into(imageView);
+                        .into(new CustomTarget<Drawable>() {
+                            @Override
+                            public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                                imageView.setImageDrawable(resource);
+                            }
+
+                            @Override
+                            public void onLoadCleared(@Nullable Drawable placeholder) {
+
+                            }
+                        });
 
                 imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
