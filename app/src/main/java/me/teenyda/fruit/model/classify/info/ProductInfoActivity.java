@@ -3,13 +3,17 @@ package me.teenyda.fruit.model.classify.info;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.facebook.shimmer.Shimmer;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
@@ -18,8 +22,11 @@ import com.youth.banner.Banner;
 import com.youth.banner.config.IndicatorConfig;
 import com.youth.banner.listener.OnPageChangeListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
@@ -55,8 +62,24 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
     @BindView(R.id.video_banner)
     Banner mBanner;
 
-    @BindView(R.id.price1)
-    TextView mPrice1;
+    @BindView(R.id.product_name)
+    TextView product_name;
+
+    @BindView(R.id.price)
+    TextView price;
+
+    @BindView(R.id.shop_price)
+    TextView shop_price;
+
+    @BindView(R.id.user_comments)
+    TextView user_comments;
+
+    @BindView(R.id.business_reply)
+    TextView business_reply;
+
+    @BindView(R.id.username1)
+    TextView username1;
+
 
     @BindView(R.id.sfl)
     ShimmerFrameLayout sfl;
@@ -66,7 +89,15 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
 
     @BindView(R.id.iv_comments1)
     ImageView iv_comments1;
-    private PopViewProductImg mPop;
+
+    @BindView(R.id.iv_comments2)
+    ImageView iv_comments2;
+
+    @BindView(R.id.iv_comments3)
+    ImageView iv_comments3;
+
+
+    private PopViewProductImg mCommentsPop;
 
     @BindView(R.id.tv_product_buy)
     TextView tv_product_buy;
@@ -79,6 +110,7 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
 
     private PopupSpecifications mSpecifications;
     private ProductInfoAdapter mInfoAdapter;
+    private List<String> mUrls;
 
     public static void startActivity(Context context, Integer productId) {
         Intent intent = new Intent(context, ProductInfoActivity.class);
@@ -111,8 +143,9 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
 
         setTitleShow(true, "商品详情", false);
 
-        mPrice1.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG );
-        mPrice1.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
+        // 设置删除线
+        shop_price.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG );
+        shop_price.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
 
         Shimmer shimmer = new Shimmer.AlphaHighlightBuilder()
                 // 设置闪一次2秒
@@ -131,29 +164,32 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
         product_info_rv.setAdapter(mInfoAdapter);
         product_info_rv.setNestedScrollingEnabled(false);
 
-        GlideApp.with(getMContext())
-                .load(R.drawable.comments1)
-                .override(100, 100)
-                .into(iv_comments1);
+        // GlideApp.with(getMContext())
+        //         .load(R.drawable.comments1)
+        //         .override(100, 100)
+        //         .into(iv_comments1);
 
-        mPop = new PopViewProductImg(getMContext());
+        mCommentsPop = new PopViewProductImg(getMContext());
 
         mSpecifications = new PopupSpecifications(getMContext());
 
     }
 
 
-    @OnClick({R.id.iv_comments1, R.id.iv_comments2, R.id.tv_product_buy})
+    @OnClick({R.id.iv_comments1, R.id.iv_comments2, R.id.iv_comments3, R.id.tv_product_buy})
     public void onClick(View view) {
 
 
         // todo 待完善
         switch (view.getId()) {
             case R.id.iv_comments1:
-                mPop.show(view, R.drawable.comments1);
+                mCommentsPop.show(view, 0);
                 break;
             case R.id.iv_comments2:
-                mPop.show(view, R.drawable.comments1);
+                mCommentsPop.show(view, 1);
+                break;
+            case R.id.iv_comments3:
+                mCommentsPop.show(view, 2);
                 break;
             case R.id.tv_product_buy:
                 mSpecifications.show(view);
@@ -237,13 +273,54 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
                 });
 
         mInfoAdapter.addInfoImage(product.getProductInfoImages());
+
+        shop_price.setText(product.getShopPrice().toString());
+        price.setText(product.getPrice().toString());
+        product_name.setText(product.getName());
+
     }
 
     @Override
-    public void setComments(List<Comments> comments) {
-        if (comments.size() == 0) {
+    public void setComments(Comments comments) {
+        if (comments != null) {
+            mUrls = new ArrayList<>();
+
+            setImageView(comments.getImg1(), iv_comments1);
+            setImageView(comments.getImg2(), iv_comments2);
+            setImageView(comments.getImg3(), iv_comments3);
+
+            mCommentsPop.addImgsByUrl(mUrls);
+            username1.setText(comments.getUser().getNickname());
+            user_comments.setText(comments.getContent());
+            business_reply.setText("商家回复" + comments.getReply());
+
+        } else {
             comments_data.setVisibility(View.GONE);
             comments_no_data.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public void setImageView(String url, ImageView iv) {
+        if (!TextUtils.isEmpty(url)) {
+            mUrls.add(url);
+
+            iv.setVisibility(View.VISIBLE);
+
+            GlideApp.with(this)
+                    .load(url)
+                    .override(100, 100)
+                    .centerCrop()
+                    .into(new CustomTarget<Drawable>() {
+                        @Override
+                        public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                            iv.setImageDrawable(resource);
+                        }
+
+                        @Override
+                        public void onLoadCleared(@Nullable Drawable placeholder) {
+
+                        }
+                    });
         }
     }
 }

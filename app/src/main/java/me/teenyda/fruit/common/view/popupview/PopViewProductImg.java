@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.Gravity;
@@ -19,11 +20,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import me.teenyda.fruit.R;
 import me.teenyda.fruit.common.utils.GlideApp;
 
@@ -44,7 +48,7 @@ public class PopViewProductImg implements View.OnTouchListener {
 
     private String res;
 
-    private int flag = -1;
+    private int index = 0;
 
     // 布局主容器
     private RelativeLayout rl_photo_frame;
@@ -62,18 +66,19 @@ public class PopViewProductImg implements View.OnTouchListener {
             float x2 = e2.getX()-e1.getX();
             if(x>FLING_MIN_DISTANCE&&Math.abs(velocityX)>FLING_MIN_VELOCITY){
                 Toast.makeText(mContext, "向左手势", Toast.LENGTH_SHORT).show();
-                chooseImage(true);
+                // 下一张
+                chooseImage(++index);
 
             }else if(x2>FLING_MIN_DISTANCE&&Math.abs(velocityX)>FLING_MIN_VELOCITY){
                 Toast.makeText(mContext, "向右手势", Toast.LENGTH_SHORT).show();
-                chooseImage(false);
+                chooseImage(--index);
             }
 
             return false;
         };
     };
     private GestureDetector mGestureDetector;
-    private List<Integer> mRes;
+    private List<String> mRes;
 
     public PopViewProductImg(Context context) {
         mContext = context;
@@ -122,20 +127,24 @@ public class PopViewProductImg implements View.OnTouchListener {
         rl_photo_frame.setLongClickable(true);   //必需设置这为true 否则也监听不到手势
 
         mRes = new ArrayList<>();
-        mRes.add(R.drawable.bg_monkey_king);
-        mRes.add(R.drawable.comments1);
-        mRes.add(R.drawable.comments2);
-        mRes.add(R.drawable.image4);
-        mRes.add(R.drawable.image7);
-        mRes.add(R.drawable.product01);
-        mRes.add(R.drawable.product_info_bg);
+        // mRes.add(R.drawable.bg_monkey_king);
+        // mRes.add(R.drawable.comments1);
+        // mRes.add(R.drawable.comments2);
+        // mRes.add(R.drawable.image4);
+        // mRes.add(R.drawable.image7);
+        // mRes.add(R.drawable.product01);
+        // mRes.add(R.drawable.product_info_bg);
+    }
+
+    public void addImgsByUrl(List<String> urls) {
+        mRes.addAll(urls);
     }
 
 
 
-    public void show(View v, int drawableId) {
+    public void show(View v, int index) {
 
-        chooseImage(true);
+        chooseImage(index);
 
         // setFocusable 默认是false
         // setFocusable(true)外部和内部都会响应，点击外部就会取消，setOutsideTouchable(false)失效
@@ -151,26 +160,38 @@ public class PopViewProductImg implements View.OnTouchListener {
         backgroundAlpha(0.5f);
     }
 
-    private void chooseImage(boolean left) {
+    private void chooseImage(int i) {
+        index = i;
 
-        if (left)
-            flag++;
-        else
-            flag--;
+        // 向左滑，下一张图
+        // if (left)
+        //     index++;
+        // else
+        //     index--;
 
 
-        if (flag == -1)
-            flag = mRes.size() - 1;
-        else if(flag == mRes.size())
-            flag = 0;
+        if (index <= -1)
+            index = mRes.size() - 1;
+        else if(index >= mRes.size())
+            index = 0;
 
-        tv_iamge_index.setText(flag + 1 + "/" + mRes.size());
+        tv_iamge_index.setText(index + 1 + "/" + mRes.size());
 
         GlideApp.with(mContext)
-                .load(mRes.get(flag))
+                .load(mRes.get(index))
                 .override(400, 400)
                 .centerCrop()
-                .into(pro_info_img);
+                .into(new CustomTarget<Drawable>() {
+                    @Override
+                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                        pro_info_img.setImageDrawable(resource);
+                    }
+
+                    @Override
+                    public void onLoadCleared(@Nullable Drawable placeholder) {
+
+                    }
+                });
 
 
     }

@@ -32,44 +32,44 @@
                 android:background="@color/c_ffffff">
 
                 <TextView
-                    android:id="@+id/fruit_title"
+                    android:id="@+id/product_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:textColor="@color/c_191919"
-                    android:text="陕西优质红提葡萄陕西优质红提葡萄陕西陕西优质优质红提葡萄陕西"
+                    android:text="--"
                     android:textSize="17sp"
                     android:ellipsize="end"
                     android:maxLines="2"/>
 
                 <TextView
                     android:layout_alignParentBottom="true"
-                    android:id="@+id/price1"
+                    android:id="@+id/shop_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/c_cccccc"
                     android:layout_marginLeft="5dp"
-                    android:text="¥ 23.5"/>
+                    android:text="¥ 00.0"/>
 
                 <TextView
                     android:id="@+id/rmb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toEndOf="@id/price1"
-                    android:layout_alignBaseline="@id/price1"
+                    android:layout_toEndOf="@id/shop_price"
+                    android:layout_alignBaseline="@id/shop_price"
                     android:textColor="@color/c_f74c31"
                     android:layout_marginLeft="15dp"
                     android:text="¥"/>
 
                 <TextView
                     android:layout_toEndOf="@id/rmb"
-                    android:layout_alignBaseline="@id/price1"
-                    android:id="@+id/price2"
+                    android:layout_alignBaseline="@id/shop_price"
+                    android:id="@+id/price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/c_f74c31"
                     android:layout_marginLeft="5dp"
-                    android:text="18.0"
+                    android:text="00.0"
                     android:textSize="23sp"/>
 
                 <ImageView
@@ -353,7 +353,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/c_513800"
-                            android:text="不堪重负"/>
+                            android:text="--"/>
 
                         <ImageView
                             android:layout_gravity="bottom"
@@ -396,23 +396,35 @@
                         android:layout_marginTop="10dp">
 
                         <TextView
+                            android:id="@+id/user_comments"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/c_999999"
-                            android:text="居然寄错了，两只都是反的。还好是凉鞋，能将就着穿！"/>
+                            android:text="--"/>
 
                         <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp">
 
                             <ImageView
+                                android:visibility="gone"
                                 android:id="@+id/iv_comments1"
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
                                 android:scaleType="fitXY"/>
 
                             <ImageView
+                                android:visibility="gone"
                                 android:id="@+id/iv_comments2"
+                                android:layout_marginStart="10dp"
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:scaleType="fitXY"/>
+
+                            <ImageView
+                                android:visibility="gone"
+                                android:id="@+id/iv_comments3"
                                 android:layout_marginStart="10dp"
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
@@ -426,10 +438,11 @@
                             android:padding="5dp"
                             android:background="@drawable/shape_radius_5dp_f6f6f6">
                             <TextView
+                                android:id="@+id/business_reply"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="12sp"
-                                android:text="商家回复：亲，可以把鞋子交换一下呢！亲，可以把鞋子交换一下呢！亲，可以把鞋子交换一下呢！亲，可以把鞋子交换一下呢！亲，可以把鞋子交换一下呢！"/>
+                                android:text="商家回复：--"/>
                         </LinearLayout>
                     </LinearLayout>
 

@@ -15,5 +15,5 @@ public interface IProductInfoView extends BaseView {
 
     void setProduct(Product product);
 
-    void setComments(List<Comments> comments);
+    void setComments(Comments comments);
 }

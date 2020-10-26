@@ -99,6 +99,11 @@ public interface ApiUrl {
      */
     @GET("fruit/comments/product/{productId}")
     Observable<BaseResponse<List<Comments>>> getComment(@Path("productId") Integer productId);
+    /**
+     * 获取最佳评论
+     */
+    @GET("fruit/comments/product/{productId}/best")
+    Observable<BaseResponse<Comments>> getBestComment(@Path("productId") Integer productId);
 
 
     /**

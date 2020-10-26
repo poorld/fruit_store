@@ -30,9 +30,9 @@ public class ProductInfoPresenter extends BaseRxPresenter<IProductInfoView> {
     }
 
     public void getComments(Integer productId) {
-        addDisposable(mApi.getComment(productId), new MyObserver<List<Comments>>(mContext) {
+        addDisposable(mApi.getBestComment(productId), new MyObserver<Comments>(mContext) {
             @Override
-            public void onSuccess(List<Comments> result) {
+            public void onSuccess(Comments result) {
                 mBaserView.setComments(result);
             }
 
