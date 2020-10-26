@@ -19,16 +19,16 @@ import me.teenyda.fruit.R;
 public class CustomProgressDialog extends ProgressDialog {
 
     public static CustomProgressDialog getInstance(Context context, int id) {
-        /*if (mDialog == null) {
+        if (mDialog == null) {
             synchronized (Object.class) {
                 if (mDialog == null) {
                     mDialog = new CustomProgressDialog(context, id);
                 }
             }
         }
-        return mDialog;*/
-        mDialog = new CustomProgressDialog(context, id);
         return mDialog;
+        // mDialog = new CustomProgressDialog(context, id);
+        // return mDialog;
     }
 
 
@@ -75,17 +75,17 @@ public class CustomProgressDialog extends ProgressDialog {
             @Override
             public void onDismiss(DialogInterface dialogInterface) {
                 mAnimation.stop();
-                for (int i = 0; i < mAnimation.getNumberOfFrames(); i++) {
-                    Drawable frame = mAnimation.getFrame(i);
-                    if (frame instanceof BitmapDrawable) {
-                        ((BitmapDrawable) frame).getBitmap().recycle();
-                    }
-                    frame.setCallback(null);
-                }
-                mAnimation.setCallback(null);
-                mAnimation = null;
-                mDialog = null;
-                System.gc();
+                // for (int i = 0; i < mAnimation.getNumberOfFrames(); i++) {
+                //     Drawable frame = mAnimation.getFrame(i);
+                //     if (frame instanceof BitmapDrawable) {
+                //         ((BitmapDrawable) frame).getBitmap().recycle();
+                //     }
+                //     frame.setCallback(null);
+                // }
+                // mAnimation.setCallback(null);
+                // mAnimation = null;
+                // mDialog = null;
+                // System.gc();
             }
         });
     }

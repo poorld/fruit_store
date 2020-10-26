@@ -15,10 +15,10 @@ import me.teenyda.fruit.model.classify.info.view.IProductInfoView;
 public class ProductInfoPresenter extends BaseRxPresenter<IProductInfoView> {
 
     public void getProduct(Integer productId) {
-        addDisposable(mApi.getProduct(productId), new MyObserver<Product>(mContext) {
+        addDisposable(mApi.getProduct(productId), new MyObserver<Product>(mContext, true) {
             @Override
             public void onSuccess(Product product) {
-                // mBaserView.setProduct(product);
+                mBaserView.setProduct(product);
             }
 
             @Override

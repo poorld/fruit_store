@@ -68,6 +68,7 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
     @BindView(R.id.tv_product_buy)
     TextView tv_product_buy;
     private PopupSpecifications mSpecifications;
+    private ProductInfoAdapter mInfoAdapter;
 
     public static void startActivity(Context context, Integer productId) {
         Intent intent = new Intent(context, ProductInfoActivity.class);
@@ -115,8 +116,9 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
 
         LinearLayoutManager manager = new LinearLayoutManager(getMContext());
         product_info_rv.setLayoutManager(manager);
-        ProductInfoAdapter adapter = new ProductInfoAdapter(getMContext(), DataBean.getProductInfoData());
-        product_info_rv.setAdapter(adapter);
+        // ProductInfoAdapter adapter = new ProductInfoAdapter(getMContext(), DataBean.getProductInfoData());
+        mInfoAdapter = new ProductInfoAdapter(getMContext());
+        product_info_rv.setAdapter(mInfoAdapter);
         product_info_rv.setNestedScrollingEnabled(false);
 
         GlideApp.with(getMContext())
@@ -222,5 +224,7 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
 
                     }
                 });
+
+        mInfoAdapter.addInfoImage(product.getProductInfoImages());
     }
 }

@@ -8,12 +8,14 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import me.teenyda.fruit.R;
 import me.teenyda.fruit.common.entity.DataBean;
+import me.teenyda.fruit.common.entity.ProductInfoImage;
 import me.teenyda.fruit.common.utils.GlideApp;
 
 /**
@@ -25,11 +27,16 @@ public class ProductInfoAdapter extends RecyclerView.Adapter<ProductInfoAdapter.
 
     private Context mContext;
 
-    private List<DataBean> mDataBeans;
+    private List<ProductInfoImage> mDataBeans;
 
-    public ProductInfoAdapter(Context context,List<DataBean> dataBeans) {
+    public ProductInfoAdapter(Context context) {
         mContext = context;
-        mDataBeans = dataBeans;
+        mDataBeans = new ArrayList<>();
+    }
+
+    public void addInfoImage(List<ProductInfoImage> dataBeans) {
+        mDataBeans.addAll(dataBeans);
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -41,10 +48,12 @@ public class ProductInfoAdapter extends RecyclerView.Adapter<ProductInfoAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        DataBean dataBean = mDataBeans.get(position);
-        String imageUrl = dataBean.imageUrl;
-        GlideApp.with(mContext).load(imageUrl)
+        ProductInfoImage infoImage = mDataBeans.get(position);
+        String imageUrl = infoImage.getUrl();
+        GlideApp.with(mContext)
+                .load(imageUrl)
                 .override(780, 960)
+                .centerCrop()
                 .into(holder.image);
 
     }
