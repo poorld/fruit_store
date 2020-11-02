@@ -32,6 +32,11 @@
         <item name="android:windowExitAnimation">@anim/out_bottom</item>
     </style>
 
+    <style name="AnimationZoom">
+        <item name="android:windowEnterAnimation">@anim/zoomin</item>
+        <item name="android:windowExitAnimation">@anim/zoomout</item>
+    </style>
+
     <style name="ThemeVIP1">
         <item name="android:textColor">@color/c_a1a1a1</item>
     </style>

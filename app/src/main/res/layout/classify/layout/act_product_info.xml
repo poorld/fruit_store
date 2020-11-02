@@ -37,8 +37,19 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:textColor="@color/c_191919"
-                    android:text="--"
+                    android:text="特色新疆美味葡萄巴拉巴拉"
                     android:textSize="17sp"
+                    android:ellipsize="end"
+                    android:maxLines="1"/>
+
+                <TextView
+                    android:id="@+id/product_explain"
+                    android:layout_below="@id/product_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/c_a1a1a1"
+                    android:textSize="11sp"
                     android:ellipsize="end"
                     android:maxLines="2"/>
 
@@ -476,7 +487,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_centerVertical="true"
-                    android:text="水果介绍"/>
+                    android:text="产品介绍"/>
 
             </RelativeLayout>
 

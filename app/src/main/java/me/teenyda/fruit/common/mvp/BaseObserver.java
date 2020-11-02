@@ -34,7 +34,7 @@ public abstract class BaseObserver<T> implements Observer<BaseResponse<T>> {
     public void onSubscribe(Disposable d) {
     }
 
-    public abstract void onSuccess(T result);
+    public abstract void onSuccess(T t);
 
     public abstract void onFailure(Throwable e,String errorMsg);
 

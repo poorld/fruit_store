@@ -31,6 +31,8 @@ import androidx.annotation.Nullable;
 import me.teenyda.fruit.R;
 import me.teenyda.fruit.common.utils.GlideApp;
 
+import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
+
 /**
  * 图片相框（左右滑动）
  * 左右滑动参考：https://blog.csdn.net/u014646004/article/details/50816275/
@@ -91,6 +93,7 @@ public class PopViewProductImg implements View.OnTouchListener {
         mView = LayoutInflater.from(mContext).inflate(R.layout.pop_show_image, null, false);
         mPopupWindow = new PopupWindow(mView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         mPopupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        mPopupWindow.setAnimationStyle(R.style.AnimationZoom);
         mPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
@@ -181,6 +184,7 @@ public class PopViewProductImg implements View.OnTouchListener {
                 .load(mRes.get(index))
                 .override(400, 400)
                 .centerCrop()
+                .transition(withCrossFade())
                 .into(new CustomTarget<Drawable>() {
                     @Override
                     public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {

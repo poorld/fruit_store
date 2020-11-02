@@ -47,7 +47,7 @@ public class HomeP extends BasePresenter<IHomeV> {
 
                     @Override
                     public void onNext(File file) {
-                        mBaserView.compressImageSuccess(file);
+                        mView.compressImageSuccess(file);
                     }
 
                     @Override

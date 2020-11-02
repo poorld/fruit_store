@@ -6,4 +6,8 @@
     <string name="cart_spec">规格：%s</string>
     <string name="cart_count">×%d</string>
     <string name="cart_total_price">合计: ¥ %s元</string>
+
+    <!--下订单-->
+    <string name="settlement_price">单价: ¥ %s</string>
+    <string name="settlement_number">数量: %d</string>
 </resources>

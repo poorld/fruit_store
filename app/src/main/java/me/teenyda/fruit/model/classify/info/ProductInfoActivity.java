@@ -35,7 +35,9 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import me.teenyda.fruit.R;
 import me.teenyda.fruit.common.entity.Comments;
+import me.teenyda.fruit.common.entity.OrderItem;
 import me.teenyda.fruit.common.entity.Product;
+import me.teenyda.fruit.common.entity.Spec;
 import me.teenyda.fruit.common.mvp.MvpActivity;
 import me.teenyda.fruit.common.utils.GlideApp;
 import me.teenyda.fruit.common.view.popupview.PopViewProductImg;
@@ -46,6 +48,7 @@ import me.teenyda.fruit.common.viewholder.VideoHolder;
 import me.teenyda.fruit.model.classify.info.adapter.ProductInfoAdapter;
 import me.teenyda.fruit.model.classify.info.presenter.ProductInfoPresenter;
 import me.teenyda.fruit.model.classify.info.view.IProductInfoView;
+import me.teenyda.fruit.model.classify.settlement.SettlementActicity;
 
 /**
  * author: teenyda
@@ -64,6 +67,8 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
 
     @BindView(R.id.product_name)
     TextView product_name;
+    @BindView(R.id.product_explain)
+    TextView product_explain;
 
     @BindView(R.id.price)
     TextView price;
@@ -111,6 +116,7 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
     private PopupSpecifications mSpecifications;
     private ProductInfoAdapter mInfoAdapter;
     private List<String> mUrls;
+    private Integer mProductId;
 
     public static void startActivity(Context context, Integer productId) {
         Intent intent = new Intent(context, ProductInfoActivity.class);
@@ -172,7 +178,19 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
         mCommentsPop = new PopViewProductImg(getMContext());
 
         mSpecifications = new PopupSpecifications(getMContext());
-
+        mSpecifications.setOrderConfirmClick(new PopupSpecifications.OrderConfirmClick() {
+            @Override
+            public void onOrderConfirmClick(Spec spec, int number) {
+                // 下订单
+                OrderItem orderItem = new OrderItem();
+                orderItem.setUserId(10001);
+                orderItem.setPrice(spec.getPrice());
+                orderItem.setQuantity(number);
+                orderItem.setSpecId(spec.getSpecId());
+                orderItem.setProductId(mProductId);
+                mPresenter.order(orderItem);
+            }
+        });
     }
 
 
@@ -199,11 +217,11 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
 
     @Override
     protected void requestData() {
-        Integer productId =  getIntent().getExtras().getInt("productId");
+        mProductId = getIntent().getExtras().getInt("productId");
         // String productId = getIntent().getStringExtra("");
         // showToast(productId.toString());
-        mPresenter.getProduct(productId);
-        mPresenter.getComments(productId);
+        mPresenter.getProduct(mProductId);
+        mPresenter.getComments(mProductId);
     }
 
     @Override
@@ -277,7 +295,10 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
         shop_price.setText(product.getShopPrice().toString());
         price.setText(product.getPrice().toString());
         product_name.setText(product.getName());
+        product_explain.setText(product.getExplain());
 
+        mSpecifications.setSpecList(product.getSpec());
+        mSpecifications.setSpecImg(product.getDefaultImg());
     }
 
     @Override
@@ -298,6 +319,11 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
             comments_data.setVisibility(View.GONE);
             comments_no_data.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Override
+    public void orderSuccess(OrderItem orderItem) {
+        SettlementActicity.startActivity(getMContext(), orderItem.getOrderNum());
     }
 
     public void setImageView(String url, ImageView iv) {

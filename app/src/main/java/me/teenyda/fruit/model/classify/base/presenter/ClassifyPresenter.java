@@ -18,7 +18,7 @@ public class ClassifyPresenter extends BaseRxPresenter<IClassifyView> {
         addDisposable(mApi.category(), new MyObserver<List<ProductCategory>>(mContext, true) {
             @Override
             public void onSuccess(List<ProductCategory> categories) {
-                mBaserView.setProductCategory(categories);
+                mView.setProductCategory(categories);
             }
 
             @Override

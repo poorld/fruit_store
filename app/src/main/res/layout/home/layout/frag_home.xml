@@ -37,9 +37,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/c_ffffff"
-                android:textSize="28sp"
+                android:textSize="21sp"
                 android:textStyle="bold"
-                android:text="智取棋水果"/>
+                android:text="智取水果"/>
 
 
 
@@ -75,7 +75,8 @@
                     android:layout_width="130dp"
                     android:layout_height="130dp"
                     android:src="@drawable/new_product"
-                    android:layout_alignParentRight="true"
+                    android:layout_marginEnd="15dp"
+                    android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"/>
 
             </RelativeLayout>

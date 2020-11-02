@@ -145,7 +145,7 @@ public class HomePRx extends BaseRxPresenter<IHomeV> {
         addDisposable(mApi.uploadImage(part, description), new MyObserver<FileUploadResponse>(mContext) {
             @Override
             public void onSuccess(FileUploadResponse result) {
-                // mBaserView.showImage(result);
+                // mView.showImage(result);
             }
 
             @Override
@@ -183,7 +183,7 @@ public class HomePRx extends BaseRxPresenter<IHomeV> {
         BitmapUtil.compressImageAndSaveByIO(file.getPath(), minSize, new BitmapUtil.CompressListener() {
             @Override
             public void onCompressSuccess(File file1) {
-                // mBaserView.compressImageSuccess(file1);
+                // mView.compressImageSuccess(file1);
             }
 
             @Override

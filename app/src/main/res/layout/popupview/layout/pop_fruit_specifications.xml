@@ -11,17 +11,19 @@
     android:background="@drawable/shape_radius_15dp_fff">
 
     <ImageView
+        android:id="@+id/spec_pop_close"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:src="@mipmap/icon_close"
         android:layout_gravity="right"/>
 
     <TextView
+        android:id="@+id/spec_product_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="陕西优质红提普通"
         android:textSize="15sp"
-        android:textColor="@color/c_aaaaaa"/>
+        android:textColor="@color/c_7f7f7f"/>
 
     <!--<TextView
         android:layout_width="wrap_content"
@@ -38,27 +40,27 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/fruit_spe_img"
+            android:id="@+id/spec_img"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:src="@drawable/cherry"/>
 
         <TextView
-            android:id="@+id/fruit_spe_price"
-            android:layout_toRightOf="@id/fruit_spe_img"
+            android:id="@+id/spec_price"
+            android:layout_toRightOf="@id/spec_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:textSize="25sp"
             android:textColor="@color/c_d02206"
-            android:text="¥ 25.3"/>
+            android:text="¥ 00.0"/>
 
         <TextView
             android:id="@+id/tv_selected_spec"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/fruit_spe_price"
-            android:layout_alignStart="@id/fruit_spe_price"
+            android:layout_below="@id/spec_price"
+            android:layout_alignStart="@id/spec_price"
             android:layout_marginTop="20dp"
             android:textColor="@color/c_606060"
             android:text="请选择规格"/>
@@ -74,7 +76,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:textColor="@color/c_aaaaaa"
         android:text="规格"/>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -99,9 +101,11 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:textColor="@color/c_aaaaaa"
             android:text="数量"/>
 
         <TextView
+            android:id="@+id/number_sub"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:background="@drawable/shape_radius_1dp_f6f6"
@@ -109,12 +113,14 @@
             android:text="－"/>
 
         <TextView
+            android:id="@+id/spec_number"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:gravity="center"
             android:text="1"/>
 
         <TextView
+            android:id="@+id/number_add"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:background="@drawable/shape_radius_1dp_f6f6"

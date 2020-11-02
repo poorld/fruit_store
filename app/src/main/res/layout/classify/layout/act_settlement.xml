@@ -42,19 +42,20 @@
 
 
             <ImageView
-                android:id="@+id/iv_settle_product_img"
+                android:id="@+id/settle_product_img"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@drawable/product02"/>
 
             <LinearLayout
-                android:layout_toEndOf="@id/iv_settle_product_img"
+                android:layout_toEndOf="@id/settle_product_img"
                 android:layout_marginStart="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/settle_product_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="蜜柚9斤现摘宜昌青皮蜜橘新鲜水果当季孕妇橘子薄皮"
@@ -62,6 +63,7 @@
                     android:textColor="@color/c_333333"/>
 
                 <TextView
+                    android:id="@+id/settle_product_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -70,6 +72,7 @@
                     android:text="单价: ¥ 55.2"/>
 
                 <TextView
+                    android:id="@+id/settle_product_spec"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -78,6 +81,7 @@
                     android:text="规格: 水果一大箱"/>
 
                 <TextView
+                    android:id="@+id/settle_product_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -132,6 +136,7 @@
                     android:text="水果优惠"/>
 
                 <TextView
+                    android:id="@+id/settle_product_discount"
                     android:layout_alignParentRight="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -156,7 +161,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/c_888888"
                     android:textSize="14sp"
-                    android:text="会员优惠"/>
+                    android:text="配送优惠"/>
 
                 <TextView
                     android:layout_alignParentRight="true"
@@ -174,6 +179,7 @@
 
 
             <RelativeLayout
+                android:layout_margin="5dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="15dp"
                 android:layout_width="match_parent"
@@ -341,6 +347,7 @@
                     android:text="共"/>
 
                 <TextView
+                    android:id="@+id/settle_total_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/c_f95c42"
@@ -353,6 +360,7 @@
                     android:text="件，合计："/>
 
                 <TextView
+                    android:id="@+id/settle_total_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/c_f95c42"
@@ -361,6 +369,46 @@
 
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp">
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="15dp"
+                android:background="@drawable/shape_radis_5dp_gradient_2"
+                android:layout_gravity="center_vertical"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="5dp"
+                android:textColor="@color/c_4669e1"
+                android:text="用户留言"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/shape_radius_5dp_fff">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="start"
+                android:padding="10dp"
+                android:textSize="12sp"
+                android:textColor="@color/c_a1a1a1"
+                android:background="@null"
+                android:text="fdsaf"/>
+
+        </RelativeLayout>
 
 
         <TextView

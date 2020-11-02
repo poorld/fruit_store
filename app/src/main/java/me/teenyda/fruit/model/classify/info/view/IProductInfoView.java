@@ -3,6 +3,7 @@ package me.teenyda.fruit.model.classify.info.view;
 import java.util.List;
 
 import me.teenyda.fruit.common.entity.Comments;
+import me.teenyda.fruit.common.entity.OrderItem;
 import me.teenyda.fruit.common.entity.Product;
 import me.teenyda.fruit.common.mvp.BaseView;
 
@@ -16,4 +17,6 @@ public interface IProductInfoView extends BaseView {
     void setProduct(Product product);
 
     void setComments(Comments comments);
+
+    void orderSuccess(OrderItem orderItem);
 }

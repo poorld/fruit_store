@@ -26,7 +26,7 @@ public class BasePresenter<V extends BaseView> {
     protected ApiServer mApiServer = ApiRetrofit.getInstance().getApiServer();
 
 //    public BasePresenter(V baseView) {
-//        mBaserView = baseView;
+//        mView = baseView;
 //    }
 
     protected void attachView(V v) {

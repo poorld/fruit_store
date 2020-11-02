@@ -16,7 +16,7 @@ import me.teenyda.fruit.common.utils.RetrofitUtils;
  */
 public class BaseRxPresenter<V extends BaseView> {
 
-    protected V mBaserView;
+    protected V mView;
 
     protected Context mContext;
 
@@ -34,17 +34,17 @@ public class BaseRxPresenter<V extends BaseView> {
 
 
 //    public BasePresenter(V baseView) {
-//        mBaserView = baseView;
+//        mView = baseView;
 //    }
 
     protected void attachView(V v) {
-        mBaserView = v;
-        mContext = mBaserView.getMContext();
+        mView = v;
+        mContext = mView.getMContext();
         mApi = getURL();
     }
 
     protected void detachView() {
-        mBaserView = null;
+        mView = null;
     }
 
     protected ApiUrl getURL(){

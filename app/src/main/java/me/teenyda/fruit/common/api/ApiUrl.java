@@ -8,10 +8,14 @@ import me.teenyda.fruit.common.entity.Bean;
 import me.teenyda.fruit.common.entity.Book;
 import me.teenyda.fruit.common.entity.Comments;
 import me.teenyda.fruit.common.entity.Demo;
+import me.teenyda.fruit.common.entity.Discounts;
 import me.teenyda.fruit.common.entity.FileUploadResponse;
+import me.teenyda.fruit.common.entity.OrderItem;
 import me.teenyda.fruit.common.entity.Product;
 import me.teenyda.fruit.common.entity.ProductCategory;
+import me.teenyda.fruit.common.entity.SettlementOrder;
 import me.teenyda.fruit.common.entity.SimpleProductEntity;
+import me.teenyda.fruit.common.entity.User;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -105,12 +109,50 @@ public interface ApiUrl {
     @GET("fruit/comments/product/{productId}/best")
     Observable<BaseResponse<Comments>> getBestComment(@Path("productId") Integer productId);
 
+    /**
+     * 下订单
+     * @param order
+     * @return
+     */
+    @POST("fruit/order/buy")
+    Observable<BaseResponse<OrderItem>> order(@Body OrderItem order);
+
+    /**
+     * 下订单
+     * @param orderNum
+     * @return
+     */
+    @GET("fruit/order/{orderNum}")
+    Observable<BaseResponse<SettlementOrder>> getOrder(@Path("orderNum") String orderNum);
+
+    /**
+     * 获取用户信息
+     * @param userId
+     * @return
+     */
+    @GET("fruit/user/{userId}")
+    Observable<BaseResponse<User>> getUser(@Path("userId") Integer userId);
+
+    /**
+     * 获取用户优惠
+     * @return
+     */
+    @GET("fruit/discounts/user")
+    Observable<BaseResponse<List<Discounts>>> getUserDiscounts();
+
+    /**
+     * 获取会员优惠
+     * @return
+     */
+    @GET("fruit/discounts/member")
+    Observable<BaseResponse<List<Discounts>>> getMemberDiscounts();
+
 
     /**
      * TODO Get请求
      */
     //第一种方式：GET不带参数
-    @GET("retrofit.txt")
+   /* @GET("retrofit.txt")
     Observable<BaseResponse<Demo>> getUser();
     @GET
     Observable<Demo> getUser(@Url String url);
@@ -123,7 +165,7 @@ public interface ApiUrl {
     @GET("users/whatever")
     Observable<Demo> getUser(@Query("client_id") String id, @Query("client_secret") String secret);
     @GET("users/whatever")
-    Observable<Demo> getUser(@QueryMap Map<String, String> info);
+    Observable<Demo> getUser(@QueryMap Map<String, String> info);*/
 
     /**
      * TODO POST请求
