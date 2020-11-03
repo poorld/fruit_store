@@ -33,7 +33,7 @@ public class Discounts implements Serializable {
     /**
      * 优惠
      */
-    private String discounts;
+    private Double discounts;
     /**
      * 会员限制
      */

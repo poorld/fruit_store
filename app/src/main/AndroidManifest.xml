@@ -48,7 +48,11 @@
         <activity android:name=".model.login.base.LoginAct" />
         <activity android:name=".model.test.Activity"></activity>
         <activity android:name=".model.classify.info.ProductInfoActivity" />
-        <activity android:name=".model.classify.settlement.SettlementActicity" />
+
+        <activity android:name=".model.classify.settlement.SettlementActicity"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"/>
+
         <activity android:name=".model.myself.member.MemberActivity" />
         <activity android:name=".model.home.new_fruit.NewFruitActivity" />
         <activity android:name=".model.home.seconds_kill.SecondKillActivity" />

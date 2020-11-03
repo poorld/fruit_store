@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import me.teenyda.fruit.R;
 
@@ -31,12 +32,17 @@ public class PopupPayment implements View.OnClickListener {
 
     private PaymentTypeClick mPaymentTypeClick;
 
+    private TextView wallet_balance;
+
     //微信
     public static final int PAYMENT_TYPE_WX = 1;
+    public static final String PAYMENT_TYPE_WX_STR = "微信支付";
     //支付宝
     public static final int PAYMENT_TYPE_ZFB = 2;
+    public static final String PAYMENT_TYPE_ZFB_STR = "支付宝支付";
     //余额
     public static final int PAYMENT_TYPE_YE = 3;
+    public static final String PAYMENT_TYPE_YE_STR = "余额支付";
 
     @Override
     public void onClick(View view) {
@@ -64,6 +70,12 @@ public class PopupPayment implements View.OnClickListener {
         this.mPaymentTypeClick = paymentTypeClick;
     }
 
+    public void setBalance(double balance) {
+        if (mContext != null) {
+            wallet_balance.setText(String.format(mContext.getString(R.string.balance), balance));
+        }
+    }
+
     public PopupPayment(Context context) {
         mContext = context;
         initPopup();
@@ -88,6 +100,7 @@ public class PopupPayment implements View.OnClickListener {
         ll_weixin = mView.findViewById(R.id.ll_weixin);
         ll_zfv = mView.findViewById(R.id.ll_zfv);
         ll_balance = mView.findViewById(R.id.ll_balance);
+        wallet_balance = mView.findViewById(R.id.wallet_balance);
 
         ll_weixin.setOnClickListener(this);
         ll_zfv.setOnClickListener(this);

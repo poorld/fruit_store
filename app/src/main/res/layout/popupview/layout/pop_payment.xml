@@ -89,6 +89,7 @@
             android:src="@mipmap/icon_balance"/>
 
         <TextView
+            android:id="@+id/wallet_balance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"

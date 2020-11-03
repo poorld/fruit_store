@@ -45,7 +45,7 @@ public class PopupSpecifications {
     private View mView;
 
     private Spec mSpec;
-    private int mNumber;
+    // private int mNumber;
 
     @BindView(R.id.spe_rv)
     RecyclerView spe_rv;
@@ -125,7 +125,7 @@ public class PopupSpecifications {
             @Override
             public void onSpecificationClick(Spec spec, int number) {
                 mSpec = spec;
-                mNumber = number;
+                // mNumber = number;
                 spec_price.setText("¥ " + String.valueOf(spec.getPrice()));
                 tv_selected_spec.setText("您已选择[" + spec.getSpecName() + "]");
             }
@@ -137,7 +137,7 @@ public class PopupSpecifications {
             public void onClick(View view) {
                 // SettlementActicity.startActivity(mContext);
                 if (mOrderConfirmClick != null && mSpec != null) {
-                    mOrderConfirmClick.onOrderConfirmClick(mSpec, mNumber);
+                    mOrderConfirmClick.onOrderConfirmClick(mSpec, getNumber());
                 }
             }
         });

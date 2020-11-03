@@ -2,12 +2,18 @@ package me.teenyda.fruit.model.classify.settlement.presenter;
 
 import java.util.List;
 
+import io.reactivex.Observable;
+import io.reactivex.functions.BiFunction;
+import io.reactivex.functions.Consumer;
+import me.teenyda.fruit.common.api.BaseResponse;
 import me.teenyda.fruit.common.entity.Discounts;
 import me.teenyda.fruit.common.entity.OrderItem;
 import me.teenyda.fruit.common.entity.SettlementOrder;
 import me.teenyda.fruit.common.entity.User;
+import me.teenyda.fruit.common.entity.Wallet;
 import me.teenyda.fruit.common.mvp.BaseRxPresenter;
 import me.teenyda.fruit.common.mvp.MyObserver;
+import me.teenyda.fruit.common.mvp.RxHelper;
 import me.teenyda.fruit.model.classify.settlement.view.ISettlementView;
 
 /**
@@ -46,6 +52,7 @@ public class SettlementPresenter extends BaseRxPresenter<ISettlementView> {
     }
 
     public void getDiscount(boolean isMember) {
+
         addDisposable(isMember ? mApi.getMemberDiscounts() : mApi.getUserDiscounts(),
             new MyObserver<List<Discounts>>(mContext) {
                 @Override
@@ -58,5 +65,19 @@ public class SettlementPresenter extends BaseRxPresenter<ISettlementView> {
 
                 }
             });
+    }
+
+    public void getWallet(Integer userId) {
+        addDisposable(mApi.getWallet(userId), new MyObserver<Wallet>(mContext) {
+            @Override
+            public void onSuccess(Wallet wallet) {
+                mView.setWallet(wallet);
+            }
+
+            @Override
+            public void onFailure(Throwable e, String errorMsg) {
+
+            }
+        });
     }
 }

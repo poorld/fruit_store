@@ -39,7 +39,12 @@ public class ToolUtils {
      * @return 两个参数的积
      */
     public static double mul(double value1,double value2){
-        BigDecimal b1 = new BigDecimal(Double.valueOf(value1));
+        BigDecimal b1 = new BigDecimal(value1);
+        BigDecimal b2 = new BigDecimal(value2);
+        return b1.multiply(b2).doubleValue();
+    }
+    public static double mul(int value1,double value2){
+        BigDecimal b1 = new BigDecimal(Integer.valueOf(value1));
         BigDecimal b2 = new BigDecimal(Double.valueOf(value2));
         return b1.multiply(b2).doubleValue();
     }

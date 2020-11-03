@@ -24,6 +24,7 @@ import me.teenyda.fruit.common.entity.OrderItem;
 import me.teenyda.fruit.common.entity.SettlementOrder;
 import me.teenyda.fruit.common.entity.Spec;
 import me.teenyda.fruit.common.entity.User;
+import me.teenyda.fruit.common.entity.Wallet;
 import me.teenyda.fruit.common.mvp.MvpActivity;
 import me.teenyda.fruit.common.utils.GlideApp;
 import me.teenyda.fruit.common.utils.ToolUtils;
@@ -65,10 +66,17 @@ public class SettlementActicity extends MvpActivity<ISettlementView, SettlementP
     @BindView(R.id.settle_total_price)
     TextView settle_total_price;
 
+    @BindView(R.id.settle_payment_iv)
+    ImageView settle_payment_iv;
+
+    @BindView(R.id.settle_payment_tv)
+    TextView settle_payment_tv;
+
     private PopupPayment mPopupPayment;
 
     private User mUser;
     private List<Discounts> mDiscounts;
+    private Wallet mWallet;
 
     public static void startActivity(Context context, String orderNumber) {
         Intent intent = new Intent(context, SettlementActicity.class);
@@ -106,12 +114,40 @@ public class SettlementActicity extends MvpActivity<ISettlementView, SettlementP
         ButterKnife.bind(this);
 
         mPopupPayment = new PopupPayment(getMContext());
+        mPopupPayment.setPaymentTypeClick(new PopupPayment.PaymentTypeClick() {
+            @Override
+            public void onPaymentTypeClickClick(int type) {
+                switch (type) {
+                    /**
+                     * 微信
+                     */
+                    case PopupPayment.PAYMENT_TYPE_WX:
+                        settle_payment_iv.setImageDrawable(getDrawable(R.mipmap.icon_weixin));
+                        settle_payment_tv.setText(PopupPayment.PAYMENT_TYPE_WX_STR);
+                        break;
+
+                    /**
+                     * 支付宝
+                     */
+                    case PopupPayment.PAYMENT_TYPE_ZFB:
+                        settle_payment_iv.setImageDrawable(getDrawable(R.mipmap.zfb));
+                        settle_payment_tv.setText(PopupPayment.PAYMENT_TYPE_ZFB_STR);
+                        break;
+
+                    /**
+                     * 余额
+                     */
+                    case PopupPayment.PAYMENT_TYPE_YE:
+                        settle_payment_iv.setImageDrawable(getDrawable(R.mipmap.icon_balance));
+                        settle_payment_tv.setText(PopupPayment.PAYMENT_TYPE_YE_STR);
+                        break;
+                }
+            }
+        });
     }
 
     @Override
     protected void requestData() {
-        String orderNumber = getIntent().getStringExtra("order_number");
-        mPresenter.getOrder(orderNumber);
         mPresenter.getUserInfo(10001);
     }
 
@@ -133,6 +169,8 @@ public class SettlementActicity extends MvpActivity<ISettlementView, SettlementP
     @Override
     public void setDiscount(List<Discounts> discounts) {
         this.mDiscounts = discounts;
+        String orderNumber = getIntent().getStringExtra("order_number");
+        mPresenter.getOrder(orderNumber);
     }
 
     @Override
@@ -156,18 +194,19 @@ public class SettlementActicity extends MvpActivity<ISettlementView, SettlementP
         // 规格
         String attrbute = spec.getSku().getAttrbute();
         // 数量
-        Integer quantity = orderItem.getQuantity();
+        int quantity = orderItem.getQuantity();
+        settle_product_spec.setText(String.format(getString(R.string.settlement_spec), spec.getSpecName(), attrbute));
         settle_product_name.setText(product.getName());
         settle_product_price.setText(String.format(getString(R.string.settlement_price), price));
         settle_product_number.setText(String.format(getString(R.string.settlement_number), quantity));
-        settle_total_number.setText(quantity.toString());
+        settle_total_number.setText(String.valueOf(quantity));
 
         // 计算优惠
         double totalPrice = ToolUtils.mul(quantity, spec.getPrice());
         Discounts discounts = preferential(totalPrice);
         if (discounts != null) {
             settle_product_discount.setText(discounts.getDiscountsExplain());
-            totalPrice = ToolUtils.sub(totalPrice, discounts.getConditions());
+            totalPrice = ToolUtils.sub(totalPrice, discounts.getDiscounts());
         } else {
             settle_product_discount.setText("暂无优惠");
         }
@@ -175,14 +214,30 @@ public class SettlementActicity extends MvpActivity<ISettlementView, SettlementP
         settle_total_price.setText(String.valueOf(totalPrice));
     }
 
+    @Override
+    public void setWallet(Wallet wallet) {
+        this.mWallet = wallet;
+
+        mPopupPayment.setBalance(wallet.getBalance());
+    }
+
+    /**
+     * 计算最大优惠
+     * @param totalPrice
+     * @return
+     */
     private Discounts preferential(double totalPrice) {
+        // 最大优惠
+        int maxConditions = 0;
+        Discounts d = null;
         for (Discounts discounts: mDiscounts) {
             // 满足条件的金额
-            Integer conditions = discounts.getConditions();
-            if (totalPrice >= conditions) {
-                return discounts;
+            int conditions = discounts.getConditions();
+            if (totalPrice >= conditions && conditions > maxConditions) {
+                maxConditions = conditions;
+                d = discounts;
             }
         }
-        return null;
+        return d;
     }
 }

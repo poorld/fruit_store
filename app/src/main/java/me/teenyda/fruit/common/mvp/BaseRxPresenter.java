@@ -5,6 +5,8 @@ import android.content.Context;
 import java.util.List;
 
 import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.functions.BiFunction;
 import me.teenyda.fruit.common.api.ApiUrl;
 import me.teenyda.fruit.common.api.BaseResponse;
 import me.teenyda.fruit.common.utils.RetrofitUtils;
@@ -56,6 +58,17 @@ public class BaseRxPresenter<V extends BaseView> {
                 .compose(RxHelper.observableIO2Main(mContext))
                 .subscribe(observer);
     }
+
+    /*protected <T,R> void addDisposable(Observable<BaseResponse<T>> observable1, Observable<BaseResponse<T>> observable2, BaseObserver<T> observer) {
+        Observable.zip(observable1, observable2, new BiFunction<BaseResponse<T>, BaseResponse<T>, R>() {
+            @Override
+            public R apply(BaseResponse<T> tBaseResponse, BaseResponse<T> tBaseResponse2) throws Exception {
+                return ?;
+            }
+        })
+                .compose(RxHelper.observableIO2Main(mContext))
+                .subscribe((Observer<? super R>) observer);
+    }*/
 
 
     protected <T> void addDisposable1(Observable<BaseResponse<T>> observable, IResponse<T> response){

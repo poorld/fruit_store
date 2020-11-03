@@ -16,6 +16,7 @@ import me.teenyda.fruit.common.entity.ProductCategory;
 import me.teenyda.fruit.common.entity.SettlementOrder;
 import me.teenyda.fruit.common.entity.SimpleProductEntity;
 import me.teenyda.fruit.common.entity.User;
+import me.teenyda.fruit.common.entity.Wallet;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -147,6 +148,13 @@ public interface ApiUrl {
     @GET("fruit/discounts/member")
     Observable<BaseResponse<List<Discounts>>> getMemberDiscounts();
 
+
+    /**
+     * 获取钱包
+     * @return
+     */
+    @GET("fruit/wallet/{userId}")
+    Observable<BaseResponse<Wallet>> getWallet(@Path("userId") Integer userId);
 
     /**
      * TODO Get请求

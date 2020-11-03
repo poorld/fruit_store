@@ -10,4 +10,8 @@
     <!--下订单-->
     <string name="settlement_price">单价: ¥ %s</string>
     <string name="settlement_number">数量: %d</string>
+    <string name="settlement_spec">规格：%s/%s</string>
+
+    <!--支付选择弹窗-->
+    <string name="balance">余额(%f元)</string>
 </resources>

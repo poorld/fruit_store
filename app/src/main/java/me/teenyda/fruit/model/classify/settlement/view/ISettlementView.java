@@ -5,6 +5,7 @@ import java.util.List;
 import me.teenyda.fruit.common.entity.Discounts;
 import me.teenyda.fruit.common.entity.SettlementOrder;
 import me.teenyda.fruit.common.entity.User;
+import me.teenyda.fruit.common.entity.Wallet;
 import me.teenyda.fruit.common.mvp.BaseView;
 
 /**
@@ -19,4 +20,6 @@ public interface ISettlementView extends BaseView {
     void setDiscount(List<Discounts> discounts);
 
     void setOrderItem(SettlementOrder orderItem);
+
+    void setWallet(Wallet wallet);
 }
