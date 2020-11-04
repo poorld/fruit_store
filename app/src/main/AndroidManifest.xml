@@ -60,6 +60,7 @@
         <activity android:name=".model.home.new_fruit.NewFruit2Activity" />
         <activity android:name=".model.myself.order.base.OrderAct" />
         <activity android:name=".model.myself.information.InfoAct" />
+        <activity android:name=".model.myself.address.AddressAct" />
     </application>
 
 </manifest>

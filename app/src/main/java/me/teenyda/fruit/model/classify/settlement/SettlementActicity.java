@@ -142,6 +142,7 @@ public class SettlementActicity extends MvpActivity<ISettlementView, SettlementP
                         settle_payment_tv.setText(PopupPayment.PAYMENT_TYPE_YE_STR);
                         break;
                 }
+                mPopupPayment.dismiss();
             }
         });
     }
@@ -149,6 +150,7 @@ public class SettlementActicity extends MvpActivity<ISettlementView, SettlementP
     @Override
     protected void requestData() {
         mPresenter.getUserInfo(10001);
+        mPresenter.getWallet(10001);
     }
 
     @Override
@@ -211,7 +213,7 @@ public class SettlementActicity extends MvpActivity<ISettlementView, SettlementP
             settle_product_discount.setText("暂无优惠");
         }
 
-        settle_total_price.setText(String.valueOf(totalPrice));
+        settle_total_price.setText(String.format(getString(R.string.settlement_total_price),totalPrice));
     }
 
     @Override

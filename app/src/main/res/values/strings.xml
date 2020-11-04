@@ -9,6 +9,7 @@
 
     <!--下订单-->
     <string name="settlement_price">单价: ¥ %s</string>
+    <string name="settlement_total_price">¥%f元</string>
     <string name="settlement_number">数量: %d</string>
     <string name="settlement_spec">规格：%s/%s</string>
 

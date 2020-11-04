@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:padding="10dp"
+    android:background="@drawable/shape_radius_5dp_fff"
+    android:layout_marginTop="5dp">
+
+    <ImageView
+        android:id="@+id/iv_address"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@mipmap/icon_address"
+        android:layout_centerVertical="true"/>
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/iv_address"
+        android:layout_marginStart="15dp"
+        android:textColor="@color/c_888888"
+        android:textSize="14sp"
+        android:text="不堪重负"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/c_888888"
+        android:textSize="14sp"
+        android:layout_toRightOf="@id/tv_name"
+        android:layout_marginStart="15dp"
+        android:text="15278389993"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_alignStart="@id/tv_name"
+        android:textColor="@color/c_888888"
+        android:textSize="14sp"
+        android:layout_below="@id/tv_name"
+        android:text="广西南宁市武鸣区新宁路2号南宁师范大学武鸣校区2区14栋301"/>
+
+
+</RelativeLayout>
