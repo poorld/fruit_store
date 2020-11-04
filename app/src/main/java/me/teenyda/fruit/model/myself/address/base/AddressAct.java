@@ -69,7 +69,7 @@ public class AddressAct extends MvpActivity<IAddressView, AddressPresenter> impl
 
     @Override
     protected void requestData() {
-
+        mPresenter.getContacts(10001);
     }
 
     @Override
