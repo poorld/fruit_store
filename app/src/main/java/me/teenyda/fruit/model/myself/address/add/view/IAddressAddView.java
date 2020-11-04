@@ -1,4 +1,4 @@
-package me.teenyda.fruit.model.myself.address.view;
+package me.teenyda.fruit.model.myself.address.add.view;
 
 import me.teenyda.fruit.common.mvp.BaseView;
 
@@ -7,5 +7,5 @@ import me.teenyda.fruit.common.mvp.BaseView;
  * date: 2020/11/4
  * description:
  */
-public interface IAddressView extends BaseView {
+public interface IAddressAddView extends BaseView {
 }

@@ -7,6 +7,7 @@ import io.reactivex.Observable;
 import me.teenyda.fruit.common.entity.Bean;
 import me.teenyda.fruit.common.entity.Book;
 import me.teenyda.fruit.common.entity.Comments;
+import me.teenyda.fruit.common.entity.Contact;
 import me.teenyda.fruit.common.entity.Demo;
 import me.teenyda.fruit.common.entity.Discounts;
 import me.teenyda.fruit.common.entity.FileUploadResponse;
@@ -155,6 +156,9 @@ public interface ApiUrl {
      */
     @GET("fruit/wallet/{userId}")
     Observable<BaseResponse<Wallet>> getWallet(@Path("userId") Integer userId);
+
+    @GET("fruit/contact/{userId}")
+    Observable<BaseResponse<List<Contact>>> getContacts(@Path("userId") Integer userId);
 
     /**
      * TODO Get请求

@@ -13,6 +13,7 @@ import butterknife.OnClick;
 import me.teenyda.fruit.R;
 import me.teenyda.fruit.common.mvp.MvpRxFragment;
 import me.teenyda.fruit.model.login.base.LoginAct;
+import me.teenyda.fruit.model.myself.address.base.AddressAct;
 import me.teenyda.fruit.model.myself.base.presenter.MyselfP;
 import me.teenyda.fruit.model.myself.base.view.IMySelfV;
 import me.teenyda.fruit.model.myself.information.InfoAct;
@@ -32,6 +33,9 @@ public class MyselfFrag extends MvpRxFragment<IMySelfV, MyselfP> implements IMyS
 
     @BindView(R.id.ll_member)
     LinearLayout ll_member;
+
+    @BindView(R.id.myself_address)
+    LinearLayout myself_address;
 
     @Override
     protected MyselfP createPresenter() {
@@ -61,7 +65,8 @@ public class MyselfFrag extends MvpRxFragment<IMySelfV, MyselfP> implements IMyS
         sfl.startShimmer();
     }
 
-    @OnClick({R.id.ll_member,R.id.ll_wallet, R.id.wallet_order,R.id.myself_info,R.id.myself_logout})
+    @OnClick({R.id.ll_member,R.id.ll_wallet, R.id.wallet_order,R.id.myself_info,R.id.myself_logout,
+                R.id.myself_address})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ll_member:
@@ -78,6 +83,9 @@ public class MyselfFrag extends MvpRxFragment<IMySelfV, MyselfP> implements IMyS
                 break;
             case R.id.myself_logout:
                 LoginAct.startActivity(getMContext());
+                break;
+            case R.id.myself_address:
+                AddressAct.startActivity(getMContext());
                 break;
         }
 

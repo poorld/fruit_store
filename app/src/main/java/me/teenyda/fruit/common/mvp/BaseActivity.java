@@ -218,10 +218,22 @@ public abstract class BaseActivity extends RxAppCompatActivity {
      * @param rightTitle
      */
     protected void setRightTitle(String rightTitle) {
+        setRightTitleClick(rightTitle, null);
+        /*RelativeLayout myActionBar = getMyActionBar();
+        if (myActionBar != null) {
+            TextView titleTv = myActionBar.findViewById(R.id.actionbar_right_title);
+            titleTv.setText(rightTitle);
+        }*/
+    }
+
+    protected void setRightTitleClick(String rightTitle, View.OnClickListener clickListener) {
         RelativeLayout myActionBar = getMyActionBar();
         if (myActionBar != null) {
             TextView titleTv = myActionBar.findViewById(R.id.actionbar_right_title);
             titleTv.setText(rightTitle);
+            if (clickListener != null) {
+                titleTv.setOnClickListener(clickListener);
+            }
         }
     }
 
