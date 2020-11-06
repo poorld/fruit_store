@@ -157,8 +157,21 @@ public interface ApiUrl {
     @GET("fruit/wallet/{userId}")
     Observable<BaseResponse<Wallet>> getWallet(@Path("userId") Integer userId);
 
+    /**
+     * 获取联系人
+     * @param userId
+     * @return
+     */
     @GET("fruit/contact/{userId}")
     Observable<BaseResponse<List<Contact>>> getContacts(@Path("userId") Integer userId);
+
+    /**
+     * 添加联系人
+     * @param contact
+     * @return
+     */
+    @POST("fruit/contact")
+    Observable<BaseResponse<Contact>> addContacts(@Body Contact contact);
 
     /**
      * TODO Get请求

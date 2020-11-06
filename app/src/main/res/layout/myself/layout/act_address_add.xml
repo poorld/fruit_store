@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -22,12 +23,12 @@
             android:layout_marginStart="15dp"/>
 
         <EditText
-            android:id="@+id/login_username_et"
+            android:id="@+id/contact_name"
             android:paddingStart="15dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
-            android:textColorHint="@color/c_e5e5e5"
+            android:textColorHint="@color/c_aaaaaa"
             android:textSize="13sp"
             android:textColor="@color/c_888888"
             android:hint="请输入联系人名称"/>
@@ -50,12 +51,12 @@
             android:layout_marginStart="15dp"/>
 
         <EditText
-            android:id="@+id/login_phone_et"
+            android:id="@+id/contact_phone"
             android:paddingStart="15dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
-            android:textColorHint="@color/c_e5e5e5"
+            android:textColorHint="@color/c_aaaaaa"
             android:textSize="13sp"
             android:textColor="@color/c_888888"
             android:hint="请输入手机号码"/>
@@ -67,14 +68,15 @@
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="80dp"
         android:background="@drawable/shape_border_d4_radius10dp">
 
         <EditText
+            android:id="@+id/contact_address"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
-            android:textColorHint="@color/c_e5e5e5"
+            android:textColorHint="@color/c_aaaaaa"
             android:textSize="13sp"
             android:hint="请输入收货地址"
             android:gravity="start"
@@ -83,7 +85,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/login"
+        android:id="@+id/address_add"
         android:layout_width="match_parent"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"

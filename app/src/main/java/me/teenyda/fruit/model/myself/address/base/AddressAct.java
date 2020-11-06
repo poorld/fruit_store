@@ -29,6 +29,8 @@ public class AddressAct extends MvpActivity<IAddressView, AddressPresenter> impl
     RecyclerView address_rv;
     private AddressAdapter mAddressAdapter;
 
+    public static final int RES_CODE_ADDRESS_ADD = 10390;
+
     public static void startActivity(Context context) {
         Intent intent = new Intent(context, AddressAct.class);
         context.startActivity(intent);
@@ -55,7 +57,9 @@ public class AddressAct extends MvpActivity<IAddressView, AddressPresenter> impl
         setRightTitleClick("添加", new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AddressAddAct.startActivity(getMContext());
+                // AddressAddAct.startActivity(getMContext());
+                Intent intent = new Intent(getMContext(), AddressAddAct.class);
+                startActivityForResult(intent, RES_CODE_ADDRESS_ADD);
             }
         });
         setBack();

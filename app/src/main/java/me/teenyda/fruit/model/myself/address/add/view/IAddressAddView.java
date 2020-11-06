@@ -1,5 +1,6 @@
 package me.teenyda.fruit.model.myself.address.add.view;
 
+import me.teenyda.fruit.common.entity.Contact;
 import me.teenyda.fruit.common.mvp.BaseView;
 
 /**
@@ -8,4 +9,6 @@ import me.teenyda.fruit.common.mvp.BaseView;
  * description:
  */
 public interface IAddressAddView extends BaseView {
+
+    void addContactSuccess(Contact contact);
 }
