@@ -49,7 +49,7 @@ public class AddressAddAct extends MvpActivity<IAddressAddView, AddressAddPresen
 
     }
 
-    @OnClick({})
+    @OnClick({R.id.address_add})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.address_add:

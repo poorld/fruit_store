@@ -13,4 +13,5 @@ import me.teenyda.fruit.common.mvp.BaseView;
 public interface IAddressView extends BaseView {
 
     void setContacts(List<Contact> contacts);
+    void delContacts();
 }

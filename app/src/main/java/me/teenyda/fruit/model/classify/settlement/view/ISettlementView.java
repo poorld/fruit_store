@@ -2,6 +2,7 @@ package me.teenyda.fruit.model.classify.settlement.view;
 
 import java.util.List;
 
+import me.teenyda.fruit.common.entity.Contact;
 import me.teenyda.fruit.common.entity.Discounts;
 import me.teenyda.fruit.common.entity.SettlementOrder;
 import me.teenyda.fruit.common.entity.User;
@@ -18,6 +19,7 @@ public interface ISettlementView extends BaseView {
     void setUserInfo(User userInfo);
 
     void setDiscount(List<Discounts> discounts);
+    void setContacts(List<Contact> contacts);
 
     void setOrderItem(SettlementOrder orderItem);
 

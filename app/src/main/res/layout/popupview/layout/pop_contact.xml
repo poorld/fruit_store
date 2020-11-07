@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--支付方式-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:orientation="vertical"
+    android:paddingTop="20dp"
+    android:background="@drawable/shape_radius_15dp_fff">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/c_555555"
+        android:textSize="18sp"
+        android:layout_gravity="center_horizontal"
+        android:text="选择收货地址"/>
+
+    <View
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/c_dddddd" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/pop_contact_rv"
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+
+    <!--<TextView
+        android:id="@+id/tv_spec_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:background="@drawable/shape_radis_5dp_gradient_2"
+        android:textColor="@color/c_ffffff"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="确定"/>-->
+
+</LinearLayout>

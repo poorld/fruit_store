@@ -6,6 +6,7 @@ import android.view.View;
 
 import java.util.List;
 
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
@@ -13,6 +14,7 @@ import butterknife.ButterKnife;
 import me.teenyda.fruit.R;
 import me.teenyda.fruit.common.entity.Contact;
 import me.teenyda.fruit.common.mvp.MvpActivity;
+import me.teenyda.fruit.common.view.popupview.CommonPopView;
 import me.teenyda.fruit.model.myself.address.add.AddressAddAct;
 import me.teenyda.fruit.model.myself.address.base.adapter.AddressAdapter;
 import me.teenyda.fruit.model.myself.address.base.presenter.AddressPresenter;
@@ -28,6 +30,8 @@ public class AddressAct extends MvpActivity<IAddressView, AddressPresenter> impl
     @BindView(R.id.address_rv)
     RecyclerView address_rv;
     private AddressAdapter mAddressAdapter;
+
+    private CommonPopView mCommonPopView;
 
     public static final int RES_CODE_ADDRESS_ADD = 10390;
 
@@ -69,6 +73,33 @@ public class AddressAct extends MvpActivity<IAddressView, AddressPresenter> impl
         LinearLayoutManager manager = new LinearLayoutManager(getMContext());
         address_rv.setLayoutManager(manager);
         address_rv.setAdapter(mAddressAdapter);
+
+        mCommonPopView = new CommonPopView(getMContext());
+        mAddressAdapter.setContactAction(new AddressAdapter.IContactAction() {
+            @Override
+            public void onContactSelect(Contact contact) {
+                // 修改
+            }
+
+            @Override
+            public void onContactDelete(int contactId) {
+                mCommonPopView.setTitle("删除地址")
+                        .setLeftTitle("取消")
+                        .setRightTitle("确定")
+                        .setMessage("确定删除该联系地址？")
+                        .setOnBtnClick(new CommonPopView.OnBtnClick() {
+                            @Override
+                            public void onLeftClick() {
+                                mCommonPopView.dismiss();
+                            }
+
+                            @Override
+                            public void onRightClick() {
+                                mPresenter.deleteContact(contactId);
+                            }
+                        }).show(address_rv);
+            }
+        });
     }
 
     @Override
@@ -84,5 +115,21 @@ public class AddressAct extends MvpActivity<IAddressView, AddressPresenter> impl
     @Override
     public void setContacts(List<Contact> contacts) {
         mAddressAdapter.addContacts(contacts);
+    }
+
+    @Override
+    public void delContacts() {
+        requestData();
+        mCommonPopView.dismiss();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (RESULT_OK == resultCode){
+            if (requestCode == RES_CODE_ADDRESS_ADD){
+                requestData();
+            }
+        }
     }
 }

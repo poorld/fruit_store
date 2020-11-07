@@ -12,6 +12,7 @@
     <string name="settlement_total_price">¥%f元</string>
     <string name="settlement_number">数量: %d</string>
     <string name="settlement_spec">规格：%s/%s</string>
+    <string name="settlement_discount">- %f元</string>
 
     <!--支付选择弹窗-->
     <string name="balance">余额(%f元)</string>

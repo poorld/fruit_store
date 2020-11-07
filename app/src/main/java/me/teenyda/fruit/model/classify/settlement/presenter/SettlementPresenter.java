@@ -6,14 +6,17 @@ import io.reactivex.Observable;
 import io.reactivex.functions.BiFunction;
 import io.reactivex.functions.Consumer;
 import me.teenyda.fruit.common.api.BaseResponse;
+import me.teenyda.fruit.common.entity.Contact;
 import me.teenyda.fruit.common.entity.Discounts;
 import me.teenyda.fruit.common.entity.OrderItem;
+import me.teenyda.fruit.common.entity.OrderPayment;
 import me.teenyda.fruit.common.entity.SettlementOrder;
 import me.teenyda.fruit.common.entity.User;
 import me.teenyda.fruit.common.entity.Wallet;
 import me.teenyda.fruit.common.mvp.BaseRxPresenter;
 import me.teenyda.fruit.common.mvp.MyObserver;
 import me.teenyda.fruit.common.mvp.RxHelper;
+import me.teenyda.fruit.common.net.request.OrderPaymentReq;
 import me.teenyda.fruit.model.classify.settlement.view.ISettlementView;
 
 /**
@@ -72,6 +75,34 @@ public class SettlementPresenter extends BaseRxPresenter<ISettlementView> {
             @Override
             public void onSuccess(Wallet wallet) {
                 mView.setWallet(wallet);
+            }
+
+            @Override
+            public void onFailure(Throwable e, String errorMsg) {
+
+            }
+        });
+    }
+
+    public void getContacts(int userId) {
+        addDisposable(mApi.getContacts(userId), new MyObserver<List<Contact>>(mContext) {
+            @Override
+            public void onSuccess(List<Contact> contacts) {
+                mView.setContacts(contacts);
+            }
+
+            @Override
+            public void onFailure(Throwable e, String errorMsg) {
+
+            }
+        });
+    }
+
+    public void payment(OrderPaymentReq req) {
+        addDisposable(mApi.toPayment(req), new MyObserver<OrderPayment>(mContext) {
+            @Override
+            public void onSuccess(OrderPayment orderPayment) {
+
             }
 
             @Override

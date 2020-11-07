@@ -1,4 +1,4 @@
-package me.teenyda.fruit.model.myself.address.base.adapter;
+package me.teenyda.fruit.model.classify.settlement.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -20,7 +20,7 @@ import me.teenyda.fruit.common.entity.Contact;
  * date: 2020/11/4
  * description:
  */
-public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHolder> {
+public class AddressSelectAdapter extends RecyclerView.Adapter<AddressSelectAdapter.ViewHolder> {
 
     private Context mContext;
     private List<Contact> mContacts;
@@ -28,10 +28,9 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
 
     public interface IContactAction {
         void onContactSelect(Contact contact);
-        void onContactDelete(int contactId);
     }
 
-    public AddressAdapter(Context context) {
+    public AddressSelectAdapter(Context context) {
         mContext = context;
         mContacts = new ArrayList<>();
     }
@@ -51,7 +50,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.item_address, parent, false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_address_select, parent, false);
         return new ViewHolder(view);
     }
 
@@ -61,11 +60,11 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
         holder.tv_name.setText(contact.getName());
         holder.address_mobile.setText(contact.getMobile());
         holder.address.setText(contact.getAddress());
-        holder.contact_delete.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (mIContactAction != null) {
-                    mIContactAction.onContactDelete(contact.getContactId());
+                    mIContactAction.onContactSelect(contact);
                 }
             }
         });
@@ -80,14 +79,12 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
         TextView tv_name;
         TextView address_mobile;
         TextView address;
-        ImageView contact_delete;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_name = itemView.findViewById(R.id.tv_name);
             address_mobile = itemView.findViewById(R.id.address_mobile);
             address = itemView.findViewById(R.id.address);
-            contact_delete = itemView.findViewById(R.id.contact_delete);
         }
     }
 }

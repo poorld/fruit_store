@@ -1,5 +1,7 @@
 package me.teenyda.fruit.common.api;
 
+import android.content.Intent;
+
 import java.util.List;
 import java.util.Map;
 
@@ -12,12 +14,14 @@ import me.teenyda.fruit.common.entity.Demo;
 import me.teenyda.fruit.common.entity.Discounts;
 import me.teenyda.fruit.common.entity.FileUploadResponse;
 import me.teenyda.fruit.common.entity.OrderItem;
+import me.teenyda.fruit.common.entity.OrderPayment;
 import me.teenyda.fruit.common.entity.Product;
 import me.teenyda.fruit.common.entity.ProductCategory;
 import me.teenyda.fruit.common.entity.SettlementOrder;
 import me.teenyda.fruit.common.entity.SimpleProductEntity;
 import me.teenyda.fruit.common.entity.User;
 import me.teenyda.fruit.common.entity.Wallet;
+import me.teenyda.fruit.common.net.request.OrderPaymentReq;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -158,6 +162,14 @@ public interface ApiUrl {
     Observable<BaseResponse<Wallet>> getWallet(@Path("userId") Integer userId);
 
     /**
+     * 去支付订单
+     * @param req
+     * @return
+     */
+    @POST("fruit/order/payment")
+    Observable<BaseResponse<OrderPayment>> toPayment(@Body OrderPaymentReq req);
+
+    /**
      * 获取联系人
      * @param userId
      * @return
@@ -172,6 +184,14 @@ public interface ApiUrl {
      */
     @POST("fruit/contact")
     Observable<BaseResponse<Contact>> addContacts(@Body Contact contact);
+
+    /**
+     * 添加联系人
+     * @param contactId
+     * @return
+     */
+    @DELETE("fruit/contact/{contactId}")
+    Observable<BaseResponse<Boolean>> deleteContacts(@Path("contactId") Integer contactId);
 
     /**
      * TODO Get请求

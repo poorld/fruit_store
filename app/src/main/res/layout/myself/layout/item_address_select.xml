@@ -7,13 +7,6 @@
     android:background="@drawable/shape_radius_5dp_fff"
     android:layout_marginTop="5dp">
 
-    <ImageView
-        android:id="@+id/iv_address"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@mipmap/icon_address"
-        android:layout_centerVertical="true"/>
-
     <TextView
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
@@ -45,14 +38,6 @@
         android:textSize="14sp"
         android:layout_below="@id/tv_name"
         android:text="广西南宁市武鸣区新宁路2号南宁师范大学武鸣校区2区14栋301"/>
-
-    <ImageView
-        android:id="@+id/contact_delete"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:src="@mipmap/icon_contact_delete"/>
 
 
 </RelativeLayout>

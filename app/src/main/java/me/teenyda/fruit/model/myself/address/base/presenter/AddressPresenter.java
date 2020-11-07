@@ -27,4 +27,18 @@ public class AddressPresenter extends BaseRxPresenter<IAddressView> {
             }
         });
     }
+
+    public void deleteContact(int contactId) {
+        addDisposable(mApi.deleteContacts(contactId), new MyObserver<Boolean>(mContext) {
+            @Override
+            public void onSuccess(Boolean del) {
+                mView.delContacts();
+            }
+
+            @Override
+            public void onFailure(Throwable e, String errorMsg) {
+
+            }
+        });
+    }
 }
