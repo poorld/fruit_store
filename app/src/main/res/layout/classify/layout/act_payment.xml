@@ -20,6 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="5dp"
+            android:textSize="11sp"
             android:textColor="@color/c_999999"
             android:text="订单编号:321324dsakgjadsgdsa"/>
 
@@ -28,8 +29,8 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginEnd="23dp"
         android:background="@drawable/shape_dotted_eee_line" />
 
     <LinearLayout
@@ -73,7 +74,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="订单结束时间"
+                android:text="支付剩余时间"
                 android:layout_gravity="center_vertical"
                 android:textSize="12sp"/>
 
@@ -91,7 +92,7 @@
                 app:isShowSecond="true"
                 app:isShowTimeBgDivisionLine="false"
                 app:suffixGravity="center"
-                app:suffixTextColor="#000000"
+                app:suffixTextColor="@color/c_ee8cad"
                 app:suffixTextSize="12sp"
                 app:timeBgColor="@color/c_ffffff"
                 app:timeTextColor="@color/c_ee8cad"
