@@ -18,11 +18,11 @@ public enum PaymentStatusEnum {
         this.desc = desc;
     }
 
-    public int getPaymentType() {
+    public int getPaymentStatus() {
         return paymentStatus;
     }
 
-    public void setPaymentType(int paymentStatus) {
+    public void setPaymentStatus(int paymentStatus) {
         this.paymentStatus = paymentStatus;
     }
 

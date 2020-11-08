@@ -11,4 +11,6 @@ import me.teenyda.fruit.common.mvp.BaseView;
 public interface IPaymentView extends BaseView {
 
     void setOrderPayment(OrderPayment orderPayment);
+
+    void paySuccess(OrderPayment orderPayment);
 }

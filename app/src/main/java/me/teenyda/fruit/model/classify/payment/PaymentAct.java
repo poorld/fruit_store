@@ -126,4 +126,18 @@ public class PaymentAct extends MvpActivity<IPaymentView, PaymentPresenter> impl
 
         }
     }
+
+    @Override
+    public void paySuccess(OrderPayment orderPayment) {
+
+        if (orderPayment.getPayStatus() ==
+                PaymentStatusEnum.PAYMENT.getPaymentStatus()) {
+            showToast("支付成功!");
+            payment_state.setText("订单已支付");
+            payment_pay.setVisibility(View.GONE);
+            cv_countdown.stop();
+        } else {
+            showToast("支付失败!");
+        }
+    }
 }

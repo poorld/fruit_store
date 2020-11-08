@@ -30,12 +30,12 @@ public class PaymentPresenter extends BaseRxPresenter<IPaymentView> {
         addDisposable(mApi.pay(orderNum), new MyObserver<OrderPayment>(mContext) {
             @Override
             public void onSuccess(OrderPayment orderPayment) {
-
+                mView.paySuccess(orderPayment);
             }
 
             @Override
             public void onFailure(Throwable e, String errorMsg) {
-
+                mView.showToast(errorMsg);
             }
         });
     }
