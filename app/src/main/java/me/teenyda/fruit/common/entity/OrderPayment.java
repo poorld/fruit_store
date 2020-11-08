@@ -16,15 +16,18 @@ public class OrderPayment implements Serializable {
 
     private String orderNum;
 
+    // 总金额
     private Double totalAmount;
-
+    // 支付金额
     private Double payAmount;
-
+    // 优惠金额
     private Double discountAmount;
-
+    // 创建时间
     private Date creationTime;
-
+    // 结束时间
     private Date endTime;
+    // 支付状态0未付款 1已付款
+    
 
 
     public Integer getOrderPaymentId() {

@@ -98,11 +98,11 @@ public class SettlementPresenter extends BaseRxPresenter<ISettlementView> {
         });
     }
 
-    public void payment(OrderPaymentReq req) {
+    public void submit(OrderPaymentReq req) {
         addDisposable(mApi.toPayment(req), new MyObserver<OrderPayment>(mContext) {
             @Override
             public void onSuccess(OrderPayment orderPayment) {
-
+                mView.toPayment(orderPayment);
             }
 
             @Override

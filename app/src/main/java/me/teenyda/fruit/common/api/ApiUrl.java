@@ -170,6 +170,14 @@ public interface ApiUrl {
     Observable<BaseResponse<OrderPayment>> toPayment(@Body OrderPaymentReq req);
 
     /**
+     * 获取支付订单
+     * @param orderNum 订单编号
+     * @return
+     */
+    @POST("fruit/order/payment/{orderNum}")
+    Observable<BaseResponse<OrderPayment>> getOrderPayment(@Path("orderNum") String orderNum);
+
+    /**
      * 获取联系人
      * @param userId
      * @return

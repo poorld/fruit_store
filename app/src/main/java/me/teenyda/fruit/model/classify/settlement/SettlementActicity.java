@@ -140,12 +140,16 @@ public class SettlementActicity extends MvpActivity<ISettlementView, SettlementP
                 break;
             case R.id.settle_pay:
                 // 支付
-                PaymentAct.startActivity(getMContext());
+                // PaymentAct.startActivity(getMContext());
+                submitOrder();
                 break;
         }
     }
 
-    private void toPay() {
+    /**
+     * 提交订单
+     */
+    private void submitOrder() {
         String address = tv_contact_address.getText().toString();
         String name = tv_contact_name.getText().toString();
         String mobile = tv_contact_mobile.getText().toString();
@@ -172,7 +176,7 @@ public class SettlementActicity extends MvpActivity<ISettlementView, SettlementP
         req.setOrderInfo(orderInfo);
         req.setOrderPayment(mOrderPayment);
 
-
+        mPresenter.submit(req);
     }
 
     @Override
@@ -332,6 +336,16 @@ public class SettlementActicity extends MvpActivity<ISettlementView, SettlementP
         this.mWallet = wallet;
 
         mPopupPayment.setBalance(wallet.getBalance());
+    }
+
+    /**
+     * 订单完成，去支付
+     * @param orderPayment
+     */
+    @Override
+    public void toPayment(OrderPayment orderPayment) {
+        String orderNum = orderPayment.getOrderNum();
+        PaymentAct.startActivity(getMContext(), orderNum);
     }
 
     /**
