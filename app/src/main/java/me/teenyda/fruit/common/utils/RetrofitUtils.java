@@ -2,8 +2,10 @@ package me.teenyda.fruit.common.utils;
 
 
 
+import com.google.gson.GsonBuilder;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
@@ -51,7 +53,11 @@ public class RetrofitUtils {
                     .client(client)
                     .baseUrl(Constans.BaseUrl)
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                    .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(GsonConverterFactory
+                            .create(new GsonBuilder()
+                                    .registerTypeAdapter(Date.class, new DateDeserializer())
+                                    .create())
+                    )
                     .build();
     }
 

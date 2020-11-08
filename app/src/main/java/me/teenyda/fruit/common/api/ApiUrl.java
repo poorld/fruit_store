@@ -174,7 +174,7 @@ public interface ApiUrl {
      * @param orderNum 订单编号
      * @return
      */
-    @POST("fruit/order/payment/{orderNum}")
+    @GET("fruit/order/payment/{orderNum}")
     Observable<BaseResponse<OrderPayment>> getOrderPayment(@Path("orderNum") String orderNum);
 
     /**

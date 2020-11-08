@@ -2,6 +2,7 @@ package me.teenyda.fruit.model.classify.payment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.widget.TextView;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -10,6 +11,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.iwgang.countdownview.CountdownView;
 import me.teenyda.fruit.R;
+import me.teenyda.fruit.common.constant.PaymentStatusEnum;
 import me.teenyda.fruit.common.entity.OrderPayment;
 import me.teenyda.fruit.common.mvp.MvpActivity;
 import me.teenyda.fruit.model.classify.payment.presenter.PaymentPresenter;
@@ -24,6 +26,15 @@ public class PaymentAct extends MvpActivity<IPaymentView, PaymentPresenter> impl
 
     @BindView(R.id.cv_countdown)
     CountdownView cv_countdown;
+
+    @BindView(R.id.payment_order_number)
+    TextView payment_order_number;
+
+    @BindView(R.id.payment_state)
+    TextView payment_state;
+
+    @BindView(R.id.payment_money)
+    TextView payment_money;
 
     public static void startActivity(Context context, String orderNumber) {
         Intent intent = new Intent(context, PaymentAct.class);
@@ -60,6 +71,7 @@ public class PaymentAct extends MvpActivity<IPaymentView, PaymentPresenter> impl
     protected void requestData() {
         String orderNumber = getIntent().getStringExtra("orderNumber");
         mPresenter.getOrderPayment(orderNumber);
+        payment_order_number.setText(String.format(getString(R.string.payment_order_num), orderNumber));
     }
 
     @Override
@@ -69,6 +81,10 @@ public class PaymentAct extends MvpActivity<IPaymentView, PaymentPresenter> impl
 
     @Override
     public void setOrderPayment(OrderPayment orderPayment) {
+        PaymentStatusEnum paymentStatusEnum = PaymentStatusEnum.values()[orderPayment.getPayStatus()];
+        payment_state.setText(paymentStatusEnum.getDesc());
+        payment_money.setText(orderPayment.getPayAmount().toString());
+
         Date endTime = orderPayment.getEndTime();
         Calendar c = Calendar.getInstance();
         long start = c.getTimeInMillis();

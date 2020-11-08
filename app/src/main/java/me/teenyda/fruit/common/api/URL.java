@@ -3,7 +3,7 @@ package me.teenyda.fruit.common.api;
 /**
  * author: teenyda
  * date: 2019/8/21
- * description:
+ * description: 以弃用
  */
 public interface URL {
 
