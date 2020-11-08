@@ -2,6 +2,7 @@ package me.teenyda.fruit.model.classify.payment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.view.View;
 import android.widget.TextView;
 
 import java.util.Calendar;
@@ -9,6 +10,7 @@ import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cn.iwgang.countdownview.CountdownView;
 import me.teenyda.fruit.R;
 import me.teenyda.fruit.common.constant.PaymentStatusEnum;
@@ -36,6 +38,9 @@ public class PaymentAct extends MvpActivity<IPaymentView, PaymentPresenter> impl
     @BindView(R.id.payment_money)
     TextView payment_money;
 
+    @BindView(R.id.payment_pay)
+    TextView payment_pay;
+
     public static void startActivity(Context context, String orderNumber) {
         Intent intent = new Intent(context, PaymentAct.class);
         intent.putExtra("orderNumber", orderNumber);
@@ -56,6 +61,16 @@ public class PaymentAct extends MvpActivity<IPaymentView, PaymentPresenter> impl
         return R.layout.act_payment;
     }
 
+    @OnClick({R.id.payment_pay})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.payment_pay:
+                String orderNumber = getIntent().getStringExtra("orderNumber");
+                mPresenter.pay(orderNumber);
+                break;
+        }
+    }
+
     @Override
     protected void initView() {
         setTitleShow(true, "支付", false);
@@ -65,6 +80,14 @@ public class PaymentAct extends MvpActivity<IPaymentView, PaymentPresenter> impl
         c.add(Calendar.MINUTE, 10);
         long end = c.getTimeInMillis();
         cv_countdown.start(end - start);*/
+
+        cv_countdown.setOnCountdownEndListener(new CountdownView.OnCountdownEndListener() {
+            @Override
+            public void onEnd(CountdownView cv) {
+                payment_state.setText("订单已结束");
+                payment_pay.setVisibility(View.GONE);
+            }
+        });
     }
 
     @Override
@@ -92,6 +115,15 @@ public class PaymentAct extends MvpActivity<IPaymentView, PaymentPresenter> impl
         c.setTime(endTime);
 
         long end = c.getTimeInMillis();
-        cv_countdown.start(end - start);
+        // 如果当前时间大于 订单结束时间 ，结束订单
+        if (new Date().after(endTime)) {
+            // api
+            mPresenter.finish(orderPayment.getOrderNum());
+            payment_state.setText("订单已结束");
+            payment_pay.setVisibility(View.GONE);
+        }else {
+            cv_countdown.start(end - start);
+
+        }
     }
 }

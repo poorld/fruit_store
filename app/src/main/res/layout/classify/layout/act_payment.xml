@@ -102,4 +102,19 @@
         </LinearLayout>
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/payment_pay"
+        android:layout_width="match_parent"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:background="@drawable/shape_login_btn"
+        android:textColor="@color/c_fff3d9"
+        android:textSize="14sp"
+        android:text="支 付"/>
+
+
 </LinearLayout>

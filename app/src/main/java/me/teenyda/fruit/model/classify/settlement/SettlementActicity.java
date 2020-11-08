@@ -167,6 +167,7 @@ public class SettlementActicity extends MvpActivity<ISettlementView, SettlementP
         orderInfo.setContactMobile(mobile);
         orderInfo.setMessage(message);
         orderInfo.setPaymentType(mPaymentType);
+        mOrderPayment.setPayType(mPaymentType);
 
         String orderNumber = getIntent().getStringExtra("order_number");
         orderInfo.setOrderNum(orderNumber);

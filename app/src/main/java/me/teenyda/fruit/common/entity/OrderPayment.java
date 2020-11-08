@@ -34,6 +34,7 @@ public class OrderPayment implements Serializable {
     private Date endTime;
     // 支付状态0未付款 1已付款
     private Integer payStatus;
+    private Integer payType;
 
 
 }
