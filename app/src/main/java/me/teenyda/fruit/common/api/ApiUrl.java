@@ -13,6 +13,7 @@ import me.teenyda.fruit.common.entity.Contact;
 import me.teenyda.fruit.common.entity.Demo;
 import me.teenyda.fruit.common.entity.Discounts;
 import me.teenyda.fruit.common.entity.FileUploadResponse;
+import me.teenyda.fruit.common.entity.Order;
 import me.teenyda.fruit.common.entity.OrderItem;
 import me.teenyda.fruit.common.entity.OrderPayment;
 import me.teenyda.fruit.common.entity.Product;
@@ -130,6 +131,18 @@ public interface ApiUrl {
      */
     @GET("fruit/order/{orderNum}")
     Observable<BaseResponse<SettlementOrder>> getOrder(@Path("orderNum") String orderNum);
+
+    /**
+     * 获取所以订单
+     * @param userId
+     * @return
+     */
+    @GET("fruit/order/item/{userId}")
+    Observable<BaseResponse<List<Order>>> getOrders(@Path("userId") Integer userId);
+
+    @GET("order/item/{userId}/status/{status}")
+    Observable<BaseResponse<List<Order>>> getOrdersByStatus(@Path("userId") Integer userId,
+                                                            @Path("status") Integer status);
 
     /**
      * 获取用户信息

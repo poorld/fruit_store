@@ -12,6 +12,7 @@ import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.teenyda.fruit.R;
+import me.teenyda.fruit.common.constant.TabMenuEnum;
 import me.teenyda.fruit.common.mvp.MvpActivity;
 import me.teenyda.fruit.model.myself.order.base.adapter.OrderPagerAdapter;
 import me.teenyda.fruit.model.myself.order.base.presenter.OrderPresenter;
@@ -40,9 +41,13 @@ public class OrderAct extends MvpActivity<IOrderView, OrderPresenter> implements
     private OrderPagerAdapter mAdapter;
 
 
-    private final String[] mTitles = {
-            "全部", "待付款", "待发货"
-            , "待收货", "待评价"
+    private String[] mTitles;
+    private final TabMenuEnum[] mTabMenus = {
+        TabMenuEnum.Menu1,
+        TabMenuEnum.Menu2,
+        TabMenuEnum.Menu3,
+        TabMenuEnum.Menu4,
+        TabMenuEnum.Menu5
     };
     private ArrayList<Fragment> mFragments;
 
@@ -67,17 +72,35 @@ public class OrderAct extends MvpActivity<IOrderView, OrderPresenter> implements
         ButterKnife.bind(this, mView);
 
         mFragments = new ArrayList<>();
+        mTitles = new String[mTabMenus.length];
 
 
-        for (String title : mTitles) {
+        for (int i = 0; i < mTabMenus.length; i++) {
+            mTitles[i] = mTabMenus[i].getDesc();
             mFragments.add(OrderListFragment.getInstance());
         }
-
 
         mAdapter = new OrderPagerAdapter(getSupportFragmentManager(), mFragments, mTitles);
         vp.setAdapter(mAdapter);
 
         tabLayout.setViewPager(vp);
+        vp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                OrderListFragment fragment = (OrderListFragment) mFragments.get(position);
+                fragment.getOrders(mTabMenus[position].getOrderStatus());
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     @Override
