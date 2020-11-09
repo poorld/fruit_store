@@ -347,6 +347,7 @@ public class SettlementActicity extends MvpActivity<ISettlementView, SettlementP
     public void toPayment(OrderPayment orderPayment) {
         String orderNum = orderPayment.getOrderNum();
         PaymentAct.startActivity(getMContext(), orderNum);
+        finish();
     }
 
     /**

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp">
+
+    <ImageView
+        android:id="@+id/order_img"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/order_number"
+        android:src="@drawable/product02" />
+
+    <TextView
+        android:id="@+id/order_fruit_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/order_img"
+        android:layout_alignTop="@id/order_img"
+        android:layout_marginStart="5dp"
+        android:text="有机大红灯樱桃"
+        android:textSize="16sp"
+        android:layout_marginEnd="15dp"
+        android:maxLines="1"
+        android:textColor="@color/c_888888"/>
+
+    <TextView
+        android:id="@+id/order_spec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/order_fruit_name"
+        android:layout_alignStart="@id/order_fruit_name"
+        android:layout_marginTop="5dp"
+        android:text="1斤"
+        android:textColor="@color/c_b2b2b2"/>
+
+    <TextView
+        android:id="@+id/order_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_alignBaseline="@id/order_spec"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="10dp"
+        android:text="×2"
+        android:textColor="@color/c_b2b2b2"/>
+
+</RelativeLayout>
