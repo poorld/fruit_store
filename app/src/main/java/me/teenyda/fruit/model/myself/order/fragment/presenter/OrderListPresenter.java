@@ -27,4 +27,18 @@ public class OrderListPresenter extends BaseRxPresenter<IOrderListView> {
             }
         });
     }
+
+    public void getOrders(Integer userId, Integer status) {
+        addDisposable(mApi.getOrdersByStatus(userId, status), new MyObserver<List<Order>>(mContext) {
+            @Override
+            public void onSuccess(List<Order> orders) {
+                mView.setOrders(orders);
+            }
+
+            @Override
+            public void onFailure(Throwable e, String errorMsg) {
+
+            }
+        });
+    }
 }

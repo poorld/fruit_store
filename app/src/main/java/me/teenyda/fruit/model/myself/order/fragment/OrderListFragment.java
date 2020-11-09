@@ -68,6 +68,8 @@ public class OrderListFragment extends MvpRxFragment<IOrderListView, OrderListPr
     public void getOrders(int status) {
         if (status == TabMenuEnum.Menu1.getOrderStatus()) {
             mPresenter.getOrders(10001);
+        }else {
+            mPresenter.getOrders(10001, status);
         }
     }
 
