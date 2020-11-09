@@ -36,6 +36,7 @@ public class OrderListAdapter extends XRecyclerView.Adapter<OrderListAdapter.Vie
     }
 
     public void addOrders(List<Order> orders) {
+        mOrders.clear();
         mOrders.addAll(orders);
         notifyDataSetChanged();
     }

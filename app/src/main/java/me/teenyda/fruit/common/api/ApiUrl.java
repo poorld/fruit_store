@@ -140,7 +140,7 @@ public interface ApiUrl {
     @GET("fruit/order/item/{userId}")
     Observable<BaseResponse<List<Order>>> getOrders(@Path("userId") Integer userId);
 
-    @GET("order/item/{userId}/status/{status}")
+    @GET("fruit/order/item/{userId}/status/{status}")
     Observable<BaseResponse<List<Order>>> getOrdersByStatus(@Path("userId") Integer userId,
                                                             @Path("status") Integer status);
 

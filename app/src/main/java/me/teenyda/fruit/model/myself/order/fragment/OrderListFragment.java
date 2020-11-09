@@ -62,7 +62,7 @@ public class OrderListFragment extends MvpRxFragment<IOrderListView, OrderListPr
 
     @Override
     protected void requestData() {
-        mPresenter.getOrders(10001);
+        // mPresenter.getOrders(10001);
     }
 
     public void getOrders(int status) {

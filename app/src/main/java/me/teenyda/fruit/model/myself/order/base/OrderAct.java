@@ -51,6 +51,26 @@ public class OrderAct extends MvpActivity<IOrderView, OrderPresenter> implements
     };
     private ArrayList<Fragment> mFragments;
 
+    private MyOnPageChangeListener mOnPageChangeListener;
+
+    class MyOnPageChangeListener implements ViewPager.OnPageChangeListener {
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+            OrderListFragment fragment = (OrderListFragment) mFragments.get(position);
+            fragment.getOrders(mTabMenus[position].getOrderStatus());
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+
+        }
+    }
+
     @Override
     protected OrderPresenter createPresenter() {
         return new OrderPresenter();
@@ -82,25 +102,17 @@ public class OrderAct extends MvpActivity<IOrderView, OrderPresenter> implements
 
         mAdapter = new OrderPagerAdapter(getSupportFragmentManager(), mFragments, mTitles);
         vp.setAdapter(mAdapter);
-
+        mOnPageChangeListener = new MyOnPageChangeListener();
         tabLayout.setViewPager(vp);
-        vp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        // 解决vp.setCurrentItem(0)不触发onPageSelected的问题
+        vp.post(new Runnable() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                OrderListFragment fragment = (OrderListFragment) mFragments.get(position);
-                fragment.getOrders(mTabMenus[position].getOrderStatus());
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
+            public void run() {
+                mOnPageChangeListener.onPageSelected(vp.getCurrentItem());
             }
         });
+        vp.setCurrentItem(0);
+        vp.addOnPageChangeListener(mOnPageChangeListener);
     }
 
     @Override
