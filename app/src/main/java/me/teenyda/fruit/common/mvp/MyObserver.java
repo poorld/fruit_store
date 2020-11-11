@@ -1,10 +1,13 @@
 package me.teenyda.fruit.common.mvp;
 
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Log;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import io.reactivex.disposables.Disposable;
@@ -27,7 +30,7 @@ public abstract class MyObserver<T> extends BaseObserver<T> {
     }
 
     public MyObserver(Context context) {
-        this(context,true);
+        this(context,false);
     }
 
     @Override
@@ -42,7 +45,22 @@ public abstract class MyObserver<T> extends BaseObserver<T> {
             if (mDialog == null && mShowDialog == true) {
                 mDialog = CustomProgressDialog.getInstance(mContext, R.drawable.anmi_loading);;
                 // mDialog.setMessage("正在加载中");
-                mDialog.show();
+                // Unable to add window -- token android.os.BinderProxy@68dbd8b is not valid; is your activity running?
+
+                ((Activity)mContext).runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        if (!((Activity)mContext).isFinishing()) {
+                            try {
+                                mDialog.show();
+                            } catch (WindowManager.BadTokenException e) {
+                                Log.e("WindowManagerBad ", e.toString());
+                            }
+                        }
+                    }
+                });
+
             }
         }
     }
@@ -68,7 +86,7 @@ public abstract class MyObserver<T> extends BaseObserver<T> {
     public void hidDialog() {
         if (mDialog != null && mShowDialog)
             mDialog.dismiss();
-        mDialog = null;
+        // mDialog = null;
     }
     /**
      * 是否有网络连接，不管是wifi还是数据流量

@@ -33,6 +33,7 @@ import me.teenyda.fruit.common.entity.User;
 import me.teenyda.fruit.common.entity.Wallet;
 import me.teenyda.fruit.common.mvp.MvpActivity;
 import me.teenyda.fruit.common.net.request.OrderPaymentReq;
+import me.teenyda.fruit.common.utils.FileCacheUtil;
 import me.teenyda.fruit.common.utils.GlideApp;
 import me.teenyda.fruit.common.utils.ToolUtils;
 import me.teenyda.fruit.common.view.popupview.PopupContact;
@@ -161,7 +162,8 @@ public class SettlementActicity extends MvpActivity<ISettlementView, SettlementP
         }
 
         OrderInfo orderInfo = new OrderInfo();
-        orderInfo.setUserId(10001);
+        Integer userId = FileCacheUtil.getUser(getMContext()).getUserId();
+        orderInfo.setUserId(userId);
         orderInfo.setContactAddress(address);
         orderInfo.setContactName(name);
         orderInfo.setContactMobile(mobile);
@@ -244,9 +246,10 @@ public class SettlementActicity extends MvpActivity<ISettlementView, SettlementP
 
     @Override
     protected void requestData() {
-        mPresenter.getUserInfo(10001);
-        mPresenter.getWallet(10001);
-        mPresenter.getContacts(10001);
+        Integer userId = FileCacheUtil.getUser(getMContext()).getUserId();
+        mPresenter.getUserInfo(userId);
+        mPresenter.getWallet(userId);
+        mPresenter.getContacts(userId);
     }
 
     @Override

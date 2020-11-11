@@ -14,6 +14,7 @@ import butterknife.ButterKnife;
 import me.teenyda.fruit.R;
 import me.teenyda.fruit.common.entity.Contact;
 import me.teenyda.fruit.common.mvp.MvpActivity;
+import me.teenyda.fruit.common.utils.FileCacheUtil;
 import me.teenyda.fruit.common.view.popupview.CommonPopView;
 import me.teenyda.fruit.model.myself.address.add.AddressAddAct;
 import me.teenyda.fruit.model.myself.address.base.adapter.AddressAdapter;
@@ -104,7 +105,8 @@ public class AddressAct extends MvpActivity<IAddressView, AddressPresenter> impl
 
     @Override
     protected void requestData() {
-        mPresenter.getContacts(10001);
+        Integer userId = FileCacheUtil.getUser(getMContext()).getUserId();
+        mPresenter.getContacts(userId);
     }
 
     @Override

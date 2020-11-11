@@ -14,6 +14,7 @@ import me.teenyda.fruit.R;
 import me.teenyda.fruit.common.constant.TabMenuEnum;
 import me.teenyda.fruit.common.entity.Order;
 import me.teenyda.fruit.common.mvp.MvpRxFragment;
+import me.teenyda.fruit.common.utils.FileCacheUtil;
 import me.teenyda.fruit.model.myself.order.fragment.adapter.OrderListAdapter;
 import me.teenyda.fruit.model.myself.order.fragment.presenter.OrderListPresenter;
 import me.teenyda.fruit.model.myself.order.fragment.view.IOrderListView;
@@ -66,10 +67,11 @@ public class OrderListFragment extends MvpRxFragment<IOrderListView, OrderListPr
     }
 
     public void getOrders(int status) {
+        Integer userId = FileCacheUtil.getUser(getMContext()).getUserId();
         if (status == TabMenuEnum.Menu1.getOrderStatus()) {
-            mPresenter.getOrders(10001);
+            mPresenter.getOrders(userId);
         }else {
-            mPresenter.getOrders(10001, status);
+            mPresenter.getOrders(userId, status);
         }
     }
 

@@ -82,7 +82,7 @@ public class FileCacheUtil {
     }
 
     public static void removeCache(Context context, String cacheFileName) {
-        File file = new File(getCachePath(context) + cacheFileName);
+        File file = new File(getCachePath(context) + File.separator + cacheFileName);
         if (file.exists())
             file.delete();
     }

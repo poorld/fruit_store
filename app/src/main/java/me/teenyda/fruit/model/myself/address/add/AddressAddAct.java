@@ -13,6 +13,7 @@ import butterknife.OnClick;
 import me.teenyda.fruit.R;
 import me.teenyda.fruit.common.entity.Contact;
 import me.teenyda.fruit.common.mvp.MvpActivity;
+import me.teenyda.fruit.common.utils.FileCacheUtil;
 import me.teenyda.fruit.model.myself.address.add.presenter.AddressAddPresenter;
 import me.teenyda.fruit.model.myself.address.add.view.IAddressAddView;
 
@@ -54,8 +55,9 @@ public class AddressAddAct extends MvpActivity<IAddressAddView, AddressAddPresen
         switch (view.getId()) {
             case R.id.address_add:
                 Contact contact = getContact();
+                Integer userId = FileCacheUtil.getUser(getMContext()).getUserId();
                 if (contact != null) {
-                    contact.setUserId(10001);
+                    contact.setUserId(userId);
                     mPresenter.addContact(contact);
                 }
                 break;
