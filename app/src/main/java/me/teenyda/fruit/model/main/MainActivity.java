@@ -2,6 +2,7 @@ package me.teenyda.fruit.model.main;
 
 import androidx.annotation.Nullable;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -67,7 +68,10 @@ public class MainActivity extends RxAppCompatActivity {
     private FragmentManager manager;
     private Unbinder mBind;
 
-
+    public static void startActivity(Context context) {
+        Intent intent = new Intent(context, MainActivity.class);
+        context.startActivity(intent);
+    }
 
 
     @Override

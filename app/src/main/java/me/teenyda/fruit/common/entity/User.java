@@ -17,15 +17,15 @@ public class User {
 
     private String username;
 
-    // private String password;
+    private String password;
 
     private String nickname;
 
-    // private String email;
+    private String email;
 
     private String image;
 
-    // private String qq;
+    private String qq;
 
     private String mobile;
 

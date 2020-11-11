@@ -56,22 +56,25 @@ public class MemberAdapter extends BannerAdapter<Member, MemberHolder> {
 
         switch (level) {
             case 1:
-                holder.member_tv1.setTextColor(mContext.getColor(R.color.c_999999));
-                holder.member_tv2.setTextColor(mContext.getColor(R.color.c_999999));
-                holder.member_tv3.setTextColor(mContext.getColor(R.color.c_999999));
-                holder.member_name.setTextColor(mContext.getColor(R.color.c_999999));
+                holder.member_tv1.setTextColor(mContext.getColor(R.color.c_7f7f7f));
+                holder.member_tv2.setTextColor(mContext.getColor(R.color.c_7f7f7f));
+                holder.member_tv3.setTextColor(mContext.getColor(R.color.c_7f7f7f));
+                holder.member_name.setTextColor(mContext.getColor(R.color.c_7f7f7f));
+                holder.member_price.setText("8");
                 break;
             case 2:
                 holder.member_tv1.setTextColor(mContext.getColor(R.color.c_ffffff));
                 holder.member_tv2.setTextColor(mContext.getColor(R.color.c_ffffff));
                 holder.member_tv3.setTextColor(mContext.getColor(R.color.c_ffffff));
                 holder.member_name.setTextColor(mContext.getColor(R.color.c_ffffff));
+                holder.member_price.setText("12");
                 break;
             case 3:
                 holder.member_tv1.setTextColor(mContext.getColor(R.color.c_f3cadb));
                 holder.member_tv2.setTextColor(mContext.getColor(R.color.c_f3cadb));
                 holder.member_tv3.setTextColor(mContext.getColor(R.color.c_f3cadb));
                 holder.member_name.setTextColor(mContext.getColor(R.color.c_f3cadb));
+                holder.member_price.setText("15");
                 break;
         }
     }

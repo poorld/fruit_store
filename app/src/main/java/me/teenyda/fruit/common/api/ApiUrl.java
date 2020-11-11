@@ -231,6 +231,22 @@ public interface ApiUrl {
     Observable<BaseResponse<Boolean>> deleteContacts(@Path("contactId") Integer contactId);
 
     /**
+     * 注册
+     * @param user
+     * @return
+     */
+    @POST("fruit/user/register")
+    Observable<BaseResponse<Boolean>> register(@Body User user);
+
+    /**
+     * 登录
+     * @param user
+     * @return
+     */
+    @POST("fruit/user/login")
+    Observable<BaseResponse<User>> login(@Body User user);
+
+    /**
      * TODO Get请求
      */
     //第一种方式：GET不带参数

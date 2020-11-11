@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import me.teenyda.fruit.common.entity.User;
 import me.teenyda.fruit.common.entity.UserToken;
 
 /**
@@ -30,8 +31,8 @@ public class FileCacheUtil {
     // 缓存文件名
     public static final String cacheFileName = "user_cache";
     public static final String userTokenFile = "user_token";
-    // 缓存时间 30分钟
-    public static final int cache_timeout = 1000 * 60 * 30;
+    // 缓存时间 3天
+    public static final int cache_timeout = 1000 * 60 * 60 * 3;
 
     public static void setCache(String content, Context context, String cacheFileName, int mode) {
         FileOutputStream fos = null;
@@ -65,13 +66,13 @@ public class FileCacheUtil {
             while ((len = fis.read(buff)) != -1) {
                 sb.append(new String(buff, 0, len));
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
             try {
-                fis.close();
+                if (fis != null) {
+                    fis.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -80,10 +81,35 @@ public class FileCacheUtil {
         return sb.toString();
     }
 
+    public static void removeCache(Context context, String cacheFileName) {
+        File file = new File(getCachePath(context) + cacheFileName);
+        if (file.exists())
+            file.delete();
+    }
+
     public static void saveUserToken(Context context,UserToken userToken) {
         String json = JSONObject.toJSONString(userToken);
         setCache(json, context, userTokenFile, Context.MODE_PRIVATE);
     }
+
+    public static UserToken getUserToken(Context context) {
+        String userTokenJson = getCache(context, userTokenFile);
+        return JSONObject.parseObject(userTokenJson, UserToken.class);
+    }
+
+    public static void saveUser(Context context,User user) {
+        String json = JSONObject.toJSONString(user);
+        setCache(json, context, userTokenFile, Context.MODE_PRIVATE);
+    }
+
+    public static User getUser(Context context) {
+        String userTokenJson = getCache(context, userTokenFile);
+        return JSONObject.parseObject(userTokenJson, User.class);
+    }
+    public static void removeUser(Context context) {
+        removeCache(context, userTokenFile);
+    }
+
 
     public static String getCachePath(Context context) {
         return context.getFilesDir().getAbsolutePath();

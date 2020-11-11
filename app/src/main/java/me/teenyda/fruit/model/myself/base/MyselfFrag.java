@@ -1,5 +1,6 @@
 package me.teenyda.fruit.model.myself.base;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -12,6 +13,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import me.teenyda.fruit.R;
 import me.teenyda.fruit.common.mvp.MvpRxFragment;
+import me.teenyda.fruit.common.utils.FileCacheUtil;
 import me.teenyda.fruit.model.login.base.LoginAct;
 import me.teenyda.fruit.model.myself.address.base.AddressAct;
 import me.teenyda.fruit.model.myself.base.presenter.MyselfP;
@@ -82,13 +84,19 @@ public class MyselfFrag extends MvpRxFragment<IMySelfV, MyselfP> implements IMyS
                 InfoAct.startActivity(getMContext());
                 break;
             case R.id.myself_logout:
-                LoginAct.startActivity(getMContext());
+                logOut();
                 break;
             case R.id.myself_address:
                 AddressAct.startActivity(getMContext());
                 break;
         }
 
+    }
+
+    private void logOut() {
+        FileCacheUtil.removeUser(getMContext());
+        LoginAct.startActivity(getMContext());
+        ((Activity)getMContext()).finish();
     }
 
     @Override

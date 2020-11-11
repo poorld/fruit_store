@@ -1,5 +1,6 @@
 package me.teenyda.fruit.model.login.base.view;
 
+import me.teenyda.fruit.common.entity.User;
 import me.teenyda.fruit.common.mvp.BaseView;
 
 /**
@@ -9,5 +10,5 @@ import me.teenyda.fruit.common.mvp.BaseView;
  */
 public interface ILoginV extends BaseView {
 
-    void loginSuccess();
+    void loginSuccess(User user1);
 }

@@ -37,7 +37,7 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".model.main.MainActivity">
+        <activity android:name=".model.login.base.LoginAct">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -45,7 +45,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".model.test.StatusBarTestAct" />
-        <activity android:name=".model.login.base.LoginAct" />
+        <!--<activity android:name=".model.login.base.LoginAct" />-->
         <activity android:name=".model.test.Activity"></activity>
         <activity android:name=".model.classify.info.ProductInfoActivity" />
 
@@ -63,6 +63,8 @@
         <activity android:name=".model.myself.address.base.AddressAct" />
         <activity android:name=".model.myself.address.add.AddressAddAct" />
         <activity android:name=".model.classify.payment.PaymentAct" />
+        <activity android:name=".model.login.register.RegisterAct" />
+        <activity android:name=".model.main.MainActivity" />
     </application>
 
 </manifest>

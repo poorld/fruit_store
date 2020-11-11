@@ -26,7 +26,7 @@
                 android:layout_marginStart="15dp"/>
 
             <EditText
-                android:id="@+id/login_username_et"
+                android:id="@+id/register_username_et"
                 android:paddingStart="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -52,7 +52,7 @@
                 android:layout_marginLeft="15dp"/>
 
             <EditText
-                android:id="@+id/login_password_et"
+                android:id="@+id/register_password_et"
                 android:paddingStart="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -65,8 +65,35 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/shape_login_border"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@mipmap/icon_password"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"/>
+
+            <EditText
+                android:id="@+id/register_repassword_et"
+                android:paddingStart="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPassword"
+                android:background="@null"
+                android:textColorHint="@color/c_e5e5e5"
+                android:textSize="13sp"
+                android:textColor="@color/c_000000"
+                android:hint="再次确认密码"/>
+
+        </LinearLayout>
+
         <TextView
-            android:id="@+id/login"
+            android:id="@+id/register"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginTop="30dp"
@@ -75,41 +102,18 @@
             android:background="@drawable/shape_login_btn"
             android:textColor="@color/c_fff3d9"
             android:textSize="14sp"
-            android:text="登 陆"/>
+            android:text="注 册"/>
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/login"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:gravity="center_horizontal">
-
-            <TextView
-                android:id="@+id/to_register"
-                android:padding="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:textColor="@color/c_ffeec8"
-                android:textSize="15sp"
-                android:text="注册用户"/>
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="15dp"
-                android:layout_gravity="center_vertical"
-                android:background="@color/c_ffe4a6" />
-
-            <TextView
-                android:padding="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:textColor="@color/c_ffeec8"
-                android:textSize="15sp"
-                android:text="忘记密码？"/>
-
-        </LinearLayout>
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/c_ffeec8"
+            android:textSize="15sp"
+            android:text="已注册？返回登录"/>
 
     </LinearLayout>
 

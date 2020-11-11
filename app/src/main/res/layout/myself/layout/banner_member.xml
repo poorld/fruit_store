@@ -25,7 +25,7 @@
             android:textSize="14sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/c_999999"
+            android:textColor="@color/c_7f7f7f"
             android:layout_marginStart="5dp"
             android:text="钻石会员"/>
 
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/member_sfl"
         android:layout_marginTop="15dp"
-        android:textColor="@color/c_999999"
+        android:textColor="@color/c_7f7f7f"
         android:textSize="12sp"
         android:text="购物折扣：95折"/>
 
@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/member_tv1"
         android:layout_marginTop="5dp"
-        android:textColor="@color/c_999999"
+        android:textColor="@color/c_7f7f7f"
         android:textSize="12sp"
         android:text="充值优惠：95折"/>
 
@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/member_tv2"
         android:layout_marginTop="5dp"
-        android:textColor="@color/c_999999"
+        android:textColor="@color/c_7f7f7f"
         android:textSize="12sp"
         android:text="配送优惠：-2元"/>
 

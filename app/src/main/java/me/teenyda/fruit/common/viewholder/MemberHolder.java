@@ -24,6 +24,7 @@ public class MemberHolder extends RecyclerView.ViewHolder {
     public TextView member_tv1;
     public TextView member_tv2;
     public TextView member_tv3;
+    public TextView member_price;
 
     public MemberHolder(@NonNull View view) {
         super(view);
@@ -34,6 +35,7 @@ public class MemberHolder extends RecyclerView.ViewHolder {
         member_tv1 = view.findViewById(R.id.member_tv1);
         member_tv2 = view.findViewById(R.id.member_tv2);
         member_tv3 = view.findViewById(R.id.member_tv3);
+        member_price = view.findViewById(R.id.member_price);
 
         Shimmer shimmer = new Shimmer.AlphaHighlightBuilder()
                 // 设置闪一次2秒

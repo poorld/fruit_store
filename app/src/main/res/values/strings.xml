@@ -19,4 +19,6 @@
 
     <!--支付-->
     <string name="payment_order_num">订单编号:%s</string>
+
+    <string name="shopping_discounts">购物折扣：%d折</string>
 </resources>

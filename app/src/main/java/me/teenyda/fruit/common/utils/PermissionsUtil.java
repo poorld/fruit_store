@@ -29,6 +29,17 @@ import pub.devrel.easypermissions.EasyPermissions;
  */
 public class PermissionsUtil {
 
+    /**
+     * 读写存储
+     * @param context
+     */
+    public static void permission_storage(@NonNull Context context) {
+
+        String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        getPermission(permissions, context, "需要获取您的读写权限!");
+    }
+
 
     /**
      * 拍照
@@ -40,7 +51,7 @@ public class PermissionsUtil {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
         if (!EasyPermissions.hasPermissions(context, permissions)) {
-            getPermission(permissions, context);
+            getPermission(permissions, context,"需要获取您的相册、照相使用权限");
         }
 
         Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
@@ -144,7 +155,7 @@ public class PermissionsUtil {
         }
     }
 
-    //获取权限
+/*    //获取权限
     private static void getPermission(String[] permissions, Context context) {
 
         if (EasyPermissions.hasPermissions(context, permissions)) {
@@ -152,7 +163,20 @@ public class PermissionsUtil {
 //            Toast.makeText(this, "已经申请相关权限", Toast.LENGTH_SHORT).show();
         } else {
             //没有打开相关权限、申请权限
-            EasyPermissions.requestPermissions((Activity) context, "需要获取您的相册、照相使用权限", 1, permissions);
+            EasyPermissions.requestPermissions((Activity) context, , 1, permissions);
+        }
+
+    }*/
+
+    //获取权限
+    private static void getPermission(String[] permissions, Context context, String tip) {
+
+        if (EasyPermissions.hasPermissions(context, permissions)) {
+            //已经打开权限
+            //            Toast.makeText(this, "已经申请相关权限", Toast.LENGTH_SHORT).show();
+        } else {
+            //没有打开相关权限、申请权限
+            EasyPermissions.requestPermissions((Activity) context, tip, 1, permissions);
         }
 
     }
