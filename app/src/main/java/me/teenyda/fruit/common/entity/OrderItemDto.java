@@ -24,4 +24,6 @@ public class OrderItemDto {
     private Integer specId;
 
     private OrderProductDto product;
+
+    private boolean selected;
 }

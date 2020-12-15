@@ -67,4 +67,22 @@ public class ProductInfoPresenter extends BaseRxPresenter<IProductInfoView> {
             }
         });
     }
+
+    /**
+     * 加入购物车
+     * @param orderItem
+     */
+    public void addCart(OrderItem orderItem) {
+        addDisposable(mApi.addCart(orderItem), new MyObserver<OrderItem>(mContext, true) {
+            @Override
+            public void onSuccess(OrderItem orderItem1) {
+                mView.addCartSuccess(orderItem1);
+            }
+
+            @Override
+            public void onFailure(Throwable e, String errorMsg) {
+
+            }
+        });
+    }
 }

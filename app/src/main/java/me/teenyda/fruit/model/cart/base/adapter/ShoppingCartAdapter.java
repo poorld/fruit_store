@@ -1,19 +1,28 @@
 package me.teenyda.fruit.model.cart.base.adapter;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import me.teenyda.fruit.R;
 import me.teenyda.fruit.common.entity.Cart;
+import me.teenyda.fruit.common.entity.Order;
+import me.teenyda.fruit.common.entity.OrderItemDto;
+import me.teenyda.fruit.common.entity.OrderProductDto;
+import me.teenyda.fruit.common.entity.Spec;
 import me.teenyda.fruit.common.utils.GlideApp;
 import me.teenyda.fruit.common.utils.ToolUtils;
 
@@ -27,32 +36,40 @@ public class ShoppingCartAdapter extends XRecyclerView.Adapter<ShoppingCartAdapt
 
     private Context mContext;
 
-    private List<Cart> mCarts;
+    private List<Order> mCarts;
 
     private IProductSelect mProductSelect;
 
     private boolean selectAll;
 
-    public void setCarts(List<Cart> carts) {
+    private List<Order> mSelectProduct;
+
+    public void setCarts(List<Order> carts) {
         this.mCarts = carts;
+        mSelectProduct = new ArrayList<>();
         notifyDataSetChanged();
     }
 
     public interface IProductSelect{
-        void onProductedSelect(double price, boolean isSelectedAll);
+        void onProductedSelect(double price, boolean isSelectedAll, List<Order> selectProduct);
     }
 
     public void selectedAll(boolean selected) {
         if (mCarts != null) {
-            for (Cart cart : mCarts) {
+            if (selected) {
+                mSelectProduct = mCarts;
+            } else {
+                mSelectProduct.clear();
+            }
+            for (Order cart : mCarts) {
                 if (selected) {
-                    cart.setSelected(true);
+                    cart.getOrderItems().get(0).setSelected(true);
                 } else {
-                    cart.setSelected(false);
+                    cart.getOrderItems().get(0).setSelected(false);
                 }
             }
             notifyDataSetChanged();
-            mProductSelect.onProductedSelect(compuatePrice(), selected);
+            mProductSelect.onProductedSelect(compuatePrice(), selected, mSelectProduct);
         }
     }
 
@@ -74,29 +91,43 @@ public class ShoppingCartAdapter extends XRecyclerView.Adapter<ShoppingCartAdapt
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         if (mCarts != null) {
-            Cart cart = mCarts.get(position);
+            Order order = mCarts.get(position);
+            OrderItemDto cart = order.getOrderItems().get(0);
             holder.iv_cart_selected.setSelected(cart.isSelected());
 
             // holder.iv_cart_fruit_img
-
-            holder.tv_cart_fruit_name.setText(cart.getName());
-            holder.tv_cart_price.setText(String.format(mContext.getString(R.string.cart_price), cart.getPrice()));
-            holder.tv_cart_spec.setText(String.format(mContext.getString(R.string.cart_spec), cart.getSpecification()));
-            holder.tv_cart_count.setText(String.format(mContext.getString(R.string.cart_count), cart.getCount()));
+            OrderProductDto product = cart.getProduct();
+            Spec spec = product.getSpec();
+            String specName = spec.getSpecName();
+            String attrbute = spec.getSku().getAttrbute();
+            holder.tv_cart_fruit_name.setText(product.getName());
+            holder.tv_cart_price.setText(String.format(mContext.getString(R.string.cart_price), String.valueOf(cart.getPrice())));
+            holder.tv_cart_spec.setText(String.format(mContext.getString(R.string.cart_spec), specName + "/" + attrbute));
+            holder.tv_cart_count.setText(String.format(mContext.getString(R.string.cart_count), cart.getQuantity()));
 
             holder.iv_cart_selected.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     cart.setSelected(!cart.isSelected());
-                    mProductSelect.onProductedSelect(compuatePrice(), selectAll);
+                    mProductSelect.onProductedSelect(compuatePrice(), selectAll, mSelectProduct);
                     notifyDataSetChanged();
                 }
             });
 
             GlideApp.with(mContext)
-                    .load(mContext.getDrawable(R.drawable.product02))
-                    .override(60, 60)
-                    .into(holder.iv_cart_fruit_img);
+                    .load(product.getDefaultImg())
+                    .override(100, 100)
+                    .into(new CustomTarget<Drawable>() {
+                        @Override
+                        public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                            holder.iv_cart_fruit_img.setImageDrawable(resource);
+                        }
+
+                        @Override
+                        public void onLoadCleared(@Nullable Drawable placeholder) {
+
+                        }
+                    });
         }
     }
 
@@ -105,11 +136,14 @@ public class ShoppingCartAdapter extends XRecyclerView.Adapter<ShoppingCartAdapt
 
             double totalPrice = 0;
             selectAll = true;
+            mSelectProduct.clear();
 
-            for (Cart cart : mCarts) {
-                if (cart.isSelected()) {
-                    float price = cart.getPrice();
-                    int count = cart.getCount();
+            for (Order cart : mCarts) {
+                OrderItemDto orderItemDto = cart.getOrderItems().get(0);
+                if (orderItemDto.isSelected()) {
+                    mSelectProduct.add(cart);
+                    Double price = orderItemDto.getPrice();
+                    int count = orderItemDto.getQuantity();
                     double mul = ToolUtils.mul(price, count);
                     totalPrice = ToolUtils.add(totalPrice, mul);
                 } else {

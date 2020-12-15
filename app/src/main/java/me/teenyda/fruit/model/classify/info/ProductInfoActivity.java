@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
@@ -34,11 +35,13 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import me.teenyda.fruit.R;
+import me.teenyda.fruit.common.constant.OrderTypeEnum;
 import me.teenyda.fruit.common.entity.Comments;
 import me.teenyda.fruit.common.entity.OrderItem;
 import me.teenyda.fruit.common.entity.Product;
 import me.teenyda.fruit.common.entity.Spec;
 import me.teenyda.fruit.common.mvp.MvpActivity;
+import me.teenyda.fruit.common.utils.FileCacheUtil;
 import me.teenyda.fruit.common.utils.GlideApp;
 import me.teenyda.fruit.common.view.popupview.PopViewProductImg;
 import me.teenyda.fruit.common.view.popupview.PopupSpecifications;
@@ -104,8 +107,13 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
 
     private PopViewProductImg mCommentsPop;
 
+    // 购买
     @BindView(R.id.tv_product_buy)
     TextView tv_product_buy;
+
+    // 购物车
+    @BindView(R.id.tv_product_cart)
+    TextView tv_product_cart;
 
     @BindView(R.id.comments_no_data)
     RelativeLayout comments_no_data;
@@ -117,6 +125,12 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
     private ProductInfoAdapter mInfoAdapter;
     private List<String> mUrls;
     private Integer mProductId;
+
+    // 购买
+    private static final int order_type_buy = OrderTypeEnum.Order.getPaymentType();
+    // 购物车
+    private static final int order_type_cart = OrderTypeEnum.Cart.getPaymentType();
+    private int mType;
 
     public static void startActivity(Context context, Integer productId) {
         Intent intent = new Intent(context, ProductInfoActivity.class);
@@ -182,19 +196,27 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
             @Override
             public void onOrderConfirmClick(Spec spec, int number) {
                 // 下订单
+                Integer userId = FileCacheUtil.getUser(getMContext()).getUserId();
                 OrderItem orderItem = new OrderItem();
-                orderItem.setUserId(10001);
+                orderItem.setUserId(userId);
                 orderItem.setPrice(spec.getPrice());
                 orderItem.setQuantity(number);
                 orderItem.setSpecId(spec.getSpecId());
                 orderItem.setProductId(mProductId);
-                mPresenter.order(orderItem);
+                // 购买
+                if (mType == order_type_buy) {
+                    mPresenter.order(orderItem);
+                } else {
+                    // 购物车
+                    mPresenter.addCart(orderItem);
+                }
             }
         });
     }
 
 
-    @OnClick({R.id.iv_comments1, R.id.iv_comments2, R.id.iv_comments3, R.id.tv_product_buy})
+    @OnClick({R.id.iv_comments1, R.id.iv_comments2, R.id.iv_comments3
+            , R.id.tv_product_buy, R.id.tv_product_cart})
     public void onClick(View view) {
 
 
@@ -210,6 +232,11 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
                 mCommentsPop.show(view, 2);
                 break;
             case R.id.tv_product_buy:
+                mType = order_type_buy;
+                mSpecifications.show(view);
+                break;
+            case R.id.tv_product_cart:
+                mType = order_type_cart;
                 mSpecifications.show(view);
                 break;
         }
@@ -324,6 +351,12 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
     @Override
     public void orderSuccess(OrderItem orderItem) {
         SettlementActicity.startActivity(getMContext(), orderItem.getOrderNum());
+    }
+
+    @Override
+    public void addCartSuccess(OrderItem orderItem) {
+        showToast("添加成功");
+        mSpecifications.dismiss();
     }
 
     public void setImageView(String url, ImageView iv) {

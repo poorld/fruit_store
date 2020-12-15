@@ -9,9 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.TextView;
 
 import java.util.List;
 
@@ -20,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import me.teenyda.fruit.R;
 import me.teenyda.fruit.common.entity.Contact;
 import me.teenyda.fruit.model.classify.settlement.adapter.AddressSelectAdapter;
-import me.teenyda.fruit.model.myself.address.base.adapter.AddressAdapter;
 
 /**
  * author: teenyda

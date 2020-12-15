@@ -135,7 +135,7 @@ public class PopupSpecifications {
         tv_spec_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // SettlementActicity.startActivity(mContext);
+                // CartSettlementActicity.startActivity(mContext);
                 if (mOrderConfirmClick != null && mSpec != null) {
                     mOrderConfirmClick.onOrderConfirmClick(mSpec, getNumber());
                 }

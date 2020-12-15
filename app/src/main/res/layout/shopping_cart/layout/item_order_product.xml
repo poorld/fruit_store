@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:layout_marginTop="5dp"
+    android:background="@drawable/shape_radius_5dp_fff"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <ImageView
+        android:id="@+id/settle_product_img"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/product02"/>
+
+    <LinearLayout
+        android:layout_toEndOf="@id/settle_product_img"
+        android:layout_marginStart="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/settle_product_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="蜜柚9斤现摘宜昌青皮蜜橘新鲜水果当季孕妇橘子薄皮"
+            android:maxLines="2"
+            android:textColor="@color/c_333333"/>
+
+        <TextView
+            android:id="@+id/settle_product_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/c_888888"
+            android:textSize="14sp"
+            android:text="单价: ¥ 55.2"/>
+
+        <TextView
+            android:id="@+id/settle_product_spec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/c_888888"
+            android:textSize="14sp"
+            android:text="规格: 水果一大箱"/>
+
+        <TextView
+            android:id="@+id/settle_product_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/c_888888"
+            android:textSize="14sp"
+            android:text="数量: 2"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

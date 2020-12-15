@@ -15,12 +15,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.teenyda.fruit.R;
-import me.teenyda.fruit.common.entity.Cart;
+import me.teenyda.fruit.common.entity.Order;
+import me.teenyda.fruit.common.entity.OrderInfo;
+import me.teenyda.fruit.common.entity.OrderItemDto;
 import me.teenyda.fruit.common.mvp.MvpRxFragment;
-import me.teenyda.fruit.common.utils.ToolUtils;
+import me.teenyda.fruit.common.utils.FileCacheUtil;
 import me.teenyda.fruit.model.cart.base.adapter.ShoppingCartAdapter;
 import me.teenyda.fruit.model.cart.base.presenter.ShoppingCartPresenter;
 import me.teenyda.fruit.model.cart.base.view.IShoppingCartView;
+import me.teenyda.fruit.model.cart.settlement.CartSettlementActicity;
+import me.teenyda.fruit.model.classify.settlement.SettlementActicity;
 
 /**
  * author: teenyda
@@ -40,6 +44,11 @@ public class ShoppingCartFragment extends MvpRxFragment<IShoppingCartView, Shopp
 
     @BindView(R.id.tv_cart_total_price)
     TextView tv_cart_total_price;
+
+    @BindView(R.id.settlement)
+    TextView settlement;
+
+    private List<Order> mSelectProduct;
 
     private ShoppingCartAdapter mShoppingCartAdapter;
 
@@ -79,7 +88,7 @@ public class ShoppingCartFragment extends MvpRxFragment<IShoppingCartView, Shopp
 
         shopping_cart_rv.setNestedScrollingEnabled(false);
 
-        List<Cart> carts = new ArrayList<>();
+        /*List<Cart> carts = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             Cart cart = new Cart();
             cart.setName("蜜柚9斤现摘宜昌青皮蜜橘新鲜水果当季孕妇橘子薄皮");
@@ -88,14 +97,15 @@ public class ShoppingCartFragment extends MvpRxFragment<IShoppingCartView, Shopp
             cart.setPrice((float) ToolUtils.randomPrice(50));
 
             carts.add(cart);
-        }
+        }*/
 
-        mShoppingCartAdapter.setCarts(carts);
+        mSelectProduct = new ArrayList<>();
 
         mShoppingCartAdapter.setProductSelect(new ShoppingCartAdapter.IProductSelect() {
             @Override
-            public void onProductedSelect(double price, boolean isSelectedAll) {
-                tv_cart_total_price.setText(String.format(getString(R.string.cart_total_price), price));
+            public void onProductedSelect(double price, boolean isSelectedAll, List<Order> selectedOrder) {
+                tv_cart_total_price.setText(String.format(getString(R.string.cart_total_price), String.valueOf(price)));
+                mSelectProduct = selectedOrder;
                 if (isSelectedAll != iv_cart_select_all.isSelected()) {
                     iv_cart_select_all.setSelected(isSelectedAll);
                 }
@@ -110,15 +120,41 @@ public class ShoppingCartFragment extends MvpRxFragment<IShoppingCartView, Shopp
             }
         });
 
+        settlement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mSelectProduct.size() > 0) {
+                    List<OrderItemDto> orderItems = new ArrayList<>();
+                    for (Order order : mSelectProduct) {
+                        OrderItemDto orderItemDto = order.getOrderItems().get(0);
+                        orderItems.add(orderItemDto);
+                    }
+
+                    mPresenter.settlementCart(orderItems);
+                }
+            }
+        });
+
     }
 
     @Override
     protected void requestData() {
-
+        Integer userId = FileCacheUtil.getUser(getMContext()).getUserId();
+        mPresenter.getCart(userId);
     }
 
     @Override
     public Context getMContext() {
         return getContext();
+    }
+
+    @Override
+    public void setCart(List<Order> orders) {
+        mShoppingCartAdapter.setCarts(orders);
+    }
+
+    @Override
+    public void cartOrderSuccess(OrderInfo orderInfo) {
+        CartSettlementActicity.startActivity(getMContext(), orderInfo.getOrderNum());
     }
 }

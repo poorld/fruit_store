@@ -14,7 +14,9 @@ import me.teenyda.fruit.common.entity.Demo;
 import me.teenyda.fruit.common.entity.Discounts;
 import me.teenyda.fruit.common.entity.FileUploadResponse;
 import me.teenyda.fruit.common.entity.Order;
+import me.teenyda.fruit.common.entity.OrderInfo;
 import me.teenyda.fruit.common.entity.OrderItem;
+import me.teenyda.fruit.common.entity.OrderItemDto;
 import me.teenyda.fruit.common.entity.OrderPayment;
 import me.teenyda.fruit.common.entity.Product;
 import me.teenyda.fruit.common.entity.ProductCategory;
@@ -125,7 +127,23 @@ public interface ApiUrl {
     Observable<BaseResponse<OrderItem>> order(@Body OrderItem order);
 
     /**
-     * 下订单
+     * 下购物车订单
+     * @param order
+     * @return
+     */
+    @POST("fruit/cart/buy")
+    Observable<BaseResponse<OrderInfo>> cartOrder(@Body List<OrderItemDto> order);
+
+    /**
+     * 加入购物车
+     * @param order
+     * @return
+     */
+    @POST("fruit/order/cart")
+    Observable<BaseResponse<OrderItem>> addCart(@Body OrderItem order);
+
+    /**
+     * 获取订单
      * @param orderNum
      * @return
      */
@@ -133,12 +151,29 @@ public interface ApiUrl {
     Observable<BaseResponse<SettlementOrder>> getOrder(@Path("orderNum") String orderNum);
 
     /**
-     * 获取所以订单
+     * 获取购物车订单
+     * @param orderNum
+     * @return
+     */
+    @GET("fruit/cart/order/{orderNum}")
+    Observable<BaseResponse<List<SettlementOrder>>> getCartOrder(@Path("orderNum") String orderNum);
+
+    /**
+     * 获取所有订单
      * @param userId
      * @return
      */
     @GET("fruit/order/item/{userId}")
     Observable<BaseResponse<List<Order>>> getOrders(@Path("userId") Integer userId);
+
+    /**
+     * 获取购物车
+     * @param userId
+     * @return
+     */
+    @GET("fruit/order/cart/{userId}")
+    Observable<BaseResponse<List<Order>>> getCart(@Path("userId") Integer userId);
+
 
     @GET("fruit/order/item/{userId}/status/{status}")
     Observable<BaseResponse<List<Order>>> getOrdersByStatus(@Path("userId") Integer userId,

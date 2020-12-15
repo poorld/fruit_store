@@ -19,4 +19,5 @@ public interface IProductInfoView extends BaseView {
     void setComments(Comments comments);
 
     void orderSuccess(OrderItem orderItem);
+    void addCartSuccess(OrderItem orderItem);
 }
