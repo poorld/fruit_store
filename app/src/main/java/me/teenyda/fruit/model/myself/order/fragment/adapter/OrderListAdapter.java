@@ -18,6 +18,7 @@ import me.teenyda.fruit.R;
 import me.teenyda.fruit.common.constant.OrderStatusEnum;
 import me.teenyda.fruit.common.entity.Order;
 import me.teenyda.fruit.common.entity.OrderItemDto;
+import me.teenyda.fruit.model.classify.payment.PaymentAct;
 
 /**
  * author: teenyda
@@ -58,26 +59,57 @@ public class OrderListAdapter extends XRecyclerView.Adapter<OrderListAdapter.Vie
         holder.order_status.setText(orderStatusEnum.getDesc());
         int paymentType = orderStatusEnum.getPaymentType();
         switch (paymentType) {
+            // 等待支付
             case 1:
                 holder.order_logistics.setVisibility(View.GONE);
+                // 立即付款按钮
                 holder.order_pay.setVisibility(View.VISIBLE);
+                // 取消订单按钮
                 holder.order_cancel.setVisibility(View.VISIBLE);
+                holder.order_pay.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        PaymentAct.startActivity(mContext, order.getOrderNum());
+                    }
+                });
+
                 break;
+
+            //    已支付
             case 2:
                 holder.order_pay.setVisibility(View.GONE);
                 holder.order_cancel.setVisibility(View.GONE);
                 holder.order_logistics.setVisibility(View.GONE);
                 break;
+
+            //    配送中
             case 3:
                 holder.order_pay.setVisibility(View.GONE);
                 holder.order_cancel.setVisibility(View.GONE);
+                // 查看物流
                 holder.order_logistics.setVisibility(View.VISIBLE);
                 break;
+
+            //    配送完成
             case 4:
                 holder.order_pay.setVisibility(View.GONE);
                 holder.order_cancel.setVisibility(View.GONE);
+                // 立即评价
                 holder.order_logistics.setVisibility(View.VISIBLE);
                 holder.order_logistics.setText("立即评价");
+                break;
+
+            //    订单支付超时
+            case 5:
+                // holder.order_pay.setVisibility(View.GONE);
+                // holder.order_cancel.setVisibility(View.GONE);
+                // holder.order_logistics.setVisibility(View.GONE);
+                // break;
+            //    订单支付超时
+            case 6:
+                holder.order_pay.setVisibility(View.GONE);
+                holder.order_cancel.setVisibility(View.GONE);
+                holder.order_logistics.setVisibility(View.GONE);
                 break;
         }
 

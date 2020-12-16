@@ -55,21 +55,6 @@ public class CartSettlementActicity extends MvpActivity<ISettlementView, Settlem
     @BindView(R.id.ll_payment)
     LinearLayout ll_payment;
 
-    @BindView(R.id.settle_product_img)
-    ImageView settle_product_img;
-
-    @BindView(R.id.settle_product_name)
-    TextView settle_product_name;
-
-    @BindView(R.id.settle_product_price)
-    TextView settle_product_price;
-
-    @BindView(R.id.settle_product_spec)
-    TextView settle_product_spec;
-
-    @BindView(R.id.settle_product_number)
-    TextView settle_product_number;
-
     @BindView(R.id.settle_product_discount)
     TextView settle_product_discount;
 

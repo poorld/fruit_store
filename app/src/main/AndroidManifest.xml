@@ -65,6 +65,7 @@
         <activity android:name=".model.classify.payment.PaymentAct" />
         <activity android:name=".model.login.register.RegisterAct" />
         <activity android:name=".model.main.MainActivity" />
+        <activity android:name=".model.cart.settlement.CartSettlementActicity" />
     </application>
 
 </manifest>

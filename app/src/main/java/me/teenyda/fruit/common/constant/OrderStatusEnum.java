@@ -19,7 +19,9 @@ public enum OrderStatusEnum {
      * 待评价
      */
     DistributionComplete(4, "配送完成"),
-    PayOvertime(5, "订单支付超时");
+    PayOvertime(5, "订单支付超时"),
+    OrderCancel(6, "订单取消"),
+    ;
 
     int paymentType;
 

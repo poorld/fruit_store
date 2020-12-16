@@ -31,3 +31,13 @@ start_bar是最顶部的控件，StatusBarUtil根据控件做出偏移
 ```java
 StatusBarUtil.setColor(MainActivity.this, getColor(R.color.colorPrimary), 0);
 ```
+
+```
+0下订单（立即购买/加入购物车）
+1立即支付(还没支付)
+2已支付（交易完成）
+3配送中
+4配送完成
+5订单支付超时
+6取消订单
+```

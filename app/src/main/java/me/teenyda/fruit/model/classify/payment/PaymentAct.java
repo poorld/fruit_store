@@ -121,6 +121,7 @@ public class PaymentAct extends MvpActivity<IPaymentView, PaymentPresenter> impl
             mPresenter.finish(orderPayment.getOrderNum());
             payment_state.setText("订单已结束");
             payment_pay.setVisibility(View.GONE);
+
         }else {
             cv_countdown.start(end - start);
 

@@ -230,7 +230,7 @@ public interface ApiUrl {
      * @param orderNum
      * @return
      */
-    @POST("fruit/order/payment/finish/{orderNum}")
+    @PUT("fruit/order/payment/finish/{orderNum}")
     Observable<BaseResponse<Boolean>> finish(@Path("orderNum") String orderNum);
 
     /**
