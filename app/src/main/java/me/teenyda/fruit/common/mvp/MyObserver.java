@@ -66,6 +66,7 @@ public abstract class MyObserver<T> extends BaseObserver<T> {
     }
     @Override
     public void onError(Throwable e) {
+        Toast.makeText(mContext,e.getMessage(),Toast.LENGTH_SHORT).show();
         if (d.isDisposed()) {
             d.dispose();
         }

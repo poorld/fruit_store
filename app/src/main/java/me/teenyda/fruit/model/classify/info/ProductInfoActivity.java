@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,6 +49,7 @@ import me.teenyda.fruit.common.view.popupview.PopupSpecifications;
 import me.teenyda.fruit.common.viewholder.MultipleTypesAdapter;
 import me.teenyda.fruit.common.viewholder.NumIndicator;
 import me.teenyda.fruit.common.viewholder.VideoHolder;
+import me.teenyda.fruit.model.classify.comments.CommentsActivity;
 import me.teenyda.fruit.model.classify.info.adapter.ProductInfoAdapter;
 import me.teenyda.fruit.model.classify.info.presenter.ProductInfoPresenter;
 import me.teenyda.fruit.model.classify.info.view.IProductInfoView;
@@ -104,6 +106,8 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
     @BindView(R.id.iv_comments3)
     ImageView iv_comments3;
 
+    @BindView(R.id.product_reply)
+    LinearLayout product_reply;
 
     private PopViewProductImg mCommentsPop;
 
@@ -120,6 +124,9 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
 
     @BindView(R.id.comments_data)
     RelativeLayout comments_data;
+
+    @BindView(R.id.to_comments)
+    RelativeLayout to_comments;
 
     private PopupSpecifications mSpecifications;
     private ProductInfoAdapter mInfoAdapter;
@@ -216,7 +223,7 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
 
 
     @OnClick({R.id.iv_comments1, R.id.iv_comments2, R.id.iv_comments3
-            , R.id.tv_product_buy, R.id.tv_product_cart})
+            , R.id.tv_product_buy, R.id.tv_product_cart, R.id.to_comments})
     public void onClick(View view) {
 
 
@@ -238,6 +245,9 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
             case R.id.tv_product_cart:
                 mType = order_type_cart;
                 mSpecifications.show(view);
+                break;
+            case R.id.to_comments:
+                CommentsActivity.startAct(getMContext(), mProductId);
                 break;
         }
     }
@@ -340,7 +350,14 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
             mCommentsPop.addImgsByUrl(mUrls);
             username1.setText(comments.getUser().getNickname());
             user_comments.setText(comments.getContent());
-            business_reply.setText("商家回复" + comments.getReply());
+
+            String reply = comments.getReply();
+            if (TextUtils.isEmpty(reply)) {
+                product_reply.setVisibility(View.GONE);
+            } else {
+                product_reply.setVisibility(View.VISIBLE);
+                business_reply.setText("商家回复" + reply);
+            }
 
         } else {
             comments_data.setVisibility(View.GONE);

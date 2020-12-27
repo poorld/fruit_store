@@ -26,11 +26,12 @@ public class ToolUtils {
      * @param value2 减数
      * @return 两个参数的差
      */
-    public static String sub(double value1,double value2,int scale){
+    public static Double sub(double value1,double value2){
         BigDecimal b1 = new BigDecimal(Double.valueOf(value1));
         BigDecimal b2 = new BigDecimal(Double.valueOf(value2));
         double value = b1.subtract(b2).doubleValue();
-        return new DecimalFormat("0.00").format(value);
+        String format = new DecimalFormat("0.00").format(value);
+        return Double.parseDouble(format);
     }
 
     /**

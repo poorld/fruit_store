@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="15dp"
+    android:layout_marginTop="15dp"
+    android:background="@color/c_ffffff">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/avatar"
+        app:civ_border_width="2dp"
+        app:civ_border_color="#FF000000"/>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/sfl"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginLeft="15dp"
+        android:layout_toEndOf="@id/profile_image">
+
+        <TextView
+            android:id="@+id/username1"
+            android:layout_gravity="top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/c_513800"
+            android:text="--"/>
+
+        <ImageView
+            android:layout_gravity="bottom"
+            android:id="@+id/vip_img"
+            android:layout_below="@id/username1"
+            android:layout_alignStart="@id/username1"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@mipmap/icon_vip_diamond"/>
+
+        <TextView
+            android:layout_gravity="right|bottom"
+            android:layout_marginLeft="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="11sp"
+            android:text="VIP钻石会员"/>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textColor="@color/c_728de8"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:rotation="15"-->
+        <!--android:paddingLeft="2dp"-->
+        <!--android:paddingRight="2dp"-->
+        <!--android:background="@drawable/shape_radius_gradient_2"-->
+        <!--android:text="最佳评论"/>-->
+
+
+    <LinearLayout
+        android:id="@+id/ll_comments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profile_image"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/user_comments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/c_999999"
+            android:text="--"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/iv_comments1"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="fitXY"/>
+
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/iv_comments2"
+                android:layout_marginStart="10dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="fitXY"/>
+
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/iv_comments3"
+                android:layout_marginStart="10dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="fitXY"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/comments_reply"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:background="@drawable/shape_radius_5dp_f6f6f6">
+            <TextView
+                android:id="@+id/business_reply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:text="商家回复：--"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</RelativeLayout>
+

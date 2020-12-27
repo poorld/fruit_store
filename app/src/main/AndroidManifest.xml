@@ -67,6 +67,7 @@
         <activity android:name=".model.main.MainActivity" />
         <activity android:name=".model.cart.settlement.CartSettlementActicity" />
         <activity android:name=".model.classify.evaluation.EvaluationActivity" />
+        <activity android:name=".model.classify.comments.CommentsActivity" />
     </application>
 
 </manifest>
