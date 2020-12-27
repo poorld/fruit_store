@@ -348,7 +348,7 @@ public class ProductInfoActivity extends MvpActivity<IProductInfoView, ProductIn
             setImageView(comments.getImg3(), iv_comments3);
 
             mCommentsPop.addImgsByUrl(mUrls);
-            username1.setText(comments.getUser().getNickname());
+            username1.setText(comments.getUser().getUsername());
             user_comments.setText(comments.getContent());
 
             String reply = comments.getReply();
