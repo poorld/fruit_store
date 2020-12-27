@@ -21,6 +21,7 @@ public enum OrderStatusEnum {
     DistributionComplete(4, "配送完成"),
     PayOvertime(5, "订单支付超时"),
     OrderCancel(6, "订单取消"),
+    OrderSuccess(7, "订单完成")
     ;
 
     int paymentType;

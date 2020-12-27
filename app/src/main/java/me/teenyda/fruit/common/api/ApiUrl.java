@@ -9,6 +9,7 @@ import io.reactivex.Observable;
 import me.teenyda.fruit.common.entity.Bean;
 import me.teenyda.fruit.common.entity.Book;
 import me.teenyda.fruit.common.entity.Comments;
+import me.teenyda.fruit.common.entity.CommentsDto;
 import me.teenyda.fruit.common.entity.Contact;
 import me.teenyda.fruit.common.entity.Demo;
 import me.teenyda.fruit.common.entity.Discounts;
@@ -124,6 +125,9 @@ public interface ApiUrl {
     @GET("fruit/comments/product/{productId}/best")
     Observable<BaseResponse<Comments>> getBestComment(@Path("productId") Integer productId);
 
+    @POST("fruit/comments/product")
+    Observable<BaseResponse<CommentsDto>> comments(@Body CommentsDto comments);
+
     /**
      * 下订单
      * @param order
@@ -142,6 +146,14 @@ public interface ApiUrl {
 
     /**
      * 确认收货
+     * @param orderNum
+     * @return
+     */
+    @PUT("fruit/order/distribution/{orderNum}")
+    Observable<BaseResponse<OrderInfo>> distribution(@Path("orderNum") String orderNum);
+
+    /**
+     * 完成订单
      * @param orderNum
      * @return
      */

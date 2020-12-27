@@ -11,4 +11,6 @@ import me.teenyda.fruit.common.mvp.BaseView;
 public interface IEvaluationView extends BaseView {
 
     void setProduct(SimpleProductEntity product);
+    void commentSuccess();
+    void orderCompleteSuccess();
 }

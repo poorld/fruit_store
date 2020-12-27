@@ -1,11 +1,14 @@
 package me.teenyda.fruit.model.myself.order.fragment;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import java.util.List;
 
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -109,5 +112,13 @@ public class OrderListFragment extends MvpRxFragment<IOrderListView, OrderListPr
     @Override
     public void takeDeliverySuccess() {
         xrv.refresh();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            xrv.refresh();
+        }
     }
 }

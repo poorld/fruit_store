@@ -48,7 +48,7 @@ public class OrderListPresenter extends BaseRxPresenter<IOrderListView> {
      * @param orderNum
      */
     public void orderComplete(String orderNum) {
-        addDisposable(mApi.complete(orderNum), new MyObserver<OrderInfo>(mContext) {
+        addDisposable(mApi.distribution(orderNum), new MyObserver<OrderInfo>(mContext) {
             @Override
             public void onSuccess(OrderInfo orderInfo) {
                 mView.takeDeliverySuccess();

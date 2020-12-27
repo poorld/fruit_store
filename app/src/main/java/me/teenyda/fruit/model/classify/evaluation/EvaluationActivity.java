@@ -1,8 +1,11 @@
 package me.teenyda.fruit.model.classify.evaluation;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -10,13 +13,18 @@ import android.widget.TextView;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 
+import java.util.Date;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import me.teenyda.fruit.R;
+import me.teenyda.fruit.common.entity.CommentsDto;
 import me.teenyda.fruit.common.entity.SimpleProductEntity;
 import me.teenyda.fruit.common.mvp.MvpActivity;
+import me.teenyda.fruit.common.utils.FileCacheUtil;
 import me.teenyda.fruit.common.utils.GlideApp;
 import me.teenyda.fruit.model.classify.evaluation.presenter.EvaluationPresenter;
 import me.teenyda.fruit.model.classify.evaluation.view.IEvaluationView;
@@ -39,14 +47,14 @@ public class EvaluationActivity extends MvpActivity<IEvaluationView, EvaluationP
 
     @BindView(R.id.eval_tv)
     TextView eval_tv;
+    private int mProductId;
 
 
-
-
-    public static void startActivity(Context context, Integer productId) {
+    public static void startActivity(Context context, Integer productId, String orderNum) {
         Intent intent = new Intent(context, EvaluationActivity.class);
         intent.putExtra("productId", productId);
-        context.startActivity(intent);
+        intent.putExtra("orderNum", orderNum);
+        ((Activity)context).startActivityForResult(intent, 0);
     }
 
     @Override
@@ -71,10 +79,32 @@ public class EvaluationActivity extends MvpActivity<IEvaluationView, EvaluationP
         setBack();
     }
 
+    @OnClick({R.id.eval_tv})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.eval_tv:
+                comments();
+                break;
+        }
+    }
+
+    private void comments() {
+        String content = eval_et.getText().toString();
+        if (TextUtils.isEmpty(content)) {
+            return;
+        }
+        Integer userId = FileCacheUtil.getUser(getMContext()).getUserId();
+        CommentsDto comments = new CommentsDto();
+        comments.setUserId(userId);
+        comments.setProductId(mProductId);
+        comments.setContent(content);
+        mPresenter.comment(comments);
+    }
+
     @Override
     protected void requestData() {
-        int productId = getIntent().getIntExtra("productId", 0);
-        mPresenter.getProduct(productId);
+        mProductId = getIntent().getIntExtra("productId", 0);
+        mPresenter.getProduct(mProductId);
     }
 
     @Override
@@ -98,5 +128,18 @@ public class EvaluationActivity extends MvpActivity<IEvaluationView, EvaluationP
 
                     }
                 });
+    }
+
+    @Override
+    public void commentSuccess() {
+        showToast("评论完成!");
+        String orderNum = getIntent().getStringExtra("orderNum");
+        mPresenter.orderComplete(orderNum);
+    }
+
+    @Override
+    public void orderCompleteSuccess() {
+        setResult(RESULT_OK);
+        finish();
     }
 }

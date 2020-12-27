@@ -7,6 +7,7 @@ import com.flyco.tablayout.SlidingTabLayout;
 
 import java.util.ArrayList;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
@@ -50,7 +51,7 @@ public class OrderAct extends MvpActivity<IOrderView, OrderPresenter> implements
         TabMenuEnum.Menu5
     };
     private ArrayList<Fragment> mFragments;
-
+    private OrderListFragment mCurrentFragment;
     private MyOnPageChangeListener mOnPageChangeListener;
 
     class MyOnPageChangeListener implements ViewPager.OnPageChangeListener {
@@ -62,6 +63,7 @@ public class OrderAct extends MvpActivity<IOrderView, OrderPresenter> implements
         @Override
         public void onPageSelected(int position) {
             OrderListFragment fragment = (OrderListFragment) mFragments.get(position);
+            mCurrentFragment = fragment;
             // fragment.getOrders(mTabMenus[position].getOrderStatus());
             fragment.getOrders();
         }
@@ -124,5 +126,11 @@ public class OrderAct extends MvpActivity<IOrderView, OrderPresenter> implements
     @Override
     public Context getMContext() {
         return this;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mCurrentFragment.onActivityResult(requestCode, resultCode, data);
     }
 }

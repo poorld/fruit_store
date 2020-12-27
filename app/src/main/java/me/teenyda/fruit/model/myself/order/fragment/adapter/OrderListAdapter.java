@@ -123,7 +123,8 @@ public class OrderListAdapter extends XRecyclerView.Adapter<OrderListAdapter.Vie
                     public void onClick(View view) {
                         EvaluationActivity.startActivity(mContext, order.getOrderItems()
                                                         .get(0)
-                                                        .getProductId());
+                                                        .getProductId(),
+                                                order.getOrderNum());
                     }
                 });
                 break;
@@ -136,6 +137,12 @@ public class OrderListAdapter extends XRecyclerView.Adapter<OrderListAdapter.Vie
                 // break;
             //    订单取消
             case 6:
+                // holder.order_pay.setVisibility(View.GONE);
+                // holder.order_cancel.setVisibility(View.GONE);
+                // holder.order_logistics.setVisibility(View.GONE);
+                // break;
+            //    订单完成
+            case 7:
                 holder.order_pay.setVisibility(View.GONE);
                 holder.order_cancel.setVisibility(View.GONE);
                 holder.order_logistics.setVisibility(View.GONE);
