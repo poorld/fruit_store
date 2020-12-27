@@ -314,12 +314,29 @@ public class SettlementActicity extends MvpActivity<ISettlementView, SettlementP
 
         Discounts discounts = preferential(totalPrice);
         if (discounts != null) {
-            // 优惠
+            Integer discountsFlag = discounts.getDiscountsCategory().getDiscountsFlag();
+            double discountPrice = 0.0d;
+
+                    // 优惠
             settle_product_discount.setText(discounts.getDiscountsExplain());
             // 优惠金额
             Double discounts1 = discounts.getDiscounts();
-            // 需要支付的金额（减去优惠后的金额）
-            double discountPrice = ToolUtils.sub(totalPrice, discounts1);
+
+            // 满减
+            if (0 == discountsFlag) {
+                // 需要支付的金额（减去优惠后的金额）
+                discountPrice = ToolUtils.sub(totalPrice, discounts1);
+            } else if (1 == discountsFlag) {
+                // 折扣
+                try {
+                    double dis = ToolUtils.div(discounts1, 100d, 2);
+                    discountPrice = ToolUtils.mul(totalPrice, dis);
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+
+
             total_discount.setText(String.format(getString(R.string.settlement_discount), discounts1));
             settle_total_price.setText(String.format(getString(R.string.settlement_total_price),discountPrice));
             // 优惠金额
@@ -355,7 +372,7 @@ public class SettlementActicity extends MvpActivity<ISettlementView, SettlementP
     }
 
     /**
-     * 计算最大优惠
+     * 获取最大的优惠
      * @param totalPrice
      * @return
      */

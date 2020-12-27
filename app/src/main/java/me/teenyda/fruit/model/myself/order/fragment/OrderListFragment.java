@@ -31,9 +31,11 @@ public class OrderListFragment extends MvpRxFragment<IOrderListView, OrderListPr
 
     private Unbinder binder;
     private OrderListAdapter mAdapter;
+    private int mStatus;
 
-    public static OrderListFragment getInstance() {
+    public static OrderListFragment getInstance(int status) {
         OrderListFragment frag = new OrderListFragment();
+        frag.mStatus = status;
         return frag;
     }
 
@@ -59,6 +61,29 @@ public class OrderListFragment extends MvpRxFragment<IOrderListView, OrderListPr
         xrv.setLayoutManager(new LinearLayoutManager(getMContext()));
         mAdapter = new OrderListAdapter(getMContext());
         xrv.setAdapter(mAdapter);
+        // 确认收货
+        mAdapter.setTakeDeliveryListener(new OrderListAdapter.ITakeDeliveryListener() {
+            @Override
+            public void onTakeDelivery(Order order) {
+                mPresenter.orderComplete(order.getOrderNum());
+            }
+        });
+        xrv.setLoadingListener(new XRecyclerView.LoadingListener() {
+            @Override
+            public void onRefresh() {
+                Integer userId = FileCacheUtil.getUser(getMContext()).getUserId();
+                if (mStatus == TabMenuEnum.Menu1.getOrderStatus()) {
+                    mPresenter.getOrders(userId);
+                }else {
+                    mPresenter.getOrders(userId, mStatus);
+                }
+            }
+
+            @Override
+            public void onLoadMore() {
+
+            }
+        });
     }
 
     @Override
@@ -66,13 +91,8 @@ public class OrderListFragment extends MvpRxFragment<IOrderListView, OrderListPr
         // mPresenter.getOrders(10001);
     }
 
-    public void getOrders(int status) {
-        Integer userId = FileCacheUtil.getUser(getMContext()).getUserId();
-        if (status == TabMenuEnum.Menu1.getOrderStatus()) {
-            mPresenter.getOrders(userId);
-        }else {
-            mPresenter.getOrders(userId, status);
-        }
+    public void getOrders() {
+        xrv.refresh();
     }
 
     @Override
@@ -83,5 +103,11 @@ public class OrderListFragment extends MvpRxFragment<IOrderListView, OrderListPr
     @Override
     public void setOrders(List<Order> orders) {
         mAdapter.addOrders(orders);
+        xrv.refreshComplete();
+    }
+
+    @Override
+    public void takeDeliverySuccess() {
+        xrv.refresh();
     }
 }

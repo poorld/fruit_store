@@ -18,6 +18,7 @@ import me.teenyda.fruit.R;
 import me.teenyda.fruit.common.constant.OrderStatusEnum;
 import me.teenyda.fruit.common.entity.Order;
 import me.teenyda.fruit.common.entity.OrderItemDto;
+import me.teenyda.fruit.model.classify.evaluation.EvaluationActivity;
 import me.teenyda.fruit.model.classify.payment.PaymentAct;
 
 /**
@@ -30,6 +31,15 @@ public class OrderListAdapter extends XRecyclerView.Adapter<OrderListAdapter.Vie
     private Context mContext;
 
     private List<Order> mOrders;
+
+    private ITakeDeliveryListener mTakeDeliveryListener;
+
+    public void setTakeDeliveryListener(ITakeDeliveryListener takeDeliveryListener) {
+        this.mTakeDeliveryListener = takeDeliveryListener;
+    }
+    public interface ITakeDeliveryListener{
+        void onTakeDelivery(Order order);
+    }
 
     public OrderListAdapter(Context context) {
         mContext = context;
@@ -85,9 +95,20 @@ public class OrderListAdapter extends XRecyclerView.Adapter<OrderListAdapter.Vie
             //    配送中
             case 3:
                 holder.order_pay.setVisibility(View.GONE);
-                holder.order_cancel.setVisibility(View.GONE);
                 // 查看物流
                 holder.order_logistics.setVisibility(View.VISIBLE);
+                // 确认收货
+                holder.order_cancel.setVisibility(View.VISIBLE);
+                holder.order_cancel.setText("确认收货");
+                if (mTakeDeliveryListener != null) {
+                    holder.order_cancel.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            mTakeDeliveryListener.onTakeDelivery(order);
+                        }
+                    });
+
+                }
                 break;
 
             //    配送完成
@@ -97,6 +118,14 @@ public class OrderListAdapter extends XRecyclerView.Adapter<OrderListAdapter.Vie
                 // 立即评价
                 holder.order_logistics.setVisibility(View.VISIBLE);
                 holder.order_logistics.setText("立即评价");
+                holder.order_logistics.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        EvaluationActivity.startActivity(mContext, order.getOrderItems()
+                                                        .get(0)
+                                                        .getProductId());
+                    }
+                });
                 break;
 
             //    订单支付超时
@@ -105,7 +134,7 @@ public class OrderListAdapter extends XRecyclerView.Adapter<OrderListAdapter.Vie
                 // holder.order_cancel.setVisibility(View.GONE);
                 // holder.order_logistics.setVisibility(View.GONE);
                 // break;
-            //    订单支付超时
+            //    订单取消
             case 6:
                 holder.order_pay.setVisibility(View.GONE);
                 holder.order_cancel.setVisibility(View.GONE);

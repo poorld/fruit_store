@@ -62,7 +62,8 @@ public class OrderAct extends MvpActivity<IOrderView, OrderPresenter> implements
         @Override
         public void onPageSelected(int position) {
             OrderListFragment fragment = (OrderListFragment) mFragments.get(position);
-            fragment.getOrders(mTabMenus[position].getOrderStatus());
+            // fragment.getOrders(mTabMenus[position].getOrderStatus());
+            fragment.getOrders();
         }
 
         @Override
@@ -97,7 +98,7 @@ public class OrderAct extends MvpActivity<IOrderView, OrderPresenter> implements
 
         for (int i = 0; i < mTabMenus.length; i++) {
             mTitles[i] = mTabMenus[i].getDesc();
-            mFragments.add(OrderListFragment.getInstance());
+            mFragments.add(OrderListFragment.getInstance(mTabMenus[i].getOrderStatus()));
         }
 
         mAdapter = new OrderPagerAdapter(getSupportFragmentManager(), mFragments, mTitles);

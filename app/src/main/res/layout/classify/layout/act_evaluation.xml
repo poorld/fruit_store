@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--评价-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/inclued_statusbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="#fff">
+
+        <ImageView
+            android:id="@+id/eval_product_img"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/cherry"/>
+        <TextView
+            android:id="@+id/eval_product_name"
+            android:layout_marginStart="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/c_666666"
+            android:text="你的果子"/>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/eval_et"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/shape_pop_bg"
+        android:textColor="@color/c_999999"
+        android:textSize="14sp"
+        android:gravity="top"
+        android:padding="5dp"
+        android:layout_margin="15dp"/>
+
+    <TextView
+        android:id="@+id/eval_tv"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/shape_vip2_gradient"
+        android:textColor="@color/c_909090"
+        android:text="立即评价"/>
+</LinearLayout>

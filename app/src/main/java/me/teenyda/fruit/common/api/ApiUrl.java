@@ -108,6 +108,12 @@ public interface ApiUrl {
     Observable<BaseResponse<Product>> getProduct(@Path("productId") Integer productId);
 
     /**
+     * 获取商品信息
+     */
+    @GET("fruit/product/simple/{productId}")
+    Observable<BaseResponse<SimpleProductEntity>> getSimpleProduct(@Path("productId") Integer productId);
+
+    /**
      * 获取商品评论
      */
     @GET("fruit/comments/product/{productId}")
@@ -133,6 +139,14 @@ public interface ApiUrl {
      */
     @POST("fruit/cart/buy")
     Observable<BaseResponse<OrderInfo>> cartOrder(@Body List<OrderItemDto> order);
+
+    /**
+     * 确认收货
+     * @param orderNum
+     * @return
+     */
+    @PUT("fruit/order/complete/{orderNum}")
+    Observable<BaseResponse<OrderInfo>> complete(@Path("orderNum") String orderNum);
 
     /**
      * 加入购物车
@@ -178,6 +192,9 @@ public interface ApiUrl {
     @GET("fruit/order/item/{userId}/status/{status}")
     Observable<BaseResponse<List<Order>>> getOrdersByStatus(@Path("userId") Integer userId,
                                                             @Path("status") Integer status);
+    @GET("order/item/{userId}/{orderNum}")
+    Observable<BaseResponse<Order>> getOrderByOrderNum(@Path("userId") Integer userId,
+                                                            @Path("orderNum") String orderNum);
 
     /**
      * 获取用户信息

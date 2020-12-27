@@ -13,4 +13,6 @@ import me.teenyda.fruit.common.mvp.BaseView;
 public interface IOrderListView extends BaseView {
 
     public void setOrders(List<Order> orders);
+
+    void takeDeliverySuccess();
 }
