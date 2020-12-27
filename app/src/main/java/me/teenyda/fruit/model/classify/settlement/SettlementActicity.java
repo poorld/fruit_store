@@ -315,7 +315,7 @@ public class SettlementActicity extends MvpActivity<ISettlementView, SettlementP
         Discounts discounts = preferential(totalPrice);
         if (discounts != null) {
             Integer discountsFlag = discounts.getDiscountsCategory().getDiscountsFlag();
-            double discountPrice = 0.0d;
+            double pay = 0.0d;
 
                     // 优惠
             settle_product_discount.setText(discounts.getDiscountsExplain());
@@ -325,24 +325,24 @@ public class SettlementActicity extends MvpActivity<ISettlementView, SettlementP
             // 满减
             if (0 == discountsFlag) {
                 // 需要支付的金额（减去优惠后的金额）
-                discountPrice = ToolUtils.sub(totalPrice, discounts1);
+                pay = ToolUtils.sub(totalPrice, discounts1);
             } else if (1 == discountsFlag) {
                 // 折扣
-                try {
-                    double dis = ToolUtils.div(discounts1, 100d, 2);
-                    discountPrice = ToolUtils.mul(totalPrice, dis);
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
+                // double dis = ToolUtils.div(discounts1, 100d, 2);
+                double dis = ToolUtils.toFloat(discounts1, 100);
+                // 需要支付的金额
+                pay = ToolUtils.mul(totalPrice, dis);
+                // 优惠
+                discounts1 = ToolUtils.sub(totalPrice, pay);
             }
 
 
             total_discount.setText(String.format(getString(R.string.settlement_discount), discounts1));
-            settle_total_price.setText(String.format(getString(R.string.settlement_total_price),discountPrice));
+            settle_total_price.setText(String.format(getString(R.string.settlement_total_price),pay));
             // 优惠金额
             mOrderPayment.setDiscountAmount(discounts1);
             // 需要支付的金额
-            mOrderPayment.setPayAmount(discountPrice);
+            mOrderPayment.setPayAmount(pay);
         } else {
             // 无优惠
             settle_product_discount.setText("暂无优惠");

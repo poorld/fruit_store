@@ -26,10 +26,11 @@ public class ToolUtils {
      * @param value2 减数
      * @return 两个参数的差
      */
-    public static double sub(double value1,double value2){
+    public static String sub(double value1,double value2,int scale){
         BigDecimal b1 = new BigDecimal(Double.valueOf(value1));
         BigDecimal b2 = new BigDecimal(Double.valueOf(value2));
-        return b1.subtract(b2).doubleValue();
+        double value = b1.subtract(b2).doubleValue();
+        return new DecimalFormat("0.00").format(value);
     }
 
     /**
@@ -66,6 +67,18 @@ public class ToolUtils {
         BigDecimal b2 = new BigDecimal(Double.valueOf(value2));
         return b1.divide(b2, scale).doubleValue();
     }
+    /**
+     * TODO 除法运算，保留小数
+     * @param denominator 被除数 分母
+     * @param numerator 除数 分子
+     * @return 商
+     */
+    public static Double toFloat(double denominator,int numerator) {
+        // TODO 自动生成的方法存根
+        DecimalFormat df=new DecimalFormat("0.00");//设置保留位数
+        return Double.valueOf(df.format(denominator/numerator));
+    }
+
 
     public static int randomInt(int bound) {
         Random random = new Random();
