@@ -135,12 +135,26 @@ public class ShoppingCartFragment extends MvpRxFragment<IShoppingCartView, Shopp
             }
         });
 
+        shopping_cart_rv.setLoadingListener(new XRecyclerView.LoadingListener() {
+            @Override
+            public void onRefresh() {
+                Integer userId = FileCacheUtil.getUser(getMContext()).getUserId();
+                mPresenter.getCart(userId);
+            }
+
+            @Override
+            public void onLoadMore() {
+
+            }
+        });
+
     }
+
+
 
     @Override
     protected void requestData() {
-        Integer userId = FileCacheUtil.getUser(getMContext()).getUserId();
-        mPresenter.getCart(userId);
+        shopping_cart_rv.refresh();
     }
 
     @Override
@@ -151,6 +165,7 @@ public class ShoppingCartFragment extends MvpRxFragment<IShoppingCartView, Shopp
     @Override
     public void setCart(List<Order> orders) {
         mShoppingCartAdapter.setCarts(orders);
+        shopping_cart_rv.refreshComplete();
     }
 
     @Override

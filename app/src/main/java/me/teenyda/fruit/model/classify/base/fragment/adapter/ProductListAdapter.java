@@ -39,6 +39,7 @@ public class ProductListAdapter extends XRecyclerView.Adapter<ProductListAdapter
     }
 
     public void addProducts(List<SimpleProductEntity> products) {
+        this.mProducts.clear();
         this.mProducts.addAll(products);
         notifyDataSetChanged();
     }

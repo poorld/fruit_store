@@ -3,6 +3,7 @@ package me.teenyda.fruit.model.classify.base;
 import android.content.Context;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.flyco.tablayout.SlidingTabLayout;
 import com.flyco.tablayout.listener.OnTabSelectListener;
@@ -43,6 +44,9 @@ public class ClassifyFragment extends MvpRxFragment<IClassifyView, ClassifyPrese
     @BindView(R.id.cardview)
     CardView cv;
 
+    @BindView(R.id.search_name)
+    TextView search_name;
+
     @BindView(R.id.product_search)
     RelativeLayout product_search;
 
@@ -53,6 +57,7 @@ public class ClassifyFragment extends MvpRxFragment<IClassifyView, ClassifyPrese
     private ArrayList<Fragment> mFragments = new ArrayList<>();
 
     private String[] mTitles = { };
+    private int mPosition;
 
     @Override
     protected ClassifyPresenter createPresenter() {
@@ -83,7 +88,11 @@ public class ClassifyFragment extends MvpRxFragment<IClassifyView, ClassifyPrese
     public void onClick(View view){
         switch (view.getId()) {
             case R.id.product_search:
-                // ProductInfoActivity.startActivity(getMContext());
+                // 不能用mPosition
+                // ProductListFrag frag = (ProductListFrag) mFragments.get(mPosition);
+                int currentItem = vp.getCurrentItem();
+                ProductListFrag frag = (ProductListFrag) mFragments.get(currentItem);
+                frag.search(search_name.getText().toString());
                 break;
         }
     }
@@ -110,7 +119,7 @@ public class ClassifyFragment extends MvpRxFragment<IClassifyView, ClassifyPrese
         tabLayout.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelect(int position) {
-                ProductListFrag frag = (ProductListFrag) mFragments.get(position);
+                mPosition = position;
             }
 
             @Override

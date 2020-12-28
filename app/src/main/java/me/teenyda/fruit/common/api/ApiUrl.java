@@ -26,6 +26,7 @@ import me.teenyda.fruit.common.entity.SimpleProductEntity;
 import me.teenyda.fruit.common.entity.User;
 import me.teenyda.fruit.common.entity.Wallet;
 import me.teenyda.fruit.common.net.request.OrderPaymentReq;
+import me.teenyda.fruit.common.net.request.ProductQueryReq;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -101,6 +102,12 @@ public interface ApiUrl {
      */
     @GET("fruit/product/list/simple/category/{categoryId}")
     Observable<BaseResponse<List<SimpleProductEntity>>> productByCategory(@Path("categoryId") Integer categoryId);
+
+    /**
+     * 根据分类和名称获取商品
+     */
+    @POST("fruit/product/list/simple/category")
+    Observable<BaseResponse<List<SimpleProductEntity>>> productByCategoryAndName(@Body ProductQueryReq req);
 
     /**
      * 获取商品信息
