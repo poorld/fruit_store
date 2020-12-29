@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="未付款"
-            android:textColor="@color/c_b2b2b2"/>
+            android:textColor="@color/c_666666"/>
 
     </LinearLayout>
 
@@ -104,7 +104,7 @@
             android:layout_height="30dp"
             android:text="查看物流"
             android:gravity="center"
-            android:textColor="@color/c_bbbbbb"
+            android:textColor="@color/c_666666"
             android:background="@drawable/shape_border_bbb_50dp"/>
 
         <TextView
@@ -114,7 +114,7 @@
             android:layout_marginStart="10dp"
             android:text="取消订单"
             android:gravity="center"
-            android:textColor="@color/c_bbbbbb"
+            android:textColor="@color/c_666666"
             android:background="@drawable/shape_border_bbb_50dp"/>
 
         <TextView

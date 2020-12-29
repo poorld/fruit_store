@@ -1,5 +1,8 @@
 package me.teenyda.fruit.model.home.base.view;
 
+import java.util.List;
+
+import me.teenyda.fruit.common.entity.Banner;
 import me.teenyda.fruit.common.mvp.BaseView;
 
 /**
@@ -9,4 +12,5 @@ import me.teenyda.fruit.common.mvp.BaseView;
  */
 public interface IHomeV extends BaseView {
 
+    void setBanners(List<Banner> banners);
 }

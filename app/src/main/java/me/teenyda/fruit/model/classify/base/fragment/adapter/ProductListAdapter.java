@@ -1,6 +1,7 @@
 package me.teenyda.fruit.model.classify.base.fragment.adapter;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,12 +10,15 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import me.teenyda.fruit.R;
 import me.teenyda.fruit.common.entity.SimpleProductEntity;
 import me.teenyda.fruit.common.utils.GlideApp;
@@ -61,7 +65,18 @@ public class ProductListAdapter extends XRecyclerView.Adapter<ProductListAdapter
                 .transition(withCrossFade())
                 .override(400, 400)
                 .centerCrop()
-                .into(holder.product_img);
+                .into(new CustomTarget<Drawable>() {
+                    @Override
+                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                        holder.product_img.setImageDrawable(resource);
+                    }
+
+                    @Override
+                    public void onLoadCleared(@Nullable Drawable placeholder) {
+
+                    }
+                });
+                // .into();
 
         holder.item_product_recommend.setVisibility(product.getRecommended() ? View.VISIBLE : View.INVISIBLE);
         holder.item_product_name.setText(product.getName());

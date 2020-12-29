@@ -13,6 +13,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.teenyda.fruit.common.entity.Banner;
 import me.teenyda.fruit.common.entity.Book;
 import me.teenyda.fruit.common.entity.FileUploadResponse;
 import me.teenyda.fruit.common.mvp.BaseRxPresenter;
@@ -32,6 +33,20 @@ import okhttp3.RequestBody;
  * description:
  */
 public class HomePRx extends BaseRxPresenter<IHomeV> {
+
+    public void getBanners() {
+        addDisposable(mApi.getBanners(), new MyObserver<List<Banner>>(mContext) {
+            @Override
+            public void onSuccess(List<Banner> banners) {
+                mView.setBanners(banners);
+            }
+
+            @Override
+            public void onFailure(Throwable e, String errorMsg) {
+
+            }
+        });
+    }
 
     public void getBook(){
         /*this.getURL()

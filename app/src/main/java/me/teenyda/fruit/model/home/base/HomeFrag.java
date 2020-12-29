@@ -4,6 +4,9 @@ import android.content.Context;
 import com.youth.banner.Banner;
 import com.youth.banner.indicator.RoundLinesIndicator;
 import com.youth.banner.util.BannerUtils;
+
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -52,10 +55,10 @@ public class HomeFrag extends MvpFragment<IHomeV, HomeP> implements IHomeV {
         //         .setIndicator(new CircleIndicator(getMContext()));
 
         //—————————————————————————如果你想偷懒，而又只是图片轮播————————————————————————
-        banner.setAdapter(new ImageNetAdapter(DataBean.getTestData3()));
-        banner.setBannerRound(BannerUtils.dp2px(5));
-        banner.setIndicator(new RoundLinesIndicator(getMContext()));
-        banner.setIndicatorSelectedWidth((int) BannerUtils.dp2px(15));
+        // banner.setAdapter(new ImageNetAdapter(DataBean.getTestData3()));
+        // banner.setBannerRound(BannerUtils.dp2px(5));
+        // banner.setIndicator(new RoundLinesIndicator(getMContext()));
+        // banner.setIndicatorSelectedWidth((int) BannerUtils.dp2px(15));
 
     }
 
@@ -78,5 +81,8 @@ public class HomeFrag extends MvpFragment<IHomeV, HomeP> implements IHomeV {
     }
 
 
+    @Override
+    public void setBanners(List<me.teenyda.fruit.common.entity.Banner> banners) {
 
+    }
 }

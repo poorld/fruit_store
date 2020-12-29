@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
+import me.teenyda.fruit.common.entity.Banner;
 import me.teenyda.fruit.common.entity.Bean;
 import me.teenyda.fruit.common.entity.Book;
 import me.teenyda.fruit.common.entity.Comments;
@@ -90,6 +91,8 @@ public interface ApiUrl {
     Observable<BaseResponse<List<FileUploadResponse>>> uploadImages(@Part List<MultipartBody.Part> files,
                                                              @Part("files") RequestBody requestBody);
 
+    @GET("fruit/banner/all")
+    Observable<BaseResponse<List<Banner>>> getBanners();
 
     /**
      * 商品分类

@@ -191,7 +191,8 @@ public class SettlementActicity extends MvpActivity<ISettlementView, SettlementP
     @Override
     protected void initView() {
         ButterKnife.bind(this);
-
+        setBack();
+        setTitleShow(true, "确认订单", false);
         mPopupPayment = new PopupPayment(getMContext());
         mPopupPayment.setPaymentTypeClick(new PopupPayment.PaymentTypeClick() {
             @Override

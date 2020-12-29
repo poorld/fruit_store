@@ -24,6 +24,7 @@ import me.teenyda.fruit.common.entity.Book;
 import me.teenyda.fruit.common.entity.DataBean;
 import me.teenyda.fruit.common.mvp.MvpRxFragment;
 import me.teenyda.fruit.common.view.popupview.CustomProgressDialog;
+import me.teenyda.fruit.model.classify.info.ProductInfoActivity;
 import me.teenyda.fruit.model.home.base.adapter.ImageNetAdapter;
 import me.teenyda.fruit.model.home.base.adapter.RecommendAdapter;
 import me.teenyda.fruit.model.home.base.presenter.HomePRx;
@@ -61,6 +62,7 @@ public class HomeFxFrag extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
     @BindView(R.id.hot_fruit_rl)
     RelativeLayout hot_fruit_rl;
     private CustomProgressDialog mDialog;
+    private ImageNetAdapter mImageNetAdapter;
 
 
     @Override
@@ -83,7 +85,6 @@ public class HomeFxFrag extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
         mBind = ButterKnife.bind(this, mView);
         setStatusBarTran(false, true);
 
-        banner.setAdapter(new ImageNetAdapter(DataBean.getTestData3()));
         banner.setBannerRound(BannerUtils.dp2px(5));
         banner.setIndicator(new RoundLinesIndicator(getMContext()));
         banner.setIndicatorSelectedWidth((int) BannerUtils.dp2px(15));
@@ -104,7 +105,6 @@ public class HomeFxFrag extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
         rv.setAdapter(new RecommendAdapter(getMContext()));
 
         banner.addBannerLifecycleObserver(this);
-
         mDialog = CustomProgressDialog.getInstance(getMContext(), R.drawable.anmi_loading);
 
     }
@@ -132,7 +132,7 @@ public class HomeFxFrag extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
 
     @Override
     protected void requestData() {
-
+        mPresenter.getBanners();
     }
 
     @Override
@@ -169,4 +169,19 @@ public class HomeFxFrag extends MvpRxFragment<IHomeV, HomePRx> implements IHomeV
         showToast("请同意相关权限，否则功能无法使用");
     }
 
+    @Override
+    public void setBanners(List<me.teenyda.fruit.common.entity.Banner> banners) {
+        mImageNetAdapter = new ImageNetAdapter(banners);
+        banner.setAdapter(mImageNetAdapter);
+        mImageNetAdapter.notifyDataSetChanged();
+        mImageNetAdapter.setBannerClickListener(new ImageNetAdapter.BannerClickListener() {
+            @Override
+            public void onBannerClick(me.teenyda.fruit.common.entity.Banner banner) {
+                Integer productId = banner.getProductId();
+                if (productId != null) {
+                    ProductInfoActivity.startActivity(getMContext(), productId);
+                }
+            }
+        });
+    }
 }
