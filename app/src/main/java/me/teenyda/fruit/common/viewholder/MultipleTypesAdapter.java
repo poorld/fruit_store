@@ -53,7 +53,8 @@ public class MultipleTypesAdapter extends BannerAdapter<ProductBannerImage, Recy
     @Override
     public int getItemViewType(int position) {
         int realPosition = getRealPosition(position);
-        return mBannerImages.get(realPosition).getType();
+        Integer type = mBannerImages.get(realPosition).getType();
+        return type != null ? type : 1;
         // return getData().viewType;
     }
 
