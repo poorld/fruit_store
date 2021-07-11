@@ -1,4 +1,7 @@
-# android mvp模版
+# 水果小超市APP
+水果小超市 APP 是为客户提供一个基于移动网络的线上水果销售平台，实现水果商品展示、分类浏览、提交 订单、加入购物车、会员功能、管理员产品管理、添加活动等功能。该系统手机端基于 Android 平台，使 Android 开发技术结合 MVP 设计模式。服务器端使用 SpringBoot 后台开发框架进行开发，MySQL 作为后 台数据库支持，使用 Vue.js 和 ElementUI 实现后台管理系统的界面布局。
+涉及技术: SpringBoot、Mybatis、Vue.js、ElementUI、Android、MVP
+
 项目参考:
 - [【Android架构】基于MVP模式的Retrofit2+RXjava封装](https://yq.aliyun.com/articles/620836)
 - [Android Rxjava+Retrofit网络请求框架封装（一）](https://blog.csdn.net/cs_lwb/article/details/82016997)
